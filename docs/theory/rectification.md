@@ -14,9 +14,7 @@ Rectification is the bridge between what the wall provides (AC) and what tubes n
 Tubes need DC on their plates. The wall provides AC. Something has to bridge that.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/rectification-waveforms.svg" aria-label="Rectification waveforms at each stage">
-    Rectification waveforms (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/rectification-waveforms.svg" alt="Rectification waveforms at each stage">
   <figcaption>What the waveform looks like at each stage: raw AC from the transformer, after one diode (half-wave), after the 5AR4's two anodes (full-wave). Hover any panel for the physics. Click to zoom.</figcaption>
 </figure>
 
@@ -37,9 +35,7 @@ Half-wave wastes half the energy and produces dirty DC that's hard to smooth. **
 The 5AR4 has two anodes (pins 4 and 6 on the tube socket) connected to the two ends of the high-voltage transformer winding. The center tap of that winding (the RED/YEL lead) provides the ground reference. On the positive half-cycle, current flows through one anode; on the negative half-cycle, current flows through the other anode. The cathode (pin 8 — also where the heater is, since the 5AR4 is indirectly heated) sees both halves as positive pulses.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/full-wave-rectifier-topology.svg" aria-label="Full-wave rectifier topology">
-    Full-wave rectifier topology (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/full-wave-rectifier-topology.svg" alt="Full-wave rectifier topology">
   <figcaption>The complete circuit: PA-060 HV secondary with center tap, 5AR4 dual-anode rectifier, filter cap, B+ rail to load. Hover any component for its role and wiring details. Click to zoom.</figcaption>
 </figure>
 
@@ -80,9 +76,7 @@ Half a cycle later (1/120th of a second), the field reverses and so does the pol
 The two ends are **always opposite** — when one is +360V, the other is −360V.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/phase-180-degrees.svg" aria-label="180 degree phase relationship across a center-tapped winding">
-    180° phase relationship (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/phase-180-degrees.svg" alt="180 degree phase relationship across a center-tapped winding">
   <figcaption>Two sine waves measured at the two RED leads relative to the center tap. They cross zero at the same instants; their peaks are exact mirror images. Click to zoom.</figcaption>
 </figure>
 
@@ -126,9 +120,7 @@ After rectification, you have unidirectional but bumpy DC. The next stages smoot
 2. **[Chokes (inductors)](../components/choke.md)** resist *changes* in current, further smoothing the ripple.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/smoothing-chain.svg" aria-label="Smoothing chain — what each filter stage does to the waveform">
-    Smoothing chain waveforms (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/smoothing-chain.svg" alt="Smoothing chain — what each filter stage does to the waveform">
   <figcaption>Same vertical scale on all four panels, in approximate ST-70 volts (B+ ≈ 460 V, V_peak ≈ 480 V). Ripple amplitudes are exaggerated so each stage's shape is visible — real ST-70 ripple at the tube plates is under 1 V. Click to zoom.</figcaption>
 </figure>
 

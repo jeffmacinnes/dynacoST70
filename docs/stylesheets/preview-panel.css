@@ -144,11 +144,11 @@
   cursor: zoom-in;
 }
 
-/* The diagram itself — either the original <object> (before inlining) or the
+/* The diagram itself — either the original <img> (before inlining) or the
    inline <svg> (after preview-panel.js fetches and replaces it). Hover and
    click events both work on the inline SVG; clicks bubble to the figure
-   handler to open the lightbox, hovers trigger native <title> tooltips. */
-.md-typeset figure.diagram-fig object,
+   handler to open the lightbox, hovers trigger custom data-tooltip popups. */
+.md-typeset figure.diagram-fig img,
 .md-typeset figure.diagram-fig svg {
   width: 100%;
   height: auto;
@@ -225,7 +225,7 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-.md-lightbox__content object,
+.md-lightbox__content img,
 .md-lightbox__content svg {
   width: 100%;
   height: 100%;

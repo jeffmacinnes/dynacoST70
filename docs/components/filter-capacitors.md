@@ -9,9 +9,7 @@ The ST-70 uses a **multi-section filter capacitor** — a single cylindrical alu
 These caps are the energy reservoirs that smooth the 5AR4's rectified pulse output into the clean DC the tubes need on their plates. They are also the most likely component in any vintage Dynaco to need replacement — original electrolytics dry out and lose capacitance over decades.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/filter-cap-construction.svg" aria-label="Multi-section filter capacitor construction and B+ chain">
-    Multi-section filter cap diagram (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/filter-cap-construction.svg" alt="Multi-section filter capacitor construction and B+ chain">
   <figcaption>Cutaway of the quad cap on the left; how each section feeds the supply on the right. The can itself is the shared negative terminal — the chassis bolt that holds it in place is the ground connection. Hover any section for what it does. Click to zoom.</figcaption>
 </figure>
 

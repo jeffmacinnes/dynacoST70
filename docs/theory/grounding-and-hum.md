@@ -9,9 +9,7 @@ title: Grounding and hum
 This page is the conceptual reference for the grounding decisions you'll see scattered across the build steps. The TL;DR: route each return *independently* to one common point. Don't share wires between sensitive stages and high-current stages.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/star-ground-topology.svg" aria-label="Star ground vs daisy chain grounding topology comparison">
-    Star ground topology diagram (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/star-ground-topology.svg" alt="Star ground vs daisy chain grounding topology comparison">
   <figcaption>Two grounding topologies side by side. The same components, same currents — but the daisy chain creates a hum loop while the star topology doesn't. The seven-lug terminal strip in the ST-70 is what makes star grounding possible. Click to zoom.</figcaption>
 </figure>
 

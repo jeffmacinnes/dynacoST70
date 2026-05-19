@@ -9,9 +9,7 @@ The ST-70's **choke** is a 1.5 H iron-core inductor in the B+ supply, sitting be
 The choke and the second filter cap together form a *second-order* low-pass filter that drops B+ ripple by tens of dB, turning the sawtooth output of the first cap into the essentially-flat DC the tube plates want.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/choke-filter-response.svg" aria-label="LC filter frequency response showing how the choke kills 120 Hz ripple">
-    Choke filter response (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/choke-filter-response.svg" alt="LC filter frequency response showing how the choke kills 120 Hz ripple">
   <figcaption>Attenuation vs. frequency for the ST-70's L=1.5 H choke + C₂=20 µF second filter cap, with a ~100 mA load. The 120 Hz ripple at the choke input gets cut by ~24 dB (factor of 16) at the choke output. Click to zoom.</figcaption>
 </figure>
 

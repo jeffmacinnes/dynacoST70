@@ -9,9 +9,7 @@ title: Feedback
 The ST-70 uses **global negative feedback**: a single resistor from the [A-470](../components/a-470-output-transformer.md)'s 16 Ω secondary tap back to the [input stage](../components/pc-3a-driver-board.md) cathode. That one wire wraps the entire amplifier — every stage, the OPT, everything — in a feedback loop.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/feedback-loop.svg" aria-label="Global negative feedback loop in the ST-70">
-    Feedback loop topology (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/feedback-loop.svg" alt="Global negative feedback loop in the ST-70">
   <figcaption>The full signal path with the feedback wire shown in red. Hover any stage for what feedback does to it. Click to zoom.</figcaption>
 </figure>
 

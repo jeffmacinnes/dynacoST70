@@ -106,6 +106,11 @@
     }
   };
 
+  // On narrow viewports the side panel would cover the entire screen, which
+  // is more confusing than helpful — just let links navigate normally.
+  // Matches Material's tablet breakpoint (76.25em).
+  const isNarrow = () => window.matchMedia('(max-width: 76.1875em)').matches;
+
   const onClick = (e) => {
     if (e.button !== 0) return;
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -116,6 +121,11 @@
     if (!rawHref) return;
 
     const insidePanel = !!link.closest('.md-preview-panel');
+
+    // On narrow viewports, don't intercept anything — including links inside
+    // a (possibly stale) panel. The panel won't open here, so the user just
+    // navigates normally.
+    if (isNarrow() && !insidePanel) return;
 
     if (insidePanel) {
       // Clicks inside the panel: keep the user in the panel unless they
@@ -154,16 +164,26 @@
   document.addEventListener('click', onClick, true);
   document.addEventListener('keydown', onKey);
 
+  // If the user resizes from desktop down into mobile range with the panel
+  // open, close it — the mobile experience is "navigate normally," and a
+  // lingering panel covering the page would be confusing.
+  window.matchMedia('(max-width: 76.1875em)').addEventListener('change', (e) => {
+    if (e.matches) closePanel();
+  });
+
   // Material's instant navigation replaces the main content but leaves
   // body-level nodes alone — the panel survives and our document-level
   // listeners keep working. Nothing to re-init here.
 
   // ============ Inline diagram SVGs ============
-  // Each <figure class="diagram-fig"> originally contains an <object> tag.
-  // <object> creates a separate document context, which blocks hover events
-  // from reaching <title> tooltips. We fetch the SVG text and replace the
-  // <object> with the inline SVG so the diagram becomes part of the host
-  // document — hovers and clicks both work natively.
+  // Each <figure class="diagram-fig"> contains an <img src=".svg"> as its
+  // initial markup. <img> renders SVG reliably across desktop and mobile
+  // (unlike <object>, which has well-known rendering bugs on iOS Safari).
+  //
+  // For hover tooltips to work, the SVG needs to live in the host document
+  // — <img> SVGs don't expose their internal elements to host-page events.
+  // We fetch the SVG text and replace each <img> with inline SVG so the
+  // diagram becomes part of the host document and hovers fire natively.
   //
   // We also convert each non-root <title> element into a data-tooltip
   // attribute on its parent and DELETE the <title>. That suppresses the
@@ -179,11 +199,11 @@
   };
 
   const inlineFigureSvgs = async (root = document) => {
-    const objects = root.querySelectorAll(
-      'figure.diagram-fig > object[type="image/svg+xml"], figure.diagram-fig object[type="image/svg+xml"]'
+    const imgs = root.querySelectorAll(
+      'figure.diagram-fig img[src$=".svg"]'
     );
-    for (const obj of objects) {
-      const url = obj.getAttribute('data');
+    for (const img of imgs) {
+      const url = img.getAttribute('src');
       if (!url) continue;
       try {
         const res = await fetch(url, { credentials: 'same-origin' });
@@ -202,7 +222,7 @@
         // the same SVG (we need a separate copy in the zoomed view).
         svg.dataset.svgSrc = url;
         convertTitlesToTooltips(svg);
-        obj.replaceWith(svg);
+        img.replaceWith(svg);
       } catch (err) {
         console.warn('Failed to inline SVG', url, err);
       }
@@ -345,15 +365,15 @@
     // Clicks on the caption or its links should NOT trigger the lightbox —
     // let the link navigate / let the user select text.
     if (e.target.closest('figcaption')) return;
-    // Find the SVG (post-inlining) or the original object as a fallback,
+    // Find the SVG (post-inlining) or the original img as a fallback,
     // and resolve its source URL.
     const svg = fig.querySelector('svg');
-    const obj = fig.querySelector('object');
+    const img = fig.querySelector('img[src$=".svg"]');
     let url = null;
     if (svg && svg.dataset.svgSrc) {
       url = svg.dataset.svgSrc;
-    } else if (obj) {
-      url = obj.getAttribute('data');
+    } else if (img) {
+      url = img.getAttribute('src');
     } else if (svg) {
       // We inlined, but didn't stash the source URL. Try to recover by
       // looking at the matching original from the unmodified page. As a

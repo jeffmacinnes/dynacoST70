@@ -9,9 +9,7 @@ title: Phase splitting
 The ST-70 uses the simplest reasonable topology: a **cathodyne** (also called "split-load") phase splitter, built around one triode section of the [6GH8A driver tube](../components/6gh8a-driver-tube.md) on the [PC-3A board](../components/pc-3a-driver-board.md).
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/cathodyne-phase-splitter.svg" aria-label="Cathodyne phase splitter schematic">
-    Cathodyne phase splitter (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/cathodyne-phase-splitter.svg" alt="Cathodyne phase splitter schematic">
   <figcaption>Equal resistors above and below a single triode. The plate output swings opposite to the input; the cathode output swings with it. Same current, same R, same magnitude — perfectly balanced. Click to zoom.</figcaption>
 </figure>
 

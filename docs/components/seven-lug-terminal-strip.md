@@ -9,9 +9,7 @@ A small phenolic (insulating) board with seven brass lugs sticking out, mounted 
 In the ST-70 specifically, this strip is also the visible embodiment of the amp's **[star grounding architecture](../theory/grounding-and-hum.md)** — most of the ground-related decisions in the amp converge here, by design, so the entire grounding scheme is inspectable from one location.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/seven-lug-strip.svg" aria-label="Seven-lug terminal strip lug assignments">
-    Seven-lug strip diagram (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/seven-lug-strip.svg" alt="Seven-lug terminal strip lug assignments">
   <figcaption>The strip with its seven lugs and two chassis-mounting bolts. Lugs 5 and 7 are the canonical heater-CT anchors (wired in step 6). Other lugs vary by schematic revision but serve roughly similar grounding-network roles. Hover any lug for details. Click to zoom.</figcaption>
 </figure>
 

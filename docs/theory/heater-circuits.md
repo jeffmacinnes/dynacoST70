@@ -75,9 +75,7 @@ When you connect the **center tap to ground**, you anchor that midpoint at exact
 The two leads now swing **symmetrically around zero**, which is the amp's reference.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/heater-ct-comparison.svg" aria-label="Heater winding floating midpoint vs CT grounded comparison">
-    Heater CT comparison (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/heater-ct-comparison.svg" alt="Heater winding floating midpoint vs CT grounded comparison">
   <figcaption>Panel A: floating midpoint drifts under stray pickup, both leads ride along. Panel B: CT tied to ground anchors the midpoint at 0 V, so the two leads' induced voltages into nearby signal wiring cancel cleanly. Click to zoom.</figcaption>
 </figure>
 

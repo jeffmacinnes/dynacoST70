@@ -9,9 +9,7 @@ The A-470 is the output transformer in the ST-70 — the part that turns the hig
 This build uses the Dynakit-branded Pacific Transformer reproductions, which are widely considered faithful to the original 1959 Dynaco specs.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/a-470-windings.svg" aria-label="A-470 output transformer winding diagram">
-    A-470 winding diagram (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/a-470-windings.svg" alt="A-470 output transformer winding diagram">
   <figcaption>Push-pull primary on the left (BLUE / RED CT / BROWN-primary, plus the GREEN ultralinear screen taps); speaker secondary on the right (BLACK common, BROWN 4 Ω, ORANGE 8 Ω, YELLOW 16 Ω). Hover any lead for its role. Click to zoom.</figcaption>
 </figure>
 

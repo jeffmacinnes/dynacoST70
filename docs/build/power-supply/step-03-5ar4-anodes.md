@@ -19,9 +19,7 @@ This is the moment you're wiring up the actual rectification. The [1N4007 from s
 The 5AR4 is a **dual-diode** in one tube envelope:
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../../assets/diagrams/5ar4-internal-structure.svg" aria-label="5AR4 internal structure">
-    5AR4 internal structure (your browser does not support inline SVG).
-  </object>
+  <img src="../../../assets/diagrams/5ar4-internal-structure.svg" alt="5AR4 internal structure">
   <figcaption>Two anodes flanking a shared cathode, indirectly heated. Hover any internal element or pin for spec and wiring details. Click to zoom.</figcaption>
 </figure>
 
@@ -32,9 +30,7 @@ Two separate plates, each acting as the anode of its own diode, sharing one cath
 Once this step is complete, plus [step 7](step-07-hv-ct.md) (red-yellow center tap to ground), the rectifier circuit is electrically complete. Here's how it operates:
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../../assets/diagrams/full-wave-rectifier-topology.svg" aria-label="Full-wave rectifier topology">
-    Full-wave rectifier topology (your browser does not support inline SVG).
-  </object>
+  <img src="../../../assets/diagrams/full-wave-rectifier-topology.svg" alt="Full-wave rectifier topology">
   <figcaption>PA-060 HV secondary on the left feeds the 5AR4's two anodes; the cathode delivers pulsating DC through the filter cap to the B+ rail. Hover any component for details. Click to zoom.</figcaption>
 </figure>
 
@@ -94,9 +90,7 @@ Half a cycle later (1/120th of a second), the field reverses and so does the pol
 The two ends are **always opposite** — when one is +360V, the other is −360V. This is what "180° out of phase" means: the two waveforms are mirror images across zero.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../../assets/diagrams/phase-180-degrees.svg" aria-label="180 degree phase relationship across a center-tapped winding">
-    180° phase relationship (your browser does not support inline SVG).
-  </object>
+  <img src="../../../assets/diagrams/phase-180-degrees.svg" alt="180 degree phase relationship across a center-tapped winding">
   <figcaption>Top RED and bottom RED, measured against the center tap. They're mirror images of each other on every half-cycle. Click to zoom.</figcaption>
 </figure>
 

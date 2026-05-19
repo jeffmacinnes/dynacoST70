@@ -11,9 +11,7 @@ The PA-060 is the Dynakit-branded Pacific Transformer reproduction of the origin
 A multi-secondary mains transformer designed specifically for the ST-70. One primary takes in 120V AC from the wall; five secondaries provide the various voltages the amp's tubes need. Physically it's a heavy steel-can transformer mounted on the chassis between the rectifier socket and the output transformers.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/pa-060-windings.svg" aria-label="PA-060 power transformer winding diagram">
-    PA-060 winding diagram (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/pa-060-windings.svg" alt="PA-060 power transformer winding diagram">
   <figcaption>Primary on the left, five color-coded secondaries on the right. Hover any winding for its voltage, current, and where it lands in the build.</figcaption>
 </figure>
 

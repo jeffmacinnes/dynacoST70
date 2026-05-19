@@ -20,9 +20,7 @@ The voltage ratio is determined by the **turns ratio**: if the primary has 1000 
 ## Physical construction
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/transformer-cross-section.svg" aria-label="Transformer cross-section showing internal construction">
-    Transformer cross-section (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/transformer-cross-section.svg" alt="Transformer cross-section showing internal construction">
   <figcaption>Cutaway of a power transformer: end bells, laminated iron core, bobbin, layered windings (primary innermost, HV secondary, heater secondaries outermost), and the leads exiting the bottom. Hover any element for what it does. Click to zoom.</figcaption>
 </figure>
 

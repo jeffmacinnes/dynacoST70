@@ -7,9 +7,7 @@ title: Tube pinouts
 Pin functions for every tube in this build. All views are from the **wiring side** (bottom of the socket).
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/tube-pinouts.svg" aria-label="Tube pinout reference chart">
-    Tube pinout chart (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/tube-pinouts.svg" alt="Tube pinout reference chart">
   <figcaption>Three tube types in this build, viewed from below the socket. Color coding: heater orange, plate blue, screen yellow, control grid purple, cathode brown, NC/IC grey. Hover any pin for spec. Click to zoom.</figcaption>
 </figure>
 

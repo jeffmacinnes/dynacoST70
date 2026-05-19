@@ -9,9 +9,7 @@ A **push-pull** output stage uses two output tubes (or transistors) wired so tha
 Push-pull is the dominant topology for tube power amplifiers, and the reasons aren't only about output power. The most interesting properties come from the geometry of how the two tubes' contributions combine.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/push-pull-topology.svg" aria-label="Push-pull output stage with two EL34s and a center-tapped output transformer">
-    Push-pull topology (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/push-pull-topology.svg" alt="Push-pull output stage with two EL34s and a center-tapped output transformer">
   <figcaption>Two EL34s wired to opposite ends of the OPT's center-tapped primary. B+ enters at the center tap. The two tubes' inputs are 180° out of phase; their outputs combine in the secondary to produce the full audio waveform. Click to zoom.</figcaption>
 </figure>
 

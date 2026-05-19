@@ -7,9 +7,7 @@ title: EL34 output tube
 The EL34 is the workhorse pentode that produces the ST-70's output power. Four of them, configured as two push-pull pairs, drive the two [A-470 output transformers](a-470-output-transformer.md). This build uses an Electro-Harmonix EL34 Apex Matched Quad.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/el34-internal-structure.svg" aria-label="EL34 internal structure">
-    EL34 internal structure (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/el34-internal-structure.svg" alt="EL34 internal structure">
   <figcaption>Power pentode: cathode at the center, three grids (g1 control, g2 screen, g3 suppressor), and an outer plate. Hover any element or pin for spec and wiring details. Click to zoom.</figcaption>
 </figure>
 

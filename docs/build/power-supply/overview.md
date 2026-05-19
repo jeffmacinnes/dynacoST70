@@ -43,9 +43,7 @@ See [reading this manual](../../getting-started/reading-this-manual.md) for the 
 Once page 6 is complete, the power supply has three stages of operation: a high-voltage path, a bias path, and the heater paths.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../../assets/diagrams/power-supply-block.svg" aria-label="Complete ST-70 power supply block diagram">
-    Power supply block diagram (your browser does not support inline SVG).
-  </object>
+  <img src="../../../assets/diagrams/power-supply-block.svg" alt="Complete ST-70 power supply block diagram">
   <figcaption>From the mains on the left to the three tube-facing rails on the right. Hover any block for spec and the build step that creates it. Click to zoom.</figcaption>
 </figure>
 

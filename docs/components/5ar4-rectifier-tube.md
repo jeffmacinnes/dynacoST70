@@ -11,9 +11,7 @@ The 5AR4 (also called GZ34 in European nomenclature) is the high-voltage rectifi
 An **indirectly heated dual-anode rectifier tube**. Inside the glass envelope are two plates (anodes), a shared cathode, and a heater filament that warms the cathode. The two-anode topology lets a single tube perform [full-wave rectification](../theory/rectification.md#full-wave-rectification-what-the-5ar4-does) of an AC supply with a center-tapped secondary.
 
 <figure class="diagram-fig" markdown="span">
-  <object type="image/svg+xml" data="../../assets/diagrams/5ar4-internal-structure.svg" aria-label="5AR4 internal structure">
-    5AR4 internal structure (your browser does not support inline SVG).
-  </object>
+  <img src="../../assets/diagrams/5ar4-internal-structure.svg" alt="5AR4 internal structure">
   <figcaption>Two anodes flanking a shared cathode, indirectly heated. Hover any internal element or pin for spec and wiring details. Click to zoom.</figcaption>
 </figure>
 
