@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 720"
+     role="img"
+     aria-labelledby="pin-title pin-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="pin-title">Tube pinout reference — ST-70 build</title>
+  <desc id="pin-desc">Bottom-view pin charts for the three tube types used in this ST-70: the 5AR4 rectifier (octal), the EL34 output pentode (octal), and the 6GH8A driver (9-pin compactron with adapter).</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .pin-circle { stroke-width: 2; r: 16; }
+
+    .header  { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 12px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+    .tube-name { font-size: 17px; font-weight: 700; fill: #1a1a1a; }
+    .tube-sub  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .pin-num    { font-size: 12px; font-weight: 700; fill: #1a1a1a; text-anchor: middle; }
+    .pin-fn     { font-size: 11px; font-weight: 600; fill: #1a1a1a; }
+    .pin-detail { font-size: 10px; fill: #555; }
+    .pin-nc     { font-size: 10px; font-style: italic; fill: #888; }
+
+    .socket-outline { fill: #f4f4f4; stroke: #aaa; stroke-width: 1.5; }
+    .key-notch      { fill: #aaa; stroke: #777; stroke-width: 1; }
+
+    .pin-circle  { stroke-width: 1.4; }
+    .pin-default { fill: #c9c9c9; stroke: #555; }
+    .pin-heater  { fill: #ff9c4a; stroke: #c05a00; }
+    .pin-anode   { fill: #5a6b8c; stroke: #2a3a5e; }
+    .pin-screen  { fill: #b08b00; stroke: #7a6000; }
+    .pin-grid    { fill: #7a2f80; stroke: #4a1a50; }
+    .pin-cath    { fill: #c47a3a; stroke: #6a3a14; }
+    .pin-nc-fill { fill: #e6e6e6; stroke: #aaa; }
+  </style>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="600" y="36" text-anchor="middle">Tube pinout reference</text>
+  <text class="subhead" x="600" y="58" text-anchor="middle">Pin numbering as viewed from the wiring side — bottom of the chassis, looking up into the socket.</text>
+
+  <!-- ============ LEGEND (top right) ============ -->
+  <g transform="translate(40, 80)">
+    <text class="pin-fn" x="0" y="0" fill="#1a1a1a">Color key:</text>
+    <circle cx="80" cy="-4" r="6" class="pin-default"/>
+    <text class="pin-detail" x="90" y="0">NC / IC</text>
+
+    <circle cx="155" cy="-4" r="6" class="pin-heater"/>
+    <text class="pin-detail" x="165" y="0">Heater</text>
+
+    <circle cx="225" cy="-4" r="6" class="pin-anode"/>
+    <text class="pin-detail" x="235" y="0">Plate / Anode</text>
+
+    <circle cx="335" cy="-4" r="6" class="pin-screen"/>
+    <text class="pin-detail" x="345" y="0">Screen (g2)</text>
+
+    <circle cx="440" cy="-4" r="6" class="pin-grid"/>
+    <text class="pin-detail" x="450" y="0">Control grid (g1)</text>
+
+    <circle cx="565" cy="-4" r="6" class="pin-cath"/>
+    <text class="pin-detail" x="575" y="0">Cathode</text>
+  </g>
+
+  <!-- ============ 5AR4 (left, octal) ============ -->
+  <g transform="translate(200, 200)">
+    <text class="tube-name" x="0" y="-20" text-anchor="middle">5AR4 (V1)</text>
+    <text class="tube-sub"  x="0" y="-4" text-anchor="middle">octal · rectifier · GZ34 in EU</text>
+
+    <!-- Socket outline (circular) -->
+    <circle class="socket-outline" cx="0" cy="100" r="110"/>
+    <!-- Locator key at the bottom -->
+    <rect class="key-notch" x="-12" y="208" width="24" height="14" rx="2"/>
+    <text class="pin-detail" x="0" y="232" text-anchor="middle">key</text>
+
+    <!-- 8 pins arranged in a circle (octal viewed from below — clockwise) -->
+    <!-- Positions computed: pin 1 starts at bottom-left of key, going clockwise -->
+    <!-- Angles (degrees, 0 = right, 90 = bottom): -->
+    <!--   pin 1: 112.5° (lower-left), pin 2: 157.5°, pin 3: 202.5° (upper-left) -->
+    <!--   pin 4: 247.5°, pin 5: 292.5°, pin 6: 337.5°, pin 7: 22.5°, pin 8: 67.5° -->
+    <!-- Note: SVG y-down, so positive angle goes DOWN. We add 100 to y. -->
+
+    <!-- pin 1 -->
+    <g class="lead-group">
+      <title>5AR4 pin 1 — No connection.</title>
+      <circle class="pin-circle pin-default" cx="-71" cy="170" r="14"/>
+      <text class="pin-num" x="-71" y="174">1</text>
+      <text class="pin-nc"  x="-95" y="190" text-anchor="middle">NC</text>
+    </g>
+    <!-- pin 2 -->
+    <g class="lead-group">
+      <title>5AR4 pin 2 — Heater (5 V AC). One end of the WHT pair from the PA-060 (step 2).</title>
+      <circle class="pin-circle pin-heater" cx="-102" cy="142" r="14"/>
+      <text class="pin-num" x="-102" y="146">2</text>
+      <text class="pin-detail" x="-138" y="142" text-anchor="end">Heater</text>
+    </g>
+    <!-- pin 3 -->
+    <g class="lead-group">
+      <title>5AR4 pin 3 — No connection.</title>
+      <circle class="pin-circle pin-default" cx="-102" cy="58" r="14"/>
+      <text class="pin-num" x="-102" y="62">3</text>
+      <text class="pin-nc"  x="-138" y="58" text-anchor="end">NC</text>
+    </g>
+    <!-- pin 4 -->
+    <g class="lead-group">
+      <title>5AR4 pin 4 — Anode #1. One of the two RED leads from PA-060 HV winding (step 3).</title>
+      <circle class="pin-circle pin-anode" cx="-71" cy="30" r="14"/>
+      <text class="pin-num" x="-71" y="34">4</text>
+      <text class="pin-detail" x="-94" y="14" text-anchor="end">Anode 1</text>
+    </g>
+    <!-- pin 5 -->
+    <g class="lead-group">
+      <title>5AR4 pin 5 — No connection.</title>
+      <circle class="pin-circle pin-default" cx="71" cy="30" r="14"/>
+      <text class="pin-num" x="71" y="34">5</text>
+      <text class="pin-nc"  x="94" y="14">NC</text>
+    </g>
+    <!-- pin 6 -->
+    <g class="lead-group">
+      <title>5AR4 pin 6 — Anode #2. The other RED lead from PA-060 HV winding (step 3).</title>
+      <circle class="pin-circle pin-anode" cx="102" cy="58" r="14"/>
+      <text class="pin-num" x="102" y="62">6</text>
+      <text class="pin-detail" x="138" y="58">Anode 2</text>
+    </g>
+    <!-- pin 7 -->
+    <g class="lead-group">
+      <title>5AR4 pin 7 — No connection.</title>
+      <circle class="pin-circle pin-default" cx="102" cy="142" r="14"/>
+      <text class="pin-num" x="102" y="146">7</text>
+      <text class="pin-nc"  x="138" y="142">NC</text>
+    </g>
+    <!-- pin 8 -->
+    <g class="lead-group">
+      <title>5AR4 pin 8 — Cathode + Heater (other end). B+ output exits here (step 7 onward), and the second WHT lead lands here (step 2).</title>
+      <circle class="pin-circle pin-cath" cx="71" cy="170" r="14"/>
+      <text class="pin-num" x="71" y="174">8</text>
+      <text class="pin-detail" x="94" y="190">Cath + H</text>
+    </g>
+  </g>
+
+  <!-- ============ EL34 (middle, octal) ============ -->
+  <g transform="translate(600, 200)">
+    <text class="tube-name" x="0" y="-20" text-anchor="middle">EL34 (V2, V3, V6, V7)</text>
+    <text class="tube-sub"  x="0" y="-4" text-anchor="middle">octal · power pentode · output stage</text>
+
+    <circle class="socket-outline" cx="0" cy="100" r="110"/>
+    <rect class="key-notch" x="-12" y="208" width="24" height="14" rx="2"/>
+    <text class="pin-detail" x="0" y="232" text-anchor="middle">key</text>
+
+    <!-- pin 1 — internal connection -->
+    <g class="lead-group">
+      <title>EL34 pin 1 — Internal connection. Often tied to g3/cathode internally; treat as IC externally.</title>
+      <circle class="pin-circle pin-default" cx="-71" cy="170" r="14"/>
+      <text class="pin-num" x="-71" y="174">1</text>
+      <text class="pin-nc"  x="-95" y="190" text-anchor="middle">IC</text>
+    </g>
+    <!-- pin 2 — heater -->
+    <g class="lead-group">
+      <title>EL34 pin 2 — Heater (6.3 V AC). GRN or BRN lead from the PA-060 (step 4 or 5), chained from V2/V7.</title>
+      <circle class="pin-circle pin-heater" cx="-102" cy="142" r="14"/>
+      <text class="pin-num" x="-102" y="146">2</text>
+      <text class="pin-detail" x="-138" y="142" text-anchor="end">Heater</text>
+    </g>
+    <!-- pin 3 — plate -->
+    <g class="lead-group">
+      <title>EL34 pin 3 — Plate (anode). Receives B+ via the A-470 output transformer primary (step 8). ~450 V DC.</title>
+      <circle class="pin-circle pin-anode" cx="-102" cy="58" r="14"/>
+      <text class="pin-num" x="-102" y="62">3</text>
+      <text class="pin-detail" x="-138" y="58" text-anchor="end">Plate</text>
+    </g>
+    <!-- pin 4 — screen -->
+    <g class="lead-group">
+      <title>EL34 pin 4 — Screen grid (g2). Fed from B+ via dropping resistor or the UL tap on the A-470. ~400 V DC.</title>
+      <circle class="pin-circle pin-screen" cx="-71" cy="30" r="14"/>
+      <text class="pin-num" x="-71" y="34">4</text>
+      <text class="pin-detail" x="-94" y="14" text-anchor="end">Screen g2</text>
+    </g>
+    <!-- pin 5 — control grid -->
+    <g class="lead-group">
+      <title>EL34 pin 5 — Control grid (g1). Audio input. Sees driver output coupled through a coupling cap, plus the bias DC (~−40 V).</title>
+      <circle class="pin-circle pin-grid" cx="71" cy="30" r="14"/>
+      <text class="pin-num" x="71" y="34">5</text>
+      <text class="pin-detail" x="94" y="14">Control g1</text>
+    </g>
+    <!-- pin 6 — internal -->
+    <g class="lead-group">
+      <title>EL34 pin 6 — Internal connection. Treat as IC.</title>
+      <circle class="pin-circle pin-default" cx="102" cy="58" r="14"/>
+      <text class="pin-num" x="102" y="62">6</text>
+      <text class="pin-nc"  x="138" y="58">IC</text>
+    </g>
+    <!-- pin 7 — heater -->
+    <g class="lead-group">
+      <title>EL34 pin 7 — Heater (other end of 6.3 V AC).</title>
+      <circle class="pin-circle pin-heater" cx="102" cy="142" r="14"/>
+      <text class="pin-num" x="102" y="146">7</text>
+      <text class="pin-detail" x="138" y="142">Heater</text>
+    </g>
+    <!-- pin 8 — cathode -->
+    <g class="lead-group">
+      <title>EL34 pin 8 — Cathode. In the ST-70, tied to ground through a 1 Ω sense resistor used for bias measurement.</title>
+      <circle class="pin-circle pin-cath" cx="71" cy="170" r="14"/>
+      <text class="pin-num" x="71" y="174">8</text>
+      <text class="pin-detail" x="94" y="190">Cathode</text>
+    </g>
+  </g>
+
+  <!-- ============ 6GH8A (right, 9-pin compactron) ============ -->
+  <g transform="translate(1000, 200)">
+    <text class="tube-name" x="0" y="-20" text-anchor="middle">6GH8A (V4, V5)</text>
+    <text class="tube-sub"  x="0" y="-4" text-anchor="middle">9-pin · triode + pentode · driver / phase splitter</text>
+
+    <circle class="socket-outline" cx="0" cy="100" r="110"/>
+    <!-- 9-pin sockets have a key gap (no notch on the side, just a gap in the pin circle at top) -->
+    <text class="pin-detail" x="0" y="-22" text-anchor="middle"></text>
+    <text class="pin-detail" x="0" y="232" text-anchor="middle">(no notch — key gap at top of socket)</text>
+
+    <!-- 9 pins around a circle, starting from pin 1 just clockwise of the gap -->
+    <!-- Angles for 9-pin (Noval): 9 pins arranged at 40° intervals starting near 100° -->
+    <!-- For a 9-pin tube viewed from below, pins are clockwise. -->
+    <!-- I'll approximate with reasonable positions. -->
+
+    <g class="lead-group">
+      <title>6GH8A pin 1 — Pentode plate. See the driver board schematic for the exact role.</title>
+      <circle class="pin-circle pin-anode" cx="-87" cy="55" r="13"/>
+      <text class="pin-num" x="-87" y="59">1</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 2 — Pentode control grid (g1).</title>
+      <circle class="pin-circle pin-grid" cx="-102" cy="110" r="13"/>
+      <text class="pin-num" x="-102" y="114">2</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 3 — Pentode cathode + suppressor (g3).</title>
+      <circle class="pin-circle pin-cath" cx="-72" cy="165" r="13"/>
+      <text class="pin-num" x="-72" y="169">3</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 4 — Heater (6.3 V AC).</title>
+      <circle class="pin-circle pin-heater" cx="-23" cy="195" r="13"/>
+      <text class="pin-num" x="-23" y="199">4</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 5 — Heater (other end).</title>
+      <circle class="pin-circle pin-heater" cx="35" cy="195" r="13"/>
+      <text class="pin-num" x="35" y="199">5</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 6 — Triode plate.</title>
+      <circle class="pin-circle pin-anode" cx="80" cy="165" r="13"/>
+      <text class="pin-num" x="80" y="169">6</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 7 — Triode cathode.</title>
+      <circle class="pin-circle pin-cath" cx="105" cy="110" r="13"/>
+      <text class="pin-num" x="105" y="114">7</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 8 — Triode grid.</title>
+      <circle class="pin-circle pin-grid" cx="92" cy="55" r="13"/>
+      <text class="pin-num" x="92" y="59">8</text>
+    </g>
+    <g class="lead-group">
+      <title>6GH8A pin 9 — Pentode screen (g2).</title>
+      <circle class="pin-circle pin-screen" cx="42" cy="20" r="13"/>
+      <text class="pin-num" x="42" y="24">9</text>
+    </g>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="600" y="540" text-anchor="middle">Always confirm pinouts against the datasheet for your specific tube — manufacturers occasionally vary internal connections on "internal" pins.</text>
+  <text class="footer" x="600" y="560" text-anchor="middle">The 6GH8A pinout shown is approximate; refer to the RCA / GE datasheet for the exact 9-pin compactron configuration. The PC-3A driver board sockets fix these in place.</text>
+  <text class="footer" x="600" y="585" text-anchor="middle">Hover any pin for what it connects to in the ST-70 build.</text>
+</svg>

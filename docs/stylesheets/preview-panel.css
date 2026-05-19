@@ -1,0 +1,226 @@
+/* Preview panel — loads cross-cutting links (components, theory, etc.) in a
+   right-side drawer so the reader keeps their place in the build step. */
+
+:root {
+  --md-preview-width: 440px;
+}
+
+.md-preview-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: var(--md-preview-width);
+  height: 100vh;
+  background: var(--md-default-bg-color);
+  border-left: 1px solid var(--md-default-fg-color--lightest);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.08);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.18s ease-out;
+  visibility: hidden;
+}
+
+.md-preview-panel.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.md-preview-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-default-bg-color);
+}
+
+.md-preview-panel__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.md-preview-panel__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--md-default-fg-color--light);
+  font-weight: 600;
+}
+
+.md-preview-panel__expand,
+.md-preview-panel__close {
+  background: none;
+  border: none;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.85rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.md-preview-panel__expand:hover,
+.md-preview-panel__close:hover {
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color);
+}
+
+.md-preview-panel__close {
+  font-size: 1.4rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.md-preview-panel__content {
+  overflow-y: auto;
+  flex: 1;
+  padding: 1rem 1.4rem 3rem;
+}
+
+/* Trim the embedded article's outer padding (we already pad the panel) */
+.md-preview-panel__content .md-content__inner {
+  margin: 0;
+  padding: 0;
+}
+
+.md-preview-panel__content h1 {
+  font-size: 1.4rem;
+  margin-top: 0;
+}
+
+.md-preview-panel__content h2 {
+  font-size: 1.1rem;
+}
+
+/* Strip Material chrome that doesn't belong in the preview */
+.md-preview-panel__content .md-source-file,
+.md-preview-panel__content .md-content__button,
+.md-preview-panel__content nav.md-tags {
+  display: none;
+}
+
+/* When the panel is open on wide screens, shift the main content left so
+   the panel doesn't cover it. */
+@media screen and (min-width: 76.25em) {
+  body.md-preview-open .md-main {
+    margin-right: var(--md-preview-width);
+    transition: margin-right 0.18s ease-out;
+  }
+
+  body.md-preview-open .md-header,
+  body.md-preview-open .md-tabs {
+    padding-right: var(--md-preview-width);
+  }
+}
+
+/* On narrow screens, the panel becomes a near-full-screen drawer */
+@media screen and (max-width: 76.24em) {
+  :root {
+    --md-preview-width: min(420px, 100vw);
+  }
+
+  .md-preview-panel {
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* Loading state */
+.md-preview-panel__loading {
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.85rem;
+}
+
+/* ============ Diagram figures ============ */
+.md-typeset figure.diagram-fig {
+  margin: 1.5em auto;
+  text-align: center;
+  width: 80%;
+  cursor: zoom-in;
+}
+
+.md-typeset figure.diagram-fig object {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none; /* clicks bubble to the figure so the lightbox opens */
+}
+
+.md-typeset figure.diagram-fig figcaption {
+  font-size: 0.85em;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.5em;
+  cursor: auto;
+}
+
+.md-typeset figure.diagram-fig figcaption .open-full {
+  display: inline-block;
+  margin-left: 0.4em;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ============ Lightbox ============ */
+.md-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease-out, visibility 0s linear 0.15s;
+  cursor: zoom-out;
+}
+
+.md-lightbox.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+}
+
+.md-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.md-lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.md-lightbox__content {
+  background: #ffffff;
+  border-radius: 6px;
+  width: min(96vw, 1600px);
+  height: min(92vh, 1200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  padding: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.md-lightbox__content object {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1180 760"
+     role="img"
+     aria-labelledby="a470-title a470-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="a470-title">A-470 output transformer — winding diagram</title>
+  <desc id="a470-desc">The Dynaco A-470 output transformer: center-tapped push-pull primary on one side, multi-tap speaker secondary on the other, plus the ultralinear screen tap.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .lead { stroke-width: 5; }
+    .lead-group:hover .voltage { font-size: 17px; }
+    .lead { stroke-width: 3; fill: none; stroke-linecap: round; }
+    .lead-dot { r: 5.5; }
+    .lead-name { font-size: 13px; font-weight: 700; }
+    .lead-sub  { font-size: 10px; font-weight: 600; fill: #555; }
+    .voltage   { font-size: 16px; font-weight: 700; fill: #1a1a1a; }
+    .purpose   { font-size: 12px; font-weight: 600; fill: #1a1a1a; }
+    .target    { font-size: 11px; font-style: italic; fill: #444; }
+    .header    { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead   { font-size: 12px; fill: #444; }
+    .footer    { font-size: 11px; font-style: italic; fill: #555; }
+    .bobbin-note   { fill: #888; font-style: italic; font-size: 12px; }
+    .bobbin-window { stroke: #888; }
+    .ct-line   { stroke-dasharray: 7 4; }
+  </style>
+
+  <defs>
+    <pattern id="lamination-out" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#3a3a3a"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#5a5a5a" stroke-width="0.5"/>
+      <line x1="4" y1="0" x2="4" y2="8" stroke="#4a4a4a" stroke-width="0.5"/>
+    </pattern>
+    <linearGradient id="endbell-out" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#7a7a7a"/>
+      <stop offset="1" stop-color="#555"/>
+    </linearGradient>
+    <pattern id="redyel-out" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#cc3a2a"/>
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#ffcc00" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="1180" height="760" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="590" y="36" text-anchor="middle">A-470 — output transformer windings</text>
+  <text class="subhead" x="590" y="56" text-anchor="middle">Center-tapped push-pull primary · multi-tap speaker secondary · ultralinear screen tap</text>
+
+  <!-- ============ TRANSFORMER CAN ============ -->
+  <rect x="440" y="84" width="240" height="22" rx="3" fill="url(#endbell-out)" stroke="#333" stroke-width="1.5"/>
+  <rect x="440" y="652" width="240" height="22" rx="3" fill="url(#endbell-out)" stroke="#333" stroke-width="1.5"/>
+  <rect x="455" y="106" width="210" height="546" fill="url(#lamination-out)" stroke="#222" stroke-width="2"/>
+  <rect class="bobbin-window" x="480" y="140" width="160" height="478" fill="none" stroke-width="1" stroke-dasharray="3,3"/>
+  <text class="bobbin-note" x="560" y="370" text-anchor="middle">primary +</text>
+  <text class="bobbin-note" x="560" y="388" text-anchor="middle">secondary,</text>
+  <text class="bobbin-note" x="560" y="406" text-anchor="middle">interleaved</text>
+  <text class="footer" x="560" y="700" text-anchor="middle">Dynakit · Pacific Transformer reproduction</text>
+
+  <!-- ============ PRIMARY SIDE (LEFT) — push-pull center-tapped ============ -->
+
+  <!-- Blue lead (one plate) -->
+  <g class="lead-group">
+    <title>PRIMARY plate lead (BLUE) — to V2 / V6 (one side of push-pull pair).
+
+The output transformer's primary is center-tapped. One end carries the audio swing from one EL34's plate; the other end carries the opposite-phase swing from its push-pull partner.
+
+In normal operation, when the BLUE end swings positive, the BRN(primary) end swings negative — and vice versa. The two halves of the primary push and pull current through the core in opposite directions, which is what "push-pull" means.</title>
+    <line class="lead" x1="455" y1="200" x2="265" y2="200" stroke="#1a4e8a"/>
+    <circle class="lead-dot" cx="265" cy="200" fill="#1a4e8a"/>
+    <text class="lead-name" x="252" y="194" text-anchor="end" fill="#1a4e8a">BLUE</text>
+    <text class="target" x="252" y="218" text-anchor="end">→ EL34 plate (V2 or V6)</text>
+  </g>
+
+  <!-- Green UL tap -->
+  <g class="lead-group">
+    <title>ULTRALINEAR SCREEN TAP (GREEN).
+
+A tap at ~43 % of each half of the primary. Connects to the screen grid (g2) of the corresponding EL34. Running the screen this way gives "ultralinear" operation — a hybrid between pentode (cleaner, more power) and triode (lower distortion, lower power) modes.
+
+The ST-70 was the first commercial amplifier to use this Dynaco-invented topology, and it's a big part of why the original sounded so much better than its contemporaries.</title>
+    <line class="lead" x1="455" y1="270" x2="265" y2="270" stroke="#2a8c3a"/>
+    <circle class="lead-dot" cx="265" cy="270" fill="#2a8c3a"/>
+    <text class="lead-name" x="252" y="264" text-anchor="end" fill="#2a8c3a">GREEN</text>
+    <text class="target" x="252" y="288" text-anchor="end">→ EL34 screen g2 (UL tap)</text>
+  </g>
+
+  <!-- Red (B+) center tap -->
+  <g class="lead-group">
+    <title>PRIMARY CENTER TAP (RED) — B+ feed.
+
+The midpoint of the push-pull primary. Connects to the +450 V B+ rail (via the filter cap network from step 8).
+
+The B+ DC flows symmetrically into both halves of the primary and back out through the EL34 plates. The DC currents from the two tubes flow in opposite directions in the core, so their magnetic effects cancel — meaning the core doesn't need a gap. This is one of the key advantages of push-pull over single-ended.</title>
+    <line class="lead" x1="455" y1="340" x2="265" y2="340" stroke="#cc3a2a"/>
+    <circle class="lead-dot" cx="265" cy="340" fill="#cc3a2a"/>
+    <text class="lead-name" x="252" y="334" text-anchor="end" fill="#cc3a2a">RED <tspan class="lead-sub">(CT)</tspan></text>
+    <text class="target" x="252" y="358" text-anchor="end">→ +450 V B+ (step 8)</text>
+  </g>
+
+  <!-- Green UL tap (other side, symmetric) -->
+  <g class="lead-group">
+    <title>ULTRALINEAR SCREEN TAP (GREEN) — second tap.
+
+The "other half" of the UL tap, for the other EL34 in the push-pull pair. Some A-470s use a single GREEN lead with internal routing; others bring out both taps separately. Refer to your specific A-470 documentation.</title>
+    <line class="lead" x1="455" y1="410" x2="265" y2="410" stroke="#2a8c3a"/>
+    <circle class="lead-dot" cx="265" cy="410" fill="#2a8c3a"/>
+    <text class="lead-name" x="252" y="404" text-anchor="end" fill="#2a8c3a">GREEN</text>
+    <text class="target" x="252" y="428" text-anchor="end">→ EL34 screen g2 (UL tap)</text>
+  </g>
+
+  <!-- Brown (primary) - other plate lead -->
+  <g class="lead-group">
+    <title>PRIMARY plate lead (BROWN — primary side) — to V3 / V7.
+
+The other end of the center-tapped push-pull primary. Always exactly 180° out of phase with the BLUE end relative to the RED CT — same physics as the 720 V CT winding on the PA-060, just at audio frequencies.
+
+⚠️ NOTE: The A-470 has TWO brown leads — one is this primary lead, the other is the 4 Ω secondary tap. They exit different ends of the transformer; label them as soon as the can comes out of the box.</title>
+    <line class="lead" x1="455" y1="480" x2="265" y2="480" stroke="#7a4d2a"/>
+    <circle class="lead-dot" cx="265" cy="480" fill="#7a4d2a"/>
+    <text class="lead-name" x="252" y="474" text-anchor="end" fill="#7a4d2a">BROWN <tspan class="lead-sub">(primary)</tspan></text>
+    <text class="target" x="252" y="498" text-anchor="end">→ EL34 plate (V3 or V7)</text>
+  </g>
+
+  <!-- Primary side label -->
+  <text class="purpose" x="260" y="120" text-anchor="middle">PRIMARY</text>
+  <text class="footer"  x="260" y="138" text-anchor="middle">push-pull · center-tapped</text>
+
+  <!-- ============ SECONDARY SIDE (RIGHT) — speaker output ============ -->
+
+  <!-- Yellow (16Ω) -->
+  <g class="lead-group">
+    <title>16 Ω SECONDARY TAP (YELLOW).
+
+Highest-impedance speaker tap. Most modern speakers are 8 Ω, but some vintage speakers are 16 Ω. Also commonly used as the source of the global negative feedback signal back to the input stage (step 11 leaves this lead unsoldered for that reason).</title>
+    <line class="lead" x1="665" y1="200" x2="855" y2="200" stroke="#ffcc00" stroke-width="3.5"/>
+    <circle class="lead-dot" cx="855" cy="200" fill="#ffcc00"/>
+    <text class="lead-name" x="868" y="204" fill="#a07d00">YELLOW</text>
+    <text class="voltage" x="980" y="194">16 Ω tap</text>
+    <text class="target" x="980" y="212">→ 4-screw strip lug 1 (step 11)</text>
+  </g>
+
+  <!-- Orange (8Ω) -->
+  <g class="lead-group">
+    <title>8 Ω SECONDARY TAP (ORANGE).
+
+The most commonly used speaker tap. Most modern bookshelf and floor-standing speakers present a nominal 8 Ω load. Step 11 solders this lead to lug 2 of the 4-screw terminal strip.</title>
+    <line class="lead" x1="665" y1="270" x2="855" y2="270" stroke="#e0782a"/>
+    <circle class="lead-dot" cx="855" cy="270" fill="#e0782a"/>
+    <text class="lead-name" x="868" y="274" fill="#a05816">ORANGE</text>
+    <text class="voltage" x="980" y="264">8 Ω tap</text>
+    <text class="target" x="980" y="282">→ 4-screw strip lug 2 (step 11)</text>
+  </g>
+
+  <!-- Brown secondary (4Ω) -->
+  <g class="lead-group">
+    <title>4 Ω SECONDARY TAP (BROWN — secondary side).
+
+For 4 Ω speakers. Some modern speakers are 4 Ω; some classic Klipsch / horn speakers are too. Step 11 solders this lead to lug 3 of the 4-screw terminal strip.
+
+⚠️ Don't confuse with the primary BROWN lead — these are on opposite ends of the transformer.</title>
+    <line class="lead" x1="665" y1="340" x2="855" y2="340" stroke="#7a4d2a"/>
+    <circle class="lead-dot" cx="855" cy="340" fill="#7a4d2a"/>
+    <text class="lead-name" x="868" y="344" fill="#7a4d2a">BROWN <tspan class="lead-sub">(secondary)</tspan></text>
+    <text class="voltage" x="980" y="334">4 Ω tap</text>
+    <text class="target" x="980" y="352">→ 4-screw strip lug 3 (step 11)</text>
+  </g>
+
+  <!-- Black (common 0Ω reference) -->
+  <g class="lead-group">
+    <title>SPEAKER COMMON (BLACK) — 0 Ω reference.
+
+The "ground" side of every speaker output. All other taps (4 Ω, 8 Ω, 16 Ω) are measured relative to this. Step 11 lands this lead at lug 4 of the 4-screw terminal strip, where it will eventually tie to the amp's signal ground.</title>
+    <line class="lead" x1="665" y1="410" x2="855" y2="410" stroke="#1a1a1a"/>
+    <circle class="lead-dot" cx="855" cy="410" fill="#1a1a1a"/>
+    <text class="lead-name" x="868" y="414" fill="#1a1a1a">BLACK</text>
+    <text class="voltage" x="980" y="404">Common (0 Ω)</text>
+    <text class="target" x="980" y="422">→ 4-screw strip lug 4 (step 11)</text>
+  </g>
+
+  <!-- Secondary side label -->
+  <text class="purpose" x="980" y="120" text-anchor="middle">SECONDARY</text>
+  <text class="footer"  x="980" y="138" text-anchor="middle">speaker output · multi-tap</text>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="590" y="730" text-anchor="middle">A-470 spec: −1 dB from 6 Hz to 30 kHz at full power — extraordinary in 1959, still excellent today. Achieved via multi-section interleaved windings (5+ layers).</text>
+</svg>

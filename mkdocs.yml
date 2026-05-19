@@ -1,0 +1,180 @@
+site_name: Dynaco ST-70 Build Manual
+site_description: An annotated, level-2 conceptual build manual for the Dynaco ST-70 stereo tube amplifier.
+site_author: Jeff MacInnes
+site_url: https://jeffmacinnes.github.io/dynacoST70/
+repo_url: https://github.com/jeffmacinnes/dynacoST70
+repo_name: jeffmacinnes/dynacoST70
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: amber
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: amber
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jeffmacinnes/dynacoST70
+
+extra_css:
+  - stylesheets/preview-panel.css
+
+extra_javascript:
+  - javascripts/preview-panel.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.caret
+  - pymdownx.smartsymbols
+
+plugins:
+  - search
+  - glightbox
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
+      enable_git_follow: false
+      strict: false
+  - minify:
+      minify_html: true
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - getting-started/index.md
+      - Overview: getting-started/overview.md
+      - Tools and workspace: getting-started/tools-and-workspace.md
+      - Reading this manual: getting-started/reading-this-manual.md
+      - Safety basics: getting-started/safety-basics.md
+  - Components:
+      - components/index.md
+      - PA-060 power transformer: components/pa-060-power-transformer.md
+      - A-470 output transformer: components/a-470-output-transformer.md
+      - 5AR4 rectifier tube: components/5ar4-rectifier-tube.md
+      - EL34 output tube: components/el34-output-tube.md
+      - 6GH8A driver tube: components/6gh8a-driver-tube.md
+      - Filter capacitors: components/filter-capacitors.md
+      - Choke: components/choke.md
+      - 1N4007 diode: components/1n4007-diode.md
+      - Seven-lug terminal strip: components/seven-lug-terminal-strip.md
+      - PC-3A driver board: components/pc-3a-driver-board.md
+  - Theory:
+      - theory/index.md
+      - How transformers work: theory/how-transformers-work.md
+      - Rectification: theory/rectification.md
+      - Heater circuits: theory/heater-circuits.md
+      - Grounding and hum: theory/grounding-and-hum.md
+      - Voltage source vs current path: theory/voltage-vs-current.md
+      - Push-pull topology: theory/push-pull-topology.md
+      - Phase splitting: theory/phase-splitting.md
+      - Feedback: theory/feedback.md
+  - Build:
+      - build/index.md
+      - Power supply:
+          - build/power-supply/index.md
+          - Overview (page 6): build/power-supply/overview.md
+          - Step 1 — Bias diode: build/power-supply/step-01-bias-diode.md
+          - Step 2 — 5AR4 heater: build/power-supply/step-02-5ar4-heater.md
+          - Step 3 — 5AR4 anodes: build/power-supply/step-03-5ar4-anodes.md
+          - Step 4 — V2 heater: build/power-supply/step-04-v2-heater.md
+          - Step 5 — V7 heater: build/power-supply/step-05-v7-heater.md
+          - Step 6 — Heater CTs: build/power-supply/step-06-heater-cts.md
+          - Step 7 — HV center tap: build/power-supply/step-07-hv-ct.md
+          - Step 8 — OPT B+ feeds: build/power-supply/step-08-opt-b-plus.md
+          - Step 9 — Choke: build/power-supply/step-09-choke.md
+          - Step 10 — Primary fuse & switch: build/power-supply/step-10-primary-fuse-switch.md
+          - Step 11 — Right OPT secondaries: build/power-supply/step-11-right-opt-secondaries.md
+      - Driver stage:
+          - build/driver-stage/index.md
+      - Output stage:
+          - build/output-stage/index.md
+      - Final assembly: build/final-assembly.md
+  - Modifications:
+      - modifications/index.md
+      - 3-prong cord: modifications/3-prong-cord.md
+      - 1N4007 replacement: modifications/1n4007-replacement.md
+      - Anti-click cap: modifications/anti-click-cap.md
+      - Individual bias pots: modifications/individual-bias-pots.md
+  - Bring-up:
+      - bring-up/index.md
+      - Pre-power checklist: bring-up/pre-power-checklist.md
+      - Continuity checks: bring-up/continuity-checks.md
+      - First power-on: bring-up/first-power-on.md
+      - Voltage checks: bring-up/voltage-checks.md
+      - Bias adjustment: bring-up/bias-adjustment.md
+      - Functional testing: bring-up/functional-testing.md
+  - Test equipment:
+      - test-equipment/index.md
+      - Multimeter: test-equipment/multimeter.md
+      - Oscilloscope: test-equipment/oscilloscope.md
+      - Probes: test-equipment/probes.md
+      - Variac: test-equipment/variac.md
+      - High-voltage safety: test-equipment/high-voltage-safety.md
+  - Appendices:
+      - appendices/index.md
+      - Tube pinouts: appendices/tube-pinouts.md
+      - Transformer specs: appendices/transformer-specs.md
+      - Component theory: appendices/component-theory.md
+      - References & further reading: appendices/references-and-further-reading.md

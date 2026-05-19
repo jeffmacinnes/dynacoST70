@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 900 720"
+     role="img"
+     aria-labelledby="el34-title el34-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="el34-title">EL34 output tube — internal structure</title>
+  <desc id="el34-desc">The EL34 power pentode: cathode at the center heated by a filament, surrounded by control grid g1, screen grid g2, suppressor grid g3, and an outer plate. Eight-pin octal base.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .interactive { stroke-width: 2.5; filter: brightness(1.07); }
+    .lead-group:hover .interactive-text { font-weight: 700; }
+
+    .header     { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead    { font-size: 12px; fill: #444; }
+    .body-label { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .pin-num    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .pin-fn     { font-size: 11px; font-weight: 600; fill: #1a1a1a; }
+    .pin-sub    { font-size: 10px; fill: #555; }
+    .pin-nc     { font-size: 10px; fill: #888; font-style: italic; }
+    .footer     { font-size: 11px; fill: #555; font-style: italic; }
+
+    .plate     { fill: #5a6b8c; stroke: #2a3a5e; stroke-width: 1.6; }
+    .g3        { stroke: #9b6a2e; stroke-width: 2; fill: none; }  /* suppressor */
+    .g2        { stroke: #b08b00; stroke-width: 2; fill: none; }  /* screen */
+    .g1        { stroke: #7a2f80; stroke-width: 2; fill: none; }  /* control */
+    .cathode   { fill: #c47a3a; stroke: #6a3a14; stroke-width: 1.6; }
+    .heater    { stroke: #ff7400; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .glass     { fill: #eef3fb; stroke: #99a3b3; stroke-width: 1.8; opacity: 0.55; }
+    .pinch     { fill: #d5d8de; stroke: #888; stroke-width: 1.2; }
+    .pin       { fill: #c9c9c9; stroke: #555; stroke-width: 1.2; }
+    .pin-plate    { fill: #5a6b8c; stroke: #2a3a5e; stroke-width: 1.4; }
+    .pin-g2       { fill: #b08b00; stroke: #7a6000; stroke-width: 1.4; }
+    .pin-g1       { fill: #7a2f80; stroke: #4a1a50; stroke-width: 1.4; }
+    .pin-cath     { fill: #c47a3a; stroke: #6a3a14; stroke-width: 1.4; }
+    .pin-heat     { fill: #ff9c4a; stroke: #c05a00; stroke-width: 1.4; }
+    .wire         { stroke: #555; stroke-width: 1.4; fill: none; }
+  </style>
+
+  <rect width="900" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="450" y="36" text-anchor="middle">EL34 — internal structure</text>
+  <text class="subhead" x="450" y="58" text-anchor="middle">Power pentode: three grids between the cathode and the plate. Indirectly heated.</text>
+
+  <!-- ============ GLASS ENVELOPE ============ -->
+  <path class="glass"
+        d="M 280 145
+           Q 280 95 340 95
+           L 520 95
+           Q 580 95 580 145
+           L 580 470
+           L 280 470 Z"/>
+  <rect class="pinch" x="285" y="468" width="290" height="34" rx="3"/>
+
+  <!-- ============ INTERNAL STRUCTURE (concentric, side view) ============ -->
+
+  <!-- Plate (anode) — outer rectangle -->
+  <g class="lead-group">
+    <title>PLATE (anode) — pin 3.
+
+The outer envelope of the electron-collecting structure. Receives B+ (~450 V DC) through the output transformer primary (step 8). Audio signal swings ride on top of this DC.
+
+In normal operation, electrons emitted by the heated cathode are pulled across the vacuum to the plate. The grids in between control how many get through.</title>
+    <rect class="plate interactive" x="335" y="155" width="210" height="290"/>
+    <!-- Plate cap (top, traditional EL34 detail) -->
+    <rect class="plate interactive" x="425" y="135" width="30" height="20"/>
+    <text class="body-label interactive-text" x="440" y="125" text-anchor="middle">Plate (anode)</text>
+  </g>
+
+  <!-- Suppressor grid (g3) — closest to plate, internally tied to cathode in
+       most EL34s (g3-internally-strapped variant). Shown as fine wire mesh. -->
+  <g class="lead-group">
+    <title>SUPPRESSOR GRID (g3) — internally tied to cathode in the EL34.
+
+Sits between the plate and the screen grid. Its job: catch secondary electrons knocked out of the plate so they don't end up on the screen grid (which would mess up the pentode's characteristic curve at low plate voltages).
+
+In the EL34 specifically, g3 is internally connected to the cathode — so there's no external pin for it. You see this in the pin list: pins 1, 6 are internal connections.</title>
+    <!-- Two thin "grid wires" close to the plate (top/bottom + sides), drawn as light lines -->
+    <line class="g3 interactive" x1="350" y1="170" x2="350" y2="430"/>
+    <line class="g3 interactive" x1="530" y1="170" x2="530" y2="430"/>
+  </g>
+
+  <!-- Screen grid (g2) -->
+  <g class="lead-group">
+    <title>SCREEN GRID (g2) — pin 4.
+
+Held at ~400 V DC (slightly below B+ via a series dropping resistor). Accelerates electrons from the cathode toward the plate AND shields the control grid from plate voltage swings.
+
+The "ultralinear" tap on the A-470 output transformer connects g2 to a fractional point on the primary, giving a hybrid of pentode and triode characteristics. The ST-70 runs UL by default — that's the GREEN lead on the OPT.</title>
+    <line class="g2 interactive" x1="380" y1="180" x2="380" y2="420"/>
+    <line class="g2 interactive" x1="500" y1="180" x2="500" y2="420"/>
+  </g>
+
+  <!-- Control grid (g1) — closest to cathode -->
+  <g class="lead-group">
+    <title>CONTROL GRID (g1) — pin 5.
+
+The audio input. Held at ~−36 to −40 V DC by the bias supply (step 1 → 1N4007 → bias pots) and "modulated" up and down by the audio signal from the driver stage.
+
+A small voltage swing on g1 produces a large current swing through the plate — this is what amplification IS.
+
+If g1 drifts too positive (bias supply fails / hot bias), the tube draws runaway current and red-plates. If g1 drifts too negative, the tube cuts off and distorts.</title>
+    <line class="g1 interactive" x1="410" y1="190" x2="410" y2="410"/>
+    <line class="g1 interactive" x1="470" y1="190" x2="470" y2="410"/>
+  </g>
+
+  <!-- Cathode -->
+  <g class="lead-group">
+    <title>CATHODE (sleeve) — pin 8.
+
+Heated indirectly by the filament inside. Emits electrons that the grids modulate and the plate collects.
+
+In the ST-70, the cathode is grounded through a small (1 Ω) "cathode resistor" — measuring the DC voltage across that resistor with Ohm's law gives you the tube's idle current (used during bias-up).</title>
+    <rect class="cathode interactive" x="432" y="200" width="16" height="195" rx="3"/>
+    <text class="body-label interactive-text" x="440" y="188" text-anchor="middle">Cathode</text>
+  </g>
+
+  <!-- Heater -->
+  <g class="lead-group">
+    <title>HEATER FILAMENT — 6.3 V AC @ 1.5 A.
+
+Inside the cathode sleeve, heating it indirectly. The two heater leads land at pins 2 and 7. In the ST-70 these are chained to the corresponding pins on V3 / V6 / V7 (and on to the 6GH8A driver tubes) — see step 4 for the start of that chain.</title>
+    <path class="heater interactive"
+          d="M 436 208
+             L 436 218
+             L 444 224 L 436 230 L 444 236 L 436 242 L 444 248 L 436 254
+             L 444 260 L 436 266 L 444 272 L 436 278 L 444 284 L 436 290
+             L 444 296 L 436 302 L 444 308 L 436 314 L 444 320 L 436 326
+             L 444 332 L 436 338 L 444 344 L 436 350 L 444 356 L 436 362
+             L 444 368 L 436 374 L 444 380 L 436 386
+             L 436 392"/>
+    <text class="body-label interactive-text" x="350" y="225" text-anchor="end" fill="#c05a00">Heater</text>
+    <line x1="355" y1="221" x2="432" y2="232" stroke="#c05a00" stroke-width="1"/>
+  </g>
+
+  <!-- ============ SIDE LABELS for the three grids ============ -->
+  <!-- Plate (anode) sits outermost. Then g3, g2, g1, then cathode at center.
+       Labels on the right with short leader lines to the grid stripes. -->
+  <line x1="540" y1="220" x2="600" y2="200" stroke="#9b6a2e" stroke-width="1"/>
+  <text class="body-label" x="605" y="204" fill="#9b6a2e">Suppressor grid (g3)</text>
+  <text class="pin-sub"    x="605" y="220">internal · tied to cathode</text>
+
+  <line x1="510" y1="260" x2="600" y2="260" stroke="#b08b00" stroke-width="1"/>
+  <text class="body-label" x="605" y="264" fill="#8c6c00">Screen grid (g2)</text>
+  <text class="pin-sub"    x="605" y="280">→ pin 4 · ~400 V DC</text>
+
+  <line x1="478" y1="310" x2="600" y2="320" stroke="#7a2f80" stroke-width="1"/>
+  <text class="body-label" x="605" y="324" fill="#7a2f80">Control grid (g1)</text>
+  <text class="pin-sub"    x="605" y="340">→ pin 5 · audio input + bias</text>
+
+  <!-- ============ PIN ROW ============ -->
+  <text class="footer" x="430" y="552" text-anchor="middle">Octal base — pin numbering as viewed from the wiring side (below the chassis)</text>
+
+  <!-- 8 pins arranged linearly at y=590, x from 170..660 -->
+  <g class="lead-group">
+    <title>Pin 1 — Internal connection.
+
+On many EL34s this is internally tied to the suppressor (g3) and to the cathode. Often left disconnected externally, sometimes used as a chassis-shield tie. Check the datasheet for your specific tube.</title>
+    <circle class="pin" cx="170" cy="600" r="9"/>
+    <text class="pin-num" x="170" y="580" text-anchor="middle">1</text>
+    <text class="pin-nc"  x="170" y="623" text-anchor="middle">IC</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 2 — Heater.
+
+One end of the 6.3 V heater filament. The GRN/BRN lead from the PA-060 lands here in step 4 (or step 5 for V7), with chain jumpers to V3 / V6 / driver tubes on later pages.</title>
+    <circle class="pin-heat" cx="240" cy="600" r="9"/>
+    <text class="pin-num" x="240" y="580" text-anchor="middle">2</text>
+    <text class="pin-fn"  x="240" y="623" text-anchor="middle">Heater</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 3 — Plate (anode).
+
+Receives B+ via the output transformer primary (step 8). Audio signal swings ride on top of the ~450 V DC.</title>
+    <circle class="pin-plate" cx="310" cy="600" r="9"/>
+    <text class="pin-num" x="310" y="580" text-anchor="middle">3</text>
+    <text class="pin-fn"  x="310" y="623" text-anchor="middle">Plate</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 4 — Screen grid (g2).
+
+Fed from B+ through a series dropping resistor (or the OPT's UL tap if running ultralinear, which the ST-70 does by default). ~400 V DC nominal.</title>
+    <circle class="pin-g2" cx="380" cy="600" r="9"/>
+    <text class="pin-num" x="380" y="580" text-anchor="middle">4</text>
+    <text class="pin-fn"  x="380" y="623" text-anchor="middle">Screen (g2)</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 5 — Control grid (g1).
+
+The audio input. Sees the driver-stage output coupled through a coupling cap, plus the bias DC voltage (~−40 V) from the bias supply chain (step 1 → 1N4007 → bias pots).</title>
+    <circle class="pin-g1" cx="450" cy="600" r="9"/>
+    <text class="pin-num" x="450" y="580" text-anchor="middle">5</text>
+    <text class="pin-fn"  x="450" y="623" text-anchor="middle">Control (g1)</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 6 — Internal connection.
+
+Usually unused externally; on some EL34s it's another shield/g3 tie. Treat as NC unless your specific tube's datasheet says otherwise.</title>
+    <circle class="pin" cx="520" cy="600" r="9"/>
+    <text class="pin-num" x="520" y="580" text-anchor="middle">6</text>
+    <text class="pin-nc"  x="520" y="623" text-anchor="middle">IC</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 7 — Heater (other end).
+
+Other end of the 6.3 V heater filament; the second lead in each heater pair lands here.</title>
+    <circle class="pin-heat" cx="590" cy="600" r="9"/>
+    <text class="pin-num" x="590" y="580" text-anchor="middle">7</text>
+    <text class="pin-fn"  x="590" y="623" text-anchor="middle">Heater</text>
+  </g>
+
+  <g class="lead-group">
+    <title>Pin 8 — Cathode.
+
+In the ST-70, cathode connects to a small (1 Ω) sense resistor to ground. Measuring DC volts across that resistor gives the idle current via Ohm's law — that's how bias is set during bring-up.</title>
+    <circle class="pin-cath" cx="660" cy="600" r="9"/>
+    <text class="pin-num" x="660" y="580" text-anchor="middle">8</text>
+    <text class="pin-fn"  x="660" y="623" text-anchor="middle">Cathode</text>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="450" y="695" text-anchor="middle">Indirectly heated · 6.3 V × 1.5 A heater · ~450 V plate · ~400 V screen · ~−40 V grid bias · cathode at ~0 V (with 1 Ω sense resistor)</text>
+</svg>

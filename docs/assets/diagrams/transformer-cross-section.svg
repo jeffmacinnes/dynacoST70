@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1000 720"
+     role="img"
+     aria-labelledby="xfmr-title xfmr-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="xfmr-title">Transformer cross-section — physical construction</title>
+  <desc id="xfmr-desc">Cutaway view of a power transformer: laminated iron core (E + I laminations), bobbin, primary winding, insulation layers, and secondary windings. Plus end bells, varnish impregnation, and the lead exits.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .interactive { stroke-width: 2.5; filter: brightness(1.08); }
+    .lead-group:hover .interactive-text { font-weight: 700; }
+
+    .header  { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 12px; fill: #444; }
+    .body-label { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .leader  { stroke: #555; stroke-width: 1; fill: none; }
+    .note    { font-size: 11px; fill: #444; }
+    .note-em { font-size: 11px; fill: #555; font-style: italic; }
+    .footer  { font-size: 11px; fill: #555; font-style: italic; }
+
+    .endbell    { fill: #5e5e5e; stroke: #2a2a2a; stroke-width: 1.4; }
+    .lamination { fill: #4a4a4a; stroke: #2a2a2a; stroke-width: 1; }
+    .lamination-line { stroke: #2a2a2a; stroke-width: 0.6; }
+    .bobbin     { fill: #d4c8a8; stroke: #8a7642; stroke-width: 1.3; }
+    .primary    { fill: #1a4e8a; stroke: #0a2e5a; stroke-width: 1; }
+    .insulation { fill: #ede4cc; stroke: #c4a85e; stroke-width: 0.8; }
+    .secondary-hv { fill: #cc3a2a; stroke: #7a1a0a; stroke-width: 1; }
+    .secondary-lv { fill: #2a8c3a; stroke: #1a4a1f; stroke-width: 1; }
+    .lead         { stroke-width: 2; fill: none; stroke-linecap: round; }
+  </style>
+
+  <rect width="1000" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="500" y="36" text-anchor="middle">Transformer — physical construction (cutaway)</text>
+  <text class="subhead" x="500" y="58" text-anchor="middle">Laminated iron core, bobbin, layered windings, end bells, varnish — what's actually inside the can</text>
+
+  <!-- ============ CROSS-SECTION ============ -->
+  <!-- Top end bell -->
+  <g class="lead-group">
+    <title>END BELLS (top and bottom) — pressed-steel covers.
+
+Mechanically clamp the lamination stack tight against the bobbin so nothing rattles. Also serve as a partial electrostatic shield — eddy currents in the steel give some isolation from external magnetic fields.
+
+In a power transformer like the PA-060, the end bells are visible from outside; the rest of the structure is hidden inside the can.</title>
+    <rect class="endbell interactive" x="270" y="100" width="460" height="40" rx="4"/>
+    <text class="body-label interactive-text" x="500" y="125" text-anchor="middle" fill="#fafafa">End bell (top)</text>
+  </g>
+
+  <!-- Lamination stack (E + I shapes) - rendered as alternating stripes -->
+  <g class="lead-group">
+    <title>LAMINATED IRON CORE — silicon-steel sheets stamped in E and I shapes.
+
+Why laminated, not solid? A solid iron block in a changing magnetic field would have huge circulating "eddy currents" — wasted energy as heat. Thin laminations (each ~0.014″ thick), separated by insulating varnish, confine eddy currents to tiny loops inside each sheet → much less loss, much less heat.
+
+Premium transformers use thinner laminations and grain-oriented silicon steel for higher efficiency. The Pacific Transformer reproductions of the PA-060 use this kind of construction.</title>
+    <!-- Main vertical lamination block -->
+    <rect class="lamination interactive" x="290" y="140" width="420" height="440"/>
+    <!-- Horizontal lamination lines -->
+    <line class="lamination-line" x1="290" y1="160" x2="710" y2="160"/>
+    <line class="lamination-line" x1="290" y1="172" x2="710" y2="172"/>
+    <line class="lamination-line" x1="290" y1="184" x2="710" y2="184"/>
+    <line class="lamination-line" x1="290" y1="196" x2="710" y2="196"/>
+    <line class="lamination-line" x1="290" y1="208" x2="710" y2="208"/>
+    <line class="lamination-line" x1="290" y1="220" x2="710" y2="220"/>
+    <line class="lamination-line" x1="290" y1="232" x2="710" y2="232"/>
+    <line class="lamination-line" x1="290" y1="500" x2="710" y2="500"/>
+    <line class="lamination-line" x1="290" y1="512" x2="710" y2="512"/>
+    <line class="lamination-line" x1="290" y1="524" x2="710" y2="524"/>
+    <line class="lamination-line" x1="290" y1="536" x2="710" y2="536"/>
+    <line class="lamination-line" x1="290" y1="548" x2="710" y2="548"/>
+    <line class="lamination-line" x1="290" y1="560" x2="710" y2="560"/>
+    <line class="lamination-line" x1="290" y1="572" x2="710" y2="572"/>
+  </g>
+
+  <!-- Window in the core (where the bobbin sits) -->
+  <g>
+    <!-- Bobbin (insulating form) -->
+    <g class="lead-group">
+      <title>BOBBIN — non-conductive form (paper, plastic, or fibre).
+
+Holds the wire windings in position while they're being wound on the factory machine. Stays in the finished transformer as part of the mechanical structure.
+
+The bobbin material is critical for HV insulation between the high-voltage secondaries and the rest of the structure.</title>
+      <rect class="bobbin interactive" x="320" y="240" width="360" height="250" rx="3"/>
+    </g>
+
+    <!-- Primary winding (innermost, many turns of thin wire) -->
+    <g class="lead-group">
+      <title>PRIMARY WINDING — 120 V AC.
+
+Many turns of relatively thin wire (carries low primary current ~1 A at 120 V). Wound closest to the bobbin / core so it's well-coupled to all the secondaries.
+
+In a step-down transformer the primary has MORE turns than the secondary; in step-up the reverse. The PA-060 has both: it steps UP to 720 V (HV) and DOWN to 5–6.3 V (heaters) — all from one primary.</title>
+      <rect class="primary interactive" x="332" y="252" width="336" height="50"/>
+      <text class="note" x="500" y="282" text-anchor="middle" fill="#fafafa">PRIMARY (120 V)</text>
+    </g>
+
+    <!-- Insulation layer -->
+    <rect class="insulation" x="332" y="302" width="336" height="8"/>
+
+    <!-- HV Secondary -->
+    <g class="lead-group">
+      <title>HV SECONDARY — 720 V CT in the PA-060.
+
+Wound on top of the primary (after an insulation layer). Many turns of fine wire (the high voltage requires many turns; the low current allows thin wire).
+
+The center-tapped construction makes full-wave rectification possible with two anodes sharing one cathode (see the 5AR4 page). The 55 V bias winding sits inside this same stack and shares the same center tap.</title>
+      <rect class="secondary-hv interactive" x="332" y="310" width="336" height="70"/>
+      <text class="note" x="500" y="350" text-anchor="middle" fill="#fafafa">HV SECONDARY (720 V CT)</text>
+    </g>
+
+    <!-- Insulation layer -->
+    <rect class="insulation" x="332" y="380" width="336" height="8"/>
+
+    <!-- LV Secondary (heater + 5V) -->
+    <g class="lead-group">
+      <title>LOW-VOLTAGE SECONDARIES — heaters.
+
+Fewer turns of thick wire (low voltage, high current — 5 A for each 6.3 V heater winding, 4 A for the 5 V rectifier heater). Wound outermost in the stack.
+
+In the PA-060, two 6.3 V CT windings (GRN and BRN pairs) and one 5 V winding (WHT pair) are stacked here, separated by insulation.
+
+Putting the heaters outermost has a side benefit: their magnetic field tends to be a bit further from the audio-signal-carrying components on the chassis.</title>
+      <rect class="secondary-lv interactive" x="332" y="388" width="336" height="60"/>
+      <text class="note" x="500" y="424" text-anchor="middle" fill="#fafafa">LV SECONDARIES (heaters)</text>
+    </g>
+
+    <!-- Outer insulation/varnish layer -->
+    <rect class="insulation" x="332" y="448" width="336" height="30"/>
+    <text class="note-em" x="500" y="467" text-anchor="middle">varnish + insulation</text>
+  </g>
+
+  <!-- Bottom end bell -->
+  <rect class="endbell interactive" x="270" y="580" width="460" height="40" rx="4"/>
+  <text class="body-label" x="500" y="606" text-anchor="middle" fill="#fafafa">End bell (bottom)</text>
+
+  <!-- ============ LEAD EXITS (bottom) ============ -->
+  <line class="lead" x1="350" y1="620" x2="350" y2="660" stroke="#1a1a1a"/>
+  <line class="lead" x1="380" y1="620" x2="380" y2="660" stroke="#1a1a1a"/>
+  <line class="lead" x1="430" y1="620" x2="430" y2="660" stroke="#cc3a2a"/>
+  <line class="lead" x1="450" y1="620" x2="450" y2="660" stroke="#cc3a2a"/>
+  <line class="lead" x1="470" y1="620" x2="470" y2="660" stroke="#cc3a2a"/>
+  <line class="lead" x1="520" y1="620" x2="520" y2="660" stroke="#7a4d2a"/>
+  <line class="lead" x1="540" y1="620" x2="540" y2="660" stroke="#7a4d2a"/>
+  <line class="lead" x1="560" y1="620" x2="560" y2="660" stroke="#2a8c3a"/>
+  <line class="lead" x1="580" y1="620" x2="580" y2="660" stroke="#2a8c3a"/>
+  <line class="lead" x1="610" y1="620" x2="610" y2="660" stroke="#cccccc" stroke-opacity="0.7"/>
+  <line class="lead" x1="630" y1="620" x2="630" y2="660" stroke="#cccccc" stroke-opacity="0.7"/>
+  <text class="note-em" x="490" y="680" text-anchor="middle">all winding leads exit the bottom of the can</text>
+
+  <!-- ============ ANNOTATIONS (left side) ============ -->
+  <!-- Leader to end bell -->
+  <line class="leader" x1="262" y1="120" x2="220" y2="120"/>
+  <text class="body-label" x="215" y="116" text-anchor="end">End bell (top cover)</text>
+  <text class="note"       x="215" y="132" text-anchor="end">pressed steel · clamps stack</text>
+
+  <!-- Leader to lamination -->
+  <line class="leader" x1="288" y1="190" x2="220" y2="190"/>
+  <text class="body-label" x="215" y="186" text-anchor="end">Laminated iron core</text>
+  <text class="note"       x="215" y="202" text-anchor="end">thin silicon-steel sheets,</text>
+  <text class="note"       x="215" y="216" text-anchor="end">insulated from each other</text>
+  <text class="note"       x="215" y="230" text-anchor="end">to suppress eddy currents</text>
+
+  <!-- Leader to bobbin -->
+  <line class="leader" x1="318" y1="265" x2="220" y2="265"/>
+  <text class="body-label" x="215" y="261" text-anchor="end">Bobbin</text>
+  <text class="note"       x="215" y="277" text-anchor="end">non-conductive form,</text>
+  <text class="note"       x="215" y="291" text-anchor="end">wire wound onto this</text>
+
+  <!-- Leader to varnish (lower area) -->
+  <line class="leader" x1="332" y1="463" x2="220" y2="500"/>
+  <text class="body-label" x="215" y="496" text-anchor="end">Varnish impregnation</text>
+  <text class="note"       x="215" y="512" text-anchor="end">fills air gaps · locks turns</text>
+  <text class="note"       x="215" y="526" text-anchor="end">in place · prevents "singing"</text>
+
+  <!-- ============ ANNOTATIONS (right side) — winding stack ============ -->
+  <line class="leader" x1="668" y1="277" x2="760" y2="277"/>
+  <text class="body-label" x="765" y="273">Primary winding</text>
+  <text class="note"       x="765" y="289">many turns · thin wire</text>
+  <text class="note"       x="765" y="303">closest to the core</text>
+
+  <line class="leader" x1="668" y1="345" x2="760" y2="345"/>
+  <text class="body-label" x="765" y="341">HV secondary</text>
+  <text class="note"       x="765" y="357">stepped UP from primary</text>
+  <text class="note"       x="765" y="371">very fine wire</text>
+
+  <line class="leader" x1="668" y1="418" x2="760" y2="418"/>
+  <text class="body-label" x="765" y="414">Heater secondaries</text>
+  <text class="note"       x="765" y="430">stepped DOWN from primary</text>
+  <text class="note"       x="765" y="444">thick wire (high current)</text>
+
+  <!-- Right-side caption: each layer separated by insulation -->
+  <text class="note-em" x="765" y="475">↕ insulation between layers</text>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="500" y="703" text-anchor="middle">This is the general layout — the PA-060 specifically has 5 secondaries stacked on top of the primary. See the PA-060 component page for the winding diagram with all leads labelled.</text>
+</svg>

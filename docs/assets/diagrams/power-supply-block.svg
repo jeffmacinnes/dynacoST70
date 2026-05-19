@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 800"
+     role="img"
+     aria-labelledby="psb-title psb-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="psb-title">Complete ST-70 power supply at a glance</title>
+  <desc id="psb-desc">Block diagram of all three power-supply paths from the PA-060 to the tubes: the high-voltage B+ rail, the negative bias rail, and the heater chains.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .box { stroke-width: 2.5; }
+    .lead-group:hover .box-label { font-weight: 700; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .path-label   { font-size: 16px; font-weight: 700; fill: #1a1a1a; }
+    .path-note    { font-size: 11px; font-style: italic; fill: #555; }
+    .box-label    { font-size: 13px; font-weight: 600; fill: #1a1a1a; }
+    .box-spec     { font-size: 11px; fill: #444; }
+    .box-step     { font-size: 10px; font-style: italic; fill: #777; }
+
+    .box           { stroke-width: 1.6; fill: #fafafa; }
+    .box-hv        { stroke: #cc3a2a; }
+    .box-bias      { stroke: #b8851a; }
+    .box-heater    { stroke: #2a8c3a; }
+    .box-source    { stroke: #555; fill: #f4f4f4; }
+    .box-load      { stroke: #1a4e8a; fill: #eef4fc; stroke-width: 2; }
+
+    .wire          { stroke: #555; stroke-width: 1.8; fill: none; }
+    .wire-hv       { stroke: #cc3a2a; stroke-width: 2.2; fill: none; }
+    .wire-bias     { stroke: #b8851a; stroke-width: 2.2; fill: none; }
+    .wire-heater   { stroke: #2a8c3a; stroke-width: 2.2; fill: none; }
+    .arrow-hv      { fill: #cc3a2a; }
+    .arrow-bias    { fill: #b8851a; }
+    .arrow-heater  { fill: #2a8c3a; }
+
+    .voltage-tag   { font-size: 12px; font-weight: 700; }
+  </style>
+
+  <rect width="1280" height="800" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Complete power supply — at a glance</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">Three rails from one transformer: HV B+, negative bias, and tube heaters</text>
+
+  <!-- ============ MAINS + PRIMARY ============ -->
+  <g class="lead-group">
+    <title>120 V AC MAINS — from the wall.
+
+Goes through the fuse + on/off switch (step 10), then into the PA-060 primary. The primary feeds all five secondary windings via the shared iron core.</title>
+    <rect class="box box-source" x="50" y="100" width="120" height="50" rx="6"/>
+    <text class="box-label" x="110" y="124" text-anchor="middle">120V AC mains</text>
+    <text class="box-step"  x="110" y="140" text-anchor="middle">fuse + switch (step 10)</text>
+  </g>
+  <!-- Arrow from mains to PA-060 -->
+  <line class="wire" x1="170" y1="125" x2="218" y2="125"/>
+  <polygon points="218,121 226,125 218,129" fill="#555"/>
+
+  <!-- ============ PA-060 (center column) ============ -->
+  <g class="lead-group">
+    <title>PA-060 power transformer.
+
+One primary (120 V AC) × five purpose-built secondaries:
+• 720 V CT — HV main (feeds 5AR4)
+• 55 V — bias winding (feeds 1N4007)
+• 6.3 V CT — heater #1 (signal/output tubes)
+• 6.3 V CT — heater #2 (signal/output tubes)
+• 5 V — rectifier heater (5AR4)
+
+See the PA-060 component page for the full winding diagram.</title>
+    <rect class="box box-source" x="226" y="80" width="200" height="430" rx="8" stroke-width="2"/>
+    <text class="path-label" x="326" y="110" text-anchor="middle">PA-060</text>
+    <text class="path-note"  x="326" y="128" text-anchor="middle">power transformer</text>
+
+    <!-- Each secondary listed -->
+    <text class="box-label" x="246" y="170">Secondaries:</text>
+
+    <text class="box-spec" x="246" y="200" fill="#cc3a2a" font-weight="700">• 720 V CT  (HV main)</text>
+    <text class="box-spec" x="246" y="218" fill="#b8851a" font-weight="700">• 55 V  (bias)</text>
+    <text class="box-spec" x="246" y="236" fill="#2a8c3a" font-weight="700">• 6.3 V CT  (heater #1)</text>
+    <text class="box-spec" x="246" y="254" fill="#2a8c3a" font-weight="700">• 6.3 V CT  (heater #2)</text>
+    <text class="box-spec" x="246" y="272" fill="#2a8c3a" font-weight="700">• 5 V  (5AR4 heater)</text>
+
+    <text class="box-step"  x="326" y="490" text-anchor="middle">All five drive the three paths →</text>
+  </g>
+
+  <!-- Wires from transformer to each rail. Each path uses an L-shape:
+       horizontal out of the transformer, then a single bend, then horizontal
+       into the first block of its rail. Voltage labels for each secondary
+       are already listed inside the transformer block, so the wires stay
+       label-free and clean. -->
+
+  <!-- HV path: direct horizontal from y=205 to 5AR4 -->
+  <polyline class="wire-hv" points="426,205 495,205" fill="none"/>
+  <polygon class="arrow-hv" points="495,201 503,205 495,209"/>
+
+  <!-- Bias path: y=218 → bend at x=460 → drop to y=390 → enter 1N4007 -->
+  <polyline class="wire-bias" points="426,218 460,218 460,390 495,390" fill="none"/>
+  <polygon class="arrow-bias" points="495,386 503,390 495,394"/>
+
+  <!-- Heater paths: from y=254 (mid-point of the three heater secondaries),
+       bend at x=450, drop down to y=630 (the heater chain row), enter the
+       first heater box. -->
+  <polyline class="wire-heater" points="426,254 450,254 450,630 495,630" fill="none"/>
+  <polygon class="arrow-heater" points="495,626 503,630 495,634"/>
+
+  <!-- ============ PATH 1: HV (top row) ============ -->
+  <g class="lead-group">
+    <title>HV main path — 720 V AC → ~450 V DC.
+
+720 V CT secondary → 5AR4 full-wave rectifier (steps 2, 3, 7) → first filter cap → choke → second filter cap → output transformer primaries (step 8).
+
+Powers every tube plate in the amp.</title>
+
+    <text class="path-label" x="500" y="170" fill="#cc3a2a">HV main rail</text>
+
+    <!-- 5AR4 -->
+    <rect class="box box-hv" x="500" y="180" width="110" height="50" rx="6"/>
+    <text class="box-label" x="555" y="200" text-anchor="middle">5AR4</text>
+    <text class="box-step"  x="555" y="216" text-anchor="middle">rectifier · step 3</text>
+
+    <!-- arrow -->
+    <line class="wire-hv" x1="610" y1="205" x2="638" y2="205"/>
+    <polygon class="arrow-hv" points="638,201 646,205 638,209"/>
+
+    <!-- Filter cap 1 -->
+    <rect class="box box-hv" x="646" y="180" width="110" height="50" rx="6"/>
+    <text class="box-label" x="701" y="200" text-anchor="middle">Filter cap 1</text>
+    <text class="box-step"  x="701" y="216" text-anchor="middle">step 7, 8</text>
+
+    <line class="wire-hv" x1="756" y1="205" x2="784" y2="205"/>
+    <polygon class="arrow-hv" points="784,201 792,205 784,209"/>
+
+    <!-- Choke -->
+    <rect class="box box-hv" x="792" y="180" width="110" height="50" rx="6"/>
+    <text class="box-label" x="847" y="200" text-anchor="middle">Choke</text>
+    <text class="box-step"  x="847" y="216" text-anchor="middle">step 9</text>
+
+    <line class="wire-hv" x1="902" y1="205" x2="930" y2="205"/>
+    <polygon class="arrow-hv" points="930,201 938,205 930,209"/>
+
+    <!-- Filter cap 2 -->
+    <rect class="box box-hv" x="938" y="180" width="110" height="50" rx="6"/>
+    <text class="box-label" x="993" y="200" text-anchor="middle">Filter cap 2</text>
+    <text class="box-step"  x="993" y="216" text-anchor="middle">step 9</text>
+
+    <line class="wire-hv" x1="1048" y1="205" x2="1078" y2="205"/>
+    <polygon class="arrow-hv" points="1078,201 1086,205 1078,209"/>
+
+    <!-- Output -->
+    <rect class="box box-load" x="1086" y="180" width="130" height="50" rx="6"/>
+    <text class="box-label" x="1151" y="200" text-anchor="middle" fill="#1a4e8a">+450 V B+</text>
+    <text class="box-step"  x="1151" y="216" text-anchor="middle">to tube plates</text>
+  </g>
+
+  <!-- ============ PATH 2: BIAS (middle row) ============ -->
+  <g class="lead-group">
+    <title>Bias rail — 55 V AC → ~−40 V DC.
+
+55 V bias secondary → 1N4007 silicon diode (step 1; replaces original selenium) → filter cap → voltage-divider/bias-pot network → −40 V DC at the control grids of the four EL34 output tubes.
+
+Must come up BEFORE the HV (the 5AR4's slow warm-up handles that) so the EL34s never see plate voltage with a cold/wrong grid bias.</title>
+
+    <text class="path-label" x="500" y="356" fill="#b8851a">Bias rail</text>
+
+    <!-- 1N4007 -->
+    <rect class="box box-bias" x="500" y="365" width="110" height="50" rx="6"/>
+    <text class="box-label" x="555" y="386" text-anchor="middle">1N4007</text>
+    <text class="box-step"  x="555" y="402" text-anchor="middle">diode · step 1</text>
+
+    <line class="wire-bias" x1="610" y1="390" x2="638" y2="390"/>
+    <polygon class="arrow-bias" points="638,386 646,390 638,394"/>
+
+    <!-- Filter cap (bias) -->
+    <rect class="box box-bias" x="646" y="365" width="110" height="50" rx="6"/>
+    <text class="box-label" x="701" y="386" text-anchor="middle">Filter cap</text>
+    <text class="box-step"  x="701" y="402" text-anchor="middle">(bias supply)</text>
+
+    <line class="wire-bias" x1="756" y1="390" x2="784" y2="390"/>
+    <polygon class="arrow-bias" points="784,386 792,390 784,394"/>
+
+    <!-- Bias network / pots -->
+    <rect class="box box-bias" x="792" y="365" width="180" height="50" rx="6"/>
+    <text class="box-label" x="882" y="386" text-anchor="middle">Bias pots / divider</text>
+    <text class="box-step"  x="882" y="402" text-anchor="middle">individual-pots mod</text>
+
+    <line class="wire-bias" x1="972" y1="390" x2="1078" y2="390"/>
+    <polygon class="arrow-bias" points="1078,386 1086,390 1078,394"/>
+
+    <!-- Output -->
+    <rect class="box box-load" x="1086" y="365" width="130" height="50" rx="6"/>
+    <text class="box-label" x="1151" y="386" text-anchor="middle" fill="#1a4e8a">−40 V DC</text>
+    <text class="box-step"  x="1151" y="402" text-anchor="middle">to EL34 grids</text>
+  </g>
+
+  <!-- ============ PATH 3: HEATERS (bottom row) ============ -->
+  <g class="lead-group">
+    <title>Heater chains — AC, no rectification.
+
+• 6.3 V × 5 A heater winding #1 (GRN pair + CT) → V2 + chain (step 4); CT to lug 5 (step 6)
+• 6.3 V × 5 A heater winding #2 (BRN pair + CT) → V7 + chain (step 5); CT to lug 7 (step 6)
+• 5 V × 4 A heater winding (WHT pair) → V1 (5AR4) pins 2,8 (step 2)
+
+The 6.3 V CTs to lugs 5/7 are what cancels heater hum coupling into the audio signal (see step 6).</title>
+
+    <text class="path-label" x="500" y="596" fill="#2a8c3a">Heater chains</text>
+
+    <!-- 6.3V #1 -->
+    <rect class="box box-heater" x="500" y="605" width="180" height="50" rx="6"/>
+    <text class="box-label" x="590" y="626" text-anchor="middle">6.3V CT → V2 + chain</text>
+    <text class="box-step"  x="590" y="642" text-anchor="middle">step 4 · CT step 6</text>
+
+    <!-- 6.3V #2 -->
+    <rect class="box box-heater" x="700" y="605" width="180" height="50" rx="6"/>
+    <text class="box-label" x="790" y="626" text-anchor="middle">6.3V CT → V7 + chain</text>
+    <text class="box-step"  x="790" y="642" text-anchor="middle">step 5 · CT step 6</text>
+
+    <!-- 5V -->
+    <rect class="box box-heater" x="900" y="605" width="160" height="50" rx="6"/>
+    <text class="box-label" x="980" y="626" text-anchor="middle">5V → V1 (5AR4)</text>
+    <text class="box-step"  x="980" y="642" text-anchor="middle">step 2</text>
+
+    <!-- Output -->
+    <rect class="box box-load" x="1086" y="605" width="130" height="50" rx="6"/>
+    <text class="box-label" x="1151" y="626" text-anchor="middle" fill="#1a4e8a">Tube heaters</text>
+    <text class="box-step"  x="1151" y="642" text-anchor="middle">all 7 tubes</text>
+
+    <line class="wire-heater" x1="1060" y1="630" x2="1078" y2="630"/>
+    <polygon class="arrow-heater" points="1078,626 1086,630 1078,634"/>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="640" y="750" text-anchor="middle">All three rails reference a common ground established by the 3-prong cord mod and the seven-lug terminal strip (step 6).</text>
+  <text class="footer" x="640" y="770" text-anchor="middle">Hover any box for spec and the build step that creates it. Click anywhere on the diagram to zoom.</text>
+</svg>
