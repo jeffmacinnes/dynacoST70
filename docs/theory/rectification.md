@@ -129,7 +129,7 @@ After rectification, you have unidirectional but bumpy DC. The next stages smoot
   <object type="image/svg+xml" data="../../assets/diagrams/smoothing-chain.svg" aria-label="Smoothing chain — what each filter stage does to the waveform">
     Smoothing chain waveforms (your browser does not support inline SVG).
   </object>
-  <figcaption>Voltage deviation from each stage's DC mean. Panel 1 is the raw rectified pulse train; by panel 4 the ripple is barely visible at the same vertical scale. Click to zoom.</figcaption>
+  <figcaption>Same vertical scale on all four panels, in approximate ST-70 volts (B+ ≈ 460 V, V_peak ≈ 480 V). Ripple amplitudes are exaggerated so each stage's shape is visible — real ST-70 ripple at the tube plates is under 1 V. Click to zoom.</figcaption>
 </figure>
 
 The ST-70 uses a two-stage filter: rectifier → filter cap → choke → second filter cap → output tubes. This produces clean enough B+ that no audible hum reaches the output.

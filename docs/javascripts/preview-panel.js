@@ -158,6 +158,131 @@
   // body-level nodes alone — the panel survives and our document-level
   // listeners keep working. Nothing to re-init here.
 
+  // ============ Inline diagram SVGs ============
+  // Each <figure class="diagram-fig"> originally contains an <object> tag.
+  // <object> creates a separate document context, which blocks hover events
+  // from reaching <title> tooltips. We fetch the SVG text and replace the
+  // <object> with the inline SVG so the diagram becomes part of the host
+  // document — hovers and clicks both work natively.
+  //
+  // We also convert each non-root <title> element into a data-tooltip
+  // attribute on its parent and DELETE the <title>. That suppresses the
+  // browser's slow native tooltip (~1-2 s delay) so our custom JS tooltip
+  // can take over and show instantly.
+  const convertTitlesToTooltips = (svg) => {
+    svg.querySelectorAll('title').forEach((titleEl) => {
+      const parent = titleEl.parentNode;
+      if (parent === svg) return; // keep root SVG <title> for a11y
+      parent.setAttribute('data-tooltip', titleEl.textContent);
+      titleEl.remove();
+    });
+  };
+
+  const inlineFigureSvgs = async (root = document) => {
+    const objects = root.querySelectorAll(
+      'figure.diagram-fig > object[type="image/svg+xml"], figure.diagram-fig object[type="image/svg+xml"]'
+    );
+    for (const obj of objects) {
+      const url = obj.getAttribute('data');
+      if (!url) continue;
+      try {
+        const res = await fetch(url, { credentials: 'same-origin' });
+        if (!res.ok) continue;
+        const text = await res.text();
+        const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+        const svg = doc.documentElement;
+        if (svg.nodeName !== 'svg') continue;
+        // Let the SVG scale to its container width; preserve aspect ratio.
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        svg.style.width = '100%';
+        svg.style.height = 'auto';
+        svg.style.display = 'block';
+        // Stash the source URL so the lightbox click handler can re-fetch
+        // the same SVG (we need a separate copy in the zoomed view).
+        svg.dataset.svgSrc = url;
+        convertTitlesToTooltips(svg);
+        obj.replaceWith(svg);
+      } catch (err) {
+        console.warn('Failed to inline SVG', url, err);
+      }
+    }
+  };
+
+  // ============ Custom fast tooltip ============
+  let tooltipEl = null;
+  let tooltipTarget = null;
+
+  const ensureTooltip = () => {
+    if (tooltipEl && document.body.contains(tooltipEl)) return tooltipEl;
+    tooltipEl = document.createElement('div');
+    tooltipEl.className = 'diagram-tooltip';
+    document.body.appendChild(tooltipEl);
+    return tooltipEl;
+  };
+
+  const positionTooltip = (x, y) => {
+    const t = ensureTooltip();
+    // Default: offset to the right and below the cursor.
+    let left = x + 18;
+    let top = y + 18;
+    // After layout, flip sides if we'd overflow the viewport.
+    const rect = t.getBoundingClientRect();
+    if (left + rect.width > window.innerWidth - 8) {
+      left = x - rect.width - 18;
+    }
+    if (top + rect.height > window.innerHeight - 8) {
+      top = y - rect.height - 18;
+    }
+    if (left < 8) left = 8;
+    if (top < 8) top = 8;
+    t.style.left = `${left}px`;
+    t.style.top = `${top}px`;
+  };
+
+  const showTooltip = (text, x, y) => {
+    const t = ensureTooltip();
+    t.textContent = text;
+    t.classList.add('is-visible');
+    positionTooltip(x, y);
+  };
+
+  const hideTooltip = () => {
+    if (tooltipEl) tooltipEl.classList.remove('is-visible');
+    tooltipTarget = null;
+  };
+
+  document.addEventListener('mousemove', (e) => {
+    const target = e.target.closest('[data-tooltip]');
+    if (target !== tooltipTarget) {
+      tooltipTarget = target;
+      if (target) {
+        showTooltip(target.getAttribute('data-tooltip'), e.clientX, e.clientY);
+      } else {
+        hideTooltip();
+      }
+    } else if (target) {
+      positionTooltip(e.clientX, e.clientY);
+    }
+  });
+
+  // Hide the tooltip if the user scrolls or focuses elsewhere — prevents
+  // a stale tooltip from hanging around after the cursor moves out via
+  // any non-mousemove path.
+  document.addEventListener('scroll', hideTooltip, true);
+  document.addEventListener('blur', hideTooltip, true);
+
+  // Inline on first load.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => inlineFigureSvgs());
+  } else {
+    inlineFigureSvgs();
+  }
+  // Re-inline after Material's instant navigation swaps the article content.
+  if (typeof document$ !== 'undefined') {
+    try { document$.subscribe(() => inlineFigureSvgs()); } catch (e) { /* not Material */ }
+  }
+
   // ============ Lightbox for diagram figures ============
   let lightbox = null;
 
@@ -185,26 +310,59 @@
     document.body.style.overflow = '';
   };
 
-  const openLightbox = (svgUrl) => {
+  // Open the lightbox by fetching the SVG text, parsing it, converting
+  // <title> elements to data-tooltip attributes (same trick as the inline
+  // figures), and injecting it. That way the custom tooltip code works in
+  // the zoomed view too.
+  const openLightbox = async (svgUrl) => {
     const lb = ensureLightbox();
-    lb.querySelector('.md-lightbox__content').innerHTML =
-      `<object type="image/svg+xml" data="${svgUrl}"></object>`;
+    const content = lb.querySelector('.md-lightbox__content');
+    content.innerHTML = '<div class="md-lightbox__loading">Loading…</div>';
     lb.classList.add('is-open');
     document.body.style.overflow = 'hidden';
+    try {
+      const res = await fetch(svgUrl, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+      const svg = doc.documentElement;
+      if (svg.nodeName !== 'svg') throw new Error('Not an SVG');
+      svg.removeAttribute('width');
+      svg.removeAttribute('height');
+      svg.style.width = '100%';
+      svg.style.height = '100%';
+      convertTitlesToTooltips(svg);
+      content.innerHTML = '';
+      content.appendChild(svg);
+    } catch (err) {
+      content.innerHTML = `<p style="color:#fff">Failed to load: ${err.message}</p>`;
+    }
   };
 
   document.addEventListener('click', (e) => {
     const fig = e.target.closest('figure.diagram-fig');
     if (!fig) return;
-    // Clicks on the caption or its "Open full size" link should NOT trigger
-    // the lightbox — let the link navigate / let the user select text.
+    // Clicks on the caption or its links should NOT trigger the lightbox —
+    // let the link navigate / let the user select text.
     if (e.target.closest('figcaption')) return;
+    // Find the SVG (post-inlining) or the original object as a fallback,
+    // and resolve its source URL.
+    const svg = fig.querySelector('svg');
     const obj = fig.querySelector('object');
-    if (!obj) return;
-    const data = obj.getAttribute('data');
-    if (!data) return;
+    let url = null;
+    if (svg && svg.dataset.svgSrc) {
+      url = svg.dataset.svgSrc;
+    } else if (obj) {
+      url = obj.getAttribute('data');
+    } else if (svg) {
+      // We inlined, but didn't stash the source URL. Try to recover by
+      // looking at the matching original from the unmodified page. As a
+      // fallback, just skip the lightbox.
+      return;
+    }
+    if (!url) return;
     e.preventDefault();
-    openLightbox(new URL(data, window.location.href).href);
+    openLightbox(new URL(url, window.location.href).href);
   });
 
   document.addEventListener('keydown', (e) => {

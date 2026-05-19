@@ -146,10 +146,22 @@ When the top RED lead is positive relative to CT (one half of every AC cycle), t
   RED → anode 1 plate → across vacuum → shared cathode → out to filter cap → to load → back to CT.
 
 On the opposite half-cycle, this diode is reverse-biased and blocks current.</title>
-    <!-- Diode triangle: anode left, apex right -->
-    <polygon class="diode-body interactive-fill" points="500,156 500,184 580,170"/>
+    <!-- Diode triangle: anode left, apex right.
+         Opacity animates: bright (1) during the first half of each 4 s cycle,
+         dim (0.3) during the second half. Anode 2 is the inverse. -->
+    <polygon class="diode-body interactive-fill" points="500,156 500,184 580,170">
+      <animate attributeName="opacity"
+               values="1;0.3;1"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </polygon>
     <!-- Cathode bar -->
-    <line class="diode-bar" x1="580" y1="156" x2="580" y2="184"/>
+    <line class="diode-bar" x1="580" y1="156" x2="580" y2="184">
+      <animate attributeName="opacity"
+               values="1;0.3;1"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </line>
     <!-- Diode anode → wire from transformer (already drawn at y=170) -->
     <!-- Cathode → bus going down -->
     <line class="wire-out" x1="580" y1="170" x2="620" y2="170"/>
@@ -162,8 +174,20 @@ On the opposite half-cycle, this diode is reverse-biased and blocks current.</ti
     <title>ANODE 2 — second diode of the 5AR4 (pin 6).
 
 When the bottom RED lead is positive relative to CT (the other half of every AC cycle), this diode conducts. The two anodes take turns, half-cycle by half-cycle — that's full-wave rectification in one envelope.</title>
-    <polygon class="diode-body interactive-fill" points="500,416 500,444 580,430"/>
-    <line class="diode-bar" x1="580" y1="416" x2="580" y2="444"/>
+    <!-- Anode 2 is inverse of anode 1: dim during the first half-cycle,
+         bright during the second. -->
+    <polygon class="diode-body interactive-fill" points="500,416 500,444 580,430">
+      <animate attributeName="opacity"
+               values="0.3;1;0.3"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </polygon>
+    <line class="diode-bar" x1="580" y1="416" x2="580" y2="444">
+      <animate attributeName="opacity"
+               values="0.3;1;0.3"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </line>
     <line class="wire-out" x1="580" y1="430" x2="620" y2="430"/>
     <text class="part-label" x="540" y="408" text-anchor="middle">Anode 2</text>
     <text class="note" x="540" y="460" text-anchor="middle" fill="#444">pin 6</text>
@@ -236,6 +260,27 @@ In the ST-70, "ground" is the chassis (via a star ground point established by th
   <!-- Junction nodes on ground bus -->
   <circle class="node" cx="380" cy="560" r="4"/>
   <circle class="node" cx="870" cy="560" r="4"/>
+
+  <!-- ============ STATUS INDICATOR ============ -->
+  <!-- Both labels are always present side-by-side. The active one pulses
+       bright while the inactive one stays dim — same opacity curve as the
+       anodes themselves, in opposite phase. -->
+  <g>
+    <text class="part-label" x="500" y="490" text-anchor="middle" fill="#2a3a5e">
+      Anode 1 conducting
+      <animate attributeName="opacity"
+               values="1;0.3;1"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </text>
+    <text class="part-label" x="670" y="490" text-anchor="middle" fill="#2a3a5e">
+      Anode 2 conducting
+      <animate attributeName="opacity"
+               values="0.3;1;0.3"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </text>
+  </g>
 
   <!-- ============ EXPLANATORY NOTES ============ -->
   <text class="footer" x="600" y="640" text-anchor="middle">On each half-cycle, exactly one diode conducts — the two anodes alternate, so the cathode sees a positive pulse every half-cycle (120 Hz output ripple).</text>

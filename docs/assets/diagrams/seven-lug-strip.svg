@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1100 600"
+     role="img"
+     aria-labelledby="lug-title lug-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="lug-title">Seven-lug terminal strip — lug assignments in the ST-70</title>
+  <desc id="lug-desc">A small phenolic terminal strip with seven electrically-isolated lugs sticking out. Each lug serves a specific purpose in the ST-70's grounding architecture.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .lug { filter: brightness(1.1); }
+
+    .header  { font-size: 20px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 12px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+    .lug-num { font-size: 16px; font-weight: 700; fill: #1a1a1a; }
+    .lug-desc { font-size: 12px; fill: #1a1a1a; }
+    .lug-sub  { font-size: 11px; fill: #555; }
+
+    .strip-body { fill: #6a4a2a; stroke: #3a2a14; stroke-width: 1.5; }
+    .lug        { fill: #b8b8b8; stroke: #555; stroke-width: 1.5; }
+    .lug-active { fill: #d4d0c4; stroke: #555; stroke-width: 1.5; }
+    .mount-bolt { fill: #888; stroke: #444; stroke-width: 1.2; }
+    .wire       { stroke: #1a1a1a; stroke-width: 2; fill: none; }
+    .wire-grn   { stroke: #2a8c3a; stroke-width: 2.2; fill: none; }
+    .wire-brn   { stroke: #7a4d2a; stroke-width: 2.2; fill: none; }
+  </style>
+
+  <rect width="1100" height="600" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="550" y="34" text-anchor="middle">Seven-lug terminal strip — physical anchor for the ground network</text>
+  <text class="subhead" x="550" y="56" text-anchor="middle">Hover any lug for what lands there. Lug assignments per the ST-70's standard wiring.</text>
+
+  <!-- ============ STRIP BODY ============ -->
+  <!-- Phenolic strip, lying horizontally on the chassis -->
+  <rect class="strip-body" x="120" y="180" width="860" height="100" rx="6"/>
+
+  <!-- Two mounting bolts (chassis attachment) -->
+  <circle class="mount-bolt" cx="150" cy="230" r="10"/>
+  <circle class="mount-bolt" cx="950" cy="230" r="10"/>
+  <text class="lug-sub" x="150" y="295" text-anchor="middle">chassis bolt</text>
+  <text class="lug-sub" x="950" y="295" text-anchor="middle">chassis bolt</text>
+
+  <!-- Seven lugs sticking up from the strip -->
+  <!-- Lug 1 -->
+  <g class="lead-group" data-tooltip="Lug 1 — flexible / channel-specific.
+
+Different ST-70 schematic revisions assign this lug differently. Commonly used as a tie point for the input stage's grid return, or for a coupling-cap return path. Refer to the Version B schematic for your specific board.">
+    <rect class="lug" x="220" y="120" width="20" height="64" rx="2"/>
+    <text class="lug-num" x="230" y="115" text-anchor="middle">1</text>
+    <text class="lug-desc" x="230" y="324" text-anchor="middle">(varies)</text>
+  </g>
+
+  <!-- Lug 2 -->
+  <g class="lead-group" data-tooltip="Lug 2 — also version-dependent. Often the bias network return point or the bias-pot reference.">
+    <rect class="lug" x="320" y="120" width="20" height="64" rx="2"/>
+    <text class="lug-num" x="330" y="115" text-anchor="middle">2</text>
+    <text class="lug-desc" x="330" y="324" text-anchor="middle">(varies)</text>
+  </g>
+
+  <!-- Lug 3 -->
+  <g class="lead-group" data-tooltip="Lug 3 — also version-dependent. Sometimes an input stage cathode tie, sometimes unused.">
+    <rect class="lug" x="420" y="120" width="20" height="64" rx="2"/>
+    <text class="lug-num" x="430" y="115" text-anchor="middle">3</text>
+    <text class="lug-desc" x="430" y="324" text-anchor="middle">(varies)</text>
+  </g>
+
+  <!-- Lug 4 -->
+  <g class="lead-group" data-tooltip="Lug 4 — central position, often used as the main signal-ground tie point — where the audio circuit's signal ground attaches to the chassis via a star-ground link (often through a small resistor or a single low-impedance wire).">
+    <rect class="lug-active" x="520" y="120" width="20" height="64" rx="2"/>
+    <text class="lug-num" x="530" y="115" text-anchor="middle">4</text>
+    <text class="lug-desc" x="530" y="324" text-anchor="middle">signal ground</text>
+    <text class="lug-sub"   x="530" y="340" text-anchor="middle">(star-point link)</text>
+  </g>
+
+  <!-- Lug 5 (GREEN/YEL heater CT) -->
+  <g class="lead-group" data-tooltip="LUG 5 — Heater #1 center tap.
+
+The GRN/YEL center-tap lead from the PA-060's 6.3V heater winding #1 lands here in build step 6. This anchors the heater AC midpoint at 0V (signal ground), cancelling 60Hz hum coupling into the audio path.
+
+See the heater circuits theory chapter for why this matters.">
+    <rect class="lug-active" x="620" y="120" width="20" height="64" rx="2" stroke="#2a8c3a" stroke-width="2"/>
+    <text class="lug-num" x="630" y="115" text-anchor="middle" fill="#2a8c3a">5</text>
+    <text class="lug-desc" x="630" y="324" text-anchor="middle" fill="#2a8c3a">heater #1 CT</text>
+    <text class="lug-sub"  x="630" y="340" text-anchor="middle">(GRN/YEL lead)</text>
+    <!-- Wire coming in from above -->
+    <path class="wire-grn" d="M 620 90 L 620 120" stroke-dasharray="4,3"/>
+    <text class="lug-sub" x="630" y="78" text-anchor="middle" fill="#2a8c3a">GRN/YEL</text>
+  </g>
+
+  <!-- Lug 6 -->
+  <g class="lead-group" data-tooltip="Lug 6 — flexible. In some configurations this is the second heater's CT (depending on schematic revision), in others it's a separate ground reference for the input stage of one channel.">
+    <rect class="lug" x="720" y="120" width="20" height="64" rx="2"/>
+    <text class="lug-num" x="730" y="115" text-anchor="middle">6</text>
+    <text class="lug-desc" x="730" y="324" text-anchor="middle">(varies)</text>
+  </g>
+
+  <!-- Lug 7 (BRN/YEL heater CT) -->
+  <g class="lead-group" data-tooltip="LUG 7 — Heater #2 center tap.
+
+The BRN/YEL center-tap lead from the PA-060's 6.3V heater winding #2 lands here in build step 6. Same role as lug 5 but for the OTHER channel — channel-separated heater CT grounds give better hum decorrelation between the two channels.">
+    <rect class="lug-active" x="820" y="120" width="20" height="64" rx="2" stroke="#7a4d2a" stroke-width="2"/>
+    <text class="lug-num" x="830" y="115" text-anchor="middle" fill="#7a4d2a">7</text>
+    <text class="lug-desc" x="830" y="324" text-anchor="middle" fill="#7a4d2a">heater #2 CT</text>
+    <text class="lug-sub"  x="830" y="340" text-anchor="middle">(BRN/YEL lead)</text>
+    <!-- Wire coming in from above -->
+    <path class="wire-brn" d="M 820 90 L 820 120" stroke-dasharray="4,3"/>
+    <text class="lug-sub" x="830" y="78" text-anchor="middle" fill="#7a4d2a">BRN/YEL</text>
+  </g>
+
+  <!-- Strip body label (centred on the body itself) -->
+  <text class="lug-sub" x="550" y="240" text-anchor="middle" fill="#fafafa">phenolic insulating base</text>
+
+  <!-- ============ KEY ANNOTATIONS ============ -->
+  <g transform="translate(60, 410)">
+    <text class="lug-desc" x="0" y="0" font-weight="700">What this strip is for</text>
+    <text class="lug-sub" x="0" y="22">A small phenolic (insulating) board with seven brass lugs sticking out. Each lug is electrically isolated from the others and from the chassis.</text>
+    <text class="lug-sub" x="0" y="38">It's a mechanical anchor — a place where multiple wires can meet at one node without floating.</text>
+    <text class="lug-sub" x="0" y="60" font-style="italic">Lugs 5 and 7 are the canonical heater-CT anchor points (wired in step 6); other lugs vary by schematic revision.</text>
+  </g>
+
+  <g transform="translate(60, 500)">
+    <text class="lug-desc" x="0" y="0" font-weight="700">Why this matters for hum</text>
+    <text class="lug-sub" x="0" y="22">By concentrating all ground-related wiring here, the amp's grounding architecture is <tspan font-style="italic">systematic and inspectable</tspan>.</text>
+    <text class="lug-sub" x="0" y="38">All paths converge at one visible location — easy to audit, easy to modify, easy to troubleshoot if hum appears later.</text>
+    <text class="lug-sub" x="0" y="56">See the grounding theory chapter for the star-ground architecture this strip enables.</text>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="550" y="585" text-anchor="middle">Seven lugs, two chassis bolts. The mounting bolts hold the strip to the chassis but don't electrically connect the lugs to the chassis.</text>
+</svg>
