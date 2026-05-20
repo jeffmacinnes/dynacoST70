@@ -12,9 +12,10 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 ## Sections
 
-- **[Power supply (page 6)](power-supply/index.md)** — page 6 of the Dynaco manual: transformer leads, rectifier, heaters, bias diode. Steps 1–11.
-- **[Driver stage](driver-stage/index.md)** — PC-3A board wiring. *(Not yet started.)*
-- **[Output stage](output-stage/index.md)** — output tube sockets, output transformers. *(Not yet started.)*
+- **[Mechanical assembly (pages 4-5)](mechanical-assembly/index.md)** — mounting every component on the chassis: sockets, transformers, choke, filter cap, switches, fuse, terminal strips. Steps M1–M15.
+- **[Power supply (page 6)](power-supply/index.md)** — first wiring phase: transformer leads, rectifier heater + anodes, heater windings, heater CTs, HV CT, OPT B+ feeds, choke, fuse/switch, right OPT secondaries. Steps 1–11.
+- **[Output stage](output-stage/index.md)** — wiring steps 12-37: left OPT secondaries, OPT primary leads to EL-34s, bias network on 7-lug strip, cathode connections to Biaset sockets, grid stoppers.
+- **[Driver stage](driver-stage/index.md)** — wiring steps 38-65: PC-3 board mounting, eyelet-to-tube-pin connections, B+ feeds to the board, input wiring, RCA jacks, input switch, power cord.
 - **[Final assembly](final-assembly.md)** — chassis closure, dressing, final inspection.
 
 ## Power supply step status

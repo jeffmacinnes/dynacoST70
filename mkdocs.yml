@@ -132,6 +132,23 @@ nav:
       - Feedback: theory/feedback.md
   - Build:
       - build/index.md
+      - Mechanical assembly:
+          - build/mechanical-assembly/index.md
+          - M1 — Octal sockets: build/mechanical-assembly/step-m01-octal-sockets.md
+          - M2 — Input connector: build/mechanical-assembly/step-m02-input-connector.md
+          - M3 — Input switch: build/mechanical-assembly/step-m03-input-switch.md
+          - M4 — Rear terminal strips: build/mechanical-assembly/step-m04-rear-terminal-strips.md
+          - M5 — Bias pots: build/mechanical-assembly/step-m05-bias-pots.md
+          - M6 — Bias 2-lug strip: build/mechanical-assembly/step-m06-bias-2lug-strip.md
+          - M7 — Power cord grommet: build/mechanical-assembly/step-m07-grommet.md
+          - M8 — Fuse post: build/mechanical-assembly/step-m08-fuse-post.md
+          - M9 — On-off switch: build/mechanical-assembly/step-m09-on-off-switch.md
+          - M10 — PA-060: build/mechanical-assembly/step-m10-pa-060.md
+          - M11 — Choke: build/mechanical-assembly/step-m11-choke.md
+          - M12 — Seven-lug strip: build/mechanical-assembly/step-m12-seven-lug-strip.md
+          - M13 — Output transformers: build/mechanical-assembly/step-m13-output-transformers.md
+          - M14 — Quad filter cap: build/mechanical-assembly/step-m14-filter-cap.md
+          - M15 — Ground lug(s): build/mechanical-assembly/step-m15-ground-lugs.md
       - Power supply:
           - build/power-supply/index.md
           - Overview (page 6): build/power-supply/overview.md
@@ -165,6 +182,8 @@ nav:
       - Voltage checks: bring-up/voltage-checks.md
       - Bias adjustment: bring-up/bias-adjustment.md
       - Functional testing: bring-up/functional-testing.md
+      - Operating modes: bring-up/operating-modes.md
+      - Troubleshooting: bring-up/troubleshooting.md
   - Test equipment:
       - test-equipment/index.md
       - Multimeter: test-equipment/multimeter.md
@@ -174,6 +193,7 @@ nav:
       - High-voltage safety: test-equipment/high-voltage-safety.md
   - Appendices:
       - appendices/index.md
+      - Parts list: appendices/parts-list.md
       - Tube pinouts: appendices/tube-pinouts.md
       - Transformer specs: appendices/transformer-specs.md
       - Component theory: appendices/component-theory.md

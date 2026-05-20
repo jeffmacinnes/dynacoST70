@@ -15,6 +15,49 @@ After [first power-on](first-power-on.md) succeeds (all four sessions ran withou
 - Negative probe clipped (alligator) to chassis ground — a known clean reference point. The seven-lug strip's grounded lug or a dedicated chassis bolt works.
 - Positive probe in your free hand — touch and read.
 
+## Manual reference (page 19 — Voltage Test Points)
+
+The Dynaco manual provides a canonical voltage table on page 19. Tolerance per page 16: **"Departures of more than 10% from these values may indicate a malfunctioning of one or more of the circuit components."** Anything inside that 10% band is normal.
+
+### Tube pins (with all tubes warm, biased at 1.56 V Biaset)
+
+| Pin | EL-34 (each) | GZ-34 (V1) | 6GH8A (on board) |
+|---|---|---|---|
+| 1 | 1.56 V DC (cathode) | — | * |
+| 2 | — | 435 V DC (plate) | 0 V (g1 / signal node) |
+| 3 | 410 V DC (plate) | — | * |
+| 4 | 415 V DC (screen) | 360 V AC (HV anode) | 6.4 V AC heater (pins 4-5) |
+| 5 | −32 V DC (control grid) | — | 6.4 V AC heater (pins 4-5) |
+| 6 | −32 V DC (suppressor, tied to g1) | 360 V AC (HV anode) | 1.0 V (cathode region) |
+| 7 | — | — | 1.2 V (cathode region) |
+| 8 | 1.56 V DC (cathode) | 435 V DC (plate) | * |
+
+\* = measurements at these points vary tube-to-tube and don't reliably indicate normal performance.
+
+EL-34 pin 5 and pin 6 should read **identically** between the two tubes in a pair — if they don't, that pair has a wiring or bias problem.
+
+### Quad filter capacitor lugs
+
+The four sections of the can-mounted filter cap have lugs labeled A, B, C, D at their bases (the same physical lugs are also numbered 1-4 in the wiring instructions; the letter naming is what the voltage table uses).
+
+| Lug | Voltage | Role |
+|---|---|---|
+| A | 305 V DC | After 22 kΩ dropping resistor — feeds 6GH8A pentode plate / input stage |
+| B | 375 V DC | After 6.8 kΩ dropping resistor — feeds EL-34 screen network |
+| C | 415 V DC | After the choke — main B+ rail to OPT primary CT |
+| D | 435 V DC | Direct from rectifier — first filter cap, highest voltage in the amp |
+
+### Other test points
+
+| Node | Expected | Notes |
+|---|---|---|
+| Diode rectifier, (A) lug | 50 V AC | The bias winding AC input to the diode |
+| Diode rectifier, (B) lug | −65 V DC | Bias supply output (filtered) |
+| PC-3 eyelets #3 and #18 | 370 V DC | After board's internal dropping network — supply to driver tube |
+| Biaset sockets V4 / V5, pin 8 | 1.56 V DC | Per-channel bias measurement (when bias is correctly set) |
+
+---
+
 ## Reference voltage table
 
 All voltages are RELATIVE TO CHASSIS GROUND unless noted otherwise. Tolerances are typical — ±5 % is normal across tubes, ±10 % is "still working." Larger deviations warrant investigation.
@@ -53,37 +96,38 @@ All voltages are RELATIVE TO CHASSIS GROUND unless noted otherwise. Tolerances a
 
 ### B+ rail (after rectifier and filter)
 
-These vary depending on whether the EL34s are biased to their normal idle current (~50 mA each, ~200 mA total) or running cooler:
+Per the manual's voltage table (page 19), with all tubes warm and biased to 1.56 V Biaset (~50 mA per tube):
 
 | Node | Type | Expected at idle | Notes |
 |---|---|---|---|
-| V1 pin 8 (5AR4 cathode) = filter cap +1 | DC | 460-490 V | First filter cap |
-| After choke (filter cap +2) | DC | 440-470 V | Second filter cap; ~15 V drop across choke |
-| Screen feed (filter cap +3, after dropping R) | DC | 400-430 V | EL34 screens, 6GH8A pentode plate |
-| Input/bias feed (filter cap +4, after dropping R) | DC | 200-250 V | 6GH8A pentode plate, input stage |
+| Filter cap lug D | DC | 435 V | First filter cap (direct from rectifier) |
+| Filter cap lug C | DC | 415 V | After choke; B+ to OPT primary CT |
+| Filter cap lug B | DC | 375 V | After 6.8 kΩ — feeds EL-34 screen network |
+| Filter cap lug A | DC | 305 V | After 22 kΩ — feeds 6GH8A pentode plate / input stage |
+| PC-3 eyelets #3 and #18 | DC | 370 V | On-board dropping network output |
 
-If B+ is consistently ~50 V low everywhere: your line voltage might be low, or the EL34s are biased too hot. Check bias.
-
-If B+ is consistently ~50 V high: line voltage might be high, or the EL34s aren't drawing current (bias too cold, dead tube). Check bias.
+10% tolerance applies. If B+ is consistently low everywhere: line voltage might be low, or the EL-34s are biased too hot. If consistently high: line voltage is high, or EL-34s aren't drawing current (bias too cold, dead tube). Check bias either way.
 
 ### Bias supply
 
 | Node | Type | Expected |
 |---|---|---|
-| 1N4007 cathode (after diode + filter) | DC | −45 to −60 V |
-| At each EL34 grid (pin 5, with tube installed) | DC | −36 to −42 V |
-| At each individual bias pot wiper | DC | adjustable, somewhere between −30 and −55 V |
+| Diode (B) lug — bias supply output | DC | −65 V |
+| At each EL34 grid (pin 5, with tube biased to target) | DC | −32 V |
+| At each individual bias pot wiper | DC | adjustable, somewhere between −20 and −55 V |
 
 The grid voltage is what actually sets the tube's idle current. The bias supply itself is just the source.
 
-### EL34 voltages (with tubes warm, biased to ~50 mA)
+### EL34 voltages (with tubes warm, biased to ~50 mA per tube)
 
 | Pin | Function | Expected |
 |---|---|---|
-| 3 | Plate (anode) | 450 V DC (= B+ to plate) |
-| 4 | Screen (g2) | 400-430 V DC |
-| 5 | Control grid (g1) | −36 to −42 V DC (the bias) |
-| 8 | Cathode | ~0 V (across the small sense resistor: ~50 mV) |
+| 1 | Cathode (joined with pin 8) | 1.56 V DC (= 100 mA per pair × 15.6 Ω) |
+| 3 | Plate (anode) | 410 V DC |
+| 4 | Screen (g2) | 415 V DC |
+| 5 | Control grid (g1) | −32 V DC (the bias) |
+| 6 | Suppressor (internally tied to g1 region) | −32 V DC (same as pin 5) |
+| 8 | Cathode (joined with pin 1) | 1.56 V DC |
 | 2 / 7 | Heater pins | 3.15 V AC each (relative to CT-grounded reference) |
 
 If a tube has a plate voltage WAY different from its mate (V2 vs V6, V3 vs V7): something is wrong with that tube or its socket.
@@ -126,9 +170,9 @@ Possible causes:
 - One of the HV winding leads has a bad joint, effectively running half-wave.
 - A filter cap is leaky (drawing current it shouldn't).
 
-### B+ low on one cap only (e.g., +3 is low but +1 is normal)
+### B+ low on one lug only (e.g., lug A is low but D is normal)
 
-The dropping resistor between caps is wrong value or open. Measure across the resistor with the amp powered (carefully) — voltage drop should match (current × resistance).
+The dropping resistor between lugs is wrong value or open. Measure across the resistor with the amp powered (carefully) — voltage drop should match (current × resistance). The two key dropping resistors are the 6.8 kΩ between lugs C and B, and the 22 kΩ between lugs B and A.
 
 ### Heater voltages low
 
@@ -147,11 +191,11 @@ The CT wire isn't connecting to ground properly. Recheck [step 6](../build/power
 - The bias supply network has a wrong resistor value.
 - If using [individual bias pots](../modifications/individual-bias-pots.md): the pot is at its less-negative extreme.
 
-### EL34 plate voltage MUCH higher than nominal (e.g., 480 V)
+### EL34 plate voltage MUCH higher than nominal (e.g., 450 V instead of 410 V)
 
 The tube isn't drawing its rated current. Bias is too cold (too negative grid), or the tube is dying.
 
-### EL34 plate voltage LOWER than nominal (e.g., 420 V)
+### EL34 plate voltage LOWER than nominal (e.g., 380 V instead of 410 V)
 
 The tube is drawing too much current. Bias is too hot (not negative enough), or the tube is gassy / shorted internally. Watch the plate carefully — if it glows red, power off immediately.
 

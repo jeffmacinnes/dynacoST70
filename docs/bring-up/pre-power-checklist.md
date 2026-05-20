@@ -120,11 +120,24 @@ After each power-on session, sniff the amp. Burnt smells are unambiguous:
 
 If you smell anything weird during bring-up, power off, walk away, and come back when the smell is gone. Diagnose before re-powering.
 
+## Resistance check (manual page 11)
+
+Before applying any power, the manual recommends a single resistance check:
+
+- DMM on resistance / ohms range.
+- One probe to **capacitor lug #2** (the first filter cap, where the rectifier output lands).
+- Other probe to **chassis ground**.
+
+**Expected: in excess of 100 kΩ.** Anything significantly lower indicates a short, a leaky cap, or a mis-wiring that needs fixing before powering up.
+
+This check verifies that nothing on the B+ rail is shorted to ground — which would cause a catastrophic fuse-blow (or worse) on first power-on.
+
 ## Final pre-power check
 
 The "is everything else right?" final pass:
 
 - [ ] All [step 1-11 connections](../build/power-supply/index.md) are made.
+- [ ] Resistance check above passed (>100 kΩ from cap lug 2 to ground).
 - [ ] Power switch is OFF.
 - [ ] Variac (if used) is at 0 V.
 - [ ] No tubes installed (for first power-on).
