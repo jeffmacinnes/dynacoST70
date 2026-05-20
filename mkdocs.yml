@@ -163,10 +163,64 @@ nav:
           - Step 9 — Choke: build/power-supply/step-09-choke.md
           - Step 10 — Primary fuse & switch: build/power-supply/step-10-primary-fuse-switch.md
           - Step 11 — Right OPT secondaries: build/power-supply/step-11-right-opt-secondaries.md
-      - Driver stage:
-          - build/driver-stage/index.md
       - Output stage:
           - build/output-stage/index.md
+          - Step 12 — Left OPT secondaries: build/output-stage/step-12-left-opt-secondaries.md
+          - Step 13 — Right OPT primary: build/output-stage/step-13-right-opt-primary.md
+          - Step 14 — Left OPT primary: build/output-stage/step-14-left-opt-primary.md
+          - Step 15 — Disc caps: build/output-stage/step-15-disc-caps.md
+          - Step 16 — V6/V7 heater daisy: build/output-stage/step-16-v6-v7-heater-daisy.md
+          - Step 17 — V2/V3 heater daisy: build/output-stage/step-17-v2-v3-heater-daisy.md
+          - Step 18 — Bias jumper: build/output-stage/step-18-bias-jumper.md
+          - Step 19 — First bias cap: build/output-stage/step-19-bias-cap-1.md
+          - Step 20 — First bias resistor: build/output-stage/step-20-bias-resistor-1.md
+          - Step 21 — Second bias cap: build/output-stage/step-21-bias-cap-2.md
+          - Step 22 — Second bias resistor: build/output-stage/step-22-bias-resistor-2.md
+          - Step 23 — Bias ground: build/output-stage/step-23-bias-ground.md
+          - Step 24 — Bias to left pot 1: build/output-stage/step-24-bias-pot-distribution-1.md
+          - Step 25 — Bias from diode: build/output-stage/step-25-bias-from-diode.md
+          - Step 26 — Bias to left pot 3: build/output-stage/step-26-bias-pot-distribution-2.md
+          - Step 27 — Inter-pot wire (lug 3): build/output-stage/step-27-bias-pot-interconnect-1.md
+          - Step 28 — Inter-pot wire (lug 1): build/output-stage/step-28-bias-pot-interconnect-2.md
+          - Step 29 — Rectifier to filter cap: build/output-stage/step-29-rectifier-to-filter-cap.md
+          - Step 30 — 6.8 kΩ dropping resistor: build/output-stage/step-30-b-plus-dropping-resistor.md
+          - Step 31 — V2 cathode sense: build/output-stage/step-31-v2-cathode-sense.md
+          - Step 32 — V2/V3 cathode daisy: build/output-stage/step-32-v2-v3-cathode-daisy.md
+          - Step 33 — V3 to left Biaset: build/output-stage/step-33-v3-to-left-biaset.md
+          - Step 34 — V7 cathode sense: build/output-stage/step-34-v7-cathode-sense.md
+          - Step 35 — V7/V6 cathode daisy: build/output-stage/step-35-v6-v7-cathode-daisy.md
+          - Step 36 — V6 to right Biaset: build/output-stage/step-36-v6-to-right-biaset.md
+          - Step 37 — Grid stoppers: build/output-stage/step-37-grid-stoppers.md
+      - Driver stage:
+          - build/driver-stage/index.md
+          - Step 38 — Mount PC-3 board: build/driver-stage/step-38-mount-pc-3.md
+          - Step 39 — Eyelet 23 to V6: build/driver-stage/step-39-eyelet-23-to-v6.md
+          - Step 40 — Eyelet 22 to V7: build/driver-stage/step-40-eyelet-22-to-v7.md
+          - Step 41 — Eyelet 19 to cap 3: build/driver-stage/step-41-eyelet-19-to-cap-3.md
+          - Step 42 — 22 kΩ dropping resistor: build/driver-stage/step-42-22k-dropping-resistor.md
+          - Step 43 — Eyelet 20 to cap 4: build/driver-stage/step-43-eyelet-20-to-cap-4.md
+          - Step 44 — Input grounds to board: build/driver-stage/step-44-input-grounds-to-board.md
+          - Step 45 — V6 heater to board: build/driver-stage/step-45-v6-heater-to-board.md
+          - Step 46 — V3 heater to board: build/driver-stage/step-46-v3-heater-to-board.md
+          - Step 47 — Eyelet 21 to right pot: build/driver-stage/step-47-eyelet-21-to-right-pot.md
+          - Step 48 — Eyelet 14 to V6 (feedback): build/driver-stage/step-48-eyelet-14-to-v6-feedback.md
+          - Step 49 — Switch lug 3 to right RCA: build/driver-stage/step-49-input-switch-to-right-rca.md
+          - Step 50 — Right grid leak: build/driver-stage/step-50-right-grid-leak.md
+          - Step 51 — Left grid leak: build/driver-stage/step-51-left-grid-leak.md
+          - Step 52 — Eyelet 17 to right RCA: build/driver-stage/step-52-eyelet-17-to-right-rca.md
+          - Step 53 — Eyelet 7 to left RCA: build/driver-stage/step-53-eyelet-7-to-left-rca.md
+          - Step 54 — Left RCA to input switch: build/driver-stage/step-54-left-rca-to-input-switch.md
+          - Step 55 — Eyelet 2 to V3: build/driver-stage/step-55-eyelet-2-to-v3.md
+          - Step 56 — Eyelet 1 to V2: build/driver-stage/step-56-eyelet-1-to-v2.md
+          - Step 57 — Eyelet 6 to left pot: build/driver-stage/step-57-eyelet-6-to-left-pot.md
+          - Step 58 — V3 to eyelet 11 (feedback): build/driver-stage/step-58-v3-to-eyelet-11-feedback.md
+          - Step 59 — Eyelet 9 to ground: build/driver-stage/step-59-eyelet-9-to-ground.md
+          - Step 60 — Left strip 1 to eyelet 12: build/driver-stage/step-60-left-strip-1-to-eyelet-12.md
+          - Step 61 — Left strip 4 to ground: build/driver-stage/step-61-left-strip-4-to-ground.md
+          - Step 62 — Right strip 1 to eyelet 13: build/driver-stage/step-62-right-strip-1-to-eyelet-13.md
+          - Step 63 — Right strip 4 to ground: build/driver-stage/step-63-right-strip-4-to-ground.md
+          - Step 64 — Star ground completion: build/driver-stage/step-64-star-ground-completion.md
+          - Step 65 — Power cord: build/driver-stage/step-65-power-cord.md
       - Final assembly: build/final-assembly.md
   - Modifications:
       - modifications/index.md

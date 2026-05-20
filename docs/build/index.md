@@ -8,7 +8,7 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 ## Current physical build state
 
-**Page 6, steps 1–6 soldered.** Next is [step 7](power-supply/step-07-hv-ct.md) — red-yellow center tap to the solder lug near the filter capacitor. This completes the HV rectifier circuit by establishing the ground return path for full-wave rectification.
+**Mechanical assembly done. Page 6 wiring steps 1–6 soldered.** Next is [step 7](power-supply/step-07-hv-ct.md) — red-yellow center tap to the solder lug near the filter capacitor. This completes the HV rectifier circuit by establishing the ground return path for full-wave rectification.
 
 ## Sections
 
@@ -18,21 +18,39 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 - **[Driver stage](driver-stage/index.md)** — wiring steps 38-65: PC-3 board mounting, eyelet-to-tube-pin connections, B+ feeds to the board, input wiring, RCA jacks, input switch, power cord.
 - **[Final assembly](final-assembly.md)** — chassis closure, dressing, final inspection.
 
-## Power supply step status
+## Step status — mechanical assembly (M1-M15)
 
-| Step | Title | Written | Soldered |
+Mechanical mounting on the chassis. None of these involve wiring yet.
+
+See [mechanical assembly overview](mechanical-assembly/index.md) for the full step list. The 15 mechanical steps cover sockets, transformers, the choke, the filter cap, switches, fuse post, and terminal strips.
+
+## Step status — wiring
+
+Each section's step pages live under their own subsection; click the section link to see the full per-step status table.
+
+| Section | Manual page | Steps | Index |
 |---|---|---|---|
-| 1 | [Bias diode](power-supply/step-01-bias-diode.md) | ✅ | ✅ |
-| 2 | [5AR4 heater (V1)](power-supply/step-02-5ar4-heater.md) | ✅ | ✅ |
-| 3 | [5AR4 anodes (V1)](power-supply/step-03-5ar4-anodes.md) | ✅ | ✅ |
-| 4 | [V2 heater](power-supply/step-04-v2-heater.md) | ✅ | ✅ |
-| 5 | [V7 heater](power-supply/step-05-v7-heater.md) | ✅ | ✅ |
-| 6 | [Heater center taps](power-supply/step-06-heater-cts.md) | ✅ | ✅ |
-| 7 | [HV center tap](power-supply/step-07-hv-ct.md) | scaffold | pending |
-| 8 | [OPT red leads to B+](power-supply/step-08-opt-b-plus.md) | scaffold | pending |
-| 9 | [Choke](power-supply/step-09-choke.md) | scaffold | pending |
-| 10 | [Primary fuse & switch](power-supply/step-10-primary-fuse-switch.md) | scaffold | pending |
-| 11 | [Right OPT secondaries](power-supply/step-11-right-opt-secondaries.md) | scaffold | pending |
+| **Power supply** | 6 | 1–11 | [power-supply](power-supply/index.md) |
+| **Output stage** | 7–8 | 12–37 | [output-stage](output-stage/index.md) |
+| **Driver stage** | 8–10 | 38–65 | [driver-stage](driver-stage/index.md) |
+
+### Power supply (page 6) — current soldering progress
+
+| Step | Title | Soldered |
+|---|---|---|
+| 1 | [Bias diode](power-supply/step-01-bias-diode.md) | ✅ |
+| 2 | [5AR4 heater (V1)](power-supply/step-02-5ar4-heater.md) | ✅ |
+| 3 | [5AR4 anodes (V1)](power-supply/step-03-5ar4-anodes.md) | ✅ |
+| 4 | [V2 heater](power-supply/step-04-v2-heater.md) | ✅ |
+| 5 | [V7 heater](power-supply/step-05-v7-heater.md) | ✅ |
+| 6 | [Heater center taps](power-supply/step-06-heater-cts.md) | ✅ |
+| 7 | [HV center tap](power-supply/step-07-hv-ct.md) | pending |
+| 8 | [OPT red leads to B+](power-supply/step-08-opt-b-plus.md) | pending |
+| 9 | [Choke](power-supply/step-09-choke.md) | pending |
+| 10 | [Primary fuse & switch](power-supply/step-10-primary-fuse-switch.md) | pending |
+| 11 | [Right OPT secondaries](power-supply/step-11-right-opt-secondaries.md) | pending |
+
+**Currently:** soldered through step 6. Next is [step 7](power-supply/step-07-hv-ct.md) — red-yellow center tap to the solder lug near the filter capacitor.
 
 ## Build configuration recap
 
