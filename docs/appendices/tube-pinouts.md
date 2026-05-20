@@ -45,9 +45,9 @@ Octal base, 8 pins.
 
 See [EL34 page](../components/el34-output-tube.md).
 
-## 6GH8A driver / phase splitter (V4, V5)
+## 6GH8A driver / phase splitter
 
-9-pin compactron (12-pin in some references). *Pinout details to be filled in when this section gets fleshed out.* See [6GH8A page](../components/6gh8a-driver-tube.md).
+9-pin compactron. Mounts in board sockets on the PC-3A driver board (no chassis V-number). One per channel. *Pinout details to be filled in when this section gets fleshed out.* See [6GH8A page](../components/6gh8a-driver-tube.md).
 
 | Pin | Function |
 |---|---|

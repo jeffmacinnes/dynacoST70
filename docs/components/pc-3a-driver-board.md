@@ -4,7 +4,7 @@ title: PC-3A driver board
 
 # PC-3A driver board
 
-The **PC-3A** is the ST-70's small printed circuit board — about 3" × 2" — that hosts both [6GH8A driver tubes](6gh8a-driver-tube.md) (V4 and V5), one per channel, plus all the passive components for voltage amplification and phase splitting. Audio enters the board from the input jacks, gets amplified by the pentode sections, gets phase-split by the triode sections, and exits as four signals (two per channel, 180° apart) that drive the [EL34 output tube](el34-output-tube.md) grids.
+The **PC-3A** is the ST-70's small printed circuit board — about 3" × 2" — that hosts both [6GH8A driver tubes](6gh8a-driver-tube.md), one per channel, plus all the passive components for voltage amplification and phase splitting. Audio enters the board from the input jacks, gets amplified by the pentode sections, gets phase-split by the triode sections, and exits as four signals (two per channel, 180° apart) that drive the [EL34 output tube](el34-output-tube.md) grids.
 
 It's the only printed circuit board in an otherwise point-to-point amplifier. Dynaco's reasoning was straightforward: this part of the circuit is small, dense, and identical across every amp — a PCB is the right tool for the job. The rest of the chassis stays point-to-point because it's high-voltage, high-current, and varies between chassis.
 
@@ -12,7 +12,7 @@ It's the only printed circuit board in an otherwise point-to-point amplifier. Dy
 
 | Component | Quantity | Role |
 |---|---|---|
-| 6GH8A tube sockets | 2 | One per channel (V4 / V5) |
+| 6GH8A tube sockets | 2 | One per channel (board-mounted 9-pin miniature; no chassis V-number) |
 | Resistors | ~20 | Plate loads, cathode bias, grid stoppers, dividers |
 | Coupling caps | ~6 | Between pentode plate and triode grid; between triode outputs and EL34 grids |
 | Screen-feed network | 1 set per channel | Drops B+ down to the 6GH8A pentode screen voltage |

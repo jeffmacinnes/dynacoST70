@@ -4,20 +4,33 @@ title: Choke
 
 # Choke
 
-The ST-70's **choke** is a 1.5 H iron-core inductor in the B+ supply, sitting between the first and second filter caps. It's the "L" in the classic LC pi-filter topology — its inductance resists changes in current, smoothing the supply far more effectively than capacitance alone.
+The ST-70's **choke** (Dynakit part **C-354**) is a 1.75 H iron-core inductor in the B+ supply, sitting between the first and second filter caps. It's the "L" in the classic LC pi-filter topology — its inductance resists changes in current, smoothing the supply far more effectively than capacitance alone.
 
 The choke and the second filter cap together form a *second-order* low-pass filter that drops B+ ripple by tens of dB, turning the sawtooth output of the first cap into the essentially-flat DC the tube plates want.
 
 <figure class="diagram-fig" markdown="span">
   <img src="../../assets/diagrams/choke-filter-response.svg" alt="LC filter frequency response showing how the choke kills 120 Hz ripple">
-  <figcaption>Attenuation vs. frequency for the ST-70's L=1.5 H choke + C₂=20 µF second filter cap, with a ~100 mA load. The 120 Hz ripple at the choke input gets cut by ~24 dB (factor of 16) at the choke output. Click to zoom.</figcaption>
+  <figcaption>Attenuation vs. frequency for the ST-70's L=1.75 H choke + C₂=20 µF second filter cap, with a ~100 mA load. The 120 Hz ripple at the choke input gets cut by ~26 dB (factor of ~20) at the choke output. Click to zoom.</figcaption>
 </figure>
+
+## Specs (per manual page 25)
+
+| Parameter | Value |
+|---|---|
+| Inductance | 1.75 H |
+| DC current rating | 200 mA |
+| DC resistance | 62 Ω |
+| Max DC voltage | 400 VDC |
+| Tolerance | 10% |
+| Lead length | 6" |
+
+The 200 mA current rating is comfortably above the ~100 mA the amp draws at full output, giving headroom for transients.
 
 ## What it is, physically
 
 A choke is electrically just a big inductor: a coil of copper wire wound around an iron core, with a gap in the core. Mechanically, it looks like a small power transformer — same kind of laminated iron core, same end bells, same general size — except it has only ONE winding, not two.
 
-The ST-70's choke is about ~1.5 H and rated for ~125 mA (more than the ~100 mA the amp draws at full output). It's mounted on the chassis next to the power transformer.
+The ST-70's choke is mounted on the chassis next to the power transformer.
 
 ## What an inductor does in a DC supply
 
@@ -45,14 +58,14 @@ The choke + second filter cap form an LC low-pass filter. The corner frequency i
 
 `f_res = 1 / (2π · √(L · C))`
 
-For the ST-70: `f_res = 1 / (2π · √(1.5 H · 20 µF)) ≈ 29 Hz`
+For the ST-70: `f_res = 1 / (2π · √(1.75 H · 20 µF)) ≈ 27 Hz`
 
-Below 29 Hz: filter passes the signal (DC goes through).
-Above 29 Hz: filter rolls off at 40 dB / decade (12 dB / octave).
+Below 27 Hz: filter passes the signal (DC goes through).
+Above 27 Hz: filter rolls off at 40 dB / decade (12 dB / octave).
 
-The 120 Hz ripple is about 4× the corner frequency, deep in the rolloff region. Math gives ~24 dB attenuation — the diagram above shows the curve.
+The 120 Hz ripple is about 4.4× the corner frequency, deep in the rolloff region. Math gives ~26 dB attenuation — the diagram above shows the curve.
 
-24 dB is a factor of about 16 in voltage. If the first filter cap leaves ~10 V of ripple on the B+, the choke + second cap reduce it to ~600 mV. Then any further filtering (a small decoupling cap on the driver stage, for instance) drops it further into the millivolts range.
+26 dB is a factor of about 20 in voltage. If the first filter cap leaves ~10 V of ripple on the B+, the choke + second cap reduce it to ~500 mV. Then any further filtering (a small decoupling cap on the driver stage, for instance) drops it further into the millivolts range.
 
 ## Why an L+C is so much better than just bigger C
 
@@ -66,11 +79,11 @@ This is why every serious tube amp has a choke in the B+ chain. Solid-state amps
 
 ## DC resistance and voltage drop
 
-A real choke has resistance — typically 100-200 Ω for the ST-70's choke. That resistance drops some voltage:
+A real choke has resistance — the C-354 spec is **62 Ω**. That resistance drops some voltage:
 
-`V_drop = I · R = 0.100 A · 150 Ω ≈ 15 V`
+`V_drop = I · R = 0.100 A · 62 Ω ≈ 6.2 V`
 
-So if your first filter cap sits at, say, 475 V, the second cap (after the choke) sits at ~460 V. That's the actual ST-70 B+ rail spec.
+So if your first filter cap sits at, say, 475 V, the second cap (after the choke) sits at ~469 V. The drop is small enough that the rest of the B+ chain barely notices it.
 
 This DC drop is one of the few downsides of using a choke — you lose a bit of supply voltage to inefficiency. Worth it for the smoothing.
 

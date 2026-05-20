@@ -23,8 +23,8 @@ from _style import (
 def build():
     apply_rcparams()
 
-    # ST-70 filter section values
-    L = 1.5        # H, choke
+    # ST-70 filter section values (per Dynaco C-354 spec sheet)
+    L = 1.75       # H, choke
     C1 = 30e-6     # F, first filter cap (input side of choke)
     C2 = 20e-6     # F, second filter cap (output side of choke — feeds tubes)
     R_load = 4500  # Ω, ~100 mA from 450 V B+
@@ -101,13 +101,13 @@ def build():
     )
     fig.text(
         0.5, 0.900,
-        "ST-70 values: L = 1.5 H choke, C₂ = 20 µF second filter cap, ~100 mA load. Plot shows attenuation from C₁ to C₂.",
+        "ST-70 values: L = 1.75 H choke (C-354), C₂ = 20 µF second filter cap, ~100 mA load. Plot shows attenuation from C₁ to C₂.",
         ha="center", fontsize=12, color=COLOR_NOTE,
     )
 
     fig.text(
         0.5, 0.020,
-        "Above the LC resonance, attenuation rises at ~40 dB/decade. 120 Hz ripple gets cut by ~24 dB — a factor of ~16.",
+        "Above the LC resonance, attenuation rises at ~40 dB/decade. 120 Hz ripple gets cut by ~26 dB — a factor of ~20.",
         ha="center", fontsize=11, style="italic", color="#555",
     )
 

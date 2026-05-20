@@ -6,7 +6,7 @@ title: 6GH8A driver tube
 
 The 6GH8A is a 1960s **compactron**-style combined pentode/triode tube — two completely separate working sections inside a single 9-pin glass envelope, sharing only the heater. Dynaco picked it for the ST-70 driver board because one envelope did both the voltage amplification AND the phase splitting needed for one channel of the push-pull output stage. Half the tubes, half the sockets, half the wiring.
 
-The ST-70 uses two 6GH8As — one per channel — in sockets **V4** and **V5** on the [PC-3A driver board](pc-3a-driver-board.md).
+The ST-70 uses two 6GH8As — one per channel — in 9-pin miniature sockets that are part of the [PC-3A driver board](pc-3a-driver-board.md) itself. The drivers don't get chassis V-numbers in the manual; only the seven chassis octal sockets do (V1 = rectifier, V2/V3/V6/V7 = EL34 outputs, V4/V5 = front-panel Biaset sockets).
 
 ## What it is
 
@@ -129,7 +129,7 @@ The VTA is the obvious "next mod" for an ST-70 builder who wants to upgrade beyo
 
 ## In this build
 
-The 6GH8As occupy sockets **V4** (left channel) and **V5** (right channel) on the PC-3A driver board, plugged in via the Amplified Parts adapter set.
+The 6GH8As sit in 9-pin miniature sockets on the PC-3A driver board — left channel and right channel — plugged in via the Amplified Parts adapter set. The board's own sockets, not chassis octals.
 
 ## See also
 

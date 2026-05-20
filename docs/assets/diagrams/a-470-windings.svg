@@ -62,28 +62,30 @@
 
   <!-- Blue lead (one plate) -->
   <g class="lead-group">
-    <title>PRIMARY plate lead (BLUE) — to V2 / V6 (one side of push-pull pair).
+    <title>PRIMARY plate lead (BLUE) — to one EL34 plate.
 
 The output transformer's primary is center-tapped. One end carries the audio swing from one EL34's plate; the other end carries the opposite-phase swing from its push-pull partner.
 
-In normal operation, when the BLUE end swings positive, the BRN(primary) end swings negative — and vice versa. The two halves of the primary push and pull current through the core in opposite directions, which is what "push-pull" means.</title>
+In normal operation, when the BLUE end swings positive, the GREEN end swings negative — and vice versa. The two halves of the primary push and pull current through the core in opposite directions, which is what "push-pull" means.</title>
     <line class="lead" x1="455" y1="200" x2="265" y2="200" stroke="#1a4e8a"/>
     <circle class="lead-dot" cx="265" cy="200" fill="#1a4e8a"/>
     <text class="lead-name" x="252" y="194" text-anchor="end" fill="#1a4e8a">BLUE</text>
-    <text class="target" x="252" y="218" text-anchor="end">→ EL34 plate (V2 or V6)</text>
+    <text class="target" x="252" y="218" text-anchor="end">→ EL34 plate (one side of pair)</text>
   </g>
 
-  <!-- Green UL tap -->
+  <!-- Blue/White UL tap (matches Blue plate) -->
   <g class="lead-group">
-    <title>ULTRALINEAR SCREEN TAP (GREEN).
+    <title>ULTRALINEAR SCREEN TAP (BLUE/WHITE).
 
-A tap at ~43 % of each half of the primary. Connects to the screen grid (g2) of the corresponding EL34. Running the screen this way gives "ultralinear" operation — a hybrid between pentode (cleaner, more power) and triode (lower distortion, lower power) modes.
+A tap at ~43 % of the BLUE half of the primary. Connects to the screen grid (g2) of the EL34 whose plate is on the BLUE lead. Running the screen this way gives "ultralinear" operation — a hybrid between pentode (cleaner, more power) and triode (lower distortion, lower power) modes.
 
-The ST-70 was the first commercial amplifier to use this Dynaco-invented topology, and it's a big part of why the original sounded so much better than its contemporaries.</title>
-    <line class="lead" x1="455" y1="270" x2="265" y2="270" stroke="#2a8c3a"/>
-    <circle class="lead-dot" cx="265" cy="270" fill="#2a8c3a"/>
-    <text class="lead-name" x="252" y="264" text-anchor="end" fill="#2a8c3a">GREEN</text>
-    <text class="target" x="252" y="288" text-anchor="end">→ EL34 screen g2 (UL tap)</text>
+The ST-70 was the first commercial amplifier to use this Dynaco-invented topology, and it's a big part of why the original sounded so much better than its contemporaries.
+
+The BLU/WHT tap belongs to the same half of the primary as the BLUE plate lead — don't cross-wire it with the GREEN plate or the UL config breaks.</title>
+    <line class="lead" x1="455" y1="270" x2="265" y2="270" stroke="#1a4e8a" stroke-dasharray="6 4"/>
+    <circle class="lead-dot" cx="265" cy="270" fill="#1a4e8a"/>
+    <text class="lead-name" x="252" y="264" text-anchor="end" fill="#1a4e8a">BLU/WHT</text>
+    <text class="target" x="252" y="288" text-anchor="end">→ EL34 screen g2 (matches BLUE plate)</text>
   </g>
 
   <!-- Red (B+) center tap -->
@@ -99,28 +101,30 @@ The B+ DC flows symmetrically into both halves of the primary and back out throu
     <text class="target" x="252" y="358" text-anchor="end">→ +450 V B+ (step 8)</text>
   </g>
 
-  <!-- Green UL tap (other side, symmetric) -->
+  <!-- Green/White UL tap (matches Green plate) -->
   <g class="lead-group">
-    <title>ULTRALINEAR SCREEN TAP (GREEN) — second tap.
+    <title>ULTRALINEAR SCREEN TAP (GREEN/WHITE).
 
-The "other half" of the UL tap, for the other EL34 in the push-pull pair. Some A-470s use a single GREEN lead with internal routing; others bring out both taps separately. Refer to your specific A-470 documentation.</title>
-    <line class="lead" x1="455" y1="410" x2="265" y2="410" stroke="#2a8c3a"/>
+A tap at ~43 % of the GREEN half of the primary. Connects to the screen grid (g2) of the EL34 whose plate is on the GREEN lead.
+
+The GRN/WHT tap belongs to the same half of the primary as the GREEN plate lead — don't cross-wire it with the BLUE plate or the UL config breaks.</title>
+    <line class="lead" x1="455" y1="410" x2="265" y2="410" stroke="#2a8c3a" stroke-dasharray="6 4"/>
     <circle class="lead-dot" cx="265" cy="410" fill="#2a8c3a"/>
-    <text class="lead-name" x="252" y="404" text-anchor="end" fill="#2a8c3a">GREEN</text>
-    <text class="target" x="252" y="428" text-anchor="end">→ EL34 screen g2 (UL tap)</text>
+    <text class="lead-name" x="252" y="404" text-anchor="end" fill="#2a8c3a">GRN/WHT</text>
+    <text class="target" x="252" y="428" text-anchor="end">→ EL34 screen g2 (matches GREEN plate)</text>
   </g>
 
-  <!-- Brown (primary) - other plate lead -->
+  <!-- Green - other plate lead -->
   <g class="lead-group">
-    <title>PRIMARY plate lead (BROWN — primary side) — to V3 / V7.
+    <title>PRIMARY plate lead (GREEN) — to the other EL34 plate.
 
 The other end of the center-tapped push-pull primary. Always exactly 180° out of phase with the BLUE end relative to the RED CT — same physics as the 720 V CT winding on the PA-060, just at audio frequencies.
 
-⚠️ NOTE: The A-470 has TWO brown leads — one is this primary lead, the other is the 4 Ω secondary tap. They exit different ends of the transformer; label them as soon as the can comes out of the box.</title>
-    <line class="lead" x1="455" y1="480" x2="265" y2="480" stroke="#7a4d2a"/>
-    <circle class="lead-dot" cx="265" cy="480" fill="#7a4d2a"/>
-    <text class="lead-name" x="252" y="474" text-anchor="end" fill="#7a4d2a">BROWN <tspan class="lead-sub">(primary)</tspan></text>
-    <text class="target" x="252" y="498" text-anchor="end">→ EL34 plate (V3 or V7)</text>
+The A-470's primary has 5 leads total: BLUE plate, GREEN plate, RED center tap, and the two striped UL screen taps (BLU/WHT, GRN/WHT). All five exit the same end of the transformer.</title>
+    <line class="lead" x1="455" y1="480" x2="265" y2="480" stroke="#2a8c3a"/>
+    <circle class="lead-dot" cx="265" cy="480" fill="#2a8c3a"/>
+    <text class="lead-name" x="252" y="474" text-anchor="end" fill="#2a8c3a">GREEN</text>
+    <text class="target" x="252" y="498" text-anchor="end">→ EL34 plate (other side of pair)</text>
   </g>
 
   <!-- Primary side label -->
@@ -155,14 +159,14 @@ The most commonly used speaker tap. Most modern bookshelf and floor-standing spe
 
   <!-- Brown secondary (4Ω) -->
   <g class="lead-group">
-    <title>4 Ω SECONDARY TAP (BROWN — secondary side).
+    <title>4 Ω SECONDARY TAP (BROWN).
 
 For 4 Ω speakers. Some modern speakers are 4 Ω; some classic Klipsch / horn speakers are too. Step 11 solders this lead to lug 3 of the 4-screw terminal strip.
 
-⚠️ Don't confuse with the primary BROWN lead — these are on opposite ends of the transformer.</title>
+This is the only brown lead on the transformer — it exits the secondary end, opposite from the primary leads.</title>
     <line class="lead" x1="665" y1="340" x2="855" y2="340" stroke="#7a4d2a"/>
     <circle class="lead-dot" cx="855" cy="340" fill="#7a4d2a"/>
-    <text class="lead-name" x="868" y="344" fill="#7a4d2a">BROWN <tspan class="lead-sub">(secondary)</tspan></text>
+    <text class="lead-name" x="868" y="344" fill="#7a4d2a">BROWN</text>
     <text class="voltage" x="980" y="334">4 Ω tap</text>
     <text class="target" x="980" y="352">→ 4-screw strip lug 3 (step 11)</text>
   </g>

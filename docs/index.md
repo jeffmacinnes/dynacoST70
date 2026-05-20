@@ -41,13 +41,14 @@ See [build progress](build/index.md) for the live status. Short version as of th
 
 ## Tube layout (this manual's numbering)
 
-This kit's manual uses a non-standard tube numbering. **Always defer to this convention; some online references will differ.**
+The chassis has **seven octal sockets**, numbered V1–V7. Five hold tubes; two (V4 and V5) are the front-panel **Biaset sockets** that hold no tubes — they're meter-probe points for bias adjustment (also wired as preamp power take-offs for legacy preamps that need 6.3V + B+). The 6GH8A drivers don't get a V-number — they're 9-pin miniatures mounted directly on the PC-3A board.
 
-| Position | Designation | Tube |
+| Position | Designation | Tube / role |
 |---|---|---|
-| Chassis, near power transformer | V1 | 5AR4 rectifier |
-| Chassis, octal sockets | V2, V3, V6, V7 | EL34 output tubes |
-| PC-3A driver board | V4, V5 | 6GH8A driver/phase-splitters |
+| Chassis octal, near power transformer | V1 | 5AR4 rectifier |
+| Chassis octals | V2, V3, V6, V7 | EL34 output tubes |
+| Chassis octals, front panel | V4, V5 | Biaset sockets (no tube) |
+| PC-3A board, 9-pin miniature | (no V-number) | 6GH8A driver/phase-splitters, one per channel |
 
 !!! note
     This numbering differs from the "standard" ST-70 numbering found in some references, where V7 is the rectifier. Always defer to the specific manual that came with your kit.

@@ -51,8 +51,11 @@ Original A-470 spec: −1dB from 6Hz to 30kHz at full power.
 
 ## Tube layout reference
 
-| Position | Designation | Tube |
+The chassis has **seven octal sockets** total. Five hold tubes; two are front-panel **Biaset sockets** that hold no tubes (they're meter-probe points for bias adjustment, also wired as preamp power take-offs for legacy preamps that need 6.3V + B+). The 6GH8A drivers don't get a chassis V-number — they're 9-pin miniatures mounted directly on the PC-3A board.
+
+| Position | Designation | Tube / role |
 |---|---|---|
-| Chassis, near power transformer | V1 | 5AR4 rectifier |
-| Chassis, octal sockets | V2, V3, V6, V7 | EL34 output tubes |
-| PC-3A driver board | V4, V5 | 6GH8A driver/phase-splitters |
+| Chassis octal, near power transformer | V1 | 5AR4 rectifier |
+| Chassis octals | V2, V3, V6, V7 | EL34 output tubes |
+| Chassis octals, front panel | V4, V5 | Biaset / preamp power take-off (no tube) |
+| PC-3A board, 9-pin miniature | (no V-number) | 6GH8A driver/phase-splitters, one per channel |

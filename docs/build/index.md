@@ -45,7 +45,8 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 ## Modifications in this build
 
 - [3-prong grounded power cord](../modifications/3-prong-cord.md) (safety)
-- [1N4007 silicon diode](../modifications/1n4007-replacement.md) replacing original selenium rectifier (safety, reliability) — already incorporated in step 1
 - [Anti-click capacitor on power switch](../modifications/anti-click-cap.md)
 - [Individual bias pots per output tube](../modifications/individual-bias-pots.md) (instead of original shared bias)
 - VTA driver board deferred as future upgrade
+
+The kit's silicon bias-supply diode (DynakitParts #544042) is now a stock component, not a modification — see [historical context](../modifications/1n4007-replacement.md) for the selenium rectifier it replaced in older ST-70s.

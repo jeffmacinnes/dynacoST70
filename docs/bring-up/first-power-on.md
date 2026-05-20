@@ -109,7 +109,7 @@ Goal: verify the driver stage works under load. The 6GH8As will draw some curren
 ### Setup
 
 - 5AR4 still installed.
-- Install both **6GH8As** (in sockets V4 and V5).
+- Install both **6GH8As** in their 9-pin sockets on the PC-3A board.
 - Output tube sockets (V2/V3/V6/V7) still empty.
 - Variac back to **0 V**.
 
