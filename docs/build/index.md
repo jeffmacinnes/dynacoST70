@@ -8,7 +8,7 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 ## Current physical build state
 
-**Mechanical assembly done. Page 6 wiring steps 1–6 soldered.** Next is [step 7](power-supply/step-07-hv-ct.md) — red-yellow center tap to the solder lug near the filter capacitor. This completes the HV rectifier circuit by establishing the ground return path for full-wave rectification.
+**Mechanical assembly done. Page 6 wiring steps 1–10 soldered.** Next is [step 11](power-supply/step-11-right-opt-secondaries.md) — right output transformer secondary leads (BLACK, BROWN, ORANGE, YELLOW) to the right 4-screw terminal strip. This is the last step on manual page 6; after it, the power supply wiring is complete and you move on to the [output stage](output-stage/index.md).
 
 ## Sections
 
@@ -44,13 +44,13 @@ Each section's step pages live under their own subsection; click the section lin
 | 4 | [V2 heater](power-supply/step-04-v2-heater.md) | ✅ |
 | 5 | [V7 heater](power-supply/step-05-v7-heater.md) | ✅ |
 | 6 | [Heater center taps](power-supply/step-06-heater-cts.md) | ✅ |
-| 7 | [HV center tap](power-supply/step-07-hv-ct.md) | pending |
-| 8 | [OPT red leads to B+](power-supply/step-08-opt-b-plus.md) | pending |
-| 9 | [Choke](power-supply/step-09-choke.md) | pending |
-| 10 | [Primary fuse & switch](power-supply/step-10-primary-fuse-switch.md) | pending |
+| 7 | [HV center tap](power-supply/step-07-hv-ct.md) | ✅ |
+| 8 | [OPT red leads to B+](power-supply/step-08-opt-b-plus.md) | ✅ |
+| 9 | [Choke](power-supply/step-09-choke.md) | ✅ |
+| 10 | [Primary fuse & switch](power-supply/step-10-primary-fuse-switch.md) | ✅ |
 | 11 | [Right OPT secondaries](power-supply/step-11-right-opt-secondaries.md) | pending |
 
-**Currently:** soldered through step 6. Next is [step 7](power-supply/step-07-hv-ct.md) — red-yellow center tap to the solder lug near the filter capacitor.
+**Currently:** soldered through step 10. Next is [step 11](power-supply/step-11-right-opt-secondaries.md) — right OPT secondary leads to the right 4-screw terminal strip.
 
 ## Build configuration recap
 
