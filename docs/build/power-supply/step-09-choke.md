@@ -4,21 +4,55 @@ title: Step 9 — Choke
 
 # Step 9: Feed choke leads through right cable clamp to filter cap lugs #1 and #2
 
-> *Feed the two choke leads through the right cable clamp, connect one lead to filter capacitor lug #2 and the other lead to lug #1. (These leads can be trimmed as required). Tighten the two nuts holding the cable clamps.*
+> *Feed the two choke leads through the right cable clamp, connect one lead to filter capacitor lug #2 and the other lead to lug #1. (These leads can be trimmed as required). Tighten the two nuts holding the cable clamps.* — manual page 6
 
-!!! info "Explainer pending"
+## What you're doing physically
 
-*Topics to cover when written:*
+The C-354 choke (mounted under the chassis in [M11](../mechanical-assembly/step-m11-choke.md)) has two leads — both about 6" long, both the same gauge, both unpolarized. Feed both through the **right cable clamp** (so they're strain-relieved along their path), then:
 
-- What a [choke](../../components/choke.md) is and why it's here (smoothing inductor — resists changes in current).
-- How the choke fits between [filter cap](../../components/filter-capacitors.md) stage 1 and stage 2 in the supply chain: rectifier → first cap → choke → second cap → output tubes.
-- Why both choke leads connect to the filter cap (one is the choke's input, one is its output — they share the filter cap can but land on different lugs that represent different nodes in the B+ chain).
-- Cable clamps: now tightened, providing strain relief for the heavy-gauge B+ wires.
-- Why no polarity: the choke is symmetrical — it's just a coil.
+- One lead → filter cap **lug #2** (S — soldered final at this step)
+- Other lead → filter cap **lug #1** (still unsoldered; gets sealed with the OPT red leads from [step 8](step-08-opt-b-plus.md) in this same soldering operation)
+
+After both choke leads are landed and the OPT red leads (from step 8) are also in place at lug 1, **tighten the cable clamps' mounting nuts** to lock all the wires in place.
+
+## Which lead goes to which lug?
+
+Doesn't matter. The choke is **symmetric** — it's a single coil of wire on an iron core, electrically indistinguishable end-to-end. Connect whichever lead is closer to whichever lug.
+
+## What this builds — the LC pi-filter
+
+The choke is the inductor in the classic **LC pi-filter** that smooths B+ ripple. After this step, the B+ chain looks like:
+
+| Node | Voltage | What's there |
+|---|---|---|
+| V1 pin 8 (5AR4 cathode) | ~440 V pulsing | Rectifier output |
+| Filter cap lug 2 ("D") | ~435 V, ~10 V ripple | First filter cap section (30 µF) |
+| Choke (one lead at lug 2, other at lug 1) | 6.2 V drop across the 62 Ω DCR | Smoothing inductor |
+| Filter cap lug 1 ("C") | ~415 V, <1 V ripple | Second filter cap (20 µF) — main B+ rail |
+| Out via [step 8](step-08-opt-b-plus.md) RED leads | ~415 V | Feeds OPT primaries → EL-34 plates |
+
+The choke + second cap together form a **second-order low-pass filter**. At 120 Hz (the full-wave ripple frequency), the filter provides about 26 dB of attenuation — turning ~10 V of ripple at lug 2 into ~500 mV at lug 1. That's quiet enough for tube audio.
+
+For the full theory and frequency-response math, see [choke](../../components/choke.md) and [rectification — smoothing](../../theory/rectification.md#smoothing-from-pulsating-dc-to-clean-dc).
+
+Note: at this point in the build, the rectifier output isn't yet wired to lug 2 — that wire (V1 pin 8 → cap lug 2) comes later in [step 29](../output-stage/step-29-rectifier-to-filter-cap.md). So the choke is wired *between* the two filter cap sections, ready to carry current as soon as the rest of the B+ chain comes together.
+
+## Why both leads through one clamp
+
+The right cable clamp gets the choke leads; the left clamp got the OPT-related leads in [step 8](step-08-opt-b-plus.md). Splitting the wire bundle keeps the routes orderly and avoids cramming everything into a single bottleneck.
+
+## Tightening the clamps
+
+After all four wires (two OPT red leads + two choke leads) are landed and the lug 1 / lug 2 solder joints are flowed, the cable clamps' mounting nuts get tightened. This is permanent strain relief — once tightened, the wires stay where they are for the life of the amp.
+
+If you ever need to remove the PA-060 (rare; happens during major repairs), loosen the clamp nuts first, then unsolder the wire ends — don't try to slip the wires out without unclamping.
 
 ## See also
 
-- [Choke](../../components/choke.md)
-- [Filter capacitors](../../components/filter-capacitors.md)
-- [Rectification — smoothing](../../theory/rectification.md#smoothing-from-pulsating-dc-to-clean-dc)
+- [Choke (C-354)](../../components/choke.md) — full specs and theory of this part
+- [Step M11 — Choke mounting](../mechanical-assembly/step-m11-choke.md) — where the choke got mounted
+- [Step 8 — OPT B+ feeds](step-08-opt-b-plus.md) — what else lands on cap lug 1
+- [Step 29 — Rectifier to filter cap](../output-stage/step-29-rectifier-to-filter-cap.md) — what feeds cap lug 2 (the choke's upstream side)
+- [Filter capacitors](../../components/filter-capacitors.md) — the cap can structure
+- [Rectification — smoothing](../../theory/rectification.md#smoothing-from-pulsating-dc-to-clean-dc) — the LC filter in context
 - [Previous: Step 8](step-08-opt-b-plus.md) · [Next: Step 10 — Primary fuse & switch](step-10-primary-fuse-switch.md)
