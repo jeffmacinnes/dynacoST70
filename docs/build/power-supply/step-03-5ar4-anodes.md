@@ -8,6 +8,9 @@ title: Step 3 — 5AR4 anodes
 
 Both connections get soldered now (both have the (S) marker), unlike step 2 where pin 8 was left unsoldered for a later wire to land on.
 
+!!! tip "Optional: rectifier diode mod at this step"
+    Current DynakitParts kits include two 1N4007 diodes (on a separate sheet) for an optional **rectifier diode mod** that's installed exactly at this step. The red leads land on **pins 5 and 7** instead of 4 and 6, and a 1N4007 bridges each NC pin to its plate to protect the 5AR4 from warm-up failure. See [Rectifier diode mod](../../modifications/rectifier-diode-mod.md) for the full explanation and wiring — including a retrofit procedure if you've already soldered this step the stock way.
+
 ## What you're doing physically
 
 Connecting the **two ends of the high-voltage secondary winding** of the [PA-060](../../components/pa-060-power-transformer.md) (the red-red pair, which produces 720V AC across the full winding) to **the two anodes of the [5AR4 rectifier tube](../../components/5ar4-rectifier-tube.md)** at V1.

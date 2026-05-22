@@ -226,6 +226,7 @@ nav:
       - modifications/index.md
       - 3-prong cord: modifications/3-prong-cord.md
       - 1N4007 replacement: modifications/1n4007-replacement.md
+      - Rectifier diode mod: modifications/rectifier-diode-mod.md
       - Anti-click cap: modifications/anti-click-cap.md
       - Individual bias pots: modifications/individual-bias-pots.md
   - Bring-up:
