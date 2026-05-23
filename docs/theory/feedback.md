@@ -127,4 +127,4 @@ Most tube amps use both: cathode degeneration in selected stages plus a global l
 - [Phase splitting](phase-splitting.md) — the stage before push-pull
 - [A-470 output transformer](../components/a-470-output-transformer.md) — its phase response is part of the feedback loop
 - [PC-3A driver board](../components/pc-3a-driver-board.md) — where the feedback resistor lands at the input stage cathode
-- [Step 11 — Right OPT secondaries](../build/power-supply/step-11-right-opt-secondaries.md) — where the 16 Ω tap is brought out for the feedback path
+- [Step 11 — Right OPT secondaries](../build/output-stage/step-11-right-opt-secondaries.md) — where the 16 Ω tap is brought out for the feedback path

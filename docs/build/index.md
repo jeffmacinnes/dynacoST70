@@ -8,13 +8,13 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 ## Current physical build state
 
-**Mechanical assembly done. Page 6 wiring steps 1–10 soldered.** Next is [step 11](power-supply/step-11-right-opt-secondaries.md) — right output transformer secondary leads (BLACK, BROWN, ORANGE, YELLOW) to the right 4-screw terminal strip. This is the last step on manual page 6; after it, the power supply wiring is complete and you move on to the [output stage](output-stage/index.md).
+**Mechanical assembly done. Power supply wiring steps 1–10 soldered.** Next is [step 11](output-stage/step-11-right-opt-secondaries.md) — right output transformer secondary leads (BLACK, BROWN, ORANGE, YELLOW) to the right 4-screw terminal strip. Step 11 is the last step on manual page 6 but functionally belongs to the [output stage](output-stage/index.md), so we file it there alongside its mirror in step 12.
 
 ## Sections
 
 - **[Mechanical assembly (pages 4-5)](mechanical-assembly/index.md)** — mounting every component on the chassis: sockets, transformers, choke, filter cap, switches, fuse, terminal strips. Steps M1–M15.
-- **[Power supply (page 6)](power-supply/index.md)** — first wiring phase: transformer leads, rectifier heater + anodes, heater windings, heater CTs, HV CT, OPT B+ feeds, choke, fuse/switch, right OPT secondaries. Steps 1–11.
-- **[Output stage](output-stage/index.md)** — wiring steps 12-37: left OPT secondaries, OPT primary leads to EL-34s, bias network on 7-lug strip, cathode connections to Biaset sockets, grid stoppers.
+- **[Power supply](power-supply/index.md)** — first wiring phase: transformer leads, rectifier heater + anodes, heater windings, heater CTs, HV CT, OPT B+ feeds, choke, fuse/switch. Steps 1–10 (mostly manual page 6).
+- **[Output stage](output-stage/index.md)** — wiring steps 11-37: OPT secondaries (right then left), OPT primary leads to EL-34s, bias network on 7-lug strip, cathode connections to Biaset sockets, grid stoppers.
 - **[Driver stage](driver-stage/index.md)** — wiring steps 38-65: PC-3 board mounting, eyelet-to-tube-pin connections, B+ feeds to the board, input wiring, RCA jacks, input switch, power cord.
 - **[Final assembly](final-assembly.md)** — chassis closure, dressing, final inspection.
 
@@ -28,13 +28,13 @@ See [mechanical assembly overview](mechanical-assembly/index.md) for the full st
 
 Each section's step pages live under their own subsection; click the section link to see the full per-step status table.
 
-| Section | Manual page | Steps | Index |
+| Section | Manual pages | Steps | Index |
 |---|---|---|---|
-| **Power supply** | 6 | 1–11 | [power-supply](power-supply/index.md) |
-| **Output stage** | 7–8 | 12–37 | [output-stage](output-stage/index.md) |
+| **Power supply** | 6 (steps 1–10) | 1–10 | [power-supply](power-supply/index.md) |
+| **Output stage** | 6 (step 11) → 8 | 11–37 | [output-stage](output-stage/index.md) |
 | **Driver stage** | 8–10 | 38–65 | [driver-stage](driver-stage/index.md) |
 
-### Power supply (page 6) — current soldering progress
+### Power supply — current soldering progress
 
 | Step | Title | Soldered |
 |---|---|---|
@@ -48,9 +48,8 @@ Each section's step pages live under their own subsection; click the section lin
 | 8 | [OPT red leads to B+](power-supply/step-08-opt-b-plus.md) | ✅ |
 | 9 | [Choke](power-supply/step-09-choke.md) | ✅ |
 | 10 | [Primary fuse & switch](power-supply/step-10-primary-fuse-switch.md) | ✅ |
-| 11 | [Right OPT secondaries](power-supply/step-11-right-opt-secondaries.md) | pending |
 
-**Currently:** soldered through step 10. Next is [step 11](power-supply/step-11-right-opt-secondaries.md) — right OPT secondary leads to the right 4-screw terminal strip.
+**Currently:** power supply wiring soldered through step 10 (complete). Next is [step 11](output-stage/step-11-right-opt-secondaries.md) — right OPT secondary leads to the right 4-screw terminal strip — which kicks off the output stage.
 
 ## Build configuration recap
 

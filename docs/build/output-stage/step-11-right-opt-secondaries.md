@@ -48,17 +48,17 @@ Using the 8 Ω tap would also work but the feedback signal would be smaller and 
 
 ## Why only the right OPT at this step
 
-The manual splits the OPT secondary wiring across two steps: this one (right OPT) and [step 12](../output-stage/step-12-left-opt-secondaries.md) (left OPT, on manual page 7). Doing them in two steps lets the manual cleanly transition to page 7 — where it picks up the **output stage** wiring (OPT primaries, bias network, etc.).
+The manual splits the OPT secondary wiring across two steps: this one (right OPT, manual page 6) and [step 12](step-12-left-opt-secondaries.md) (left OPT, manual page 7). The original manual's page break falls between the two channels, but functionally they're the same operation done twice — one channel each — and both belong to the output stage. Our docs group them together in the output-stage section for that reason.
 
-This is the **last wiring step on manual page 6**. Once it's done, the power supply phase is complete and you move on to the output stage.
+Either way, finishing this step completes the right channel's speaker-side wiring up to the terminal strip. The left channel comes next in [step 12](step-12-left-opt-secondaries.md).
 
 ## See also
 
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — full secondary lead spec
 - [Step M4 — Rear terminal strips](../mechanical-assembly/step-m04-rear-terminal-strips.md) — where the strips got mounted
 - [Step M13 — OPT mounting](../mechanical-assembly/step-m13-output-transformers.md) — how the leads exit through the rear hole
-- [Step 12 — Left OPT secondaries](../output-stage/step-12-left-opt-secondaries.md) — the mirror, on manual page 7
+- [Step 12 — Left OPT secondaries](step-12-left-opt-secondaries.md) — the mirror, on manual page 7
 - [Step 62 — Right strip 1 to eyelet 13](../driver-stage/step-62-right-strip-1-to-eyelet-13.md) — where the YELLOW feedback wire eventually arrives
 - [Step 63 — Right strip 4 to ground](../driver-stage/step-63-right-strip-4-to-ground.md) — where the BLACK common gets its ground wire
 - [Feedback](../../theory/feedback.md) — what the 16 Ω feedback tap is doing
-- [Previous: Step 10](step-10-primary-fuse-switch.md) · [Next: Step 12 — Left OPT secondaries](../output-stage/step-12-left-opt-secondaries.md)
+- [Previous: Step 10](../power-supply/step-10-primary-fuse-switch.md) · [Next: Step 12 — Left OPT secondaries](step-12-left-opt-secondaries.md)

@@ -8,7 +8,7 @@ title: 'Step 12: Left OPT secondaries to left 4-screw strip'
 
 ## What you're doing physically
 
-The four secondary leads from the **left** A-470 — BLACK, BROWN, ORANGE, YELLOW — wire to the left 4-screw terminal strip (the one on the LEFT side of the back panel). This is the mirror of [step 11](../power-supply/step-11-right-opt-secondaries.md), which you already did for the right channel.
+The four secondary leads from the **left** A-470 — BLACK, BROWN, ORANGE, YELLOW — wire to the left 4-screw terminal strip (the one on the LEFT side of the back panel). This is the mirror of [step 11](step-11-right-opt-secondaries.md), which you already did for the right channel.
 
 | Lead | Goes to | Speaker tap |
 |---|---|---|
@@ -27,6 +27,6 @@ The YELLOW (16 Ω) lead is also the source of **global negative feedback** for t
 
 ## See also
 
-- [Step 11 — Right OPT secondaries](../power-supply/step-11-right-opt-secondaries.md) — the mirror image
+- [Step 11 — Right OPT secondaries](step-11-right-opt-secondaries.md) — the mirror image
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — secondary lead specs
 - [Feedback](../../theory/feedback.md) — what happens with the YELLOW lead later

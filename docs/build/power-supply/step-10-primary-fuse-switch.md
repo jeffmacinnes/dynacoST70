@@ -70,4 +70,4 @@ The mains-side wiring is where two common modifications interact with the build:
 - [Step 65 — Power cord](../driver-stage/step-65-power-cord.md) — what completes the mains-side wiring
 - [3-prong cord modification](../../modifications/3-prong-cord.md) — adds the earth-ground safety path
 - [Anti-click cap modification](../../modifications/anti-click-cap.md) — suppresses the power-off click
-- [Previous: Step 9](step-09-choke.md) · [Next: Step 11 — Right OPT secondaries](step-11-right-opt-secondaries.md)
+- [Previous: Step 9](step-09-choke.md) · [Next: Step 11 — Right OPT secondaries](../output-stage/step-11-right-opt-secondaries.md)

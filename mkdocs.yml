@@ -162,9 +162,9 @@ nav:
           - Step 8 — OPT B+ feeds: build/power-supply/step-08-opt-b-plus.md
           - Step 9 — Choke: build/power-supply/step-09-choke.md
           - Step 10 — Primary fuse & switch: build/power-supply/step-10-primary-fuse-switch.md
-          - Step 11 — Right OPT secondaries: build/power-supply/step-11-right-opt-secondaries.md
       - Output stage:
           - build/output-stage/index.md
+          - Step 11 — Right OPT secondaries: build/output-stage/step-11-right-opt-secondaries.md
           - Step 12 — Left OPT secondaries: build/output-stage/step-12-left-opt-secondaries.md
           - Step 13 — Right OPT primary: build/output-stage/step-13-right-opt-primary.md
           - Step 14 — Left OPT primary: build/output-stage/step-14-left-opt-primary.md

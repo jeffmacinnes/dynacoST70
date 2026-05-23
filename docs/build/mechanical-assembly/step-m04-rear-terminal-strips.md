@@ -34,5 +34,5 @@ The two strips are interchangeable — one channel's strip is mechanically ident
 ## See also
 
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — what each secondary lead does
-- [Step 11](../power-supply/step-11-right-opt-secondaries.md) — wiring the right OPT secondary to its terminal strip
+- [Step 11](../output-stage/step-11-right-opt-secondaries.md) — wiring the right OPT secondary to its terminal strip
 - [Operating modes](../../bring-up/operating-modes.md) — using the strips in mono / bi-amp configurations

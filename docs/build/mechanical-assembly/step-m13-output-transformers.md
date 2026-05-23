@@ -54,5 +54,5 @@ Per the [A-470 page](../../components/a-470-output-transformer.md):
 ## See also
 
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — full specs and lead colors
-- [Step 11 — Right OPT secondaries](../power-supply/step-11-right-opt-secondaries.md) — wiring the BLACK/BROWN/ORANGE/YELLOW leads to the rear terminal strip
+- [Step 11 — Right OPT secondaries](../output-stage/step-11-right-opt-secondaries.md) — wiring the BLACK/BROWN/ORANGE/YELLOW leads to the rear terminal strip
 - [Push-pull topology](../../theory/push-pull-topology.md) — why this transformer is center-tapped

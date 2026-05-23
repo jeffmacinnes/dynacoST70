@@ -1,12 +1,14 @@
 ---
-title: Output stage wiring (steps 12-37)
+title: Output stage wiring (steps 11-37)
 ---
 
-# Output stage wiring — manual steps 12-37
+# Output stage wiring — manual steps 11-37
 
-After the [power supply wiring (steps 1-11)](../power-supply/index.md) is done, the next 26 manual steps wire up the **output stage**: the EL-34 sockets, the A-470 output transformer primaries with their ultralinear screen taps, the bias network on the seven-lug terminal strip, the per-channel cathode sensing, and the grid stopper resistors.
+After the [power supply wiring (steps 1-10)](../power-supply/index.md) is done, the next 27 manual steps wire up the **output stage**: the A-470 output transformer secondaries (right then left), the OPT primaries with their ultralinear screen taps, the EL-34 sockets, the bias network on the seven-lug terminal strip, the per-channel cathode sensing, and the grid stopper resistors.
 
-This is the densest wiring section in the build. Take it in chunks; don't try to do all 26 steps in one sitting.
+Note that **step 11 is physically on manual page 6** alongside the power supply work, but functionally it's an output-stage operation (wiring the right output-transformer secondaries to the rear terminal strip) — so it lives in this section, paired with its left-channel mirror in step 12. The manual's page break between pages 6 and 7 falls between these two channels rather than between subsystems.
+
+This is the densest wiring section in the build. Take it in chunks; don't try to do all 27 steps in one sitting.
 
 ## What gets built here
 
@@ -19,6 +21,7 @@ This is the densest wiring section in the build. Take it in chunks; don't try to
 
 | Step | Title | Manual quote covers |
 |---|---|---|
+| 11 | [Right OPT secondaries](step-11-right-opt-secondaries.md) | Right A-470 secondary → right 4-screw strip *(manual page 6)* |
 | 12 | [Left OPT secondaries](step-12-left-opt-secondaries.md) | Left A-470 secondary → left 4-screw strip |
 | 13 | [Right OPT primary](step-13-right-opt-primary.md) | A-470 primary to V3 and V2 (plates + UL taps) |
 | 14 | [Left OPT primary](step-14-left-opt-primary.md) | A-470 primary to V6 and V7 (mirror) |
@@ -52,7 +55,7 @@ The output stage is **electrically complete** — the EL-34 plates, screens, cat
 
 ## See also
 
-- [Power supply wiring (steps 1-11)](../power-supply/index.md) — what comes before
+- [Power supply wiring (steps 1-10)](../power-supply/index.md) — what comes before
 - [Driver stage wiring (steps 38-65)](../driver-stage/index.md) — what comes after
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — primary lead colors
 - [Seven-lug terminal strip](../../components/seven-lug-terminal-strip.md) — the bias network's home

@@ -47,7 +47,7 @@ Once page 6 is complete, the power supply has three stages of operation: a high-
   <figcaption>From the mains on the left to the three tube-facing rails on the right. Hover any block for spec and the build step that creates it. Click to zoom.</figcaption>
 </figure>
 
-The wiring procedure on page 6 builds the **inputs** to all three of these paths. Steps 1–11 connect every PA-060 secondary lead to its appropriate destination. After page 6, the rectified outputs and filter networks get assembled, and eventually the circuit is complete.
+The wiring procedure on page 6 builds the **inputs** to all three of these paths. Steps 1–10 connect every PA-060 secondary lead to its appropriate destination (step 11, also on manual page 6, wires the right A-470 *output*-transformer secondaries and is documented in the [output-stage section](../output-stage/step-11-right-opt-secondaries.md)). After page 6, the rectified outputs and filter networks get assembled, and eventually the circuit is complete.
 
 ## Step-by-step
 
@@ -61,4 +61,4 @@ The wiring procedure on page 6 builds the **inputs** to all three of these paths
 - [Step 8 — OPT B+ feeds](step-08-opt-b-plus.md)
 - [Step 9 — Choke](step-09-choke.md)
 - [Step 10 — Primary fuse & switch](step-10-primary-fuse-switch.md)
-- [Step 11 — Right OPT secondaries](step-11-right-opt-secondaries.md)
+- [Step 11 — Right OPT secondaries](../output-stage/step-11-right-opt-secondaries.md) *(also on manual page 6, but documented in the output-stage section)*
