@@ -8,7 +8,9 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 ## Current physical build state
 
-**Mechanical assembly done. Power supply wiring steps 1–10 soldered.** Next is [step 11](output-stage/step-11-right-opt-secondaries.md) — right output transformer secondary leads (BLACK, BROWN, ORANGE, YELLOW) to the right 4-screw terminal strip. Step 11 is the last step on manual page 6 but functionally belongs to the [output stage](output-stage/index.md), so we file it there alongside its mirror in step 12.
+**Mechanical assembly done. Power supply wiring complete (steps 1–10). Output stage wiring soldered through step 24** — both OPT secondaries landed at their rear terminal strips, both OPT primaries running to the EL-34 plates and screen taps, the heater daisy chains closed, and the bias network on the seven-lug terminal strip built out and partly distributed to the bias pots.
+
+Next is [step 25](output-stage/step-25-bias-from-diode.md) — wiring the bias supply's output (the banded end of the [1N4007 bias diode](power-supply/step-01-bias-diode.md)) to the seven-lug terminal strip's lug 4, which feeds the rest of the bias distribution network.
 
 ## Sections
 
@@ -34,7 +36,7 @@ Each section's step pages live under their own subsection; click the section lin
 | **Output stage** | 6 (step 11) → 8 | 11–37 | [output-stage](output-stage/index.md) |
 | **Driver stage** | 8–10 | 38–65 | [driver-stage](driver-stage/index.md) |
 
-### Power supply — current soldering progress
+### Power supply — soldering progress
 
 | Step | Title | Soldered |
 |---|---|---|
@@ -49,7 +51,28 @@ Each section's step pages live under their own subsection; click the section lin
 | 9 | [Choke](power-supply/step-09-choke.md) | ✅ |
 | 10 | [Primary fuse & switch](power-supply/step-10-primary-fuse-switch.md) | ✅ |
 
-**Currently:** power supply wiring soldered through step 10 (complete). Next is [step 11](output-stage/step-11-right-opt-secondaries.md) — right OPT secondary leads to the right 4-screw terminal strip — which kicks off the output stage.
+Power supply wiring is **complete**.
+
+### Output stage — soldering progress
+
+| Step | Title | Soldered |
+|---|---|---|
+| 11 | [Right OPT secondaries](output-stage/step-11-right-opt-secondaries.md) | ✅ |
+| 12 | [Left OPT secondaries](output-stage/step-12-left-opt-secondaries.md) | ✅ |
+| 13 | [Right OPT primary](output-stage/step-13-right-opt-primary.md) | ✅ |
+| 14 | [Left OPT primary](output-stage/step-14-left-opt-primary.md) | ✅ |
+| 15 | [Disc caps on 7-lug strip](output-stage/step-15-disc-caps.md) | ✅ |
+| 16 | [V6 ↔ V7 heater daisy](output-stage/step-16-v6-v7-heater-daisy.md) | ✅ |
+| 17 | [V2 ↔ V3 heater daisy](output-stage/step-17-v2-v3-heater-daisy.md) | ✅ |
+| 18 | [Bias jumper (lug 1 ↔ 6)](output-stage/step-18-bias-jumper.md) | ✅ |
+| 19 | [First bias filter cap](output-stage/step-19-bias-cap-1.md) | ✅ |
+| 20 | [First bias resistor](output-stage/step-20-bias-resistor-1.md) | ✅ |
+| 21 | [Second bias filter cap](output-stage/step-21-bias-cap-2.md) | ✅ |
+| 22 | [Second bias resistor](output-stage/step-22-bias-resistor-2.md) | ✅ |
+| 23 | [Bias ground](output-stage/step-23-bias-ground.md) | ✅ |
+| 24 | [Bias to left pot lug 1](output-stage/step-24-bias-pot-distribution-1.md) | ✅ |
+
+**Currently:** output stage soldered through step 24. Next is [step 25 — Bias from diode](output-stage/step-25-bias-from-diode.md) — connecting the banded end of the bias diode (built way back in step 1) to lug 4 of the seven-lug terminal strip. This finally ties the bias supply *source* to the bias distribution network you've spent steps 18–24 assembling.
 
 ## Build configuration recap
 
