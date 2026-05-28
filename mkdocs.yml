@@ -130,6 +130,13 @@ nav:
       - Push-pull topology: theory/push-pull-topology.md
       - Phase splitting: theory/phase-splitting.md
       - Feedback: theory/feedback.md
+  - Signal paths:
+      - signal-paths/index.md
+      - Audio signal: signal-paths/audio.md
+      - B+ supply: signal-paths/b-plus.md
+      - Heater: signal-paths/heater.md
+      - Bias: signal-paths/bias.md
+      - Negative feedback: signal-paths/negative-feedback.md
   - Build:
       - build/index.md
       - Mechanical assembly:
