@@ -18,19 +18,10 @@ The 5 V is its own thing — only the 5AR4 uses 5 V heaters, and it has its own 
 
 ## At a glance
 
-```
-PA-060 secondaries
-  │
-  ├── WHITE pair (5 V, 1.9 A) ────────→ V1 pins 2 & 8           [5AR4 heater + cathode]
-  │
-  ├── GREEN pair (6.3 V) ──→ V2 pins 2 & 7   ─→ V3 pins 2 & 7  ─→ PC-3A left 6GH8A heater
-  │         (one half is V2 pin 2, daisied to V3 pin 2,
-  │          which then runs to the board)
-  │  GRN/YEL CT → 7-lug strip → ground (via star-ground point)
-  │
-  └── BROWN pair (6.3 V) ─→ V7 pins 2 & 7    ─→ V6 pins 2 & 7  ─→ PC-3A right 6GH8A heater
-              BRN/YEL CT → 7-lug strip → ground
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../assets/diagrams/heater-signal-path.svg" alt="Heater AC supply network across three PA-060 windings">
+  <figcaption>Three parallel rows: a dedicated 5 V winding for V1 (5AR4); a 6.3 V green winding daisied through the left channel; a 6.3 V brown winding daisied through the right channel. Both 6.3 V CTs return to chassis ground (dashed gold), holding heater AC symmetric about ground and suppressing hum coupling. Hover any winding or tube for details. Click to zoom.</figcaption>
+</figure>
 
 The center taps don't carry signal current — they're a **DC reference clamp** that holds the heater AC symmetric about ground, which suppresses hum coupling.
 

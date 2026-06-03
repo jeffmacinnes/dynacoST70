@@ -8,9 +8,9 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 ## Current physical build state
 
-**Mechanical assembly done. Power supply wiring complete (steps 1–10). Output stage wiring soldered through step 24** — both OPT secondaries landed at their rear terminal strips, both OPT primaries running to the EL-34 plates and screen taps, the heater daisy chains closed, and the bias network on the seven-lug terminal strip built out and partly distributed to the bias pots.
+**Mechanical assembly done. Power supply and output stage wiring complete (steps 1–37). Driver stage wiring soldered through step 46** — PC-3A board mounted, the four coupling-cap eyelets (22/23 to the right-channel EL34 grids and others) wired to the EL34 sockets, both B+ feeds from the filter cap to the board landed (eyelet 19 and 20 via the 22 kΩ on-board dropping resistor), input ground returns to the board, and both 6GH8A heater feeds (via V6 and V3) now connected.
 
-Next is [step 25](output-stage/step-25-bias-from-diode.md) — wiring the bias supply's output (the banded end of the [1N4007 bias diode](power-supply/step-01-bias-diode.md)) to the seven-lug terminal strip's lug 4, which feeds the rest of the bias distribution network.
+Next is [step 47](driver-stage/step-47-eyelet-21-to-right-pot.md) — eyelet 21 to the right volume pot, starting the input-side wiring. The rest of the driver stage covers feedback wires, input switch + RCA jack wiring, and the remaining eyelet-to-grid signal connections.
 
 ## Sections
 
@@ -71,8 +71,37 @@ Power supply wiring is **complete**.
 | 22 | [Second bias resistor](output-stage/step-22-bias-resistor-2.md) | ✅ |
 | 23 | [Bias ground](output-stage/step-23-bias-ground.md) | ✅ |
 | 24 | [Bias to left pot lug 1](output-stage/step-24-bias-pot-distribution-1.md) | ✅ |
+| 25 | [Bias from diode](output-stage/step-25-bias-from-diode.md) | ✅ |
+| 26 | [Bias to left pot lug 3](output-stage/step-26-bias-pot-distribution-2.md) | ✅ |
+| 27 | [Inter-pot wire (lug 3)](output-stage/step-27-bias-pot-interconnect-1.md) | ✅ |
+| 28 | [Inter-pot wire (lug 1)](output-stage/step-28-bias-pot-interconnect-2.md) | ✅ |
+| 29 | [Rectifier → filter cap](output-stage/step-29-rectifier-to-filter-cap.md) | ✅ |
+| 30 | [6.8 kΩ B+ dropping resistor](output-stage/step-30-b-plus-dropping-resistor.md) | ✅ |
+| 31 | [V2 cathode sense](output-stage/step-31-v2-cathode-sense.md) | ✅ |
+| 32 | [V2 ↔ V3 cathode daisy](output-stage/step-32-v2-v3-cathode-daisy.md) | ✅ |
+| 33 | [V3 → left Biaset](output-stage/step-33-v3-to-left-biaset.md) | ✅ |
+| 34 | [V7 cathode sense](output-stage/step-34-v7-cathode-sense.md) | ✅ |
+| 35 | [V7 ↔ V6 cathode daisy](output-stage/step-35-v6-v7-cathode-daisy.md) | ✅ |
+| 36 | [V6 → right Biaset](output-stage/step-36-v6-to-right-biaset.md) | ✅ |
+| 37 | [Grid stoppers](output-stage/step-37-grid-stoppers.md) | ✅ |
 
-**Currently:** output stage soldered through step 24. Next is [step 25 — Bias from diode](output-stage/step-25-bias-from-diode.md) — connecting the banded end of the bias diode (built way back in step 1) to lug 4 of the seven-lug terminal strip. This finally ties the bias supply *source* to the bias distribution network you've spent steps 18–24 assembling.
+Output stage wiring is **complete**.
+
+### Driver stage — soldering progress
+
+| Step | Title | Soldered |
+|---|---|---|
+| 38 | [Mount PC-3 board](driver-stage/step-38-mount-pc-3.md) | ✅ |
+| 39 | [Eyelet 23 → V6](driver-stage/step-39-eyelet-23-to-v6.md) | ✅ |
+| 40 | [Eyelet 22 → V7](driver-stage/step-40-eyelet-22-to-v7.md) | ✅ |
+| 41 | [Eyelet 19 → cap 3](driver-stage/step-41-eyelet-19-to-cap-3.md) | ✅ |
+| 42 | [22 kΩ dropping resistor](driver-stage/step-42-22k-dropping-resistor.md) | ✅ |
+| 43 | [Eyelet 20 → cap 4](driver-stage/step-43-eyelet-20-to-cap-4.md) | ✅ |
+| 44 | [Input grounds to board](driver-stage/step-44-input-grounds-to-board.md) | ✅ |
+| 45 | [V6 heater → board](driver-stage/step-45-v6-heater-to-board.md) | ✅ |
+| 46 | [V3 heater → board](driver-stage/step-46-v3-heater-to-board.md) | ✅ |
+
+**Currently:** driver stage soldered through step 46. Both 6GH8A heaters are now powered, the PC-3A board is wired into the chassis B+ side, and the right-channel coupling caps are landed at V6/V7. Next is [step 47 — Eyelet 21 → right pot](driver-stage/step-47-eyelet-21-to-right-pot.md), which starts the input-side wiring.
 
 ## Build configuration recap
 

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 760"
+     role="img"
+     aria-labelledby="nfb-title nfb-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="nfb-title">Negative feedback path — two wires per channel</title>
+  <desc id="nfb-desc">One channel of the ST-70 has TWO feedback wires returning to the 6GH8A pentode cathode: the main loop sampled at the OPT 16Ω secondary tap (sets closed-loop gain), and a high-frequency compensation path sampled at the OPT UL screen tap (keeps the loop stable). Both terminate at the same summing node.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.6; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-name    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .stage-sub     { font-size: 11px; fill: #444; }
+    .stage-sub-em  { font-size: 11px; font-weight: 700; fill: #cc3a2a; }
+    .fb-label      { font-size: 12px; font-weight: 700; fill: #cc3a2a; }
+    .fb-sub        { font-size: 11px; fill: #cc3a2a; }
+    .hf-label      { font-size: 12px; font-weight: 700; fill: #cc7a2a; }
+    .hf-sub        { font-size: 11px; fill: #cc7a2a; }
+    .step-label    { font-size: 10px; fill: #666; font-style: italic; }
+
+    .stage-input   { fill: #eef4fc; stroke: #555;    stroke-width: 1.8; }
+    .stage-amp     { fill: #f4f4f4; stroke: #1a4e8a; stroke-width: 1.8; }
+    .stage-output  { fill: #fce8e8; stroke: #cc3a2a; stroke-width: 1.8; }
+    .stage-opt     { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+    .stage-speak   { fill: #eef4fc; stroke: #1a4e8a; stroke-width: 1.8; }
+    .r-fb          { fill: #fafafa; stroke: #cc3a2a; stroke-width: 1.8; }
+    .r-hf          { fill: #fafafa; stroke: #cc7a2a; stroke-width: 1.8; }
+    .c-hf          { stroke: #cc7a2a; stroke-width: 2; fill: none; }
+
+    .signal-wire   { stroke: #1a4e8a; stroke-width: 2.4; fill: none; }
+    .main-fb-wire  { stroke: #cc3a2a; stroke-width: 2.6; fill: none; stroke-dasharray: 0; }
+    .hf-fb-wire    { stroke: #cc7a2a; stroke-width: 2.4; fill: none; stroke-dasharray: 8,3; }
+    .summing       { fill: #fff; stroke: #cc3a2a; stroke-width: 2.5; }
+  </style>
+
+  <rect width="1280" height="760" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Negative feedback — two wires per channel, one summing node</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">Main loop (red, solid) from the 16Ω tap sets closed-loop gain. HF compensation (orange, dashed) from the UL tap keeps the loop stable at high frequencies.</text>
+
+  <!-- ============ FORWARD SIGNAL PATH (TOP ROW) ============ -->
+  <text class="section-label" x="640" y="110" text-anchor="middle">Forward signal path (one channel)</text>
+  <line x1="100" y1="120" x2="1180" y2="120" stroke="#bbb" stroke-width="1"/>
+
+  <!-- Input -->
+  <g class="lead-group" data-tooltip="INPUT — RCA, switch, grid leak. Audio enters here from the source.">
+    <rect class="stage-box stage-input" x="80" y="150" width="100" height="60" rx="6"/>
+    <text class="stage-name" x="130" y="178" text-anchor="middle">Input</text>
+    <text class="stage-sub"  x="130" y="195" text-anchor="middle">~1 Vpp</text>
+  </g>
+
+  <!-- Wire to summing junction -->
+  <path class="signal-wire" d="M 180 180 L 220 180"/>
+
+  <!-- Summing junction (the pentode cathode is the summing node) -->
+  <g class="lead-group" data-tooltip="SUMMING JUNCTION — the 6GH8A PENTODE CATHODE.
+
+The audio AC and both feedback signals all meet at this single node. Because the feedback signals are 180° out of phase with the input, they SUBTRACT from it — the pentode sees:
+
+  effective_input = audio − k_main·output_16Ω − k_HF·output_UL
+
+The amp's open-loop gain amplifies whatever this difference is, so any deviation from a clean copy of audio gets corrected on the next cycle. That's the feedback mechanism.">
+    <circle class="summing" cx="245" cy="180" r="22"/>
+    <text class="fb-label" x="245" y="184" text-anchor="middle">Σ</text>
+    <text class="step-label" x="245" y="222" text-anchor="middle">pentode cathode</text>
+    <text class="step-label" x="245" y="236" text-anchor="middle">(summing node)</text>
+  </g>
+
+  <!-- Wire to pentode -->
+  <path class="signal-wire" d="M 267 180 L 300 180"/>
+
+  <!-- Pentode -->
+  <g class="lead-group" data-tooltip="6GH8A PENTODE — input voltage amplifier.
+
+Gain ~50×. Its CATHODE (the summing node) is where all the feedback wires arrive. The cathode bias resistor + bypass cap, plus R_fb (main loop) and the HF compensation R+C, all sit at this node.">
+    <rect class="stage-box stage-amp" x="300" y="150" width="120" height="60" rx="6"/>
+    <text class="stage-name" x="360" y="178" text-anchor="middle">6GH8A pentode</text>
+    <text class="stage-sub"  x="360" y="195" text-anchor="middle">gain ≈ 50×</text>
+  </g>
+  <path class="signal-wire" d="M 420 180 L 460 180"/>
+
+  <!-- Triode -->
+  <g class="lead-group" data-tooltip="6GH8A TRIODE — cathodyne phase splitter. Produces two outputs 180° apart for push-pull.">
+    <rect class="stage-box stage-amp" x="460" y="150" width="120" height="60" rx="6"/>
+    <text class="stage-name" x="520" y="178" text-anchor="middle">6GH8A triode</text>
+    <text class="stage-sub"  x="520" y="195" text-anchor="middle">phase splitter</text>
+  </g>
+  <path class="signal-wire" d="M 580 180 L 620 180"/>
+
+  <!-- EL34 pair -->
+  <g class="lead-group" data-tooltip="EL34 PUSH-PULL PAIR — output power stage. Two tubes driving the two halves of the A-470 primary.">
+    <rect class="stage-box stage-output" x="620" y="150" width="120" height="60" rx="6"/>
+    <text class="stage-name" x="680" y="178" text-anchor="middle">EL34 pair</text>
+    <text class="stage-sub"  x="680" y="195" text-anchor="middle">push-pull</text>
+  </g>
+  <path class="signal-wire" d="M 740 180 L 780 180"/>
+
+  <!-- A-470 primary -->
+  <g class="lead-group" data-tooltip="A-470 PRIMARY — center-tapped, with UL screen taps (BLU/WHT, GRN/WHT) on each half.
+
+The UL taps are at ~43% of the way from CT to each plate. They carry the audio signal at a high voltage AND with LESS phase shift than the secondary (because they're 'before' the secondary's leakage inductance). That makes them good for HF compensation feedback.">
+    <rect class="stage-box stage-opt" x="780" y="145" width="120" height="70" rx="4"/>
+    <text class="stage-name" x="840" y="172" text-anchor="middle">A-470 primary</text>
+    <text class="stage-sub"  x="840" y="190" text-anchor="middle">incl. UL screen taps</text>
+    <!-- UL tap marker -->
+    <circle cx="840" cy="208" r="4" fill="#cc7a2a"/>
+    <text class="hf-sub" x="855" y="212">UL tap</text>
+  </g>
+
+  <!-- A-470 secondary -->
+  <g class="lead-group" data-tooltip="A-470 SECONDARY — speaker-impedance windings. Taps for 4 Ω, 8 Ω, 16 Ω.
+
+The 16Ω tap carries the highest voltage of the secondary taps (best signal-to-noise for the feedback sample), so it's the conventional choice for the main feedback loop.">
+    <rect class="stage-box stage-opt" x="920" y="145" width="120" height="70" rx="4"/>
+    <text class="stage-name" x="980" y="172" text-anchor="middle">A-470 secondary</text>
+    <text class="stage-sub"  x="980" y="190" text-anchor="middle">4/8/16 Ω taps</text>
+    <!-- 16Ω tap marker -->
+    <circle cx="980" cy="208" r="4" fill="#cc3a2a"/>
+    <text class="fb-sub" x="995" y="212">16 Ω tap</text>
+  </g>
+
+  <!-- Connection between primary and secondary (magnetic coupling) -->
+  <line x1="900" y1="170" x2="920" y2="170" stroke="#666" stroke-width="1"/>
+  <line x1="900" y1="180" x2="920" y2="180" stroke="#666" stroke-width="1"/>
+  <line x1="900" y1="190" x2="920" y2="190" stroke="#666" stroke-width="1"/>
+
+  <!-- Speaker -->
+  <path class="signal-wire" d="M 1040 180 L 1090 180"/>
+  <g class="lead-group" data-tooltip="SPEAKER — the load. The feedback loop wraps around the entire amp INCLUDING the OPT, so the amp 'sees' and corrects for OPT non-linearities too.">
+    <rect class="stage-box stage-speak" x="1090" y="155" width="100" height="50" rx="4"/>
+    <text class="stage-name" x="1140" y="178" text-anchor="middle">Speaker</text>
+    <text class="stage-sub"  x="1140" y="195" text-anchor="middle">audio out</text>
+  </g>
+
+  <!-- ============ FEEDBACK PATHS (BOTTOM SECTION) ============ -->
+  <text class="section-label" x="640" y="290" text-anchor="middle">Two feedback wires return here, both terminating at the pentode cathode</text>
+  <line x1="100" y1="300" x2="1180" y2="300" stroke="#bbb" stroke-width="1"/>
+
+  <!-- ============ MAIN FEEDBACK LOOP (16Ω → R_fb → cathode) ============ -->
+  <g class="lead-group" data-tooltip="MAIN FEEDBACK LOOP — from OPT 16Ω secondary tap to pentode cathode.
+
+This is the dominant feedback path that sets the amp's closed-loop gain. About 16 dB of feedback total in the ST-70 (loop gain ~6×). Reduces:
+• Distortion by ~6×
+• Output impedance by ~6× (better damping factor)
+• Bandwidth ripple by ~6×
+
+Trades raw gain for accuracy. The amp doesn't NEED its full open-loop gain — the input source delivers plenty.">
+    <!-- Sample point at 16Ω tap -->
+    <path class="main-fb-wire" d="M 980 215 L 980 480"/>
+    <text class="fb-label" x="1010" y="345">main loop</text>
+    <text class="fb-sub" x="1010" y="362">sampled at 16 Ω</text>
+    <text class="step-label" x="1010" y="378">right: step 62 → eyelet 13</text>
+    <text class="step-label" x="1010" y="392">left:  step 60 → eyelet 12</text>
+
+    <!-- Wire across to R_fb -->
+    <path class="main-fb-wire" d="M 980 480 L 540 480"/>
+
+    <!-- R_fb -->
+    <rect class="r-fb" x="450" y="468" width="90" height="24" rx="3"/>
+    <text class="fb-label" x="495" y="485" text-anchor="middle">R_fb</text>
+
+    <!-- Wire from R_fb up to summing junction -->
+    <path class="main-fb-wire" d="M 450 480 L 245 480 L 245 202"/>
+    <polygon points="245,202 240,210 250,210" fill="#cc3a2a"/>
+  </g>
+
+  <!-- ============ HF COMPENSATION LOOP (UL tap → R+C → cathode) ============ -->
+  <g class="lead-group" data-tooltip="HF COMPENSATION LOOP — from OPT primary UL screen tap to pentode cathode through an RC network.
+
+WHY: the OPT itself adds phase shift at high frequencies. Past some frequency, the main loop's phase shift accumulates to where the feedback turns POSITIVE — at which point the amp oscillates.
+
+WHAT THIS FIXES: the UL tap is 'before' the OPT secondary's leakage inductance, so it has less phase shift. Routing a small RC network from here to the cathode adds a corrective phase ABOVE the audio band, restoring stability margins.
+
+The cap in the RC blocks low frequencies — at audio frequencies this path contributes negligibly. Only kicks in above a few kHz where it's needed.">
+    <!-- Sample point at UL tap -->
+    <path class="hf-fb-wire" d="M 840 215 L 840 590"/>
+    <text class="hf-label" x="870" y="445">HF compensation</text>
+    <text class="hf-sub" x="870" y="462">sampled at UL tap</text>
+    <text class="step-label" x="870" y="478">right: step 48 → eyelet 14</text>
+    <text class="step-label" x="870" y="492">left:  step 58 → eyelet 11</text>
+
+    <!-- Wire across to R+C network -->
+    <path class="hf-fb-wire" d="M 840 590 L 520 590"/>
+
+    <!-- R+C network -->
+    <g>
+      <rect class="r-hf" x="430" y="578" width="60" height="24" rx="3"/>
+      <text class="hf-label" x="460" y="595" text-anchor="middle">R</text>
+      <!-- Cap symbol -->
+      <line class="c-hf" x1="410" y1="578" x2="410" y2="602"/>
+      <line class="c-hf" x1="416" y1="578" x2="416" y2="602"/>
+      <text class="hf-label" x="413" y="618" text-anchor="middle">C</text>
+    </g>
+
+    <!-- Wire from R+C up to summing junction -->
+    <path class="hf-fb-wire" d="M 410 590 L 280 590 L 280 320 L 270 320 L 245 280 L 245 202"/>
+    <polygon points="245,202 240,210 250,210" fill="#cc7a2a"/>
+  </g>
+
+  <!-- ============ ANNOTATIONS ============ -->
+  <g class="lead-group" data-tooltip="WHY TWO SAMPLE POINTS (not one):
+
+Main loop = 16Ω (secondary): represents the actual speaker output. Right place to sample for what the speaker hears.
+
+HF comp = UL (primary): has the audio signal before the OPT's HF phase rotation. Right place to sample for stability.
+
+Together they shape the closed-loop response to be flat AND stable across the audio band.">
+    <rect x="40" y="660" width="560" height="80" rx="4" fill="#fff9e8" stroke="#b8851a" stroke-width="1.5"/>
+    <text class="section-label" x="320" y="682" text-anchor="middle">The two paths serve different jobs</text>
+    <text class="stage-sub" x="60" y="704">Main loop (16Ω → R_fb):</text>
+    <text class="stage-sub" x="240" y="704">sets closed-loop gain &amp; reduces distortion across the audio band.</text>
+    <text class="stage-sub" x="60" y="724">HF comp (UL → RC):</text>
+    <text class="stage-sub" x="220" y="724">cancels OPT-induced HF phase shift to keep the loop stable.</text>
+  </g>
+
+  <!-- Per-channel reminder -->
+  <g class="lead-group" data-tooltip="The two CHANNELS each have their own pair of feedback wires. Four feedback wires total in the amp.
+
+Right channel: 16Ω → eyelet 13 (step 62) + UL (V6 pin 4) → eyelet 14 (step 48)
+Left channel:  16Ω → eyelet 12 (step 60) + UL (V3 pin 4) → eyelet 11 (step 58)">
+    <rect x="640" y="660" width="540" height="80" rx="4" fill="#eef4fc" stroke="#1a4e8a" stroke-width="1.5"/>
+    <text class="section-label" x="910" y="682" text-anchor="middle">Each channel has its own pair (four feedback wires total)</text>
+    <text class="stage-sub" x="660" y="704">Right channel:</text>
+    <text class="stage-sub" x="750" y="704">16Ω → eyelet 13 (step 62) + UL → eyelet 14 (step 48)</text>
+    <text class="stage-sub" x="660" y="724">Left channel:</text>
+    <text class="stage-sub" x="750" y="724">16Ω → eyelet 12 (step 60) + UL → eyelet 11 (step 58)</text>
+  </g>
+</svg>

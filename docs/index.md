@@ -17,6 +17,7 @@ The goal is for a reader to come away with conceptual understanding, not just a 
 - **[Getting started](getting-started/index.md)** — what the ST-70 is, the tools and workspace you need, and how to read this manual.
 - **[Components](components/index.md)** — one page per significant part. What it is, how it works, where it lives in this build, failure modes.
 - **[Theory](theory/index.md)** — conceptual chapters: transformers, rectification, heater circuits, grounding, push-pull topology.
+- **[Signal paths](signal-paths/index.md)** — end-to-end traces of the audio, B+, heater, bias, and feedback paths through the amp's specific components and build steps.
 - **[Build](build/index.md)** — step-by-step procedural pages, one per wiring step. Each step pairs the verbatim manual instruction with an explainer.
 - **[Modifications](modifications/index.md)** — 3-prong cord, 1N4007 selenium replacement, individual bias pots, anti-click cap.
 - **[Bring-up](bring-up/index.md)** — first power-on, voltage checks, bias adjustment, functional testing.
@@ -27,8 +28,8 @@ The goal is for a reader to come away with conceptual understanding, not just a 
 
 See [build progress](build/index.md) for the live status. Short version as of the most recent edit:
 
-- **Physical build:** Page 6, steps 1–6 soldered. Next is step 7 (red-yellow center tap to filter cap solder lug).
-- **Documentation:** Steps 1–6 fully written. Steps 7–11 scaffolded only.
+- **Physical build:** Power supply and output stage wiring complete (steps 1–37). Driver stage soldered through step 46 — PC-3A board mounted, both 6GH8A heaters powered, B+ feeds and right-channel coupling caps in. Next is step 47 (eyelet 21 → right pot).
+- **Documentation:** All wiring steps 1–46 have full explainers. The [signal-paths](signal-paths/index.md) section traces each path (audio, B+, heater, bias, feedback) end-to-end through the amp.
 
 ## Build configuration
 

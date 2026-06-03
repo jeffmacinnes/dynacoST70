@@ -119,7 +119,40 @@ This build keeps the PC-3A for now. If/when we move to VTA, it's a separate docu
 
 The PC-3A board sits roughly centred on the chassis, between the input jacks and the EL34 sockets. It mounts on standoffs. Connections to and from the board are via short hookup wires to nearby terminal points.
 
-Wiring steps that touch the PC-3A area come in a later section of the manual — the page-6 wiring we're doing now is power supply only. Stay tuned for the driver-stage build pages.
+Wiring steps that touch the PC-3A board (in order):
+
+**Mounting + B+ feeds** (both B+ rails come from the filter cap chassis, not generated on the board):
+
+- [Step 38](../build/driver-stage/step-38-mount-pc-3.md) — physically mount the board on its standoffs
+- [Step 41](../build/driver-stage/step-41-eyelet-19-to-cap-3.md) — eyelet 19 → filter cap lug 3 (~305 V, feeds pentode plate load)
+- [Step 43](../build/driver-stage/step-43-eyelet-20-to-cap-4.md) — eyelet 20 → filter cap lug 4 (~375 V, feeds pentode screens + triode plates)
+
+(The 22 kΩ dropping resistor that creates the lug 3 rail is mounted on the filter cap itself, not on the board — see [step 42](../build/driver-stage/step-42-22k-dropping-resistor.md).)
+
+**Heaters in:**
+
+- [Step 45](../build/driver-stage/step-45-v6-heater-to-board.md) — right 6GH8A heater feed via V6
+- [Step 46](../build/driver-stage/step-46-v3-heater-to-board.md) — left 6GH8A heater feed via V3
+
+**Coupling cap outputs to EL34 grids:**
+
+- [Step 39](../build/driver-stage/step-39-eyelet-23-to-v6.md) — eyelet 23 → V6 grid
+- [Step 40](../build/driver-stage/step-40-eyelet-22-to-v7.md) — eyelet 22 → V7 grid
+- Later (steps 55–56) — eyelets 1, 2 → V2, V3 grids (left channel)
+
+**Input wiring and grounds:**
+
+- [Step 44](../build/driver-stage/step-44-input-grounds-to-board.md) — input grounds returned to the board
+- Later (step 47): eyelet 21 → right pot, kicks off the input-side signal wiring
+- Later (steps 49–57): RCA jacks, input switch, grid leak resistors, input couplings to the board
+
+**Feedback:**
+
+- Later (step 48): HF feedback wire from V6 UL tap → eyelet 14
+- Later (step 58): HF feedback wire from V3 UL tap → eyelet 11
+- Later (steps 60, 62): main feedback wires from each 16 Ω OPT tap → eyelets 12, 13
+
+Through step 46, the board has B+ on both rails, both 6GH8A heaters powered, the right-channel signal output paths landed at V6/V7, and input grounds returned. Next, the input-side wiring begins.
 
 ## See also
 

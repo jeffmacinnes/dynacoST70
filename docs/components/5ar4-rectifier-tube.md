@@ -58,7 +58,10 @@ The 5AR4 occupies socket **V1**, the octal socket nearest the power transformer.
 
 - [Step 2](../build/power-supply/step-02-5ar4-heater.md) — white pair → pins 2 and 8 (heater)
 - [Step 3](../build/power-supply/step-03-5ar4-anodes.md) — red pair → pins 4 and 6 (anodes)
-- Pin 8 (cathode + heater) becomes the B+ rail output, feeding the filter capacitors after [step 7](../build/power-supply/step-07-hv-ct.md) completes the rectifier topology
+- [Step 7](../build/power-supply/step-07-hv-ct.md) — red/yellow HV center tap to filter cap ground (completes the rectifier loop)
+- [Step 29](../build/output-stage/step-29-rectifier-to-filter-cap.md) — pin 8 (cathode + heater) → filter cap lug 2, sending the rectified DC into the B+ filter chain
+
+After step 29, the 5AR4 is electrically integrated — all four functional connections (two anodes, cathode/heater, ground return via HV CT) are in place. The optional [rectifier diode mod](../modifications/rectifier-diode-mod.md) inserts 1N4007s in series with the plate connections from step 3.
 
 ## Failure modes
 

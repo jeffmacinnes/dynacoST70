@@ -10,42 +10,10 @@ The bias supply is the smallest power network in the amp — a few milliamps of 
 
 ## At a glance
 
-```
-                                                  Bias setting:
-                                                  ~−40 to −55 V on each EL34 grid
-                                                  (adjustable per pot)
-
-PA-060 bias                                                   ↑
-secondary (~70 Vpp)                                           │
-       │                                                      │
-       │ red-black lead                                       │
-       ↓                                                      │
-  [1N4007]   ← half-wave rectifier (step 1)                   │
-       │   banded end (cathode)                               │
-       │ ↓                                                    │
-       │ ↑ anode                                              │
-       ↓                                                      │
-  ┌────────────────────────────────────────────────┐          │
-  │  Seven-lug terminal strip — bias filter network│          │
-  │                                                │          │
-  │   lug 4 ──── [10 kΩ] ──── lug 3                │          │
-  │     │                       │                  │          │
-  │  [100 µF]                [100 µF]              │          │
-  │     │                       │                  │          │
-  │   lug 1 = ground = positive reference          │          │
-  │     │                                          │          │
-  │   lug 2 ──── [10 kΩ to lug 1/ground]           │          │
-  └────────────────────────────────────────────────┘          │
-        │              │                                      │
-        │ (~−60 V DC)  │ (less-negative reference)            │
-        ↓              ↓                                      │
-   [bias pots: lug 1 = -60 V end, lug 3 = ground-ish end]     │
-        │                                                     │
-        │ wipers (lug 2)                                      │
-        ↓                                                     │
-   [grid-stopper 1 kΩ at each EL34] ────────────────────────→ EL34 grids (pin 5)
-                                                              (V2, V3, V6, V7)
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../assets/diagrams/bias-signal-path.svg" alt="Bias supply generation, filtering, and distribution">
+  <figcaption>Generation across the top: PA-060 bias winding → 1N4007 (cathode toward transformer) → first filter at lug 4 → 10 kΩ drop → second filter at lug 3 (clean −60 V). Distribution across the bottom: bias pot acting as a voltage divider, wiper drives the grid stopper, the audio AC arrives at the same grid pin via the coupling cap, and the 15.6 Ω cathode-sense resistor closes the loop for measurement. Hover any element for details. Click to zoom.</figcaption>
+</figure>
 
 ## Stage by stage
 

@@ -10,40 +10,10 @@ The right channel is the mirror of the left: same topology, different parts, no 
 
 ## At a glance
 
-```
-                  ┌──── feedback returns to pentode cathode (see negative-feedback.md)
-                  ↓
-[L RCA] → [input switch] → [grid leak] → [6GH8A pentode]
-                                            │  gain ~50×
-                                            ↓
-                                     [coupling cap]
-                                            ↓
-                                     [6GH8A triode]  ← cathodyne phase splitter
-                                       plate ↓     ↓ cathode
-                                            ↓     ↓     (equal amplitude, 180° apart)
-                                  [coupling] [coupling]
-                                       ↓             ↓
-                                  [grid stop] [grid stop]   ← 1 kΩ each
-                                       ↓             ↓
-                                   [V2 grid]   [V3 grid]    ← EL34 push-pull pair
-                                       ↓ plates ↓
-                                  ┌── A-470 PRIMARY ──┐
-                                  │  Blue       Green │
-                                  │     ╲      ╱      │
-                                  │      Red CT → B+  │
-                                  └────────────────────┘
-                                            │
-                                  ┌── A-470 SECONDARY ──┐
-                                  │ Black common         │
-                                  │ Brown (4 Ω)          │
-                                  │ Orange (8 Ω)         │
-                                  │ Yellow (16 Ω) ──── feedback tap
-                                  └──────────────────────┘
-                                            ↓
-                                  [left 4-screw strip]
-                                            ↓
-                                       [speaker]
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../assets/diagrams/audio-signal-path.svg" alt="Audio signal path through one channel of the ST-70">
+  <figcaption>One channel, end to end: RCA input through the 6GH8A pentode (gain), the cathodyne phase splitter, the EL34 push-pull pair, the A-470 OPT, to the speaker. Solid blue = positive-phase signal; dashed blue = the 180°-shifted signal after the phase splitter. Dashed red = the global feedback wire returning to the pentode cathode. Hover any stage for details. Click to zoom.</figcaption>
+</figure>
 
 ## Stage by stage
 

@@ -10,21 +10,10 @@ In the ST-70 the feedback loop wraps **every stage** of the amp: from the input 
 
 ## At a glance — one channel
 
-```
-       Audio in → pentode → triode → EL34 push-pull → A-470 primary → speaker
-                    │
-                    │← (feedback returns here, at the pentode cathode)
-                    │
-                    │   ┌──────────────────────────────────────────────┐
-                    │   │  Two feedback wires combine on the PC-3A:    │
-                    │   │                                              │
-                    │   │  Main loop:    16 Ω secondary tap → eyelet   │
-                    │   │                → R_fb → pentode cathode      │
-                    │   │                                              │
-                    │   │  HF compensation: UL screen tap (primary)    │
-                    │   │                → eyelet → R+C → same cathode │
-                    │   └──────────────────────────────────────────────┘
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../assets/diagrams/negative-feedback-signal-path.svg" alt="Two feedback wires per channel — main loop and HF compensation, both returning to the pentode cathode">
+  <figcaption>Top row: the forward signal path. Bottom: the two feedback wires returning to the pentode cathode (the summing node Σ). Red solid = main loop sampled at the OPT 16 Ω secondary tap, through R_fb. Orange dashed = HF compensation sampled at the OPT UL primary tap, through an R+C network. Both terminate at the same node but serve different jobs across the audio band. Hover any element for details. Click to zoom.</figcaption>
+</figure>
 
 ## Why there are two feedback wires per channel
 

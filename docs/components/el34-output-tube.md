@@ -37,13 +37,40 @@ The EL34 is the workhorse pentode that produces the ST-70's output power. Four o
 
 ## In this build
 
-The EL34s occupy sockets **V2, V3, V6, V7**. They're driven by the [6GH8A phase splitters](6gh8a-driver-tube.md) on the [PC-3A board](pc-3a-driver-board.md).
+The EL34s occupy sockets **V2, V3, V6, V7** — V2/V3 are the left channel pair, V6/V7 are the right channel pair. They're driven by the [6GH8A phase splitters](6gh8a-driver-tube.md) on the [PC-3A board](pc-3a-driver-board.md).
 
-Wiring steps that touch the EL34 sockets so far:
+Wiring steps that touch the EL34 sockets:
 
-- [Step 4](../build/power-supply/step-04-v2-heater.md) — green pair → V2 heater
-- [Step 5](../build/power-supply/step-05-v7-heater.md) — brown pair → V7 heater
-- Later steps will land plate, screen, cathode, and grid connections on these sockets.
+**Heaters** (pins 2 and 7):
+
+- [Step 4](../build/power-supply/step-04-v2-heater.md) — green pair → V2 heater (left channel start)
+- [Step 5](../build/power-supply/step-05-v7-heater.md) — brown pair → V7 heater (right channel start)
+- [Step 16](../build/output-stage/step-16-v6-v7-heater-daisy.md) — V6 ↔ V7 heater daisy
+- [Step 17](../build/output-stage/step-17-v2-v3-heater-daisy.md) — V2 ↔ V3 heater daisy
+
+**Plates and screens** (pins 3 and 4):
+
+- [Step 13](../build/output-stage/step-13-right-opt-primary.md) — right OPT primary (V6/V7 plates + UL screens)
+- [Step 14](../build/output-stage/step-14-left-opt-primary.md) — left OPT primary (V2/V3 plates + UL screens)
+
+**Cathode sense for bias measurement** (pin 8):
+
+- [Step 31](../build/output-stage/step-31-v2-cathode-sense.md) — V2 cathode-sense resistor (15.6 Ω)
+- [Step 32](../build/output-stage/step-32-v2-v3-cathode-daisy.md) — V2 ↔ V3 cathode daisy
+- [Step 33](../build/output-stage/step-33-v3-to-left-biaset.md) — V3 cathode-sense → left Biaset socket
+- [Step 34](../build/output-stage/step-34-v7-cathode-sense.md) — V7 cathode-sense resistor
+- [Step 35](../build/output-stage/step-35-v6-v7-cathode-daisy.md) — V6 ↔ V7 cathode daisy
+- [Step 36](../build/output-stage/step-36-v6-to-right-biaset.md) — V6 cathode-sense → right Biaset socket
+
+**Control grid and grid stoppers** (pin 5/pin 6):
+
+- [Step 37](../build/output-stage/step-37-grid-stoppers.md) — 1 kΩ grid stoppers across pins 5–6 on all four sockets
+- [Step 39](../build/driver-stage/step-39-eyelet-23-to-v6.md) — coupling cap output (eyelet 23) → V6 grid
+- [Step 40](../build/driver-stage/step-40-eyelet-22-to-v7.md) — coupling cap output (eyelet 22) → V7 grid
+- Later (steps 55–56): coupling cap outputs → V3 and V2 grids
+- Later (step 48): HF feedback sample from V6 pin 4 (UL tap) back to PC-3A board
+
+Through step 46, all four EL34s have heaters, plates, screens, and cathodes wired. The right-channel grids (V6, V7) have coupling caps landed; the left-channel grids (V2, V3) will be landed in steps 55–56.
 
 ## See also
 

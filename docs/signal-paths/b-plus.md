@@ -10,52 +10,21 @@ By the time the build is at idle, the rail looks something like:
 
 | Filter node | Approx. DC | Feeds |
 |---|---|---|
-| Just after rectifier (cap lug 2) | ~480 V | (input of the choke) |
-| After choke (cap lug 1) | ~450 V | OPT primary center taps (EL34 plates + UL screens) |
-| After 6.8 kΩ drop (cap lug 4) | ~370 V | first PC-3A B+ node, 6GH8A triode plates |
-| After 22 kΩ drop (on PC-3A) | ~250 V | 6GH8A pentode plates and screens |
+| Just after rectifier (cap lug 2) | ~435 V | input of the choke |
+| After choke (cap lug 1) | ~415 V | main B+ — OPT primary center taps (EL34 plates + UL screens) |
+| After 6.8 kΩ drop (cap lug 4) | ~375 V | 6GH8A pentode screens + triode plates (via eyelet 20) |
+| After 22 kΩ drop (cap lug 3) | ~305 V | 6GH8A pentode plate load (via eyelet 19) |
+
+All four cap sections plus both dropping resistors live on the **filter cap chassis** — the cascade is fully assembled before any B+ enters the PC-3A board. Eyelets 19 and 20 just deliver two already-finalized rails to the board.
 
 Numbers are typical — see [voltage checks](../bring-up/voltage-checks.md) for what to expect at bring-up time. The key thing is that each downstream load gets a **lower, smoother** voltage than the one upstream — the filter cap + dropping resistor cascade buys both regulation and ripple rejection at each stage.
 
 ## At a glance
 
-```
-                                  PA-060 HV secondary
-                                  (~720 Vpp across)
-                                       │
-                            RED ─┐           ┌─ RED
-                                 │ RED/YEL CT │
-                                 │     │      │
-                                 ↓     ↓      ↓
-                              V1 pin 4 │  V1 pin 6      (optional: 1N4007 mod
-                                       ↓                 in series with each plate)
-                                    [ground]
-                                       │
-                              [5AR4 rectifier]
-                                       ↓
-                                  V1 pin 8 (cathode)
-                                       ↓
-                              [cap lug 2]  ←─ first filter section (≈480 V DC)
-                                       ↓
-                                   [choke]
-                                       ↓
-                              [cap lug 1]  ←─ second filter section (≈450 V DC)
-                                  │       │
-                                  ↓       └─→ to BOTH A-470 primary center taps
-                                  ↓             (red leads — EL34 plates + UL screens)
-                              [6.8 kΩ]   ← dropping resistor
-                                  ↓
-                              [cap lug 4]  ←─ third filter section (≈370 V DC)
-                                  ↓
-                              to PC-3A board (eyelet 19)
-                                  │
-                                  ↓
-                              [22 kΩ on board]
-                                  ↓
-                              [cap lug 3]  ←─ fourth filter section (≈250 V DC)
-                                  ↓
-                              6GH8A pentode plates + screens
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../assets/diagrams/b-plus-signal-path.svg" alt="B+ supply cascade from HV secondary to every tube plate">
+  <figcaption>The cascade flows top-to-bottom: each stage drops the voltage (via choke or dropping resistor) AND smooths it (via the cap on the next lug). Branches at lug 1 and lug 4 feed the OPT primaries and PC-3A board respectively. Hover any stage for details. Click to zoom.</figcaption>
+</figure>
 
 ## Stage by stage
 
@@ -95,15 +64,22 @@ The EL34 **screen grids** (pin 4) get their voltage from the UL taps (BLU/WHT an
 
 ### Stage 6 — 6.8 kΩ drop → third filter cap (lug 4)
 
-A 6.8 kΩ resistor ([step 30](../build/output-stage/step-30-b-plus-dropping-resistor.md)) hops from cap lug 1 to **cap lug 4** — together with the cap on lug 4 (~20 µF), this forms an **RC filter** that drops the voltage and smooths it further. The third B+ stage typically sits around 350–380 V.
+A 6.8 kΩ resistor ([step 30](../build/output-stage/step-30-b-plus-dropping-resistor.md)) hops from cap lug 1 to **cap lug 4** — together with the cap on lug 4 (~20 µF), this forms an **RC filter** that drops the voltage and smooths it further. The third B+ stage sits at ~375 V at idle.
 
-This rail is the **first PC-3A B+ feed** — wired from cap lug 4 to PC-3A eyelet 19 ([step 41](../build/driver-stage/step-41-eyelet-19-to-cap-3.md)) and then to the 6GH8A triode-section plate loads.
+This rail (cap lug 4) feeds two things via PC-3A eyelet 20 ([step 43](../build/driver-stage/step-43-eyelet-20-to-cap-4.md)):
 
-### Stage 7 — 22 kΩ drop on the board → fourth filter cap (lug 3)
+- The 6GH8A pentode **screen grids** (through an on-board screen-dropping resistor).
+- The 6GH8A triode plate loads (the cathodyne phase splitter's plate resistor).
 
-The PC-3A board itself has another dropping resistor (22 kΩ, [step 42](../build/driver-stage/step-42-22k-dropping-resistor.md)) that feeds the **fourth filter section** at cap lug 3 via [step 43](../build/driver-stage/step-43-eyelet-20-to-cap-4.md). This is the cleanest, lowest-voltage B+ rail — ~250 V, and it powers the **6GH8A pentode plates and screens** plus the screen of the driver tube's pentode section.
+### Stage 7 — 22 kΩ drop → fourth filter cap (lug 3)
+
+A second dropping resistor (22 kΩ, [step 42](../build/driver-stage/step-42-22k-dropping-resistor.md)) is mounted on the filter cap itself between lug 4 and **cap lug 3** — together with the cap on lug 3, the final RC filter. This is the cleanest, lowest-voltage B+ rail — ~305 V at idle.
+
+This rail powers the **6GH8A pentode plate load** via PC-3A eyelet 19 ([step 41](../build/driver-stage/step-41-eyelet-19-to-cap-3.md)). The pentode is the high-gain input stage, so its plate B+ gets the most filtering.
 
 Putting the input stage on the cleanest, most heavily-filtered rail is deliberate: any ripple here gets amplified by the full gain chain and ends up as audible hum at the speaker. So the input gets the "premium" supply, the EL34s (which are at the end of the chain and benefit from push-pull ripple rejection) get the "raw" supply.
+
+Note that **both dropping resistors (6.8 kΩ and 22 kΩ) are mounted on the filter cap** — the entire B+ cascade lives on the cap chassis. The PC-3A board only receives two already-filtered rails via eyelets 19 and 20.
 
 ## How the cascade works
 
@@ -124,8 +100,9 @@ By the time B+ has been through four stages, what arrives at the pentode plates 
 | Loud 120 Hz hum | Choke not filtering (open) or lug 2 cap dried out | Measure ripple at lug 1 with scope; should be < 1 V AC. If much higher, choke or lug 2 cap is bad |
 | Hum on one channel only | Cap lug 3 or 4 section failed | Channel signals share later filter stages but EL34s share lug 1 — by elimination, hum on one channel implicates the PC-3A B+ rails |
 | EL34s red-plating | B+ way too high (shorted choke leg, lost CT, etc.) OR bias too low (separate issue) | Measure B+ at lug 1: > 500 V is suspect. Also check bias supply (-50 V at EL34 pin 5) |
-| Voltage at lug 4 = voltage at lug 1 | 6.8 kΩ resistor open or shorted | Measure across the resistor — should drop ~80 V at idle |
-| No signal from input stage even with B+ on lug 1 | 22 kΩ on board open, or eyelet wire missing | Measure DC at the pentode plate (PC-3A); should be ~150–200 V |
+| Voltage at lug 4 = voltage at lug 1 | 6.8 kΩ resistor open or shorted | Measure across the resistor — should drop ~40 V at idle |
+| Voltage at lug 3 = voltage at lug 4 | 22 kΩ resistor open or shorted | Measure across the resistor — should drop ~70 V at idle |
+| No signal from input stage even with B+ on lug 4 | Eyelet 19 wire missing, or pentode plate-load resistor open on board | Measure DC at the pentode plate (PC-3A); should be ~150–200 V |
 
 For the full bring-up sequence and what to measure where, see [voltage checks](../bring-up/voltage-checks.md).
 
@@ -133,7 +110,7 @@ For the full bring-up sequence and what to measure where, see [voltage checks](.
 
 It's tempting to think "just put one big cap after the rectifier and feed everything from it." It doesn't work for two reasons:
 
-1. **Different loads want different voltages.** The EL34 plates want ~440 V; their screens (in UL) want similar; the 6GH8A triode plates want ~330 V; the 6GH8A pentode plates want ~200–250 V. You need to drop voltage between stages, which means dropping resistors, which means an RC filter at each drop.
+1. **Different loads want different voltages.** The EL34 plates want ~415 V; their screens (in UL) want similar; the 6GH8A pentode screens and triode plates want ~375 V; the 6GH8A pentode plates (after their plate-load resistor drops) end up at ~150–200 V starting from ~305 V at the eyelet. You need to drop voltage between stages, which means dropping resistors, which means an RC filter at each drop.
 2. **Different loads tolerate different ripple.** The EL34 plates can tolerate ~1 V ripple — it's at the end of the gain chain and the push-pull cancels much of it anyway. The pentode plates cannot — any ripple here gets multiplied by the full gain chain (50× per stage × 50× per stage × push-pull gain) and ends up as hum. So the input stage gets the most heavily filtered rail.
 
 The cascade gives you both at once: each stage drops voltage *and* smooths it, scaling the protection to where it's needed most.

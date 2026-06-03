@@ -19,15 +19,15 @@ The original manual covers this work on its **page 6**, with the exception of st
 - **[Step 4 — V2 heater](step-04-v2-heater.md)** — green pair → V2 pins 2 and 7.
 - **[Step 5 — V7 heater](step-05-v7-heater.md)** — brown pair → V7 pins 2 and 7.
 - **[Step 6 — Heater CTs](step-06-heater-cts.md)** — green/yellow and brown/yellow CTs → seven-lug strip.
-- **[Step 7 — HV center tap](step-07-hv-ct.md)** — red/yellow CT → filter cap ground area. *(Scaffold.)*
-- **[Step 8 — OPT B+ feeds](step-08-opt-b-plus.md)** — OPT red leads → filter cap lug #1. *(Scaffold.)*
-- **[Step 9 — Choke](step-09-choke.md)** — choke leads → filter cap lugs #1 and #2. *(Scaffold.)*
-- **[Step 10 — Primary fuse & switch](step-10-primary-fuse-switch.md)** — primary black leads → fuse + switch. *(Scaffold.)*
+- **[Step 7 — HV center tap](step-07-hv-ct.md)** — red/yellow CT → filter cap ground area.
+- **[Step 8 — OPT B+ feeds](step-08-opt-b-plus.md)** — OPT red leads → filter cap lug 1.
+- **[Step 9 — Choke](step-09-choke.md)** — choke leads → filter cap lugs 1 and 2.
+- **[Step 10 — Primary fuse & switch](step-10-primary-fuse-switch.md)** — primary black leads → fuse + switch.
 
 Step 11 (right OPT secondaries) is the last numbered step on manual page 6 but lives in the [output-stage section](../output-stage/index.md) of these docs, next to its mirror image at step 12.
 
 ## Current build state
 
-**Steps 1–6 are soldered.** Step 7 is next.
+**Power supply wiring complete (steps 1–10).** The build has moved on through the output stage and is now in the driver stage.
 
 See the [build index](../index.md) for the full progress table.

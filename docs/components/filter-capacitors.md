@@ -132,8 +132,24 @@ The choice between "quad cap" and "Sprague Atom rebuild" is largely aesthetic �
 The quad filter cap sits on the chassis between the rectifier and the choke. Wiring steps that touch it:
 
 - [Step 7](../build/power-supply/step-07-hv-ct.md) — red/yellow CT lands at the cap's ground area (the chassis bolt holding the can).
-- [Step 8](../build/power-supply/step-08-opt-b-plus.md) — A-470 red leads (OPT primary CTs) land at lug +1 (Section 1).
-- [Step 9](../build/power-supply/step-09-choke.md) — choke leads connect between lug +1 and lug +2.
+- [Step 8](../build/power-supply/step-08-opt-b-plus.md) — A-470 red leads (OPT primary CTs) land at lug 1.
+- [Step 9](../build/power-supply/step-09-choke.md) — choke leads connect between lug 1 and lug 2 (LC filter pair).
+- [Step 29](../build/output-stage/step-29-rectifier-to-filter-cap.md) — 5AR4 cathode (V1 pin 8) → lug 2 (the raw-rectified input to the choke).
+- [Step 30](../build/output-stage/step-30-b-plus-dropping-resistor.md) — 6.8 kΩ dropping resistor between lug 1 and lug 4 (creates the screens/triode-plate rail).
+- [Step 41](../build/driver-stage/step-41-eyelet-19-to-cap-3.md) — lug 3 → PC-3A eyelet 19 (delivers the lowest B+ rail to the board for the pentode plate load).
+- [Step 42](../build/driver-stage/step-42-22k-dropping-resistor.md) — 22 kΩ dropping resistor between lug 3 and lug 4 (creates the pentode-plate rail at lug 3).
+- [Step 43](../build/driver-stage/step-43-eyelet-20-to-cap-4.md) — lug 4 → PC-3A eyelet 20 (delivers the screens/triode-plate rail to the board).
+
+Through step 46 all four cap sections are wired into the B+ cascade — the cascade lives entirely on the filter cap chassis (the 22 kΩ between lugs 3 and 4 is mounted on the cap itself, not on the PC-3A board). Voltage at each lug at idle:
+
+| Lug | Voltage | Role |
+|---|---|---|
+| 2 | ~435 V | Raw rectified DC (input to choke) |
+| 1 | ~415 V | After choke — main B+, OPT primary CTs |
+| 4 | ~375 V | After 6.8 kΩ — pentode screens + triode plates (via eyelet 20) |
+| 3 | ~305 V | After 22 kΩ — pentode plate load (via eyelet 19) |
+
+See [B+ signal path](../signal-paths/b-plus.md) for the full cascade.
 
 ## Safety reminder
 
