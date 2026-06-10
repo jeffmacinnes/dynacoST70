@@ -121,6 +121,27 @@ For each EL34 in turn (V2, V3, V6, V7):
 
 After all four are at 50 mV, iterate — the B+ supply sags slightly when one tube draws more, so the others' readings drift a few mV. 1-2 rounds normally gets them all settled.
 
+!!! tip "4-ch scope: see all four EL34 currents at once + verify bias is *quiet* DC"
+    A DMM tells you the average voltage; it doesn't tell you whether that voltage is actually DC or whether it's hiding AC ripple. A scope tells you both.
+
+    Probe (DC-coupled, 10 mV/div, time base 5 ms/div):
+
+    - **Ch1**: across V2's 1 Ω sense resistor (or pin 8 directly to ground)
+    - **Ch2**: across V3's 1 Ω
+    - **Ch3**: across V6's 1 Ω
+    - **Ch4**: across V7's 1 Ω
+
+    What you should see: four flat DC traces at 50 mV (each = 50 mA idle current). All four near-identical. **Crucially: each trace should be quiet DC**, not a fuzzy band, and *not* a slow drift over the 10-second period you watch.
+
+    What it tells you:
+
+    - **Trace is fuzzy / has ripple riding on it**: the cathode bypass network has a bad cap, or there's hum coupling in via the heater. A few mV of ripple is acceptable; tens of mV is a problem.
+    - **One trace slowly drifting** over the period you adjust the other tubes: that pot or its connections have intermittent contact, OR the tube's thermal stability is poor (early-stage cathode aging).
+    - **Two traces tracking each other** as the B+ changes (load shifts): normal, this is the sag-and-iterate dynamic mentioned above.
+    - **Bias settles instantly when you let go of the pot**: good. **Slow settle over seconds**: cathode bypass cap is high-ESR or undersized.
+
+    Once all four traces sit at 50 mV with no visible AC component, you're done. This is also a great long-warmup observation: leave the scope connected for 20 minutes and watch for slow drift.
+
 ### Why per-tube bias matters
 
 With one shared bias adjustment per channel (stock), the two tubes in a channel both get the same grid voltage, but their currents differ if their transconductances differ. With per-tube pots:

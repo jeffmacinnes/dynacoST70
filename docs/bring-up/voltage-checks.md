@@ -108,6 +108,27 @@ Per the manual's voltage table (page 19), with all tubes warm and biased to 1.56
 
 10% tolerance applies. If B+ is consistently low everywhere: line voltage might be low, or the EL-34s are biased too hot. If consistently high: line voltage is high, or EL-34s aren't drawing current (bias too cold, dead tube). Check bias either way.
 
+!!! tip "4-ch scope: ripple across the B+ cascade"
+    DMMs read average DC and average AC separately; they don't show you the *ripple riding on top of DC* unless you switch to AC mode (which is a peak-detection measurement, not RMS, on most cheap DMMs). A scope shows everything.
+
+    Probe (AC-coupled, 50 mV/div, time base 5 ms/div — covers ~12 cycles at 120 Hz):
+
+    - **Ch1**: Filter cap lug D (~435 V DC + heavy ripple)
+    - **Ch2**: Filter cap lug C (after choke)
+    - **Ch3**: Filter cap lug B (after 6.8 kΩ)
+    - **Ch4**: Filter cap lug A (after 22 kΩ)
+
+    What you should see: a 120 Hz sawtooth-ish ripple decreasing dramatically from ch1 → ch2 → ch3 → ch4. Typical magnitudes at idle:
+
+    - **Lug D**: 15–25 Vp-p ripple (lots, expected — this is right after rectification)
+    - **Lug C**: 0.5–1.5 Vp-p (choke + cap drops it by ~25 dB)
+    - **Lug B**: 50–200 mVp-p
+    - **Lug A**: 10–50 mVp-p (essentially flat — input-stage grade B+)
+
+    What it tells you: each filter stage is doing its job. If lug C has 5+ Vp-p ripple, the choke isn't filtering (open inductor) OR the lug-1 cap is dry. If lug A has ~100 mVp-p, the 22 kΩ resistor between lugs is fine but the lug-3 cap may have lost capacitance.
+
+    **Use AC coupling on the scope** so the input attenuator can handle the small ripple signal without your big DC level pinning the trace off-screen. The 10:1 probe still applies — for 50 mVp-p ripple riding on 400 V DC, you want headroom.
+
 ### Bias supply
 
 | Node | Type | Expected |

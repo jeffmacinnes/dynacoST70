@@ -8,6 +8,10 @@ The build manual orders steps by what's *physically reachable next* — the righ
 
 These pages are reference material — especially useful during troubleshooting ("where does this voltage come from?", "follow the signal until it stops") and during the initial conceptual learning ("how does the whole thing fit together?").
 
+## Start here: the chassis overview
+
+**[Chassis overview — all paths on one floorplan](chassis-overview.md)** — every major component in its rough chassis position, with all five signal paths drawn simultaneously in distinct colors. The "map" of how the paths fit together before you zoom in on any single one.
+
 ## The five paths
 
 - **[Audio signal](audio.md)** — from the RCA input jack to the speaker terminals, through the 6GH8A driver tube and the EL34 push-pull pair into the A-470 output transformer.

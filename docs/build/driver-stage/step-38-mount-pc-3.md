@@ -8,11 +8,13 @@ title: 'Step 38: Mount the PC-3 board'
 
 ## What you're doing physically
 
-The **PC-3 board** (the only printed circuit in the otherwise point-to-point ST-70) mounts to the underside of the chassis with two **#4-40 screws and nuts**. The board hangs in the chassis interior with its components facing DOWN (toward the chassis bottom) and its eyelets facing UP (so the eyelet numbers are readable when you flip the chassis to wire it).
+The **PC-3 board** (the only printed circuit in the otherwise point-to-point ST-70) mounts to the chassis with **four #4-40 screws and nuts** — one at each corner of the board.
+
+The board sits below the chassis floor, hanging in the wiring cavity. Its **components face UP** (toward the chassis top — so the 6GH8A driver tubes stand upward like the other tubes when the amp is right-side-up), and its **solder pads / eyelets face DOWN** (toward you, the technician, working from the wiring side). Wires from chassis-mounted parts (tube sockets, terminal strips, RCA jacks) come down/across and land on the eyelets from below.
 
 **Orientation**: the eyelet numbers should read **upright when viewed from the front of the chassis**. If you mount the board rotated, all the eyelet-numbered wiring instructions become positional puzzles.
 
-Tighten both screws firmly — the board carries the 6GH8A driver tubes and any vibration could loosen the contacts.
+Tighten all four screws firmly — the board carries the 6GH8A driver tubes and any vibration could loosen the contacts.
 
 ## What's on the PC-3 board
 
@@ -47,7 +49,7 @@ Eyelet roles (which wires land on them) get sorted out over the next 27 wiring s
 PC-board soldering is different from chassis-mount terminal soldering:
 
 1. Strip the wire ¼" — slightly less than for terminal-mount.
-2. Insert the stripped end into the eyelet hole from the bottom (component-side-up arrangement is unusual — the PC-3 has components on the *top* but is mounted with that side facing down).
+2. Insert the stripped end into the eyelet hole from below. The components on the board face *upward* (toward the chassis floor); your work happens on the solder-pad side, which faces *down* toward you.
 3. Touch the iron to **both the wire and the solder pad simultaneously**, heating them together.
 4. Apply solder at the wire/pad junction. It should flow around the wire into the pad hole quickly (1-2 seconds).
 5. Remove the iron and let the joint cool without movement.

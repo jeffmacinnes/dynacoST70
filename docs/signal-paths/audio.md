@@ -11,7 +11,7 @@ The right channel is the mirror of the left: same topology, different parts, no 
 ## At a glance
 
 <figure class="diagram-fig" markdown="span">
-  <img src="../assets/diagrams/audio-signal-path.svg" alt="Audio signal path through one channel of the ST-70">
+  <img src="../../assets/diagrams/audio-signal-path.svg" alt="Audio signal path through one channel of the ST-70">
   <figcaption>One channel, end to end: RCA input through the 6GH8A pentode (gain), the cathodyne phase splitter, the EL34 push-pull pair, the A-470 OPT, to the speaker. Solid blue = positive-phase signal; dashed blue = the 180°-shifted signal after the phase splitter. Dashed red = the global feedback wire returning to the pentode cathode. Hover any stage for details. Click to zoom.</figcaption>
 </figure>
 

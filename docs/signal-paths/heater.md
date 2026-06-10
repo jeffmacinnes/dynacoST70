@@ -19,7 +19,7 @@ The 5 V is its own thing — only the 5AR4 uses 5 V heaters, and it has its own 
 ## At a glance
 
 <figure class="diagram-fig" markdown="span">
-  <img src="../assets/diagrams/heater-signal-path.svg" alt="Heater AC supply network across three PA-060 windings">
+  <img src="../../assets/diagrams/heater-signal-path.svg" alt="Heater AC supply network across three PA-060 windings">
   <figcaption>Three parallel rows: a dedicated 5 V winding for V1 (5AR4); a 6.3 V green winding daisied through the left channel; a 6.3 V brown winding daisied through the right channel. Both 6.3 V CTs return to chassis ground (dashed gold), holding heater AC symmetric about ground and suppressing hum coupling. Hover any winding or tube for details. Click to zoom.</figcaption>
 </figure>
 

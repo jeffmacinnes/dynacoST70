@@ -22,7 +22,7 @@ Numbers are typical — see [voltage checks](../bring-up/voltage-checks.md) for 
 ## At a glance
 
 <figure class="diagram-fig" markdown="span">
-  <img src="../assets/diagrams/b-plus-signal-path.svg" alt="B+ supply cascade from HV secondary to every tube plate">
+  <img src="../../assets/diagrams/b-plus-signal-path.svg" alt="B+ supply cascade from HV secondary to every tube plate">
   <figcaption>The cascade flows top-to-bottom: each stage drops the voltage (via choke or dropping resistor) AND smooths it (via the cap on the next lug). Branches at lug 1 and lug 4 feed the OPT primaries and PC-3A board respectively. Hover any stage for details. Click to zoom.</figcaption>
 </figure>
 

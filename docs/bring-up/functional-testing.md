@@ -74,6 +74,34 @@ If you hear:
 - **Mid-range honk** → output transformer issue or imbalanced phase splitter.
 - **Distortion at moderate levels** → bias might be too cold, or a tube is weak.
 
+!!! tip "4-ch scope: watch the gain chain build the audio signal"
+    This is the educational measurement that ties the whole signal path together. Inject a 1 kHz sine, 50 mV into one input. Probe (AC-coupled, time base 200 µs/div for ~2 cycles):
+
+    - **Ch1**: Left RCA input (~50 mVp-p, the original signal)
+    - **Ch2**: 6GH8A pentode plate (PC-3A eyelet for plate, look for ~2.5 Vp-p — that's gain of ~50)
+    - **Ch3**: 6GH8A triode plate (the **+phase** output of the cathodyne)
+    - **Ch4**: 6GH8A triode cathode (the **−phase** output of the cathodyne)
+
+    What you should see:
+
+    - Ch1 is the small input sine.
+    - Ch2 is the same waveform amplified ~50× and **inverted** (pentodes invert phase by their nature; the plate goes negative when the grid goes positive).
+    - Ch3 and Ch4 are the same amplitude as ch2 (unity gain through the cathodyne), but **ch3 and ch4 are exactly 180° apart from each other** — that's the [phase split](../theory/phase-splitting.md). When one rises, the other falls by the same amount. Their sum equals zero at all times.
+
+    What it tells you: every gain and inversion stage from input to phase-splitter output is working as designed. If ch3 and ch4 are *unequal* in amplitude, the cathodyne resistors don't match (or the triode itself is asymmetric — possibly a tube on its way out). If ch2 isn't ~50× ch1, the pentode B+ is wrong or the cathode bypass is failing.
+
+!!! tip "4-ch scope: see push-pull at the output stage"
+    With the same input signal applied, swap the probes to:
+
+    - **Ch1**: V2 plate (pin 3) — should swing **~400 Vp-p** when the amp is near full output. **Use a 100:1 probe** here; 10:1 will pin the trace.
+    - **Ch2**: V3 plate (pin 3) — same as ch1 but **180° out of phase**
+    - **Ch3**: 8 Ω secondary tap (across the dummy load)
+    - **Ch4**: Same input signal as before
+
+    What you should see: ch1 and ch2 are mirror images of each other — when V2's plate falls, V3's rises by the same amount. Their *difference* is what couples into the secondary (ch3). The output (ch3) is in phase with the input (ch4) — the amp doesn't invert overall, because there's an even number of inversions in the chain.
+
+    What it tells you: push-pull is balanced (both halves of the OPT primary are being driven equally). If ch1 and ch2 are unequal, one EL34 is weaker — fix it before driving real speakers, since asymmetric drive saturates the OPT core and clips early. If ch3 has obvious 60 Hz or 120 Hz on top of the 1 kHz, you have hum coupling that needs investigating.
+
 ## Stage 4 — square wave test (if you have a scope)
 
 The single most diagnostic test for an audio amp.
@@ -95,6 +123,23 @@ A square wave test takes 30 seconds and tells you 90 % of what's wrong with an a
 
 Step the frequency from 100 Hz up to 50 kHz, watching the wave shape. The ST-70 should produce clean square waves from ~30 Hz up to ~15 kHz without significant degradation.
 
+!!! tip "4-ch scope: per-stage frequency response with one square wave"
+    A 4-channel scope lets you see *where* in the chain a square wave starts degrading — which is far more diagnostic than only seeing the final output. Inject a 1 kHz square wave, ~50 mV. Probe (AC-coupled):
+
+    - **Ch1**: Input (the original square)
+    - **Ch2**: 6GH8A pentode plate (pentode output)
+    - **Ch3**: V2 plate (post-EL34, pre-OPT)
+    - **Ch4**: 8 Ω secondary tap (final output)
+
+    Sweep the square wave from 30 Hz up to 30 kHz. At each frequency, compare the four traces:
+
+    - **All clean** → that frequency is good through the whole chain.
+    - **Ch1 clean, ch2 sloped** → low-frequency loss at the pentode input coupling cap (aged input cap).
+    - **Ch1, ch2 clean, ch3 sloped** → loss at the coupling cap between triode output and EL34 grid.
+    - **Ch1-ch3 clean, ch4 sloped or ringy** → the OPT itself is rolling off (normal at the extremes — it's a transformer) or has stability issues with the feedback loop.
+
+    What it tells you: localizes any frequency-response issue to a specific stage. With a single-channel scope you only see the final output and have to guess which stage caused the problem; the 4-channel view eliminates the guessing.
+
 ## Stage 5 — full-power test
 
 This is the moment of truth: the amp running at or near its rated 35 W output.
@@ -115,6 +160,24 @@ What to watch for during this 5 minutes:
 - **Sound** — should stay clean. Distortion that wasn't there at lower volumes = problem.
 
 If anything goes wrong, drop the volume immediately. Don't power off mid-signal — that can cause transients into the speakers.
+
+!!! tip "4-ch scope: see the feedback loop in action"
+    The [global negative feedback loop](../signal-paths/negative-feedback.md) is invisible until you scope its summing junction. With a 1 kHz sine at low-to-moderate level:
+
+    - **Ch1**: Input (RCA, ~50 mVp-p)
+    - **Ch2**: Output (8 Ω secondary tap, dummy load — proportional to ch1 with the closed-loop gain)
+    - **Ch3**: OPT 16 Ω secondary tap (the feedback sample point, before the feedback resistor)
+    - **Ch4**: Pentode cathode (the feedback summing node — where ch3 returns through R_fb)
+
+    What you should see:
+
+    - Ch1 (input) and ch2 (output) are in phase, output is much larger.
+    - Ch3 (16 Ω tap) is in phase with ch2 (it's the same signal, just at lower amplitude).
+    - **Ch4 (pentode cathode) is the interesting one** — it should be a small AC signal (~10–20 mVp-p), and it should be **in phase with the input** because the feedback opposes the input (the *math* is `cathode = input − k·output`, and since output is in phase with input, the residual at the cathode is the small uncorrected error).
+
+    What it tells you: if ch3 is essentially zero (no signal at the 16 Ω tap), the feedback wire is disconnected — and you'd notice immediately because the amp would suddenly have ~6× more gain and ~6× more distortion. If ch4 is *not* in phase with ch1, the feedback is positive (wiring inversion somewhere) and the amp is moments away from oscillating.
+
+    **Bonus measurement**: temporarily disconnect the feedback wire (from the rear-strip lug 1 to PC-3A eyelet 12 or 13 — pull the wire at the eyelet end so you can re-solder it), and watch ch4 change. With feedback open, the gain shoots up (output for the same input grows by ~6×) and any distortion in ch2 becomes much more obvious. Reconnect to see the loop "fix" the signal — visceral demonstration of what feedback buys you.
 
 ## Stage 6 — connect real speakers
 

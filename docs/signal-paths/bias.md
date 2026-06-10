@@ -11,7 +11,7 @@ The bias supply is the smallest power network in the amp — a few milliamps of 
 ## At a glance
 
 <figure class="diagram-fig" markdown="span">
-  <img src="../assets/diagrams/bias-signal-path.svg" alt="Bias supply generation, filtering, and distribution">
+  <img src="../../assets/diagrams/bias-signal-path.svg" alt="Bias supply generation, filtering, and distribution">
   <figcaption>Generation across the top: PA-060 bias winding → 1N4007 (cathode toward transformer) → first filter at lug 4 → 10 kΩ drop → second filter at lug 3 (clean −60 V). Distribution across the bottom: bias pot acting as a voltage divider, wiper drives the grid stopper, the audio AC arrives at the same grid pin via the coupling cap, and the 15.6 Ω cathode-sense resistor closes the loop for measurement. Hover any element for details. Click to zoom.</figcaption>
 </figure>
 

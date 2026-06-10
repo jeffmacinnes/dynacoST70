@@ -132,6 +132,7 @@ nav:
       - Feedback: theory/feedback.md
   - Signal paths:
       - signal-paths/index.md
+      - Chassis overview (all paths): signal-paths/chassis-overview.md
       - Audio signal: signal-paths/audio.md
       - B+ supply: signal-paths/b-plus.md
       - Heater: signal-paths/heater.md

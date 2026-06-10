@@ -11,7 +11,7 @@ In the ST-70 the feedback loop wraps **every stage** of the amp: from the input 
 ## At a glance — one channel
 
 <figure class="diagram-fig" markdown="span">
-  <img src="../assets/diagrams/negative-feedback-signal-path.svg" alt="Two feedback wires per channel — main loop and HF compensation, both returning to the pentode cathode">
+  <img src="../../assets/diagrams/negative-feedback-signal-path.svg" alt="Two feedback wires per channel — main loop and HF compensation, both returning to the pentode cathode">
   <figcaption>Top row: the forward signal path. Bottom: the two feedback wires returning to the pentode cathode (the summing node Σ). Red solid = main loop sampled at the OPT 16 Ω secondary tap, through R_fb. Orange dashed = HF compensation sampled at the OPT UL primary tap, through an R+C network. Both terminate at the same node but serve different jobs across the audio band. Hover any element for details. Click to zoom.</figcaption>
 </figure>
 
