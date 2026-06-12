@@ -8,7 +8,7 @@ title: Step 2 — 5AR4 heater
 
 ## What you're doing physically
 
-Connecting the **5V @ 4A heater winding** of the [PA-060](../../components/pa-060-power-transformer.md) to the **filament pins of the [5AR4 rectifier](../../components/5ar4-rectifier-tube.md)** (V1).
+Connecting the **5V heater winding** (rated 4A) of the [PA-060](../../components/pa-060-power-transformer.md) to the **filament pins of the [5AR4 rectifier](../../components/5ar4-rectifier-tube.md)** (V1).
 
 ## Why two wires for the heater
 
@@ -19,12 +19,12 @@ For the 5AR4 filament:
 ```
 Transformer 5V winding ─── white wire ─── pin 2 ─┐
                                                  │
-                                                 ├── filament inside tube (~1.25Ω)
+                                                 ├── filament inside tube (~2.6Ω hot)
                                                  │
 Transformer 5V winding ─── white wire ─── pin 8 ─┘
 ```
 
-5V AC drives 4A through the filament's ~1.25Ω resistance, dissipating 20W of heat. That heat brings the cathode sleeve up to roughly 800°C — hot enough for thermionic emission to begin.
+5V AC drives the 5AR4's rated 1.9A through the filament's ~2.6Ω hot resistance, dissipating about 9.5W of heat. (The winding is *rated* for 4A — that's its capacity, not the actual draw.) That heat brings the cathode sleeve up to roughly 800°C — hot enough for thermionic emission to begin.
 
 ## Why both wires are white (no polarity)
 
@@ -77,7 +77,7 @@ The transformer secondary works exactly the same way:
 | State | Resistance | Current | Outcome |
 |---|---|---|---|
 | Connected to V1 pins, no tube | Infinite | 0 A | Safe (boring) |
-| 5AR4 installed | ~1.25Ω | 4 A | Designed operation |
+| 5AR4 installed | ~2.6Ω | 1.9 A | Designed operation |
 | Two white leads tied together | ~0Ω | Catastrophic | Damage/fire |
 
 Voltage alone doesn't cause harm. Voltage *across a low resistance* is what creates dangerous current. See [voltage vs current](../../theory/voltage-vs-current.md) for the full mental model.

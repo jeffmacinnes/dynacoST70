@@ -19,9 +19,9 @@ The bias supply is the smallest power network in the amp — a few milliamps of 
 
 ### Stage 1 — PA-060 bias secondary
 
-The PA-060 has a small **bias winding** (the red-black pair) separate from the HV secondary and the heater windings. It produces ~70 V peak-to-peak AC — small compared to the 720 Vp-p HV secondary, but plenty for a bias supply.
+The bias supply is fed from a single **RED/BLK tap on the HV secondary winding** — not a separate winding. From the tap to the HV center tap it measures ~50 V RMS (≈70 V peak) — small compared to the 720 V RMS HV secondary, but plenty for a bias supply.
 
-One end of this winding goes through the 1N4007 rectifier; the other end ties to the bias-supply ground (lug 1 of the 7-lug strip, which is bonded to chassis ground via [step 23](../build/output-stage/step-23-bias-ground.md)).
+The tap goes through the 1N4007 rectifier; the return path for the bias current is through the HV winding's grounded center tap.
 
 ### Stage 2 — 1N4007 half-wave rectifier
 
@@ -56,16 +56,17 @@ Each bias pot is wired as a **voltage divider** between the bias rail and the di
 
 Turning the pot moves the wiper between the −60 V end (lug 1) and the less-negative end (lug 3), letting you dial in the exact bias voltage needed to hit the target idle current for that tube. Inter-pot jumpers ([step 27](../build/output-stage/step-27-bias-pot-interconnect-1.md), [step 28](../build/output-stage/step-28-bias-pot-interconnect-2.md)) tie the left and right pots together so they share the same divider rails.
 
-The original Dynaco design uses **two shared bias pots** (one per channel — both EL34s in a channel see the same wiper voltage). This build uses the [individual bias pots](../modifications/individual-bias-pots.md) mod, which gives each tube its own pot for finer control.
+The stock Dynaco design — used in this build — has **two bias pots** (one per channel — both EL34s in a channel see the same wiper voltage). The [individual bias pots](../modifications/individual-bias-pots.md) mod, which gives each tube its own pot for finer control, is documented as an option.
 
 ### Stage 5 — Wiper → grid stopper → EL34 grid (pin 5)
 
-Each pot wiper carries the adjustable negative voltage to its EL34's grid via:
+Each pot wiper carries the adjustable negative voltage to its channel's EL34 grids via the PC-3A board:
 
-- A wire from the wiper to the EL34 socket pin 5.
-- A 1 kΩ **grid stopper** resistor at the socket itself ([step 37](../build/output-stage/step-37-grid-stoppers.md)) — between pin 5 (grid) and pin 6 (internal connection), which suppresses RF oscillation.
+- A wire from the wiper to a board eyelet — **eyelet 6** for the left channel, **eyelet 21** for the right.
+- On the board, the bias passes through 270 kΩ resistors and exits at **eyelets 1/2 (left)** and **22/23 (right)**, one per tube, each wired to its EL34 socket's pin 6 (a no-connection pin used as a tie point).
+- A 1 kΩ **grid stopper** resistor at the socket itself ([step 37](../build/output-stage/step-37-grid-stoppers.md)) — between pin 6 and pin 5 (grid) — carries the bias the last inch and suppresses RF oscillation.
 
-At pin 5, the bias voltage (−40 to −55 V depending on adjustment) is **summed with the AC audio signal** arriving from the 6GH8A phase splitter through a coupling cap. The DC bias sets the operating point; the AC signal modulates the grid around that point.
+At pin 5, the bias voltage (≈ −32 V, ±20% depending on adjustment) is **summed with the AC audio signal** arriving from the 6GH8A phase splitter through a coupling cap. The DC bias sets the operating point; the AC signal modulates the grid around that point.
 
 ## Setting the bias
 
@@ -77,7 +78,7 @@ You measure with a DMM at the front-panel Biaset socket, turn the bias pot, watc
 
 | Tube | Channel | Cathode sense at... | Bias adjusted via... |
 |---|---|---|---|
-| V2 | Left | [step 31](../build/output-stage/step-31-v2-cathode-sense.md) | left bias pot (and right pot for stock; per-tube pots for individual-bias mod) |
+| V2 | Left | [step 31](../build/output-stage/step-31-v2-cathode-sense.md) | left bias pot (shared with V3; per-tube pots if the individual-bias mod is installed) |
 | V3 | Left | [step 32](../build/output-stage/step-32-v2-v3-cathode-daisy.md) | same |
 | V6 | Right | [step 35](../build/output-stage/step-35-v6-v7-cathode-daisy.md) | right bias pot |
 | V7 | Right | [step 34](../build/output-stage/step-34-v7-cathode-sense.md) | same |
@@ -87,8 +88,8 @@ You measure with a DMM at the front-panel Biaset socket, turn the bias pot, watc
 | Symptom | Likely cause | DMM probe |
 |---|---|---|
 | EL34 red-plating immediately on power-up | Bias supply not producing voltage (open diode, open winding, shorted cap) → grids at 0 V → tubes conduct unrestricted | Probe DC at lug 4 of 7-lug strip — should be ~−60 V. If 0 V, the bias supply isn't running |
-| EL34 idles way too hot | Bias voltage too low (less negative than designed) | Probe at EL34 pin 5 — should be −40 to −55 V; if less negative, suspect pot or wiring |
-| EL34 idles too cold (no plate current) | Bias voltage too negative | Probe at pin 5 — if more negative than −60 V, network has a fault |
+| EL34 idles way too hot | Bias voltage too low (less negative than designed) | Probe at EL34 pin 5 — should be ≈ −32 V (±20%); if much less negative, suspect pot or wiring |
+| EL34 idles too cold (no plate current) | Bias voltage too negative | Probe at pin 5 — if the grid sits near the raw −65 V rail, or the raw supply at lug 4 reads more negative than about −70 V, the network has a fault |
 | Bias drifts over minutes | Aging filter cap (capacitance dropped, ESR up), or aging tube | Replace tubes first; if drift persists, replace bias caps |
 | Won't adjust at all | Open pot, broken wiper, or broken wire from pot to grid | Probe at pot wiper while turning — voltage should change |
 | Hum on output that's gone with the bias supply disabled | Bias rail not filtered enough (cap dried out) | Scope at lug 3 of 7-lug strip — should show < 50 mV AC ripple; if 1 V+, filter cap failed |
@@ -107,7 +108,7 @@ A good biennial maintenance habit: re-measure bias, re-adjust if needed. Doesn't
 - [1N4007 silicon diode (historical)](../modifications/1n4007-replacement.md) — what replaced the original selenium
 - [PA-060 power transformer](../components/pa-060-power-transformer.md) — the bias secondary winding
 - [Seven-lug terminal strip](../components/seven-lug-terminal-strip.md) — the bias network's home
-- [Individual bias pots modification](../modifications/individual-bias-pots.md) — the per-tube adjustment used in this build
+- [Individual bias pots modification](../modifications/individual-bias-pots.md) — the optional per-tube adjustment (documented, not installed in this build)
 - [Bias adjustment (bring-up)](../bring-up/bias-adjustment.md) — the procedure
 - [EL34 output tube](../components/el34-output-tube.md) — what consumes the bias
 - [Audio signal path](audio.md) — the AC signal that rides on top of this DC bias

@@ -63,17 +63,17 @@ But because we measure each half "from the center tap outward," the two ends end
        RED (other end)
 ```
 
-When the magnetic field is rising in one direction:
+Each half of the winding produces 360 V RMS, which peaks at about ±509 V at the instant of maximum field. When the magnetic field is rising in one direction:
 
-- **Top RED end:** +360V relative to CT
-- **Bottom RED end:** −360V relative to CT
+- **Top RED end:** up to +509V relative to CT
+- **Bottom RED end:** down to −509V relative to CT
 
 Half a cycle later (1/120th of a second), the field reverses and so does the polarity:
 
-- **Top RED end:** −360V relative to CT
-- **Bottom RED end:** +360V relative to CT
+- **Top RED end:** down to −509V relative to CT
+- **Bottom RED end:** up to +509V relative to CT
 
-The two ends are **always opposite** — when one is +360V, the other is −360V.
+The two ends are **always opposite** — at any instant, whatever voltage one end sits at, the other is its mirror image.
 
 <figure class="diagram-fig" markdown="span">
   <img src="../../assets/diagrams/phase-180-degrees.svg" alt="180 degree phase relationship across a center-tapped winding">
@@ -105,7 +105,7 @@ The same trick — using a center tap as a reference point and exploiting the na
 
 The 5AR4 (also called GZ34 in European nomenclature) is an **indirectly heated** rectifier, which is somewhat unusual. The filament heats a separate cathode sleeve, rather than the filament itself being the cathode. This gives it two desirable properties:
 
-1. **Slow warm-up** (~30 seconds before it conducts). This is a *feature*: the rectifier comes online *after* the signal tubes have warmed up, so the high-voltage B+ doesn't slam onto cold output tubes (which causes "cathode stripping" damage over time).
+1. **Slow warm-up** (~10 seconds before it conducts). This is a *feature*: the rectifier comes online *after* the signal tubes have warmed up, so the high-voltage B+ doesn't slam onto cold output tubes (which causes "cathode stripping" damage over time).
 2. **Quieter operation** — directly-heated rectifiers can inject AC ripple from the filament into the DC output. Indirect heating isolates the cathode from the AC heater current.
 
 When you fire up the ST-70 and there's a delay before sound starts, that's the 5AR4 doing its job — letting everything else stabilize first.
@@ -121,7 +121,7 @@ After rectification, you have unidirectional but bumpy DC. The next stages smoot
 
 <figure class="diagram-fig" markdown="span">
   <img src="../../assets/diagrams/smoothing-chain.svg" alt="Smoothing chain — what each filter stage does to the waveform">
-  <figcaption>Same vertical scale on all four panels, in approximate ST-70 volts (B+ ≈ 460 V, V_peak ≈ 480 V). Ripple amplitudes are exaggerated so each stage's shape is visible — real ST-70 ripple at the tube plates is under 1 V. Click to zoom.</figcaption>
+  <figcaption>Same vertical scale on all four panels, in approximate ST-70 volts (B+ ≈ 435 V, V_peak ≈ 509 V). Ripple amplitudes are exaggerated so each stage's shape is visible — real ST-70 ripple at the tube plates is under 1 V. Click to zoom.</figcaption>
 </figure>
 
 The ST-70 uses a two-stage filter: rectifier → filter cap → choke → second filter cap → output tubes. This produces clean enough B+ that no audible hum reaches the output.

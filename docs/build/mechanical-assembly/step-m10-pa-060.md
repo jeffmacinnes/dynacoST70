@@ -51,12 +51,12 @@ The PA-060 has these secondary windings, each documented per the [PA-060 page](.
 | BLK pair (primary) | 120 V AC input | Mains connection |
 | RED pair | 720 V AC CT (360-0-360) | High-voltage rectifier feed |
 | RED/YEL | HV center tap | Returns to chassis ground (via solder lug at filter cap) |
-| GRN pair | 6.3 V AC | Heater winding #1 (channel A) |
+| GRN pair | 6.3 V AC | Heater winding #1 (channel B — V2/V3, left) |
 | GRN/YEL | Heater #1 CT | To lug 5 of seven-lug strip |
-| BRN pair | 6.3 V AC | Heater winding #2 (channel B) |
+| BRN pair | 6.3 V AC | Heater winding #2 (channel A — V6/V7, right) |
 | BRN/YEL | Heater #2 CT | To lug 7 of seven-lug strip |
 | WHT pair | 5 V AC | Rectifier filament (GZ-34) |
-| RED/BLK | 55 V AC | Bias supply input |
+| RED/BLK | 50 V AC | Bias supply input |
 
 All of these will get wired in subsequent steps.
 

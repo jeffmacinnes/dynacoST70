@@ -23,7 +23,7 @@ The 1N4007 is the universally-chosen modern replacement: 1000V PIV, 1A continuou
 
 ## The voltage-drop side effect
 
-Silicon has a lower forward voltage drop than selenium (~0.7V vs. ~1.5V). Modern kits compensate for this in the surrounding circuit values. If you're restoring a *vintage* ST-70 by replacing the original selenium with a 1N4007, your bias supply will produce a slightly higher (more negative) voltage, and you may need a small series dropping resistor to bring it back to the original target. For builders working from a modern kit, the math already works out — nothing to adjust.
+Silicon has a much lower forward voltage drop than selenium (~0.7V vs. roughly 5–10V across a multi-plate selenium stack). Modern kits compensate for this in the surrounding circuit values. If you're restoring a *vintage* ST-70 by replacing the original selenium with a 1N4007, your bias supply will produce a slightly higher (more negative) voltage, and you may need a small series dropping resistor to bring it back to the original target. For builders working from a modern kit, the math already works out — nothing to adjust.
 
 ## When you'd actually do this as a mod
 
@@ -31,7 +31,7 @@ The only real "modification" use case today: you have a 1960s-era ST-70 with an 
 
 1. Cut the selenium stack out at its leads.
 2. Solder a 1N4007 in its place, banded end where the cathode of the selenium was.
-3. Power up, verify bias supply voltage at the diode's banded end is sensibly negative (-50 to -70VDC range).
+3. Power up, verify the bias supply voltage at the diode's **non-banded (anode) end** is sensibly negative (≈ −65 V DC). The banded (cathode) end carries the ~50 V AC from the transformer tap — it should not read a clean negative DC.
 4. Re-bias the output tubes.
 
 For a new build from a modern kit, this is already done — you literally cannot tell the difference because the kit never had a selenium rectifier in the first place.

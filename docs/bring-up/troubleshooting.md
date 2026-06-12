@@ -50,7 +50,7 @@ Mains is reaching the amp but the fuse pops immediately or within a few seconds.
 
 | Cause | Confirmation | Fix |
 |---|---|---|
-| GZ-34 rectifier is shorted | Remove the GZ-34 and re-fuse. Try again. If amp now powers without blowing → rectifier was the problem. | Replace the GZ-34. |
+| GZ-34 rectifier is shorted | Remove the GZ-34 and re-fuse (3 A Slo-Blo only — never a larger rating). Try again. If amp now powers without blowing → rectifier was the problem. | Replace the GZ-34. |
 | Filter cap is shorted | With amp unplugged, DMM in ohms between each filter cap lug and chassis: should be >100 kΩ everywhere. <1 kΩ = shorted cap. | Replace the filter cap. |
 | Power transformer primary shorted | Primary DCR much lower than 10 Ω. | Replace PA-060. |
 | Mis-wiring (HV crossed to mains, etc.) | Visual inspection of all wiring against schematic. | Find and fix. |
@@ -103,14 +103,14 @@ Hum doesn't change when music plays. Hum is there even with input unplugged.
 
 ### Check
 
-1. **60 Hz hum (lower pitch)**: leakage from a heater winding into the audio path. Common causes:
-   - Heater CT not grounded (lug 5 or lug 7 has a bad solder joint to lug 4).
+1. **60 Hz hum (lower pitch)**: leakage from a heater winding into the audio path, or a rectifier running half-wave. Common causes:
+   - Heater CT not referenced properly (lug 5 or lug 7's 0.02 µF disc cap to grounded lug 6 has a bad solder joint).
    - A heater wire too close to a signal wire (route them perpendicular if possible).
    - Aged 6GH8A with heater-cathode leakage.
+   - One leg of the HV winding or one rectifier anode has failed — running half-wave instead of full-wave drops the supply ripple from 120 Hz to 60 Hz.
 2. **120 Hz hum (higher pitch, "honkier")**: full-wave rectifier ripple making it through the filter. Causes:
    - A filter cap section is dried out, no longer providing capacitance. Replace the quad filter cap.
    - The choke is shorted internally (rare).
-   - One leg of the HV winding has failed (running half-wave instead of full-wave; the ripple frequency drops from 120 Hz to 60 Hz, more annoying).
 3. **Combined hum**: harder to diagnose. Start with the 60 Hz checks first.
 
 Per the manual (page 15): *"Compare the noise in the two channels. If both are the same, it is not likely to be tubes like the 7199 or EL-34 which affect only the channel in which they operate, but it could be the GZ-34 or the quad capacitor or bias capacitors which are common to both sides of the circuit."*
@@ -134,7 +134,7 @@ The OTHER channel is silent.
 
 1. **Swap inputs at the RCA jacks.** Does the problem follow the input? If yes: source/cable. If no: it's in the amp.
 2. **Swap the EL-34 pairs.** Move V2/V3 (left channel) to V6/V7 (right channel) and vice versa. Did the dead channel move with the tubes? If yes: bad tube(s). If no: the wiring or driver tube on the dead side is bad.
-3. **Probe the OPT primary plate leads with amp on, low signal.** Use an AC voltmeter or scope. Both BLUE and GREEN leads should show signal. If one doesn't: that tube isn't driving its half of the primary.
+3. **Probe the OPT primary plate leads with amp on, low signal.** Use an AC voltmeter or scope. Both BLUE and BLUE/WHITE leads (the two halves' plate leads) should show signal. If one doesn't: that tube isn't driving its half of the primary.
 
 ## Distortion at normal listening levels
 

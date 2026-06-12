@@ -24,13 +24,13 @@ A 6.3V heater winding without a CT-to-ground reference is **floating** with resp
 
 The two heater leads swing symmetrically around the floating reference: at any instant, one is at +3.15V relative to the floating midpoint, the other at −3.15V. But that floating midpoint itself wanders around, picking up stray noise.
 
-When you connect the **center tap to ground**, you anchor that midpoint at exactly 0V relative to the amp's signal reference. Now:
+In the ST-70 the center taps are **not hard-grounded**. Each CT lands on its own lug (5 or 7) and reaches ground only through a **0.02 µF disc capacitor** to grounded lug 6 (wired in step 15). That's an AC bypass: at audio frequencies the caps and the winding's symmetry hold the midpoint near 0 V, so:
 
-- One heater lead is at **+3.15V relative to ground** at any instant
-- The other heater lead is at **−3.15V relative to ground** at the same instant
+- One heater lead swings around **+3.15V relative to ground** at any instant
+- The other heater lead swings around **−3.15V relative to ground** at the same instant
 - 1/120th of a second later, they swap
 
-The two leads now swing **symmetrically around zero**, which is the amp's reference.
+The two leads swing **symmetrically around zero** at audio frequencies — while at DC the windings stay floating, which avoids creating a DC ground loop through the heater circuit.
 
 <figure class="diagram-fig" markdown="span">
   <img src="../../../assets/diagrams/heater-ct-comparison.svg" alt="Heater winding floating midpoint vs CT grounded comparison">
@@ -66,7 +66,7 @@ In a properly star-grounded amp, you don't just connect everything to "the chass
 
 Each of these has its own currents. If you tie them all to a single point on the chassis (a *star ground*), the currents return to the supply through separate paths and don't share voltage drops along the chassis. This minimizes the chance of one circuit's current creating a voltage on the chassis that another circuit sees as noise.
 
-Lugs #5 and #7 on the terminal strip become the heater CT anchor points for each channel. Later wiring will connect these to the main star ground location (often a single bolt on the chassis near the input jacks or power supply).
+Lugs #5 and #7 on the terminal strip become the heater CT anchor points for each channel. Later wiring (step 15) bypasses each to grounded lug 6 through a 0.02 µF disc cap — an AC reference rather than a hard ground connection.
 
 See [grounding and hum](../../theory/grounding-and-hum.md) for the deeper treatment as the build progresses.
 

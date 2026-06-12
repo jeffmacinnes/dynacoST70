@@ -23,7 +23,7 @@ An **indirectly heated dual-anode rectifier tube**. Inside the glass envelope ar
 | Heater current | 1.9A nominal |
 | Peak inverse voltage | 1700V |
 | Max DC output current | 250mA |
-| Warm-up time | ~30 seconds |
+| Warm-up time | ~10 seconds |
 | Base | Octal (8-pin) |
 
 ## Pinout (octal base, viewed from wiring side)
@@ -47,7 +47,7 @@ The 5AR4 has two separate plates inside the glass, each acting as the anode of i
 
 The two desirable properties of being **indirectly heated**:
 
-1. **Slow warm-up** (~30 seconds before it conducts). This is a *feature*: the rectifier comes online *after* the signal tubes have warmed up, so the high-voltage B+ doesn't slam onto cold output tubes (which causes "cathode stripping" damage over time).
+1. **Slow warm-up** (~10 seconds before it conducts). This is a *feature*: the rectifier comes online *after* the signal tubes have warmed up, so the high-voltage B+ doesn't slam onto cold output tubes (which causes "cathode stripping" damage over time).
 2. **Quieter operation** — directly-heated rectifiers can inject AC ripple from the filament into the DC output. Indirect heating isolates the cathode from the AC heater current.
 
 For the deeper rectification theory, see [rectification](../theory/rectification.md).

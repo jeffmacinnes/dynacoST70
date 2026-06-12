@@ -11,6 +11,7 @@ This build incorporates several well-known, widely-recommended modifications to 
 - [Rectifier diode mod](rectifier-diode-mod.md) — two 1N4007s in series with the 5AR4 plates to protect the rectifier tube from warm-up failure. Shipped with current DynakitParts kits on a separate sheet; not in the original manual.
 - [Anti-click capacitor](anti-click-cap.md) — small RC snubber across the power switch to eliminate the loud pop on power-off.
 - [Individual bias pots per output tube](individual-bias-pots.md) — replaces the stock shared bias network with one trimmer per tube.
+- [Bleeder resistor](bleeder-resistor.md) — safety; permanent discharge path across the filter cap so B+ drains even with tubes pulled.
 
 ## Deferred mods (future)
 

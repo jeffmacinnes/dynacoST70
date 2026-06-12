@@ -34,12 +34,12 @@ Octal base, 8 pins.
 
 | Pin | Function |
 |---|---|
-| 1 | Internal connection / shield |
+| 1 | Suppressor grid (g3) — strapped to pin 8 (cathode) at the socket in this build |
 | 2 | Heater |
 | 3 | Plate (anode) |
 | 4 | Screen grid (g2) |
 | 5 | Control grid (g1) |
-| 6 | Internal connection |
+| 6 | No connection — used as a tie point for the 1 kΩ grid stopper |
 | 7 | Heater |
 | 8 | Cathode |
 
@@ -47,8 +47,16 @@ See [EL34 page](../components/el34-output-tube.md).
 
 ## 6GH8A driver / phase splitter
 
-9-pin compactron. Mounts in board sockets on the PC-3A driver board (no chassis V-number). One per channel. *Pinout details to be filled in when this section gets fleshed out.* See [6GH8A page](../components/6gh8a-driver-tube.md).
+9-pin noval miniature (basing 9AE). Heater 6.3 V @ 0.45 A. Mounts in board sockets on the PC-3A driver board (no chassis V-number). One per channel. See [6GH8A page](../components/6gh8a-driver-tube.md).
 
 | Pin | Function |
 |---|---|
-| TBD | TBD |
+| 1 | Triode plate |
+| 2 | Pentode control grid (g1) — audio input |
+| 3 | Pentode screen grid (g2) |
+| 4 | Heater |
+| 5 | Heater |
+| 6 | Pentode plate |
+| 7 | Pentode cathode + g3 + internal shield |
+| 8 | Triode cathode |
+| 9 | Triode grid |

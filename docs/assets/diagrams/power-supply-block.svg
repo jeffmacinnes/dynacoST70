@@ -65,7 +65,7 @@ Goes through the fuse + on/off switch (step 10), then into the PA-060 primary. T
 
 One primary (120 V AC) × five purpose-built secondaries:
 • 720 V CT — HV main (feeds 5AR4)
-• 55 V — bias winding (feeds 1N4007)
+• 50 V — bias tap on the HV winding (feeds 1N4007)
 • 6.3 V CT — heater #1 (signal/output tubes)
 • 6.3 V CT — heater #2 (signal/output tubes)
 • 5 V — rectifier heater (5AR4)
@@ -79,7 +79,7 @@ See the PA-060 component page for the full winding diagram.</title>
     <text class="box-label" x="246" y="170">Secondaries:</text>
 
     <text class="box-spec" x="246" y="200" fill="#cc3a2a" font-weight="700">• 720 V CT  (HV main)</text>
-    <text class="box-spec" x="246" y="218" fill="#b8851a" font-weight="700">• 55 V  (bias)</text>
+    <text class="box-spec" x="246" y="218" fill="#b8851a" font-weight="700">• 50 V  (bias tap)</text>
     <text class="box-spec" x="246" y="236" fill="#2a8c3a" font-weight="700">• 6.3 V CT  (heater #1)</text>
     <text class="box-spec" x="246" y="254" fill="#2a8c3a" font-weight="700">• 6.3 V CT  (heater #2)</text>
     <text class="box-spec" x="246" y="272" fill="#2a8c3a" font-weight="700">• 5 V  (5AR4 heater)</text>
@@ -109,7 +109,7 @@ See the PA-060 component page for the full winding diagram.</title>
 
   <!-- ============ PATH 1: HV (top row) ============ -->
   <g class="lead-group">
-    <title>HV main path — 720 V AC → ~450 V DC.
+    <title>HV main path — 720 V AC → ~435 V DC raw, ~415 V after the choke.
 
 720 V CT secondary → 5AR4 full-wave rectifier (steps 2, 3, 7) → first filter cap → choke → second filter cap → output transformer primaries (step 8).
 
@@ -152,15 +152,15 @@ Powers every tube plate in the amp.</title>
 
     <!-- Output -->
     <rect class="box box-load" x="1086" y="180" width="130" height="50" rx="6"/>
-    <text class="box-label" x="1151" y="200" text-anchor="middle" fill="#1a4e8a">+450 V B+</text>
+    <text class="box-label" x="1151" y="200" text-anchor="middle" fill="#1a4e8a">+415 V B+</text>
     <text class="box-step"  x="1151" y="216" text-anchor="middle">to tube plates</text>
   </g>
 
   <!-- ============ PATH 2: BIAS (middle row) ============ -->
   <g class="lead-group">
-    <title>Bias rail — 55 V AC → ~−40 V DC.
+    <title>Bias rail — ~50 V AC → −65 V raw DC, ≈ −32 V at the grids.
 
-55 V bias secondary → 1N4007 silicon diode (step 1; replaces original selenium) → filter cap → voltage-divider/bias-pot network → −40 V DC at the control grids of the four EL34 output tubes.
+50 V AC bias tap → 1N4007 silicon diode (step 1; replaces original selenium) → filter caps (−65 V raw) → voltage-divider/bias-pot network → ≈ −32 V DC at the control grids of the four EL34 output tubes.
 
 Must come up BEFORE the HV (the 5AR4's slow warm-up handles that) so the EL34s never see plate voltage with a cold/wrong grid bias.</title>
 
@@ -192,7 +192,7 @@ Must come up BEFORE the HV (the 5AR4's slow warm-up handles that) so the EL34s n
 
     <!-- Output -->
     <rect class="box box-load" x="1086" y="365" width="130" height="50" rx="6"/>
-    <text class="box-label" x="1151" y="386" text-anchor="middle" fill="#1a4e8a">−40 V DC</text>
+    <text class="box-label" x="1151" y="386" text-anchor="middle" fill="#1a4e8a">≈ −32 V DC</text>
     <text class="box-step"  x="1151" y="402" text-anchor="middle">to EL34 grids</text>
   </g>
 

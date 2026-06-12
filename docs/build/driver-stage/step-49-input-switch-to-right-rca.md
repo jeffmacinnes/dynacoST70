@@ -16,16 +16,16 @@ The "long lug" of an RCA socket is the **center pin** = signal hot (the audio so
 
 The SPDT mono/stereo switch has three lugs:
 
-- Lug 1: left channel signal hot (from input)
-- Lug 2: common / pole (where the audio hot goes to the board)
-- Lug 3: right channel signal hot (from input) — connects here in this step
+- Lug 1: the unused throw (open in STEREO)
+- Lug 2: pole — the left channel signal hot (wired from the left RCA in [step 54](step-54-left-rca-to-input-switch.md))
+- Lug 3: right channel signal hot — connects to the right RCA in this step
 
 The switch's job is mono/stereo selection:
 
-- **STEREO** position: the switch keeps L and R separated. Audio at lug 1 (left input) goes to one path; audio at lug 3 (right input) goes to another. The board has separate left and right inputs.
-- **MONO** position: the switch ties L and R together, so a signal at either input drives both channels.
+It's a single-pole (SPDT) switch, so the mono/stereo function is simple:
 
-Wait — this is actually a one-pole switch (SPDT), not a two-pole switch (DPDT). Looking at the manual more carefully, the SPDT input switch may be implementing a simpler function than I described. The switch likely just shorts the right input to the left input (or vice versa) in MONO position. Let me not overthink the schematic details; the wiring step is to connect this wire as described.
+- **STEREO** position: the pole (lug 2, the left input hot) is left independent of lug 3, so the left and right inputs stay separate.
+- **MONO** position: the pole connects lug 2 to lug 3, shorting the left and right input hots together so one source drives both channels.
 
 ## See also
 

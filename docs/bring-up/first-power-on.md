@@ -105,7 +105,7 @@ This is a strictly more informative version of Session 1: same B+ safety (none),
     - **No EL34 plate should be glowing red.** Without B+ this is impossible, but it's worth getting in the habit of looking.
 4. **Measure heater AC across each EL34 socket** (pins 2 and 7): ~6.3 V AC on every socket.
 5. **Measure heater AC at the PC-3A 6GH8A sockets** (pins 4 and 5): also ~6.3 V AC.
-6. **Measure heater current draw** via the variac's ammeter (if it has one). Expected: ~10 A on the 6.3 V rails (4 × 1.5 A EL34 + 2 × 0.45 A 6GH8A = 6.9 A draw, but the variac's ammeter reads PRIMARY current, which scales by the turns ratio — for a typical PA-060 you'd see ~0.5 A on the primary side at full draw).
+6. **Measure heater current draw** via the variac's ammeter (if it has one). Expected: ~6.9 A on the 6.3 V rails (4 × 1.5 A EL34 + 2 × 0.45 A 6GH8A = 6.9 A draw, but the variac's ammeter reads PRIMARY current, which scales by the turns ratio — for a typical PA-060 you'd see ~0.5 A on the primary side at full draw).
 
 ### What this confirms
 
@@ -150,7 +150,7 @@ Goal: verify the rectifier works and B+ comes up to the right voltage.
 2. **Measure on filter cap +1** (DC volts, 600 V): should be a few volts (just starting to rectify with low input).
 3. **Dial to 50 V, then 75 V, then 100 V, then full mains.**
 4. At each step, give 10-15 seconds for the cap to settle, then measure +1 lug.
-5. **At full mains, +1 lug should read 480-520 V DC.** Higher than the nominal 460 V because there's no load drawing current down.
+5. **At full mains, +1 lug should read 480-520 V DC.** Higher than the nominal 435 V because there's no load drawing current down.
 
 ### What this confirms
 
@@ -177,10 +177,10 @@ Goal: verify the rectifier works and B+ comes up to the right voltage.
     What you should see (with the variac at full mains, 5AR4 warmed up):
 
     - **Ch1 and ch2** are sine waves at 60 Hz, ~510 Vp (~360 Vrms) — **180° out of phase** with each other (the center-tapped HV secondary).
-    - **Ch3** is a string of **120 Hz positive pulses** — each anode taking turns conducting on its half of the AC cycle. This is the "pulsating DC" you read about. Average level ~435 V.
-    - **Ch4** is **smooth DC at ~480 V** (no load → higher than nominal 415 V). The pulses have been integrated by the choke + lug 1 cap. Tiny residual ripple, mV-level.
+    - **Ch3** is **nearly smooth DC just under the ~500 V peak** of the half-winding. With no load, the lug 2 cap charges up to the peak and barely discharges between cycles — the textbook "120 Hz pulsating DC" humps only appear once the amp is drawing real current. At idle you'll see just a faint 120 Hz ripple riding on the DC.
+    - **Ch4** sits at essentially the **same ~500 V level** as ch3. With no load current there's no drop across the choke, and the choke + lug 1 cap filter the already-faint ripple down further (mV-level).
 
-    What it tells you: the rectifier is doing full-wave rectification (both halves used — both pulses present on ch3 within each 60 Hz cycle), and the LC filter is doing its job (the difference between ch3 and ch4 is the ripple suppression). If ch3 only shows pulses *half* as often, one anode is dead (or its diode connection is broken — see the [rectifier diode mod](../modifications/rectifier-diode-mod.md) for series-diode failure modes).
+    What it tells you: the rectifier is doing full-wave rectification (the faint ripple on ch3 is at 120 Hz — two charging events per 60 Hz cycle), and the LC filter is doing its job (the difference in residual ripple between ch3 and ch4 is the suppression). If the ch3 ripple is at *60 Hz* instead, one anode is dead (or its diode connection is broken — see the [rectifier diode mod](../modifications/rectifier-diode-mod.md) for series-diode failure modes).
 
 Power off. Discharge filter caps. Wait 30 seconds.
 
@@ -237,7 +237,7 @@ Goal: full operation, but the EL34s start in a "barely conducting" state so you 
 
 1. Dial up slowly, 25 V, 50 V, etc.
 2. Watch the EL34 cathode voltage as it comes up. With bias maximum negative, you should see almost no cathode voltage (i.e., almost no current).
-3. At full mains, the cathode reading should still be very low — maybe 5-20 mV across a 1 Ω resistor (5-20 mA per tube). That's "barely on."
+3. At full mains, the cathode reading should still be very low — in the stock build you read across the shared 15.6 Ω per channel pair, and it should sit far below the 1.56 V target. (With the [individual bias pots mod](../modifications/individual-bias-pots.md) and its per-tube 1 Ω sense resistors, expect maybe 5-20 mV per tube = 5-20 mA.) That's "barely on."
 4. **Watch the EL34 plates.** They should NOT be glowing red. If any plate starts glowing red, IMMEDIATELY power off and recheck the bias setup. Red-plating destroys EL34s in minutes.
 
 ### What this confirms
@@ -246,17 +246,17 @@ Goal: full operation, but the EL34s start in a "barely conducting" state so you 
 - B+ holds up under the (still light) output stage load.
 - Bias supply is producing negative voltage at the grids.
 
-!!! tip "4-ch scope: see all four EL34s quiescent simultaneously"
-    Probe (DC-coupled) at each EL34 cathode-sense resistor (the 15.6 Ω at pin 8 of each tube — easier to probe at the Biaset socket which mirrors it):
+!!! tip "Scope: see both EL34 pairs quiescent simultaneously"
+    Probe (DC-coupled) at the cathode-sense resistors. In the stock build there are **two** probe points — one shared 15.6 Ω per channel pair (easiest at the Biaset sockets, which mirror them):
 
-    - **Ch1**: V2 cathode sense
-    - **Ch2**: V3 cathode sense
-    - **Ch3**: V6 cathode sense
-    - **Ch4**: V7 cathode sense
+    - **Ch1**: left pair (V2/V3) cathode sense
+    - **Ch2**: right pair (V6/V7) cathode sense
 
-    What you should see (with bias maximum negative, no signal): four flat DC levels, all near 0 V (5–20 mV — barely-conducting tubes). All four should be **roughly equal** to each other.
+    (Per-tube sense points — four channels, 1 Ω each — exist only if you've done the [individual bias pots mod](../modifications/individual-bias-pots.md).)
 
-    What it tells you: any one channel being substantially different from the others means *that* tube is biased differently — usually a wiring fault on that pot's wiper or the grid-stopper. The four-channel display makes the asymmetry obvious without bouncing the DMM between sockets.
+    What you should see (with bias maximum negative, no signal): flat DC levels near 0 V — barely-conducting tubes. The two pairs should be **roughly equal** to each other.
+
+    What it tells you: one pair being substantially different from the other means that channel is biased differently — usually a wiring fault on that pot's wiper or a grid-stopper. The multi-channel display makes the asymmetry obvious without bouncing the DMM between sockets.
 
     Keep this scope setup for [bias adjustment](bias-adjustment.md) — watching the cathode-sense voltage rise as you turn each pot is much more intuitive than reading single-channel DMM updates.
 

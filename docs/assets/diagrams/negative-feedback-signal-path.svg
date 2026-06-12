@@ -80,7 +80,7 @@ The amp's open-loop gain amplifies whatever this difference is, so any deviation
   <!-- Pentode -->
   <g class="lead-group" data-tooltip="6GH8A PENTODE — input voltage amplifier.
 
-Gain ~50×. Its CATHODE (the summing node) is where all the feedback wires arrive. The cathode bias resistor + bypass cap, plus R_fb (main loop) and the HF compensation R+C, all sit at this node.">
+Gain ~50×. Its CATHODE (the summing node) is where all the feedback wires arrive. The cathode bias resistor + bypass cap, plus R_fb (main loop) and the 390 pF HF compensation cap, all sit at this node.">
     <rect class="stage-box stage-amp" x="300" y="150" width="120" height="60" rx="6"/>
     <text class="stage-name" x="360" y="178" text-anchor="middle">6GH8A pentode</text>
     <text class="stage-sub"  x="360" y="195" text-anchor="middle">gain ≈ 50×</text>
@@ -104,7 +104,7 @@ Gain ~50×. Its CATHODE (the summing node) is where all the feedback wires arriv
   <path class="signal-wire" d="M 740 180 L 780 180"/>
 
   <!-- A-470 primary -->
-  <g class="lead-group" data-tooltip="A-470 PRIMARY — center-tapped, with UL screen taps (BLU/WHT, GRN/WHT) on each half.
+  <g class="lead-group" data-tooltip="A-470 PRIMARY — center-tapped, with UL screen taps (GREEN, GRN/WHT) on each half.
 
 The UL taps are at ~43% of the way from CT to each plate. They carry the audio signal at a high voltage AND with LESS phase shift than the secondary (because they're 'before' the secondary's leakage inductance). That makes them good for HF compensation feedback.">
     <rect class="stage-box stage-opt" x="780" y="145" width="120" height="70" rx="4"/>
@@ -147,10 +147,10 @@ The 16Ω tap carries the highest voltage of the secondary taps (best signal-to-n
   <!-- ============ MAIN FEEDBACK LOOP (16Ω → R_fb → cathode) ============ -->
   <g class="lead-group" data-tooltip="MAIN FEEDBACK LOOP — from OPT 16Ω secondary tap to pentode cathode.
 
-This is the dominant feedback path that sets the amp's closed-loop gain. About 16 dB of feedback total in the ST-70 (loop gain ~6×). Reduces:
-• Distortion by ~6×
-• Output impedance by ~6× (better damping factor)
-• Bandwidth ripple by ~6×
+This is the dominant feedback path that sets the amp's closed-loop gain. About 20 dB of feedback total in the ST-70 (loop gain ~10×). Reduces:
+• Distortion by ~10×
+• Output impedance by ~10× (better damping factor)
+• Bandwidth ripple by ~10×
 
 Trades raw gain for accuracy. The amp doesn't NEED its full open-loop gain — the input source delivers plenty.">
     <!-- Sample point at 16Ω tap -->
@@ -165,21 +165,21 @@ Trades raw gain for accuracy. The amp doesn't NEED its full open-loop gain — t
 
     <!-- R_fb -->
     <rect class="r-fb" x="450" y="468" width="90" height="24" rx="3"/>
-    <text class="fb-label" x="495" y="485" text-anchor="middle">R_fb</text>
+    <text class="fb-label" x="495" y="485" text-anchor="middle">R_fb = 1 kΩ</text>
 
     <!-- Wire from R_fb up to summing junction -->
     <path class="main-fb-wire" d="M 450 480 L 245 480 L 245 202"/>
     <polygon points="245,202 240,210 250,210" fill="#cc3a2a"/>
   </g>
 
-  <!-- ============ HF COMPENSATION LOOP (UL tap → R+C → cathode) ============ -->
-  <g class="lead-group" data-tooltip="HF COMPENSATION LOOP — from OPT primary UL screen tap to pentode cathode through an RC network.
+  <!-- ============ HF COMPENSATION LOOP (UL tap → 390 pF → cathode) ============ -->
+  <g class="lead-group" data-tooltip="HF COMPENSATION LOOP — from OPT primary UL screen tap to pentode cathode through a 390 pF capacitor.
 
 WHY: the OPT itself adds phase shift at high frequencies. Past some frequency, the main loop's phase shift accumulates to where the feedback turns POSITIVE — at which point the amp oscillates.
 
-WHAT THIS FIXES: the UL tap is 'before' the OPT secondary's leakage inductance, so it has less phase shift. Routing a small RC network from here to the cathode adds a corrective phase ABOVE the audio band, restoring stability margins.
+WHAT THIS FIXES: the UL tap is 'before' the OPT secondary's leakage inductance, so it has less phase shift. Routing a small capacitor (390 pF) from here to the cathode adds a corrective phase ABOVE the audio band, restoring stability margins.
 
-The cap in the RC blocks low frequencies — at audio frequencies this path contributes negligibly. Only kicks in above a few kHz where it's needed.">
+The 390 pF cap blocks low frequencies — at audio frequencies this path contributes negligibly. Only kicks in above a few kHz where it's needed.">
     <!-- Sample point at UL tap -->
     <path class="hf-fb-wire" d="M 840 215 L 840 590"/>
     <text class="hf-label" x="870" y="445">HF compensation</text>
@@ -187,20 +187,17 @@ The cap in the RC blocks low frequencies — at audio frequencies this path cont
     <text class="step-label" x="870" y="478">right: step 48 → eyelet 14</text>
     <text class="step-label" x="870" y="492">left:  step 58 → eyelet 11</text>
 
-    <!-- Wire across to R+C network -->
-    <path class="hf-fb-wire" d="M 840 590 L 520 590"/>
+    <!-- Wire across to the 390 pF compensation cap -->
+    <path class="hf-fb-wire" d="M 840 590 L 416 590"/>
 
-    <!-- R+C network -->
+    <!-- 390 pF compensation cap -->
     <g>
-      <rect class="r-hf" x="430" y="578" width="60" height="24" rx="3"/>
-      <text class="hf-label" x="460" y="595" text-anchor="middle">R</text>
-      <!-- Cap symbol -->
       <line class="c-hf" x1="410" y1="578" x2="410" y2="602"/>
       <line class="c-hf" x1="416" y1="578" x2="416" y2="602"/>
-      <text class="hf-label" x="413" y="618" text-anchor="middle">C</text>
+      <text class="hf-label" x="413" y="618" text-anchor="middle">390 pF</text>
     </g>
 
-    <!-- Wire from R+C up to summing junction -->
+    <!-- Wire from the 390 pF cap up to summing junction -->
     <path class="hf-fb-wire" d="M 410 590 L 280 590 L 280 320 L 270 320 L 245 280 L 245 202"/>
     <polygon points="245,202 240,210 250,210" fill="#cc7a2a"/>
   </g>

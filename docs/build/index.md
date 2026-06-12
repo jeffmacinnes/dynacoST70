@@ -10,7 +10,7 @@ The procedural spine of the manual: every wiring step, in manual order, each wit
 
 **Mechanical assembly done. Power supply and output stage wiring complete (steps 1–37). Driver stage wiring soldered through step 46** — PC-3A board mounted, the four coupling-cap eyelets (22/23 to the right-channel EL34 grids and others) wired to the EL34 sockets, both B+ feeds from the filter cap to the board landed (eyelet 19 and 20 via the 22 kΩ on-board dropping resistor), input ground returns to the board, and both 6GH8A heater feeds (via V6 and V3) now connected.
 
-Next is [step 47](driver-stage/step-47-eyelet-21-to-right-pot.md) — eyelet 21 to the right volume pot, starting the input-side wiring. The rest of the driver stage covers feedback wires, input switch + RCA jack wiring, and the remaining eyelet-to-grid signal connections.
+Next is [step 47](driver-stage/step-47-eyelet-21-to-right-pot.md) — eyelet 21 to the right bias pot, starting the input-side wiring. The rest of the driver stage covers feedback wires, input switch + RCA jack wiring, and the remaining eyelet-to-grid signal connections.
 
 ## Sections
 
@@ -59,8 +59,8 @@ Power supply wiring is **complete**.
 |---|---|---|
 | 11 | [Right OPT secondaries](output-stage/step-11-right-opt-secondaries.md) | ✅ |
 | 12 | [Left OPT secondaries](output-stage/step-12-left-opt-secondaries.md) | ✅ |
-| 13 | [Right OPT primary](output-stage/step-13-right-opt-primary.md) | ✅ |
-| 14 | [Left OPT primary](output-stage/step-14-left-opt-primary.md) | ✅ |
+| 13 | [Left OPT primary](output-stage/step-13-left-opt-primary.md) | ✅ |
+| 14 | [Right OPT primary](output-stage/step-14-right-opt-primary.md) | ✅ |
 | 15 | [Disc caps on 7-lug strip](output-stage/step-15-disc-caps.md) | ✅ |
 | 16 | [V6 ↔ V7 heater daisy](output-stage/step-16-v6-v7-heater-daisy.md) | ✅ |
 | 17 | [V2 ↔ V3 heater daisy](output-stage/step-17-v2-v3-heater-daisy.md) | ✅ |

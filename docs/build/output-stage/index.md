@@ -23,8 +23,8 @@ This is the densest wiring section in the build. Take it in chunks; don't try to
 |---|---|---|
 | 11 | [Right OPT secondaries](step-11-right-opt-secondaries.md) | Right A-470 secondary → right 4-screw strip *(manual page 6)* |
 | 12 | [Left OPT secondaries](step-12-left-opt-secondaries.md) | Left A-470 secondary → left 4-screw strip |
-| 13 | [Right OPT primary](step-13-right-opt-primary.md) | A-470 primary to V3 and V2 (plates + UL taps) |
-| 14 | [Left OPT primary](step-14-left-opt-primary.md) | A-470 primary to V6 and V7 (mirror) |
+| 13 | [Left OPT primary](step-13-left-opt-primary.md) | A-470 primary to V3 and V2 (plates + UL taps) |
+| 14 | [Right OPT primary](step-14-right-opt-primary.md) | A-470 primary to V6 and V7 (mirror) |
 | 15 | [Disc caps on 7-lug strip](step-15-disc-caps.md) | RF-bypass on heater CT lugs |
 | 16 | [V6 ↔ V7 heater daisy](step-16-v6-v7-heater-daisy.md) | Channel A heater string completion |
 | 17 | [V2 ↔ V3 heater daisy](step-17-v2-v3-heater-daisy.md) | Channel B heater string completion |

@@ -4,13 +4,13 @@ title: Individual bias pots
 
 # Individual bias pots per output tube
 
-The stock ST-70 has **one** bias trimmer that sets the operating point of **all four** [EL34s](../components/el34-output-tube.md) at the same time. That worked acceptably in 1959 when "matched quad" meant the same factory and similar test-bench numbers. Modern reality: tubes drift, even matched ones drift apart over months, and one trimmer can only find the *average* — leaving some tubes overbiased (running hot, eating themselves) and others underbiased (distorting, weak).
+The stock ST-70 has **two** bias pots — one per channel — so each pot sets the operating point of **both** [EL34s](../components/el34-output-tube.md) in its channel at the same time. That worked acceptably in 1959 when "matched quad" meant the same factory and similar test-bench numbers. Modern reality: tubes drift, even matched ones drift apart over months, and a shared pot can only find the *average* of its pair — leaving one tube overbiased (running hot, eating itself) and the other underbiased (distorting, weak).
 
 The fix is four independent bias trimmers — one per output tube — plus a small cathode sense resistor on each tube. You can then set each EL34 to its own ideal idle current.
 
 ## Why a shared bias is a problem
 
-In the stock circuit, the bias supply (see [1N4007 mod](1n4007-replacement.md) for the supply itself) feeds a single voltage divider, whose wiper drives all four EL34 control grids through 470 kΩ grid stoppers in parallel. The four tubes see the same DC bias, but no two real tubes have identical transconductance — so they pull different idle currents at the same grid voltage.
+In the stock circuit, the bias supply (see [1N4007 mod](1n4007-replacement.md) for the supply itself) feeds two voltage dividers, one pot per channel. Each wiper goes to a PC-3A board eyelet (6 for the left channel, 21 for the right); on the board, 270 kΩ resistors route the same wiper voltage to both of that channel's EL34 grids (via eyelets 1/2 and 22/23 and the 1 kΩ grid stoppers at the sockets). Both tubes in a channel see the same DC bias, but no two real tubes have identical transconductance — so they pull different idle currents at the same grid voltage.
 
 Concretely: if your "matched quad" has Tube A drawing 45 mA, Tube B drawing 50 mA, Tube C drawing 48 mA, and Tube D drawing 52 mA at the same bias point, you can either:
 
@@ -32,7 +32,7 @@ For a 1 Ω resistor and a 50 mA target: V = 0.050 × 1 = **50 mV** across the re
 
 **2. Four trimpots feeding four bias resistors.** The shared divider is replaced with four parallel paths:
 
-- Bias supply → fixed series resistor → trimpot → 470 kΩ grid stopper → EL34 grid.
+- Bias supply → fixed series resistor → trimpot → grid-feed resistor (270 kΩ in the stock circuit) → EL34 grid.
 
 Each trimpot sets its tube's grid voltage independently. Common values: 25 kΩ or 50 kΩ trimpots, with a 100 kΩ or so fixed series resistor that keeps the adjustment range sane.
 
@@ -101,7 +101,7 @@ In practice, well-built individual bias pot mods are no noisier than the stock s
 - Four 1 Ω 1 % 1 W cathode resistors
 - Four 25 kΩ or 50 kΩ multi-turn cermet trimpots (Bourns 3296W is the standard pick)
 - Four 100 kΩ fixed resistors (series with the trimpots)
-- Four 470 kΩ grid stoppers (often already in the stock circuit)
+- Four 270 kΩ grid-feed resistors (already present in the stock circuit, on the PC-3A board)
 - Hookup wire, terminal lugs, mounting hardware
 
 Total parts cost: ~$10. Time to install: an afternoon if you're confident with the layout, more if you're working it out for the first time.

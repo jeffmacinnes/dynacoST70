@@ -7,7 +7,8 @@ Stage 4 — after second filter cap (ripple essentially gone — clean B+)
 
 Voltages are the actual ST-70 values: rectified pulses peak at ~480 V (the
 720 V CT secondary gives ±360 V per half-winding RMS, ~509 V peak, minus
-the 5AR4's ~30 V drop). The filtered B+ rail settles at ~460 V.
+the 5AR4's drop). The raw rail settles at ~435 V (cap lug 2); the choke
+drops ~20 V, so the rail after the choke (cap lug 1) is ~415 V.
 
 Stage 2 uses a charge/discharge cap model (cap follows rising input, droops
 linearly between pulses under load) — that's how a real filter cap works,
@@ -31,9 +32,11 @@ from _style import (
 
 
 # --- ST-70 voltages (approximate) ---
-V_PEAK = 480.0    # peak rectified voltage at 5AR4 cathode
-V_BPLUS = 460.0   # filtered B+ rail (after first cap + choke + second cap)
-V_YMAX = 520.0    # y-axis top (V_peak + headroom)
+V_PEAK = 480.0       # peak rectified voltage at 5AR4 cathode
+V_RAW = 435.0        # raw rail at the first filter cap (lug 2)
+CHOKE_DROP = 20.0    # DC drop across the choke's winding resistance
+V_BPLUS = V_RAW - CHOKE_DROP   # ~415 V — B+ rail after the choke (lug 1)
+V_YMAX = 520.0       # y-axis top (V_peak + headroom)
 
 
 def lowpass(x: np.ndarray, alpha: float, y0: float | None = None) -> np.ndarray:
@@ -87,23 +90,25 @@ def build():
 
     # Stages 3 + 4: progressive low-pass filtering (choke + second cap).
     # Pre-init at the average of stage 2 so we see steady-state output.
+    # The choke's winding resistance also drops ~20 V of DC, so stages
+    # 3 and 4 sit at ~415 V instead of the ~435 V raw rail.
     settled = stage2[n_samples // 2:].mean()
-    stage3 = lowpass(stage2, alpha=0.010,  y0=settled)
-    stage4 = lowpass(stage3, alpha=0.0015, y0=settled)
+    stage3 = lowpass(stage2, alpha=0.010,  y0=settled) - CHOKE_DROP
+    stage4 = lowpass(stage3, alpha=0.0015, y0=settled - CHOKE_DROP)
 
     panels = [
         ("1 · Rectified output (cathode of 5AR4)",
          "120 Hz pulse train. Voltage swings between 0 V and V_peak (~480 V) on every half-cycle.",
-         stage1),
+         stage1, V_RAW, "435 V (raw)"),
         ("2 · After the first filter cap",
-         "Cap charges to V_peak on each pulse, then droops linearly through the load between pulses. Sawtooth ripple on a near-DC level.",
-         stage2),
+         "Cap charges to V_peak on each pulse, then droops linearly through the load between pulses. Sawtooth ripple on a near-DC level (~435 V).",
+         stage2, V_RAW, "435 V (raw)"),
         ("3 · After the choke",
-         "Inductor resists current changes. Ripple is much smaller and more sinusoidal.",
-         stage3),
+         "Inductor resists current changes. Ripple is much smaller and more sinusoidal; the choke's resistance also drops ~20 V of DC.",
+         stage3, V_BPLUS, "415 V (B+)"),
         ("4 · After the second filter cap (final B+)",
-         "Essentially flat B+ at ~460 V. Any remaining ripple is well below the noise floor of any decent amp.",
-         stage4),
+         "Essentially flat B+ at ~415 V. Any remaining ripple is well below the noise floor of any decent amp.",
+         stage4, V_BPLUS, "415 V (B+)"),
     ]
 
     # --- Figure ---
@@ -117,9 +122,10 @@ def build():
         hspace=1.15,
     )
 
-    for ax, (title, note, signal) in zip(axes, panels):
+    for ax, (title, note, signal, level, level_label) in zip(axes, panels):
         ax.plot(t, signal, color=COLOR_RECTIFIED, linewidth=2.4)
-        _panel_chrome(ax, t, cycles, period, title=title, note=note)
+        _panel_chrome(ax, t, cycles, period, title=title, note=note,
+                      level=level, level_label=level_label)
 
     # --- Title + subtitle (top) ---
     fig.text(
@@ -150,26 +156,27 @@ def build():
     print(f"Wrote {out_path}")
 
 
-def _panel_chrome(ax, t, cycles, period, *, title, note):
+def _panel_chrome(ax, t, cycles, period, *, title, note, level, level_label):
     # 0 V reference line — always shown, since panel 1 reaches it.
     ax.axhline(0.0, color="#aaaaaa", linewidth=1.0)
 
-    # Y axis: just two ticks — 0 V and ~460 V (the B+ rail). V_peak is
+    # Y axis: just two ticks — 0 V and the rail level for this panel
+    # (435 V raw before the choke, 415 V B+ after it). V_peak is
     # implicit from the panel-1 pulse tops.
-    ax.set_yticks([0.0, V_BPLUS])
-    ax.set_yticklabels(["0 V", "460 V (B+)"], fontsize=11, color=COLOR_NOTE)
+    ax.set_yticks([0.0, level])
+    ax.set_yticklabels(["0 V", level_label], fontsize=11, color=COLOR_NOTE)
     ax.tick_params(axis="y", length=0, pad=8)
     ax.set_xticks([])
     ax.set_ylim(-30.0, V_YMAX)
     ax.set_xlim(-0.01 * period, cycles * period + 0.16 * period)
 
-    # Faint reference line at B+ so the eye can see where the filtered
-    # output settles vs. where the pulses peak.
-    ax.axhline(V_BPLUS, color="#cccccc", linewidth=0.8, linestyle=(0, (4, 3)))
+    # Faint reference line at the rail level so the eye can see where the
+    # filtered output settles vs. where the pulses peak.
+    ax.axhline(level, color="#cccccc", linewidth=0.8, linestyle=(0, (4, 3)))
 
     ax.annotate(
         "time →",
-        xy=(cycles * period + 0.04 * period, V_BPLUS),
+        xy=(cycles * period + 0.04 * period, level),
         fontsize=11, color=COLOR_NOTE, va="center",
     )
 

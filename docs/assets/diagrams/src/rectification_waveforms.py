@@ -117,7 +117,7 @@ def build():
     fig.text(
         0.5, 0.040,
         "From AC input to pulsating DC. After this, the filter cap and choke smooth panel 3’s pulses "
-        "into the ~450 V B+ rail.",
+        "into the ~435 V B+ rail.",
         ha="center", fontsize=11, style="italic", color="#555",
     )
     fig.text(

@@ -8,7 +8,7 @@ title: 'Step 25: Lug 4 to non-banded side of bias diode'
 
 ## What you're doing physically
 
-A 6" wire from lug 4 of the seven-lug strip to the **non-banded end** of the bias diode (the one mounted on the 2-lug strip in [M6](../mechanical-assembly/step-m06-bias-2lug-strip.md)). Both ends are soldered (S) at this step — the diode's non-banded end now has the 55 V AC input from step 1 AND this wire.
+A 6" wire from lug 4 of the seven-lug strip to the **non-banded end** of the bias diode (the one mounted on the 2-lug strip in [M6](../mechanical-assembly/step-m06-bias-2lug-strip.md)). Both ends are soldered (S) at this step. The diode's **banded** end already has the 50 V AC input from step 1; this wire is the only connection at the non-banded end.
 
 Lug 4 is also soldered final — it now has: the negative end of the first bias cap (step 19), the 10 kΩ resistor (step 20), and this wire.
 
@@ -18,27 +18,13 @@ This wire delivers the **diode's negative DC output** (~−65 V, after the diode
 
 The bias supply path is now complete end-to-end:
 
-1. **PA-060 bias winding** (RED/BLK, 55 V AC) → diode non-banded end
-2. **Diode** rectifies → negative pulsing DC at the banded end
-3. **Banded end** → this step 25 wire → lug 4 of seven-lug strip
+1. **PA-060 bias winding** (RED/BLK, 50 V AC) → diode banded end (step 1)
+2. **Diode** rectifies → negative pulsing DC at the non-banded end
+3. **Non-banded end** → this step 25 wire → lug 4 of seven-lug strip
 4. **Lug 4** → 10 kΩ → lug 3 → 10 kΩ → lug 2 (the cascade RC filtering)
 5. **Lug 2** → distribution to bias pots (next step)
 
-Wait — let me re-check direction. The diode's banded end is the cathode (output of negative DC). The non-banded end is the anode (where the AC comes in). Step 1 already wired the **RED/BLK power transformer lead to the banded side** — so the banded side gets the AC input.
-
-Hmm, that contradicts what I said. Let me look again at step 1...
-
-[Reading step-01-bias-diode.md] "Connect the red-black power transformer lead to the banded side of the diode at the (2) lug terminal strip (S)" — yes, RED/BLK lands on the BANDED side. So the banded side IS the AC input here.
-
-But that's reversed from normal convention — usually the band marks the cathode (DC output for a forward-biased rectifier). Why would Dynaco wire AC to the band?
-
-Because for a **negative**-output bias rectifier, the diode is reversed relative to a normal positive-output rectifier. The band (cathode of the diode) faces the AC input; the anode of the diode (non-banded side) outputs the negative DC.
-
-So:
-- Banded side = AC input (RED/BLK from PA-060, step 1)
-- Non-banded side = Negative DC output (this step 25 wire, going to lug 4)
-
-Polarity reverses the conventional layout because the bias supply needs negative DC, not positive.
+This may look reversed from the usual rectifier layout — the band marks the diode's cathode, and in a positive-output supply the cathode is where the DC comes out. But the bias supply needs **negative** DC, so the diode is flipped: the AC input from the PA-060 lands on the banded (cathode) end, and the negative DC output comes off the non-banded (anode) end, which is what this wire carries to lug 4.
 
 ## See also
 

@@ -39,12 +39,14 @@ The 1N4007 is in series with the tube's internal diode. On the *reverse* half-cy
 
 | Spec | 1N4007 | Margin in this app |
 |---|---|---|
-| Peak inverse voltage | 1000 V | HV secondary peaks ~510 V (720 Vp-p across full winding ÷ 2) — 2× margin |
+| Peak inverse voltage | 1000 V | See note below — the honest answer is "marginal alone, fine in series with the tube" |
 | Forward current | 1 A continuous | 5AR4 max DC output is 250 mA — 4× margin |
-| Forward Vf | ~1 V | Negligible vs. 360 VAC per half-winding |
+| Forward Vf | ~1 V | Negligible vs. 360 V RMS per half-winding |
 | Cost | ~$0.10 | — |
 
-The 1N4007 is the cheapest reasonable choice that gives plenty of headroom in both PIV and current. The same part number is used for [the bias diode](1n4007-replacement.md) — it's the workhorse high-voltage rectifier diode of the modern era.
+A note on the PIV math, because it's easy to get wrong: in a full-wave center-tapped rectifier, the *non-conducting* leg sees roughly **twice the per-side peak** — the conducting side holds the cathode near +509 V while the blocking side's end of the winding swings to −509 V, putting up to ~1,018 V of reverse voltage across that leg. That exceeds a single 1N4007's 1000 V rating on paper. The reason the mod works anyway is that the silicon diode is **in series with the 5AR4's own internal diode**, and the two share the reverse voltage — which is exactly why this mod keeps the tube rather than replacing it. Builders who want hard margin on the silicon alone use two 1N4007s in series per leg (or a UF4007-class part chosen for headroom).
+
+The 1N4007 is the cheapest reasonable choice for this series duty. The same part number is used for [the bias diode](1n4007-replacement.md) — it's the workhorse high-voltage rectifier diode of the modern era.
 
 ## Which NC pins to use as tie-points
 

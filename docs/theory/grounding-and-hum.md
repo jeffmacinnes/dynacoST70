@@ -10,7 +10,7 @@ This page is the conceptual reference for the grounding decisions you'll see sca
 
 <figure class="diagram-fig" markdown="span">
   <img src="../../assets/diagrams/star-ground-topology.svg" alt="Star ground vs daisy chain grounding topology comparison">
-  <figcaption>Two grounding topologies side by side. The same components, same currents — but the daisy chain creates a hum loop while the star topology doesn't. The seven-lug terminal strip in the ST-70 is what makes star grounding possible. Click to zoom.</figcaption>
+  <figcaption>Two grounding topologies side by side. The same components, same currents — but the daisy chain creates a hum loop while the star topology doesn't. In the ST-70 the star point is the solder lug(s) at the quad filter cap. Click to zoom.</figcaption>
 </figure>
 
 ## The fundamental problem
@@ -54,7 +54,7 @@ In practice for a tube amp, the star point is usually:
 - A single bolt on the chassis with several ring terminals stacked under a star washer.
 - Located physically near the most current-hungry stages (the output tubes + filter cap), so high-current wires are short.
 
-In the ST-70 specifically, the [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) plays the role of the star point. Different lugs carry different return categories — see [step 6](../build/power-supply/step-06-heater-cts.md) for where the heater CTs anchor.
+In the ST-70 specifically, the star point is the **solder lug(s) at the quad filter cap** — physically right where the heaviest currents return. The [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) is a *subnode*: it hosts the bias supply filter network and the heater-CT anchors, and ties back to the star point via its lug 6 — see [step 6](../build/power-supply/step-06-heater-cts.md) for where the heater CTs anchor.
 
 ## Why daisy-chained ground creates hum
 
@@ -66,11 +66,11 @@ This is what "60 Hz hum" or "120 Hz hum" sounds like — a steady drone at the l
 
 ## What heater CTs have to do with it
 
-Heater AC at 60 Hz is the OTHER common hum source. The [heater circuits page](heater-circuits.md) covers the CT-to-ground trick (anchor the midpoint at 0 V so the two heater leads swing symmetrically and their fields cancel). The CT eventually goes to "ground" — but WHICH ground?
+Heater AC at 60 Hz is the OTHER common hum source. The [heater circuits page](heater-circuits.md) covers the CT trick (anchor the midpoint so the two heater leads swing symmetrically and their fields cancel). The CT eventually references "ground" — but WHICH ground, and how?
 
-The answer: the same star point. Specifically, the heater CT for each channel goes to a star-point lug near *that channel's* sensitive components. This way the heater 60 Hz field is balanced against the same ground reference the audio uses, and any residual hum is rejected by the amp's natural common-mode rejection.
+In the ST-70, the heater CTs land on lugs 5 and 7 of the terminal strip and reach ground **through 0.02 µF disc capacitors, not a hard wire**. At 60 Hz the caps anchor the midpoint for AC balance; at DC the CTs float. The reference is the same star ground the audio uses, so the heater 60 Hz field is balanced against the audio's own ground reference and any residual hum is rejected by the amp's natural common-mode rejection.
 
-If the heater CT goes to a *different* ground point than the audio star ground, you get a hum loop between them.
+If the heater CTs referenced a *different* ground point than the audio star ground, you'd get a hum loop between them.
 
 ## Chassis safety earth vs. audio ground
 
@@ -99,10 +99,10 @@ This is a slow, methodical process. Hum problems rarely have one big cause; usua
 - **One ground bolt for audio ground (the star).** No daisy chains here either.
 - **Link the two at exactly one place.**
 - **Sensitive stages get their own return wires** — never share with output-stage returns.
-- **Heater CTs ground at the star, near their channel's signal components.**
+- **Heater CTs reference the star ground** (in this amp, through 0.02 µF bypass caps rather than a hard wire).
 - **Filter cap returns** can be heavy and short. If the cap mounts to the chassis directly, that's already the star path.
 
-The ST-70 follows all of these. The [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) is the physical embodiment of the star point. Different lugs serve different roles, and the strip's location is chosen to keep heavy current wires short.
+The ST-70 follows all of these. The star point is the solder lug(s) at the quad filter cap — right where the heavy currents already are. The [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) is a subnode for the bias supply and heater CTs, tied to the star point via its lug 6.
 
 ## See also
 

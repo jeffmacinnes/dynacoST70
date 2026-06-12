@@ -29,11 +29,11 @@ Notably absent:
 
 **Yes, with caveats.**
 
-The amp's main high-voltage rail (B+) runs around 440–480V DC depending on line voltage and load. That's *under* the 600V meter limit, so technically within spec. But there's only ~150V of headroom. CAT III 600V means the meter is rated to handle voltage transients up to that level on a circuit normally operating below it. Be conservative about probe placement to avoid touching points that might exceed 600V.
+The amp's main high-voltage rail (B+) runs around 415–445V DC at the first filter caps depending on line voltage and load. That's *under* the 600V meter limit, so technically within spec. But there's only ~150V of headroom. CAT III 600V means the meter is rated to handle voltage transients up to that level on a circuit normally operating below it. Be conservative about probe placement to avoid touching points that might exceed 600V.
 
 ## Specific cautions for tube amp work
 
-**Don't measure across both 5AR4 plate pins.** Pin 4 to pin 6 sees the full 720V AC peak across the high-voltage secondary. That's well above the 600V rating. Always measure each pin to chassis ground separately (around 360V AC each), never plate-to-plate.
+**Don't measure across both 5AR4 plate pins.** Pin 4 to pin 6 sees the full 720V RMS across the high-voltage secondary — roughly 1,018V at the peaks. That's far above the 600V rating. Always measure each pin to chassis ground separately (around 360V RMS each), never plate-to-plate.
 
 **Be aware of transformer voltage during start-up.** Voltage transients during power-on can briefly exceed steady-state values. Measure with the amp warmed up and stable, not during the first few seconds.
 

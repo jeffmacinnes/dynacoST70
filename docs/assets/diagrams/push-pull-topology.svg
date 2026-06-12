@@ -72,13 +72,13 @@ The 6GH8A phase splitter produces two copies of the audio signal that are exactl
   <g class="lead-group">
     <title>TOP TUBE (V2 or V6).
 
-This EL34 conducts when its grid sees the positive half of the audio signal. During those moments, it pulls current down through its half of the OPT primary, which (via magnetic coupling) drives current through the secondary toward the speaker in one direction.
+This EL34 conducts MORE when its grid sees the positive half of the audio signal, pulling extra current down through its half of the OPT primary, which (via magnetic coupling) drives current through the secondary toward the speaker in one direction.
 
-On the negative half of the cycle, this tube is cut off — the bottom tube takes over.</title>
+The ST-70 runs class AB: both tubes conduct around idle (~50 mA each), and only at large signal swings does one tube approach cutoff while its partner carries the load.</title>
     <rect class="tube-glow interactive" x="380" y="180" width="180" height="80" rx="8"/>
     <text class="label" x="470" y="208" text-anchor="middle">EL34 (V2 / V6)</text>
     <text class="sub"   x="470" y="226" text-anchor="middle">grid → cathode → plate</text>
-    <text class="value" x="470" y="244" text-anchor="middle" fill="#cc3a2a">~100 mA plate current</text>
+    <text class="value" x="470" y="244" text-anchor="middle" fill="#cc3a2a">~50 mA idle (100 mA/pair)</text>
   </g>
 
   <!-- ============ BOTTOM TUBE (V3) ============ -->
@@ -101,13 +101,13 @@ When this signal goes negative, the top tube's signal goes positive, and vice ve
   <g class="lead-group">
     <title>BOTTOM TUBE (V3 or V7).
 
-The push-pull partner of the top tube. Conducts when its grid sees the positive half of its (inverted) input signal — which is when the audio is in the OTHER half of its cycle.
+The push-pull partner of the top tube. Conducts MORE when its grid sees the positive half of its (inverted) input signal — which is when the audio is in the OTHER half of its cycle.
 
-The two tubes "take turns": never both fully on, never both fully off. Together they amplify the entire waveform.</title>
+In class AB, both tubes conduct around idle; one tube only approaches cutoff at large swings. Together they amplify the entire waveform.</title>
     <rect class="tube-glow interactive" x="380" y="500" width="180" height="80" rx="8"/>
     <text class="label" x="470" y="528" text-anchor="middle">EL34 (V3 / V7)</text>
     <text class="sub"   x="470" y="546" text-anchor="middle">grid → cathode → plate</text>
-    <text class="value" x="470" y="564" text-anchor="middle" fill="#1a4e8a">~100 mA plate current</text>
+    <text class="value" x="470" y="564" text-anchor="middle" fill="#1a4e8a">~50 mA idle (100 mA/pair)</text>
   </g>
 
   <!-- ============ WIRES FROM TUBE PLATES TO OPT ============ -->
@@ -117,7 +117,7 @@ The two tubes "take turns": never both fully on, never both fully off. Together 
 
   <!-- Bottom tube plate to bottom of OPT primary -->
   <line class="wire-cold" x1="560" y1="540" x2="700" y2="540"/>
-  <text class="sub" x="630" y="530" text-anchor="middle" fill="#1a4e8a">plate (BROWN OPT lead)</text>
+  <text class="sub" x="630" y="530" text-anchor="middle" fill="#1a4e8a">plate (BLU/WHT OPT lead)</text>
 
   <!-- ============ A-470 OUTPUT TRANSFORMER ============ -->
   <!-- OPT body (vertical) -->

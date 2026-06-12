@@ -10,7 +10,7 @@ title: 'Step 34: V7 15.6 Ω cathode sense resistor'
 
 Mirror of [step 31](step-31-v2-cathode-sense.md), but for the channel A pair (V6 and V7).
 
-The second 15.6 Ω precision resistor lands between V7's chassis ground lug and **V7 pin 1**. (Note: V7 pin 1 here, not pin 8 like step 31 used. The EL-34 has both pins joined internally — see [pinout](../../appendices/tube-pinouts.md) — so it electrically doesn't matter which pin you choose; the manual just specifies pin 1 for this socket's location.)
+The second 15.6 Ω precision resistor lands between V7's chassis ground lug and **V7 pin 1**. (Note: V7 pin 1 here, not pin 8 like step 31 used. This DOES matter electrically: pin 1 is the suppressor grid (g3), not the cathode, and the two are NOT joined inside the tube — see [pinout](../../appendices/tube-pinouts.md). Pin 1 only becomes equivalent to pin 8 once the cathode daisy wire in [step 35](step-35-v6-v7-cathode-daisy.md) straps them together externally. The manual's sequence works because that strap is coming next.)
 
 Chassis ground end is soldered (S); V7 pin 1 stays unsoldered for the next step.
 

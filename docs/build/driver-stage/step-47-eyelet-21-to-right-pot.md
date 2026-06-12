@@ -27,11 +27,7 @@ The audio signal AC and the bias DC share the same path:
 3. From eyelet #22 → through a coupling cap on the board → out to V7 pin 6.
 4. From V7 pin 6 → through the 1 kΩ grid stopper → V7 pin 5 (grid).
 
-The coupling cap blocks the *audio AC*, no — wait, it's the OPPOSITE. The coupling cap **blocks DC** and passes AC. So the bias DC can't pass through the cap...
-
-Looking at the schematic more carefully: the bias DC is applied to the grid via a grid-leak resistor *between* the coupling cap and the grid (or between the coupling cap and ground, depending on topology). The bias network on the board has a connection from the bias pot wiper (this wire) through a resistor to the grid-side of the coupling cap. That resistor lets DC bias through while the coupling cap protects the rest of the path from DC.
-
-I'm simplifying — see the PC-3 [schematic](https://github.com/jeffmacinnes/dynacoST70/blob/main/originalFiles/) for the exact topology. The key takeaway: turning the right pot moves the bias voltage applied to V6 and V7 grids.
+The bias is injected on the **grid side** of the on-board coupling caps: from eyelet #21, the wiper voltage feeds through the two 270 kΩ grid-return resistors to the output side of each coupling cap. The grids see the negative DC through those resistors, while the coupling caps (which block DC) keep the bias voltage out of the driver stage upstream. The key takeaway: turning the right pot moves the bias voltage applied to V6 and V7 grids.
 
 ## See also
 

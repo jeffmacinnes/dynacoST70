@@ -13,7 +13,7 @@ See the [full PA-060 page](../components/pa-060-power-transformer.md) for the de
 | Winding | Voltage | Current | Purpose |
 |---|---|---|---|
 | RED ↔ RED with RED/YEL center tap | 720V AC CT | 300mA | Main HV — feeds the 5AR4 rectifier, becomes ~450V B+ |
-| RED/BLK ↔ RED/YEL CT | 55V AC | (low) | Bias winding — feeds the 1N4007, produces negative grid bias |
+| RED/BLK ↔ RED/YEL CT | 50V AC | (low) | Bias tap — feeds the 1N4007, produces negative grid bias |
 | GRN ↔ GRN with GRN/YEL CT | 6.3V AC | 5A | Heater winding #1 — for half the signal/output tubes |
 | BRN ↔ BRN with BRN/YEL CT | 6.3V AC | 5A | Heater winding #2 — for the other half of the signal/output tubes |
 | WHT ↔ WHT | 5V AC | 4A | Heater for the 5AR4 rectifier (different voltage from other tubes) |
@@ -35,10 +35,11 @@ Two wires of the same base color = the two ends of the same winding.
 
 | Lead | Purpose | Notes |
 |---|---|---|
-| Blue | Plate (V2 / V6 side) | Push-pull primary, one end |
-| Brown (primary) | Plate (V3 / V7 side) | Push-pull primary, other end |
+| Blue | Plate, one side | Push-pull primary, one end |
+| Blue/White | Plate, other side | Push-pull primary, other end |
 | Red | Primary center tap | B+ feed in |
-| Green | UL screen tap | Ultralinear screen connection |
+| Green | UL screen tap | Same half of the winding as the blue plate |
+| Green/White | UL screen tap | Same half of the winding as the blue/white plate |
 | Black (secondary) | Speaker common | Secondary tap 0 |
 | Brown (secondary) | 4Ω secondary tap | |
 | Orange (secondary) | 8Ω secondary tap | |
@@ -46,8 +47,8 @@ Two wires of the same base color = the two ends of the same winding.
 
 Original A-470 spec: −1dB from 6Hz to 30kHz at full power.
 
-!!! note "Primary brown vs. secondary brown"
-    The A-470 has *two* brown leads — one is a primary plate lead, one is the 4Ω secondary tap. They are physically distinguishable by which end of the transformer they exit. Don't cross them.
+!!! note "Plates vs. screen taps"
+    Both blue leads are plates and both green leads are screen taps — don't pair the leads by base color. Each plate works with the *other*-colored screen tap on its half of the winding (BLUE + GREEN, BLU/WHT + GRN/WHT).
 
 ## Tube layout reference
 

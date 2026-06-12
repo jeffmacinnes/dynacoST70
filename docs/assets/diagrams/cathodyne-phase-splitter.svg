@@ -46,11 +46,11 @@
   <g class="lead-group">
     <title>PLATE LOAD RESISTOR (R_plate).
 
-Same value as the cathode resistor below — typically ~22 kΩ for a 6GH8A in this role. When the tube conducts harder, more current flows through this resistor, dropping more voltage across it. That makes the plate go DOWN — the inverted (anti-phase) output.</title>
+Same value as the cathode resistor below — 47 kΩ, matched to 1%, in the ST-70. When the tube conducts harder, more current flows through this resistor, dropping more voltage across it. That makes the plate go DOWN — the inverted (anti-phase) output.</title>
     <line class="wire" x1="450" y1="120" x2="450" y2="160"/>
     <rect class="resistor interactive" x="430" y="160" width="40" height="80" rx="3"/>
     <text class="label" x="490" y="195">R_plate</text>
-    <text class="sub"   x="490" y="211">~22 kΩ</text>
+    <text class="sub"   x="490" y="211">47 kΩ (1%)</text>
     <line class="wire" x1="450" y1="240" x2="450" y2="290"/>
   </g>
 
@@ -104,7 +104,7 @@ Because the SAME current flows through both R_plate and R_cathode, and they're E
     <line class="wire" x1="450" y1="470" x2="450" y2="510"/>
     <rect class="resistor interactive" x="430" y="510" width="40" height="80" rx="3"/>
     <text class="label" x="490" y="545">R_cathode</text>
-    <text class="sub"   x="490" y="561">~22 kΩ · same value</text>
+    <text class="sub"   x="490" y="561">47 kΩ (1%) · same value</text>
     <line class="wire" x1="450" y1="590" x2="450" y2="640"/>
   </g>
 

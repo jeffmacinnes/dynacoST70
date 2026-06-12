@@ -6,11 +6,11 @@ title: Seven-lug terminal strip
 
 A small phenolic (insulating) board with seven brass lugs sticking out, mounted to the chassis by two bolts. Each lug is electrically isolated from the others and from the chassis itself. It exists for one reason: in a point-to-point amp, you can't float wires in mid-air, you need physical anchor points where multiple wires can meet at a single node.
 
-In the ST-70 specifically, this strip is also the visible embodiment of the amp's **[star grounding architecture](../theory/grounding-and-hum.md)** — most of the ground-related decisions in the amp converge here, by design, so the entire grounding scheme is inspectable from one location.
+In the ST-70 specifically, this strip is the home of the **bias supply filter network and the heater center-tap returns** — a subnode of the amp's [ground network](../theory/grounding-and-hum.md), not the star point itself. The main ground point is the solder lug(s) at the quad filter cap; the strip ties into it via lug 6.
 
 <figure class="diagram-fig" markdown="span">
   <img src="../../assets/diagrams/seven-lug-strip.svg" alt="Seven-lug terminal strip lug assignments">
-  <figcaption>The strip with its seven lugs and two chassis-mounting bolts. Lugs 5 and 7 are the canonical heater-CT anchors (wired in step 6). Other lugs vary by schematic revision but serve roughly similar grounding-network roles. Hover any lug for details. Click to zoom.</figcaption>
+  <figcaption>The strip with its seven lugs and two chassis-mounting bolts. Lugs 5 and 7 are the heater-CT anchors (wired in step 6); lugs 2-4 carry the bias supply; lugs 1 and 6 are ground ties. Hover any lug for details. Click to zoom.</figcaption>
 </figure>
 
 ## What it physically is
@@ -25,15 +25,18 @@ The lugs are stamped brass with a small hole at the top for wire termination —
 
 | Lug | What lands here | Wired in step |
 |---|---|---|
-| 1 | Schematic-version dependent — often input stage / coupling cap ground tie | later steps |
-| 2 | Schematic-version dependent — often bias network reference | later steps |
-| 3 | Schematic-version dependent | later steps |
-| 4 | Signal ground (star-point link to chassis) | later steps |
+| 1 | Ground (jumpered to lug 6) | later steps |
+| 2 | Bias divider bottom — 10 kΩ to ground | later steps |
+| 3 | Filtered bias output — to the bias pots | later steps |
+| 4 | **RAW −65 V DC** from the bias diode | later steps |
 | **5** | **Heater #1 CT (GRN/YEL lead from PA-060)** | **[Step 6](../build/power-supply/step-06-heater-cts.md)** |
-| 6 | Schematic-version dependent | later steps |
+| 6 | Ground tie — wire to the main ground point at the quad cap | later steps |
 | **7** | **Heater #2 CT (BRN/YEL lead from PA-060)** | **[Step 6](../build/power-supply/step-06-heater-cts.md)** |
 
-Lugs 5 and 7 are universally the heater-CT anchors across all ST-70 schematic revisions. The others vary somewhat between revisions — refer to the Version B schematic for your specific PC-3A driver board.
+!!! danger "Lug 4 is NOT ground"
+    Lug 4 sits at roughly **−65 V DC** — the raw negative output of the bias diode. Don't treat it as a ground point, clip a meter common to it, or tie anything to it that expects 0 V. The strip's ground reference is lugs 1 and 6.
+
+The heater CTs at lugs 5 and 7 don't connect to ground directly — they reach ground only through 0.02 µF disc capacitors (AC bypass; the CTs float at DC). The bias supply's two 100 µF filter caps also live on this strip.
 
 ## Why heater CTs go to separate lugs (5 and 7)
 
@@ -62,7 +65,7 @@ When you're wiring step 6, the manual will say "lug #5" — count carefully. A m
 
 ## How the strip relates to the chassis
 
-The mounting bolts hold the strip mechanically to the chassis but DO NOT connect any lug to the chassis electrically. The chassis-to-lug connection (where the star ground is actually established) happens via a separate dedicated wire from one of the lugs (usually lug 4) to a chassis bolt elsewhere.
+The mounting bolts hold the strip mechanically to the chassis but DO NOT connect any lug to the chassis electrically. The strip's ground reference comes via a dedicated wire from lug 6 to the main ground point — the solder lug(s) at the quad filter cap. (The star ground is established *there*, not at the strip.)
 
 This separation matters: it means you can change the chassis-to-audio-ground link without disturbing any of the wiring at the strip itself.
 

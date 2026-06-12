@@ -1,5 +1,5 @@
 ---
-title: 'Step 14: Left OPT primary leads to V6 and V7'
+title: 'Step 14: Right OPT primary leads to V6 and V7'
 ---
 
 # Step 14: Repeat step 13 for the right output transformer
@@ -8,7 +8,7 @@ title: 'Step 14: Left OPT primary leads to V6 and V7'
 
 ## What you're doing physically
 
-Mirror of [step 13](step-13-right-opt-primary.md), but for the other A-470 — the one whose primary feeds V6 and V7.
+Mirror of [step 13](step-13-left-opt-primary.md), but for the other A-470 — the right output transformer, whose primary feeds V6 and V7.
 
 | Lead | Goes to | Function |
 |---|---|---|
@@ -19,7 +19,7 @@ Mirror of [step 13](step-13-right-opt-primary.md), but for the other A-470 — t
 
 Twist BLUE+GREEN as a pair; twist BLU/WHT+GRN/WHT as a pair. Pair each plate lead with its matching UL screen tap on the same half of the winding.
 
-V6 pin 4 is NOT soldered at this step — it gets the feedback wire in step 58. V7 pin 4 IS soldered now.
+V6 pin 4 is NOT soldered at this step — it gets the feedback wire in step 48. V7 pin 4 IS soldered now.
 
 ## After this step
 
@@ -27,6 +27,6 @@ All four EL-34s now have their plates and ultralinear screen taps connected to t
 
 ## See also
 
-- [Step 13 — Right OPT primary](step-13-right-opt-primary.md) — the mirror image
+- [Step 13 — Left OPT primary](step-13-left-opt-primary.md) — the mirror image
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — primary lead structure
 - [Push-pull topology](../../theory/push-pull-topology.md) — why this wiring topology matters

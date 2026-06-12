@@ -174,8 +174,8 @@ nav:
           - build/output-stage/index.md
           - Step 11 — Right OPT secondaries: build/output-stage/step-11-right-opt-secondaries.md
           - Step 12 — Left OPT secondaries: build/output-stage/step-12-left-opt-secondaries.md
-          - Step 13 — Right OPT primary: build/output-stage/step-13-right-opt-primary.md
-          - Step 14 — Left OPT primary: build/output-stage/step-14-left-opt-primary.md
+          - Step 13 — Left OPT primary: build/output-stage/step-13-left-opt-primary.md
+          - Step 14 — Right OPT primary: build/output-stage/step-14-right-opt-primary.md
           - Step 15 — Disc caps: build/output-stage/step-15-disc-caps.md
           - Step 16 — V6/V7 heater daisy: build/output-stage/step-16-v6-v7-heater-daisy.md
           - Step 17 — V2/V3 heater daisy: build/output-stage/step-17-v2-v3-heater-daisy.md
@@ -237,6 +237,7 @@ nav:
       - Rectifier diode mod: modifications/rectifier-diode-mod.md
       - Anti-click cap: modifications/anti-click-cap.md
       - Individual bias pots: modifications/individual-bias-pots.md
+      - Bleeder resistor: modifications/bleeder-resistor.md
   - Bring-up:
       - bring-up/index.md
       - Pre-power checklist: bring-up/pre-power-checklist.md

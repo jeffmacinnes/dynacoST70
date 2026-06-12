@@ -12,18 +12,18 @@ The kit supplies a small **2-lug terminal strip** (about ¾" long, two solder lu
 
 Mount the strip between the two bias pots from [M5](step-m05-bias-pots.md), using #4-40 hardware. The two lugs should sit between the pots with the diode bridging them.
 
-Solder the diode between the two lugs, with the **banded end (cathode) on the LEFT** per the pictorial diagram. The banded end is where the diode's negative output (the filtered bias voltage) emerges.
+Solder the diode between the two lugs, with the **banded end (cathode) on the LEFT** per the pictorial diagram. The banded end is where the RED/BLK AC input from the PA-060 will land (step 1); the negative DC output emerges from the non-banded (anode) end.
 
 ## What this circuit is
 
-This is the **bias supply rectifier**. It takes the 55 V AC from the PA-060's bias winding (RED/BLK lead) and converts it to filtered DC at about −65 V.
+This is the **bias supply rectifier**. It takes the 50 V AC from the PA-060's bias winding (RED/BLK lead) and converts it to filtered DC at about −65 V.
 
 Circuit flow:
 
-1. RED/BLK lead (AC bias winding output, ~55 V AC) comes in to the non-banded end of the diode.
+1. RED/BLK lead (AC bias winding output, ~50 V AC) comes in to the banded (cathode) end of the diode.
 2. The diode rectifies (half-wave) — only the negative half-cycles pass.
-3. The banded end of the diode outputs pulsing DC at about −60 to −70 V.
-4. From the banded end, filtering and dropping resistors smooth this into the −65 V DC the bias network needs.
+3. The non-banded (anode) end of the diode outputs pulsing DC at about −60 to −70 V.
+4. From the non-banded end, filtering and dropping resistors smooth this into the −65 V DC the bias network needs.
 
 The 2-lug strip provides anchor points for the diode and the wires landing on either side of it. It also provides physical clearance — the diode hangs in mid-air between two lugs rather than touching anything else.
 

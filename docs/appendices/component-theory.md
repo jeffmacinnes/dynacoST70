@@ -168,7 +168,7 @@ The pentode's plate-current-vs-plate-voltage curve has a characteristic shape:
 
 That flat region above the knee is what makes the pentode useful: it acts like a current source (high output impedance) driven by grid voltage. The plate voltage barely affects the current.
 
-For audio: the pentode's output impedance is high (~30 kΩ for an EL34), which is what makes it want a transformer-coupled load. The OPT steps that down to the speaker's 8 Ω.
+For audio: the pentode's output impedance is high (≈15 kΩ for an EL34), which is what makes it want a transformer-coupled load. The OPT steps that down to the speaker's 8 Ω.
 
 ## Transformer leakage inductance
 

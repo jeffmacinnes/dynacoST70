@@ -119,7 +119,7 @@ While one anode is "off duty" (blocked by reverse bias), the other is delivering
 
 Same logic as the white pair in [step 2](step-02-5ar4-heater.md#why-we-twist-the-leads): AC current flows out through one wire and back through the other. Twisting the wires forces their magnetic fields to cancel locally, minimizing radiated hum into nearby signal circuitry.
 
-But there's an added consideration with this pair: **it's high voltage**. The 720V AC peak-to-peak is far more than the heater windings, and the magnetic field from any imbalance is correspondingly stronger. Sloppy wiring here can produce audible 60Hz hum that even good filtering downstream can't fully eliminate.
+But there's an added consideration with this pair: **it's high voltage**. The full winding measures 720V RMS end-to-end (over 1,000V at the peaks) — far more than the heater windings, and the magnetic field from any imbalance is correspondingly stronger. Sloppy wiring here can produce audible 60Hz hum that even good filtering downstream can't fully eliminate.
 
 This is also why we **dress the leads close to the chassis** — keeping the wires physically near the grounded metal helps shield their fields from the rest of the amp.
 
@@ -143,7 +143,7 @@ The center tap is what makes the dual-anode topology work as a true full-wave re
 
 ## Crossing into the high-voltage zone
 
-This step is when the amp transitions from "low-voltage circuits" to "circuits that can hurt you." The wiring you're doing right now is electrically inert (the amp is unpowered), but once the build is complete and powered, these red leads carry 720V AC peak-to-peak and connect to a node that will become +450V DC after the rectifier and filter caps are in place.
+This step is when the amp transitions from "low-voltage circuits" to "circuits that can hurt you." The wiring you're doing right now is electrically inert (the amp is unpowered), but once the build is complete and powered, these red leads carry 720V RMS across the full winding (roughly 1,018V at the peaks) and connect to a node that will become about +435V DC after the rectifier and filter caps are in place.
 
 See [high-voltage safety](../../test-equipment/high-voltage-safety.md) for the full HV safety discussion. The short version: never assume a capacitor is discharged, follow the [one-hand rule](../../test-equipment/high-voltage-safety.md#one-hand-rule) when probing live circuits, and discharge filter caps through a resistor before reaching inside a powered-down amp.
 

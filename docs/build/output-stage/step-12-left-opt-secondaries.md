@@ -15,9 +15,9 @@ The four secondary leads from the **left** A-470 — BLACK, BROWN, ORANGE, YELLO
 | BLACK | Left strip lug 4 | Speaker common (0 Ω) |
 | BROWN | Left strip lug 3 (S) | 4 Ω |
 | ORANGE | Left strip lug 2 (S) | 8 Ω |
-| YELLOW | Left strip lug 1 (S) | 16 Ω + global feedback origin |
+| YELLOW | Left strip lug 1 | 16 Ω + global feedback origin |
 
-Lug 4 (BLACK common) is left **unsoldered** at this step — more wires will land there in later steps. Don't solder until they're all in place.
+Lug 4 (BLACK common) and lug 1 (YELLOW) are left **unsoldered** at this step — lug 4 gets its ground wire later, and lug 1 stays open until the feedback wire lands in [step 60](../driver-stage/step-60-left-strip-1-to-eyelet-12.md). Don't solder until all wires are in place.
 
 ## Why these four leads matter together
 

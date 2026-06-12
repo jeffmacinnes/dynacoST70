@@ -175,9 +175,9 @@ If anything goes wrong, drop the volume immediately. Don't power off mid-signal 
     - Ch3 (16 Ω tap) is in phase with ch2 (it's the same signal, just at lower amplitude).
     - **Ch4 (pentode cathode) is the interesting one** — it should be a small AC signal (~10–20 mVp-p), and it should be **in phase with the input** because the feedback opposes the input (the *math* is `cathode = input − k·output`, and since output is in phase with input, the residual at the cathode is the small uncorrected error).
 
-    What it tells you: if ch3 is essentially zero (no signal at the 16 Ω tap), the feedback wire is disconnected — and you'd notice immediately because the amp would suddenly have ~6× more gain and ~6× more distortion. If ch4 is *not* in phase with ch1, the feedback is positive (wiring inversion somewhere) and the amp is moments away from oscillating.
+    What it tells you: if ch3 is essentially zero (no signal at the 16 Ω tap), the feedback wire is disconnected — and you'd notice immediately because the amp would suddenly have ~10× more gain and ~10× more distortion (the loop is worth 20 dB). If ch4 is *not* in phase with ch1, the feedback is positive (wiring inversion somewhere) and the amp is moments away from oscillating.
 
-    **Bonus measurement**: temporarily disconnect the feedback wire (from the rear-strip lug 1 to PC-3A eyelet 12 or 13 — pull the wire at the eyelet end so you can re-solder it), and watch ch4 change. With feedback open, the gain shoots up (output for the same input grows by ~6×) and any distortion in ch2 becomes much more obvious. Reconnect to see the loop "fix" the signal — visceral demonstration of what feedback buys you.
+    **Bonus measurement**: temporarily disconnect the feedback wire (from the rear-strip lug 1 to PC-3A eyelet 12 or 13 — pull the wire at the eyelet end so you can re-solder it), and watch ch4 change. With feedback open, the gain shoots up (output for the same input grows by ~10×) and any distortion in ch2 becomes much more obvious. Reconnect to see the loop "fix" the signal — visceral demonstration of what feedback buys you.
 
 ## Stage 6 — connect real speakers
 

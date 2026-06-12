@@ -4,7 +4,7 @@ title: 6GH8A driver tube
 
 # 6GH8A driver tube
 
-The 6GH8A is a 1960s **compactron**-style combined pentode/triode tube — two completely separate working sections inside a single 9-pin glass envelope, sharing only the heater. Dynaco picked it for the ST-70 driver board because one envelope did both the voltage amplification AND the phase splitting needed for one channel of the push-pull output stage. Half the tubes, half the sockets, half the wiring.
+The 6GH8A is a 1960s **9-pin noval miniature** combined pentode/triode tube — two completely separate working sections inside a single 9-pin glass envelope, sharing only the heater. (It's sometimes mislabeled a "compactron" — compactrons are the larger 12-pin family; the 6GH8A is a standard noval.) Dynaco picked it for the ST-70 driver board because one envelope did both the voltage amplification AND the phase splitting needed for one channel of the push-pull output stage. Half the tubes, half the sockets, half the wiring.
 
 The ST-70 uses two 6GH8As — one per channel — in 9-pin miniature sockets that are part of the [PC-3A driver board](pc-3a-driver-board.md) itself. The drivers don't get chassis V-numbers in the manual; only the seven chassis octal sockets do (V1 = rectifier, V2/V3/V6/V7 = EL34 outputs, V4/V5 = front-panel Biaset sockets).
 
@@ -32,8 +32,8 @@ For the topology each section participates in, see:
 | Heater | 6.3 V @ 0.45 A (shared between sections) | |
 | Plate voltage (max) | 330 V | 330 V |
 | Plate dissipation (max) | 2.5 W | 1.5 W |
-| Transconductance (g_m) | ~12,000 µmho | ~3,800 µmho |
-| Amplification factor (µ) | high (pentode) | ~40 (triode) |
+| Transconductance (g_m) | ~7,500 µmho | ~3,800 µmho |
+| Amplification factor (µ) | high (pentode) | ~46 (triode) |
 
 In the ST-70's operating conditions, both sections run comfortably below max ratings — long life.
 
@@ -51,19 +51,17 @@ For Hafler's ST-70 cost target, using a mass-market TV tube for the driver stage
 
 The trade-off: the 6GH8A isn't tuned for audio. Its specs are good enough but not optimal. Designed-for-audio tubes can do better — which is part of why the VTA driver board upgrade (see below) exists.
 
-## Adapter set
+## Adapter set (when you need one — and when you don't)
 
-The ST-70's PC-3A driver board sockets are *almost* but not quite standard 9-pin sockets. The pinout differs slightly from the 6GH8A's compactron base. Originally Dynaco supplied tubes with the right base; today's NOS 6GH8As often have a slightly-different base.
+There are two versions of the ST-70 driver board. The earlier **Type A** board was wired for the 7199 pentode/triode tube, which has a different pinout from the 6GH8A. The later **Type B** board — the PC-3A used in this build — is wired for the 6GH8A directly, in standard 9-pin noval sockets.
 
-This build uses an **adapter set from Amplified Parts** — small plug-in adapters that translate between modern 9-pin compactron 6GH8As and the PC-3A's socket pinout. They plug into the socket; the tube plugs into the adapter; everything works.
-
-If your tubes come with the original Dynaco-compatible base, you don't need the adapters. The adapters are just convenience for the modern parts ecosystem.
+The **#SA-6GH8A adapter** (sold by Amplified Parts and others) exists for owners of Type A boards: it translates the 6GH8A's pinout to the 7199 socket wiring so a 6GH8A can be used where a 7199 was intended. With a Type B / PC-3A board, **no adapter is needed** — the 6GH8As plug straight into the board's sockets.
 
 ## How the two sections are used in the ST-70
 
 ### Pentode (input stage)
 
-The pentode section is the input voltage amplifier. Audio comes in from the input jack, goes through the volume/balance controls, and lands on the pentode's control grid. The pentode amplifies (~50×) and outputs a much larger signal at its plate.
+The pentode section is the input voltage amplifier. Audio comes in from the input jack, passes through the mono/stereo switch and the 470 kΩ grid leak (the ST-70 has no volume or balance controls — it's a power amp), and lands on the pentode's control grid. The pentode amplifies (~50×) and outputs a much larger signal at its plate.
 
 The pentode's cathode is **where the global negative feedback returns** — the feedback wire from the 16 Ω OPT tap arrives here through a resistor, mixing with the local cathode bias. See [feedback](../theory/feedback.md) for the full loop.
 
@@ -129,7 +127,7 @@ The VTA is the obvious "next mod" for an ST-70 builder who wants to upgrade beyo
 
 ## In this build
 
-The 6GH8As sit in 9-pin miniature sockets on the PC-3A driver board — left channel and right channel — plugged in via the Amplified Parts adapter set. The board's own sockets, not chassis octals.
+The 6GH8As sit in 9-pin miniature sockets on the PC-3A driver board — left channel and right channel — plugged directly into the board's own sockets (no adapter needed on the Type B / PC-3A board), not chassis octals.
 
 ## See also
 

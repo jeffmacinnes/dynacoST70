@@ -26,12 +26,12 @@ The seven lugs will be wired during later steps. Some are channel-specific, some
 
 | Lug | Purpose | Wired in |
 |---|---|---|
-| 1 | (varies by revision) | later wiring steps |
-| 2 | (varies) | later wiring steps |
-| 3 | (varies) | later wiring steps |
-| 4 | Signal ground (star-point link to chassis) | later wiring steps |
+| 1 | Ground (jumpered to lug 6) | later wiring steps |
+| 2 | Bias divider bottom node | later wiring steps |
+| 3 | Filtered bias feed to the pots | later wiring steps |
+| 4 | Raw −65 V bias node (cap negative + diode feed) | later wiring steps |
 | **5** | **Heater #1 CT (GRN/YEL)** | [step 6](../power-supply/step-06-heater-cts.md) |
-| 6 | (varies) | later wiring steps |
+| 6 | Ground tie to main ground at the quad cap | later wiring steps |
 | **7** | **Heater #2 CT (BRN/YEL)** | [step 6](../power-supply/step-06-heater-cts.md) |
 
 For now, just mount it. All the wiring happens in subsequent steps.

@@ -214,7 +214,7 @@ You may need to add a series resistor in the bias path, or replace the diode.
 
 ### One channel sounds different
 
-Re-bias both channels. Then if it persists, check that the OPT secondary leads are correct (different impedance taps in use, or BLUE/GREEN primary swapped on one channel — these are the two primary plate leads and getting them swapped inverts that channel's polarity).
+Re-bias both channels. Then if it persists, check that the OPT secondary leads are correct (different impedance taps in use, or the BLUE/BLUE-WHITE primary plate leads swapped on one channel — getting them swapped inverts that channel's polarity; the GREEN and GREEN/WHITE leads are the UL screen taps).
 
 ## Re-checking bias
 

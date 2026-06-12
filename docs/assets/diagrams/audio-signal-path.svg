@@ -46,16 +46,16 @@
   <text class="subhead" x="640" y="58" text-anchor="middle">RCA input → 6GH8A pentode (gain) → 6GH8A triode (phase split) → EL34 push-pull pair → A-470 → speaker</text>
 
   <!-- ============ STAGE 1: INPUT ============ -->
-  <g class="lead-group" data-tooltip="INPUT — RCA jack + input switch + 1 MΩ grid leak.
+  <g class="lead-group" data-tooltip="INPUT — RCA jack + input switch + 470 kΩ grid leak.
 
-The RCA jack on the rear panel feeds the input switch (front), which selects between sources. A 1 MΩ grid leak resistor ties the pentode grid to ground, giving it a DC reference while presenting a high input impedance to the source.
+The RCA jack on the rear panel feeds the input switch (front), which selects between sources. A 470 kΩ grid leak resistor ties the pentode grid to ground, giving it a DC reference while presenting a high input impedance to the source.
 
 Typical level here: ~1 Vpp line level.">
     <rect class="stage-box stage-input" x="40" y="280" width="140" height="100" rx="6"/>
     <text class="stage-name" x="110" y="310" text-anchor="middle">Input</text>
     <text class="stage-sub"  x="110" y="328" text-anchor="middle">RCA jack +</text>
     <text class="stage-sub"  x="110" y="342" text-anchor="middle">input switch +</text>
-    <text class="stage-sub"  x="110" y="356" text-anchor="middle">1 MΩ grid leak</text>
+    <text class="stage-sub"  x="110" y="356" text-anchor="middle">470 kΩ grid leak</text>
     <text class="voltage-label" x="110" y="395" text-anchor="middle">~1 Vpp</text>
   </g>
 
@@ -98,7 +98,7 @@ These caps age over decades; leaky coupling caps put DC on the next grid and ske
   <!-- ============ STAGE 3: 6GH8A TRIODE / CATHODYNE ============ -->
   <g class="lead-group" data-tooltip="6GH8A TRIODE — cathodyne phase splitter.
 
-The triode has equal-value resistors above and below it (~22 kΩ each). Because the same current flows through both, the plate output and the cathode output have IDENTICAL amplitude but OPPOSITE phase — 180° apart. Exactly what push-pull needs.
+The triode has equal-value resistors above and below it (47 kΩ each, matched to 1%). Because the same current flows through both, the plate output and the cathode output have IDENTICAL amplitude but OPPOSITE phase — 180° apart. Exactly what push-pull needs.
 
 This is the magic: one tube section + two equal resistors gives you a perfectly balanced phase-split signal, no calibration needed.">
     <rect class="stage-box stage-split" x="475" y="270" width="180" height="120" rx="6"/>
@@ -147,26 +147,26 @@ Mounted directly at the EL34 socket (pin 5 to pin 6). Without it, the high-gain 
   <polygon points="858,410 851,406 851,414" fill="#1a4e8a"/>
 
   <!-- ============ STAGE 4: EL34 PUSH-PULL PAIR ============ -->
-  <g class="lead-group" data-tooltip="EL34 #1 (V2 left ch / V6 right ch) — receives the + phase signal at its grid (pin 5), bias holds it at ~50 mA idle, AC swings the plate current up and down. Its plate (pin 3) drives one end of the A-470 primary.">
+  <g class="lead-group" data-tooltip="EL34 #1 (V2 left ch / V6 right ch) — receives the + phase signal at its grid (pin 5), bias holds it at ~50 mA idle, AC swings the plate current up and down. Its plate (pin 3) drives one end of the A-470 primary via the BLU/WHT lead.">
     <rect class="stage-box stage-output" x="858" y="200" width="120" height="90" rx="6"/>
     <text class="stage-name" x="918" y="226" text-anchor="middle">EL34 #1</text>
     <text class="stage-sub"  x="918" y="244" text-anchor="middle">V2 (or V6)</text>
     <text class="stage-sub"  x="918" y="262" text-anchor="middle">+phase grid</text>
-    <text class="stage-sub"  x="918" y="280" text-anchor="middle">plate → BLUE</text>
+    <text class="stage-sub"  x="918" y="280" text-anchor="middle">plate → BLU/WHT</text>
   </g>
-  <g class="lead-group" data-tooltip="EL34 #2 (V3 left ch / V7 right ch) — receives the − phase signal at its grid; plate current swings opposite to EL34 #1 at every instant. This is push-pull: the two tubes alternate driving the OPT primary's two halves.">
+  <g class="lead-group" data-tooltip="EL34 #2 (V3 left ch / V7 right ch) — receives the − phase signal at its grid; plate current swings opposite to EL34 #1 at every instant. Its plate (pin 3) drives the other end of the A-470 primary via the BLUE lead. This is push-pull: the two tubes alternate driving the OPT primary's two halves.">
     <rect class="stage-box stage-output" x="858" y="370" width="120" height="90" rx="6"/>
     <text class="stage-name" x="918" y="396" text-anchor="middle">EL34 #2</text>
     <text class="stage-sub"  x="918" y="414" text-anchor="middle">V3 (or V7)</text>
     <text class="stage-sub"  x="918" y="432" text-anchor="middle">−phase grid</text>
-    <text class="stage-sub"  x="918" y="450" text-anchor="middle">plate → GREEN</text>
+    <text class="stage-sub"  x="918" y="450" text-anchor="middle">plate → BLUE</text>
   </g>
 
   <!-- Plates from EL34s to OPT primary -->
   <path class="signal-pos" d="M 978 245 L 1015 245 L 1015 295"/>
-  <text class="wire-label" x="996" y="240" >BLUE</text>
+  <text class="wire-label" x="996" y="240" >BLU/WHT</text>
   <path class="signal-neg" d="M 978 415 L 1015 415 L 1015 365"/>
-  <text class="wire-label" x="996" y="430" >GREEN</text>
+  <text class="wire-label" x="996" y="430" >BLUE</text>
 
   <!-- B+ feed to center tap (red wire from above) -->
   <g class="lead-group" data-tooltip="B+ CENTER TAP — the RED lead on the A-470 primary brings B+ in at the middle of the winding. Push-pull plate currents balance around this point; the quiescent current draw on B+ is steady, only the AC swings oppositely in the two halves.">
@@ -177,7 +177,7 @@ Mounted directly at the EL34 socket (pin 5 to pin 6). Without it, the high-gain 
   <!-- ============ STAGE 5: A-470 OPT ============ -->
   <g class="lead-group" data-tooltip="A-470 OUTPUT TRANSFORMER PRIMARY — center-tapped, push-pull.
 
-The two halves of the primary (Blue lead and Green lead) are driven by EL34 plate currents that swing oppositely. Push-pull cancels DC magnetization in the core (so the core doesn't saturate on signal) and reinforces the AC signal in the secondary. Also rejects B+ ripple by common-mode cancellation.">
+The two halves of the primary (BLU/WHT lead and BLUE lead) are driven by EL34 plate currents that swing oppositely. Push-pull cancels DC magnetization in the core (so the core doesn't saturate on signal) and reinforces the AC signal in the secondary. Also rejects B+ ripple by common-mode cancellation.">
     <rect class="stage-box stage-opt" x="998" y="295" width="68" height="70" rx="4"/>
     <text class="stage-sub" x="1032" y="318" text-anchor="middle">A-470</text>
     <text class="stage-sub" x="1032" y="332" text-anchor="middle">primary</text>
@@ -197,7 +197,7 @@ The secondary is a low-voltage, low-impedance winding with four taps: BLACK (com
   <line x1="1066" y1="330" x2="1080" y2="330" stroke="#666" stroke-width="1.2"/>
   <line x1="1066" y1="350" x2="1080" y2="350" stroke="#666" stroke-width="1.2"/>
 
-  <text class="voltage-label" x="1032" y="385" text-anchor="middle">~800 Vpp</text>
+  <text class="voltage-label" x="1032" y="385" text-anchor="middle">~1.1 kVpp plate-to-plate</text>
   <text class="voltage-label" x="1114" y="385" text-anchor="middle">~25 Vpp @ 8 Ω</text>
 
   <!-- ============ STAGE 6: SPEAKER ============ -->

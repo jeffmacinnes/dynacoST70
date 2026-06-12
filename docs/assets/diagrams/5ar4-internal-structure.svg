@@ -92,7 +92,7 @@ Heated indirectly by the filament inside. At ~800°C the oxide coating emits the
 
 Indirect heating means the cathode is electrically isolated from the AC heater current, so 60 Hz heater hum does not couple into the DC output. This is one reason the 5AR4 produces a quieter B+ than directly-heated rectifiers like the 5U4 or 5Y3.
 
-After rectification + filtering downstream, the cathode output becomes the ~450 V B+ rail.</title>
+After rectification + filtering downstream, the cathode output becomes the ~435 V B+ rail.</title>
     <rect class="cathode interactive" x="421" y="195" width="18" height="245" rx="3"/>
     <text class="body-label interactive-text" x="430" y="183" text-anchor="middle">Cathode</text>
   </g>
@@ -219,7 +219,7 @@ Wired in build step 3.</title>
   <g class="lead-group">
     <title>Pin 8 — Cathode + Heater (other end).
 
-This pin is BOTH the cathode connection (where the ~450 V B+ exits the tube) AND one end of the heater filament. That's normal for indirectly-heated rectifiers — the cathode and one heater pin share an internal connection because the cathode sleeve has to be at some defined potential, and the heater itself doesn't matter for DC output.
+This pin is BOTH the cathode connection (where the ~435 V B+ exits the tube) AND one end of the heater filament. That's normal for indirectly-heated rectifiers — the cathode and one heater pin share an internal connection because the cathode sleeve has to be at some defined potential, and the heater itself doesn't matter for DC output.
 
 The other WHT heater lead from the PA-060 lands here in build step 2. Pin 8 then feeds the filter caps and choke downstream (step 7+).</title>
     <circle class="pin-cath" cx="660" cy="590" r="9"/>

@@ -34,7 +34,7 @@ Whatever the two tubes have in common — DC bias current, hum picked up equally
 
 ### 1. About twice the power
 
-Each tube provides about half the output peak voltage swing, but they swing in opposite directions, so the total swing across the OPT primary is doubled. Power scales as voltage² over impedance, so push-pull delivers roughly **4× the output voltage swing** of a single tube into the same OPT primary impedance — which works out to about 2× the output power for similar plate dissipation.
+The two tubes swing in opposite directions, so the total voltage swing across the OPT primary is **doubled** compared to a single tube driving one half of the winding. But the bigger practical win comes from operating conditions push-pull makes possible: the tubes can run class AB (each loafing through part of the cycle, so each can be driven much harder on its half), and the DC magnetisation of the core cancels (see below), letting the transformer do its job efficiently. Together these let a push-pull pair deliver far more clean power than two single-ended tubes of the same dissipation.
 
 The ST-70 delivers 35 W per channel using push-pull EL34s. A single-ended EL34 amplifier maxes out around 8 W. Same tubes, same B+, very different output.
 
@@ -53,9 +53,9 @@ Both positions are defensible. The ST-70 is push-pull, and the EL34 push-pull pa
 
 ### 3. DC plate currents cancel in the core
 
-Each tube draws ~100 mA of DC plate current at idle. That current flows through its half of the OPT primary. The two tubes' DC currents flow in *opposite directions* through the magnetic core — they cancel.
+Each tube draws ~50 mA of DC plate current at idle (~100 mA per pair). That current flows through its half of the OPT primary. The two tubes' DC currents flow in *opposite directions* through the magnetic core — they cancel.
 
-This matters because it means the OPT core doesn't have to be designed to handle ~200 mA of DC magnetisation. In a single-ended amp, all the tube's DC current flows one way through the core, magnetising it heavily — the core has to have an air gap to avoid saturating, which reduces inductance and bandwidth.
+This matters because it means the OPT core doesn't have to be designed to handle ~100 mA of DC magnetisation. In a single-ended amp, all the tube's DC current flows one way through the core, magnetising it heavily — the core has to have an air gap to avoid saturating, which reduces inductance and bandwidth.
 
 In push-pull, no gap is needed. The core can be a continuous magnetic path, giving:
 
@@ -87,8 +87,8 @@ If the phase splitter is unbalanced (one output stronger than the other), the pu
 
 ## How this connects to other parts of the manual
 
-- The two EL34s of each channel ([V2/V6 for one channel, V3/V7 for the other](../index.md#tube-layout-this-manuals-numbering)) form a push-pull pair driving an [A-470](../components/a-470-output-transformer.md).
-- The OPT's center tap (RED lead) is where B+ enters; the two ends (BLUE / BROWN-primary) connect to the two tube plates. See the [A-470 page](../components/a-470-output-transformer.md) for the lead assignments.
+- The two EL34s of each channel ([V2/V3 for the left channel, V6/V7 for the right](../index.md#tube-layout-this-manuals-numbering)) form a push-pull pair driving an [A-470](../components/a-470-output-transformer.md).
+- The OPT's center tap (RED lead) is where B+ enters; the two ends (BLUE / BLUE-WHITE) connect to the two tube plates. See the [A-470 page](../components/a-470-output-transformer.md) for the lead assignments.
 - The phase splitter that feeds the push-pull pair is covered on the [phase splitting](phase-splitting.md) page.
 - Even-harmonic cancellation depends on balanced operation, which depends on matched tubes — see the [individual bias pots mod](../modifications/individual-bias-pots.md) for keeping the two tubes balanced.
 

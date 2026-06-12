@@ -16,7 +16,7 @@ Position the two solder lugs per the pictorial — they need to face the fuse po
 
 ## What the switch does
 
-This is the **mains power switch**. It sits in series with the mains line (after the fuse post), interrupting the AC supply when OFF.
+This is the **mains power switch**. It sits in series with the **hot leg** of the mains line (the cord's BLACK wire), interrupting the AC supply when OFF. The fuse sits in the other (neutral) leg.
 
 Position-wise: when the lever is UP, the switch is ON (closed circuit, mains flows). When DOWN, OFF.
 
@@ -26,7 +26,7 @@ Some modern users leave the rear switch ON permanently and control the amp from 
 
 ## Why SPST instead of DPST
 
-A DPST switch would interrupt BOTH hot and neutral. An SPST interrupts only ONE wire — in the ST-70's case, the hot. The neutral stays connected to the chassis ground via the power cord's neutral pin.
+A DPST switch would interrupt BOTH hot and neutral. An SPST interrupts only ONE wire — in the ST-70's case, the hot. The neutral leg runs through the fuse and is never bonded to the chassis.
 
 Modern safety practice favors DPST (interrupting both hot and neutral) but the SPST design works fine when:
 

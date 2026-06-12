@@ -14,9 +14,9 @@ Neither lug is soldered final at this step.
 
 ## What this cap does
 
-Together with the 10 kΩ resistor from [step 20](step-20-bias-resistor-1.md), this cap forms the **second RC stage** of bias-supply filtering. The first stage (steps 19-20) reduces ripple by ~58 dB; the second stage adds another ~58 dB on top.
+Together with the 10 kΩ resistor from [step 20](step-20-bias-resistor-1.md), this cap forms the **second RC stage** of bias-supply filtering. The first stage (steps 19-20) cuts the 60 Hz half-wave ripple down to a tiny fraction; this second stage cuts that residue down again by a similar factor.
 
-Combined attenuation at 120 Hz: ~116 dB. The bias supply is mathematically cleaner than the noise floor of any measurement instrument by this point. Pure DC.
+After both stages, the bias supply is far cleaner than anything the EL-34 grids could ever respond to. Effectively pure DC.
 
 ## Why two stages instead of one bigger cap
 

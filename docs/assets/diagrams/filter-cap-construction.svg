@@ -60,46 +60,46 @@ The can itself is also the SHARED NEGATIVE TERMINAL of all four caps — it bolt
 
   <!-- Four sections inside the can — color-coded -->
   <g class="lead-group">
-    <title>SECTION 1 — typically the largest (~30 µF in original Dynaco).
+    <title>SECTION 1 — the largest (30 µF).
 
 This is the FIRST filter cap, sitting directly at the 5AR4 cathode. It takes the brunt of the rectified pulse-and-droop cycle. Sized large because it has to hold the rail voltage between 120 Hz pulses with the full B+ load drawing through it.</title>
     <rect class="section-1 interactive" x="190" y="155" width="240" height="100"/>
     <text class="section-label label" x="310" y="200" text-anchor="middle" fill="#1a1a1a">Section 1</text>
-    <text class="sub"   x="310" y="218" text-anchor="middle">~30 µF · first stage</text>
+    <text class="sub"   x="310" y="218" text-anchor="middle">30 µF · first stage</text>
     <text class="sub"   x="310" y="234" text-anchor="middle">5AR4 cathode → choke input</text>
   </g>
   <line class="section-divider" x1="190" y1="255" x2="430" y2="255"/>
 
   <g class="lead-group">
-    <title>SECTION 2 — second stage filter (~20 µF typical).
+    <title>SECTION 2 — second stage filter (20 µF).
 
 Sits AFTER the choke. The choke + this cap form an LC pi-filter — the choke smooths current, this cap smooths voltage. This is where the B+ rail becomes clean enough to drive the output tube plates.</title>
     <rect class="section-2 interactive" x="190" y="255" width="240" height="100"/>
     <text class="section-label label" x="310" y="300" text-anchor="middle" fill="#1a1a1a">Section 2</text>
-    <text class="sub"   x="310" y="318" text-anchor="middle">~20 µF · second stage</text>
+    <text class="sub"   x="310" y="318" text-anchor="middle">20 µF · second stage</text>
     <text class="sub"   x="310" y="334" text-anchor="middle">after choke → tube plates</text>
   </g>
   <line class="section-divider" x1="190" y1="355" x2="430" y2="355"/>
 
   <g class="lead-group">
-    <title>SECTION 3 — driver stage / screen supply (~20 µF typical).
+    <title>SECTION 3 — driver board supply (20 µF).
 
-The output tube screen grids and the driver tubes need a slightly lower, even-cleaner voltage. This section is fed from section 2 through a dropping resistor, and provides decoupling for the screen / driver stage.</title>
+Fed from the main B+ through the 6.8 kΩ dropping resistor (~375 V). This rail leaves for the PC-3A driver board via eyelet 20, feeding the pentode screens and triode plates there. The EL34 screens are NOT fed from here — they come from the OPT's UL taps.</title>
     <rect class="section-3 interactive" x="190" y="355" width="240" height="100"/>
     <text class="section-label label" x="310" y="400" text-anchor="middle" fill="#1a1a1a">Section 3</text>
-    <text class="sub"   x="310" y="418" text-anchor="middle">~20 µF · screen / driver feed</text>
-    <text class="sub"   x="310" y="434" text-anchor="middle">via dropping resistor</text>
+    <text class="sub"   x="310" y="418" text-anchor="middle">20 µF · driver board feed</text>
+    <text class="sub"   x="310" y="434" text-anchor="middle">via 6.8 kΩ → eyelet 20</text>
   </g>
   <line class="section-divider" x1="190" y1="455" x2="430" y2="455"/>
 
   <g class="lead-group">
-    <title>SECTION 4 — input stage / bias decoupling (~10 µF typical).
+    <title>SECTION 4 — driver pentode rail (20 µF).
 
-The smallest section, used to decouple the lowest-current rails — input stage B+, or the bias supply filter. Different ST-70 schematic revisions wire this section differently.</title>
+Fed from the previous section through the 22 kΩ resistor (~305 V); supplies the pentode plate-load rail on the PC-3A via eyelet 19. The bias supply is NOT filtered here — it has its own caps on the 7-lug strip.</title>
     <rect class="section-4 interactive" x="190" y="455" width="240" height="100"/>
     <text class="section-label label" x="310" y="500" text-anchor="middle" fill="#1a1a1a">Section 4</text>
-    <text class="sub"   x="310" y="518" text-anchor="middle">~10 µF · input / bias feed</text>
-    <text class="sub"   x="310" y="534" text-anchor="middle">(varies by schematic revision)</text>
+    <text class="sub"   x="310" y="518" text-anchor="middle">20 µF · pentode rail</text>
+    <text class="sub"   x="310" y="534" text-anchor="middle">via 22 kΩ → eyelet 19</text>
   </g>
 
   <!-- Base plate -->
@@ -107,22 +107,22 @@ The smallest section, used to decouple the lowest-current rails — input stage 
 
   <!-- Lugs at the bottom — 4 positive + 1 negative (ground tab to side) -->
   <g class="lead-group">
-    <title>Lug 1 — positive terminal of Section 1 (first stage, ~30 µF).</title>
+    <title>Lug 1 — positive terminal of Section 1 (first stage, 30 µF).</title>
     <rect class="lug lug-positive" x="200" y="575" width="20" height="40"/>
     <text class="sub" x="210" y="635" text-anchor="middle" fill="#cc3a2a">+1</text>
   </g>
   <g class="lead-group">
-    <title>Lug 2 — positive terminal of Section 2 (second stage, ~20 µF).</title>
+    <title>Lug 2 — positive terminal of Section 2 (second stage, 20 µF).</title>
     <rect class="lug lug-positive" x="265" y="575" width="20" height="40"/>
     <text class="sub" x="275" y="635" text-anchor="middle" fill="#cc3a2a">+2</text>
   </g>
   <g class="lead-group">
-    <title>Lug 3 — positive terminal of Section 3 (screen/driver, ~20 µF).</title>
+    <title>Lug 3 — positive terminal of Section 3 (driver board feed, 20 µF).</title>
     <rect class="lug lug-positive" x="330" y="575" width="20" height="40"/>
     <text class="sub" x="340" y="635" text-anchor="middle" fill="#cc3a2a">+3</text>
   </g>
   <g class="lead-group">
-    <title>Lug 4 — positive terminal of Section 4 (input/bias, ~10 µF).</title>
+    <title>Lug 4 — positive terminal of Section 4 (pentode rail, 20 µF).</title>
     <rect class="lug lug-positive" x="395" y="575" width="20" height="40"/>
     <text class="sub" x="405" y="635" text-anchor="middle" fill="#cc3a2a">+4</text>
   </g>
@@ -183,7 +183,7 @@ This is why filter cap mounting hardware must be TIGHT and have a clean contact 
   <line class="wire-bplus" x1="1060" y1="180" x2="1060" y2="350"/>
   <rect class="stage-box" x="990" y="355" width="140" height="40" rx="4"/>
   <text class="sub" x="1060" y="373" text-anchor="middle" fill="#1a4e8a">Dropping R</text>
-  <text class="sub" x="1060" y="389" text-anchor="middle">(~1 kΩ)</text>
+  <text class="sub" x="1060" y="389" text-anchor="middle">(6.8 kΩ)</text>
   <line class="wire-bplus" x1="1060" y1="395" x2="1060" y2="430"/>
   <circle cx="1060" cy="430" r="3.5" fill="#1a4e8a"/>
   <line class="wire-bplus" x1="1060" y1="430" x2="1060" y2="465"/>
@@ -192,17 +192,17 @@ This is why filter cap mounting hardware must be TIGHT and have a clean contact 
   <!-- Continue to screens -->
   <line class="wire-bplus" x1="1060" y1="430" x2="1110" y2="430"/>
   <polygon points="1110,426 1120,430 1110,434" fill="#1a4e8a"/>
-  <text class="sub" x="1125" y="434" fill="#1a4e8a" font-weight="700">→ screens</text>
+  <text class="sub" x="1125" y="434" fill="#1a4e8a" font-weight="700">→ driver board</text>
 
   <!-- Another drop for Section 4 -->
   <line class="wire-bplus" x1="1060" y1="430" x2="1060" y2="555"/>
   <rect class="stage-box" x="990" y="555" width="140" height="40" rx="4"/>
   <text class="sub" x="1060" y="573" text-anchor="middle" fill="#1a4e8a">Dropping R</text>
-  <text class="sub" x="1060" y="589" text-anchor="middle">(~22 kΩ)</text>
+  <text class="sub" x="1060" y="589" text-anchor="middle">(22 kΩ)</text>
   <line class="wire-bplus" x1="1060" y1="595" x2="1060" y2="625"/>
   <text class="sub" x="1060" y="640" text-anchor="middle" fill="#cc3a2a">↓ to lug +4</text>
-  <text class="sub" x="1060" y="656" text-anchor="middle">(Section 4 — input/bias decoupling)</text>
+  <text class="sub" x="1060" y="656" text-anchor="middle">(Section 4 — driver pentode rail, eyelet 19)</text>
 
   <!-- ============ FOOTER ============ -->
-  <text class="footer" x="600" y="700" text-anchor="middle">Capacitance values vary across ST-70 revisions and replacement parts. The pattern — large first stage, smaller subsequent stages — is consistent.</text>
+  <text class="footer" x="600" y="700" text-anchor="middle">The ST-70 quad cap is 30/20/20/20 µF — a large first stage, then smaller downstream sections. The EL34 screens are fed from the OPT UL taps, not from this can.</text>
 </svg>

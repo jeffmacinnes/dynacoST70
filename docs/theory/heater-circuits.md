@@ -25,7 +25,7 @@ DC heaters *are* sometimes used in very high-end designs to eliminate any chance
 
 ## Why 5V (for the 5AR4) and 6.3V (for everything else)
 
-The 5AR4 (and many directly-heated rectifier tubes — 5U4, 5Y3, 5R4, etc.) was designed for **5V filaments**. The number is right there in the tube name: the "5" in "5AR4" tells you it's a 5V heater tube.
+The 5AR4 was designed for a **5V heater** — the same 5V standard as the directly-heated rectifiers it descended from (5U4, 5Y3, 5R4, etc.), though the 5AR4 itself is *indirectly* heated, with a separate cathode tied to the heater at pin 8. The number is right there in the tube name: the "5" in "5AR4" tells you it's a 5V heater tube.
 
 Most signal tubes from the same era — the EL34 outputs, 6GH8A drivers, 12AX7s, etc. — were designed for **6.3V filaments**. Again the number is in the name: 12AX7, 6V6, 6L6, 6SN7 — the leading "6" or "12" means 6.3V.
 
@@ -66,7 +66,7 @@ A heater winding without a CT-to-ground reference is **floating** with respect t
 
 The two heater leads swing symmetrically around the floating reference: at any instant, one is at +3.15V relative to the floating midpoint, the other at −3.15V. But that floating midpoint itself wanders around, picking up stray noise.
 
-When you connect the **center tap to ground**, you anchor that midpoint at exactly 0V relative to the amp's signal reference. Now:
+When you reference the **center tap to ground**, you anchor that midpoint at 0V relative to the amp's signal reference. (In this build, the CTs aren't hard-wired to ground — each one reaches ground through a 0.02 µF disc capacitor at the seven-lug strip. The cap anchors the midpoint at 60 Hz, which is all the hum cancellation needs, while leaving the winding floating at DC.) Now:
 
 - One heater lead is at **+3.15V relative to ground** at any instant
 - The other heater lead is at **−3.15V relative to ground** at the same instant
@@ -83,7 +83,7 @@ When the midpoint is held at 0V, any voltage induced into nearby signal-carrying
 
 When the midpoint is floating, this cancellation is imperfect. The induced voltages don't fully cancel because the reference is wandering. Result: 60Hz hum gets into the audio signal.
 
-The 5AR4 doesn't get this treatment because it's a power supply tube whose filament is electrically isolated from the cathode anyway — heater hum has no easy path into the signal.
+The 5AR4's 5V winding doesn't get this treatment for a more dramatic reason: its heater and cathode share pin 8, so the whole 5V winding rides at B+ — roughly 435 V above ground. Grounding a center tap there wouldn't reduce hum; it would short the B+ supply to ground. The winding must float at the cathode's potential, which is why the white 5V winding has no center tap to ground.
 
 ## Why the heater AC frequency matters
 
@@ -91,7 +91,7 @@ Heater AC is at the mains frequency — 60Hz in the US. If hum couples from the 
 
 A well-designed tube amp with CT-grounded heaters can achieve hum levels 60–80dB below full output — quiet enough that you have to put your ear up to the speaker to hear it.
 
-A poorly-grounded heater chain can produce visible-on-a-scope hum at the output. The CT-to-ground trick is one of the most cost-effective improvements in tube amp design: a single wire from each CT to a grounding point, and your hum floor drops dramatically.
+A poorly-grounded heater chain can produce visible-on-a-scope hum at the output. The CT-to-ground trick is one of the most cost-effective improvements in tube amp design: a single connection from each CT to the ground network (in this build, through a 0.02 µF bypass cap), and your hum floor drops dramatically.
 
 ## See also
 

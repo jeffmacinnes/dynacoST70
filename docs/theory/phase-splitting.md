@@ -50,11 +50,11 @@ Compare to a long-tail-pair phase splitter (the alternative — see below), whic
 
 ## Where this lives in the ST-70
 
-The 6GH8A is a "compactron" — two separate tube sections in one envelope. One section is a pentode (the voltage-amplifying gain stage), the other is a triode (used here as the phase splitter).
+The 6GH8A is a 9-pin noval miniature with two separate tube sections in one envelope. One section is a pentode (the voltage-amplifying gain stage), the other is a triode (used here as the phase splitter).
 
 Signal chain through the PC-3A driver board:
 
-1. Audio input arrives at the volume/balance controls.
+1. Audio input arrives at the RCA jack, passes through the mono/stereo switch, and is referenced to ground by a 470 kΩ grid leak resistor (the ST-70 is a power amp — there are no volume or balance controls).
 2. The pentode section of the 6GH8A amplifies the input (voltage gain ~50×).
 3. The triode section configured as a cathodyne splits the amplified signal into two phases.
 4. Those two phases drive the grids of the [EL34 push-pull pair](push-pull-topology.md).
@@ -65,7 +65,7 @@ Two 6GH8As total in the ST-70 — one per channel.
 
 The plate output and cathode output have different output impedances:
 
-- **Plate output impedance** ≈ R_plate ≈ 22 kΩ (looking back into the plate, it's the parallel combination of R_plate and the tube's plate resistance r_p, but r_p >> R_plate so it's roughly R_plate).
+- **Plate output impedance** ≈ R_plate ≈ 47 kΩ (looking back into the plate, it's the parallel combination of R_plate and the tube's plate resistance r_p, but r_p >> R_plate so it's roughly R_plate).
 - **Cathode output impedance** ≈ R_cathode / (1 + µ) ≈ ~500 Ω (the cathode follower has much lower output impedance due to the inherent feedback of cathode degeneration).
 
 So the cathode output drives its load *much* harder than the plate output. The two EL34 grids see different source impedances, which can subtly unbalance the high-frequency response.
@@ -87,7 +87,7 @@ When the input swings positive on triode A's grid, A conducts more. The shared c
 
 Advantages over cathodyne:
 
-- **Equal output impedance** at both plates (both are plate outputs, both ~22 kΩ).
+- **Equal output impedance** at both plates (both are plate outputs).
 - **Better PSRR**: power supply noise tends to common-mode at both outputs and gets cancelled by the push-pull stage.
 - **More headroom**: each side can swing a larger fraction of B+.
 

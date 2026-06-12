@@ -17,9 +17,9 @@ The 10 kΩ + the 100 µF cap from [step 19](step-19-bias-cap-1.md) together form
 Math:
 
 - Cutoff frequency: `f_c = 1 / (2π × R × C) = 1 / (2π × 10 kΩ × 100 µF) = 0.16 Hz`
-- At 120 Hz (the bias winding's full-wave ripple, after the diode and first filter): attenuation = 20 × log₁₀(120 / 0.16) = ~58 dB
+- The bias rectifier is half-wave, so its ripple is at **60 Hz** — hundreds of times above that cutoff, so the stage knocks the ripple down by a factor of several hundred.
 
-That's enormous attenuation. A few millivolts of 120 Hz ripple on the bias supply becomes nanovolts after this RC stage — completely inaudible. The bias supply is essentially pure DC by the time it reaches the bias pots.
+That's enormous attenuation. The 60 Hz ripple on the bias supply shrinks to a tiny fraction of its raw value after this RC stage — completely inaudible. The bias supply is essentially pure DC by the time it reaches the bias pots.
 
 A second RC stage ([step 21](step-21-bias-cap-2.md) + [step 22](step-22-bias-resistor-2.md)) follows, doubling the filtering for good measure.
 

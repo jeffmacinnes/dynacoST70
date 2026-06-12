@@ -29,17 +29,17 @@ This is the core trade: you give up gain (which you have plenty of) in exchange 
 
 ## What feedback buys you, concretely
 
-For the ST-70 with about **16 dB of feedback** (loop gain ~6×):
+For the ST-70 with about **20 dB of feedback** (loop gain ~10×):
 
 ### Lower distortion
 
-Distortion in any stage is reduced by a factor of `1 + Aβ` — the "loop gain." For 6× loop gain, total harmonic distortion drops by ~6×. An open-loop ST-70 might produce 5 % THD at full output; with feedback, more like 0.8 %.
+Distortion in any stage is reduced by a factor of `1 + Aβ` — the "loop gain." For 10× loop gain, total harmonic distortion drops by ~10×. An open-loop ST-70 might produce 5 % THD at full output; with feedback, more like 0.5 %.
 
 This applies to *every* source of distortion inside the loop: tube non-linearity, screen-grid effects, output transformer saturation. Everything gets pulled toward "what the input said."
 
 ### Lower output impedance
 
-The amp looks much more like an ideal voltage source to the speaker. Output impedance drops by `1 + Aβ`. A typical open-loop tube amp has Z_out ≈ 5-10 Ω at the 8 Ω tap; with the ST-70's feedback, it drops to ~1-1.5 Ω.
+The amp looks much more like an ideal voltage source to the speaker. Output impedance drops by `1 + Aβ`. A typical open-loop tube amp has Z_out ≈ 5-10 Ω at the 8 Ω tap; with the ST-70's feedback, it drops to ~0.5 Ω or less.
 
 The practical effect: better **damping factor** — the amp resists motion of the speaker cone caused by stored energy in the voice coil or cabinet. Tighter bass, less mushy low-mid range.
 
@@ -60,7 +60,7 @@ Open-loop, the amp's bandwidth is whatever it is — phase shifts at the band ex
 The ST-70 handles this with three techniques:
 
 1. **The A-470 has very low phase shift** in its passband — extending well into the inaudible high-frequency range.
-2. **Modest loop gain** (16 dB instead of, say, 30 dB). Less correction, but more margin.
+2. **Modest loop gain** (20 dB instead of, say, 30 dB). Less correction, but more margin.
 3. **Compensation capacitor** somewhere in the loop (often across a plate resistor) that rolls off the high frequencies inside the loop before they accumulate enough phase shift to oscillate.
 
 This is why "more feedback is always better" is wrong — beyond a certain point, the amp becomes hard to keep stable across all loads (a partially-blown speaker, a long cable, a different speaker impedance) and starts oscillating into ultrasonic territory. That's bad for tubes, bad for speakers, bad for everyone.
@@ -85,11 +85,11 @@ Damping factor is just the ratio of speaker impedance to amplifier output impeda
 
 `damping_factor = Z_speaker / Z_out`
 
-For an 8 Ω speaker with the ST-70's ~1.5 Ω output impedance:
+The ST-70's spec is a damping factor of **at least 15**, which means Z_out ≤ ~0.5 Ω at the 8 Ω tap:
 
-`damping_factor = 8 / 1.5 ≈ 5.3`
+`damping_factor = 8 / 0.5 ≈ 16`
 
-By solid-state amp standards (DF often > 100) that's low. By tube amp standards it's normal — most tube amps have damping factors in the 5-20 range. Higher than that and you start losing the "tube character" people associate with bass.
+By solid-state amp standards (DF often > 100) that's low. By tube amp standards it's good — most tube amps have damping factors in the 5-20 range. Higher than that and you start losing the "tube character" people associate with bass.
 
 The 16 Ω tap gives somewhat lower output impedance referred to the speaker (more feedback amplitude) — using a 4 Ω speaker on the 4 Ω tap gives a similar damping factor as 16 Ω on 16 Ω. The taps are designed to keep DF roughly constant across speaker impedances.
 

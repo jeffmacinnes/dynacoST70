@@ -23,14 +23,14 @@ The Dynaco manual provides a canonical voltage table on page 19. Tolerance per p
 
 | Pin | EL-34 (each) | GZ-34 (V1) | 6GH8A (on board) |
 |---|---|---|---|
-| 1 | 1.56 V DC (cathode) | — | * |
-| 2 | — | 435 V DC (plate) | 0 V (g1 / signal node) |
+| 1 | 1.56 V DC (g3 suppressor, strapped to cathode) | — | * |
+| 2 | — | 435 V DC (filament/cathode — B+ output) | 0 V (g1 / signal node) |
 | 3 | 410 V DC (plate) | — | * |
 | 4 | 415 V DC (screen) | 360 V AC (HV anode) | 6.4 V AC heater (pins 4-5) |
 | 5 | −32 V DC (control grid) | — | 6.4 V AC heater (pins 4-5) |
-| 6 | −32 V DC (suppressor, tied to g1) | 360 V AC (HV anode) | 1.0 V (cathode region) |
+| 6 | −32 V DC (unused tie point — carries g1 bias via the 1 kΩ grid stopper) | 360 V AC (HV anode) | varies |
 | 7 | — | — | 1.2 V (cathode region) |
-| 8 | 1.56 V DC (cathode) | 435 V DC (plate) | * |
+| 8 | 1.56 V DC (cathode) | 435 V DC (filament/cathode — B+ output) | * |
 
 \* = measurements at these points vary tube-to-tube and don't reliably indicate normal performance.
 
@@ -43,7 +43,7 @@ The four sections of the can-mounted filter cap have lugs labeled A, B, C, D at 
 | Lug | Voltage | Role |
 |---|---|---|
 | A | 305 V DC | After 22 kΩ dropping resistor — feeds 6GH8A pentode plate / input stage |
-| B | 375 V DC | After 6.8 kΩ dropping resistor — feeds EL-34 screen network |
+| B | 375 V DC | After 6.8 kΩ dropping resistor — feeds the PC-3A board via eyelet 20 (pentode screens + triode plates) |
 | C | 415 V DC | After the choke — main B+ rail to OPT primary CT |
 | D | 435 V DC | Direct from rectifier — first filter cap, highest voltage in the amp |
 
@@ -77,11 +77,11 @@ All voltages are RELATIVE TO CHASSIS GROUND unless noted otherwise. Tolerances a
 | Winding | Probe between | Expected |
 |---|---|---|
 | 5 V (5AR4 heater) | V1 pin 2 ↔ V1 pin 8 | 5.0 V AC ±5 % |
-| 6.3 V #1 (CHAN A heaters) | V2 pin 2 ↔ V2 pin 7 | 6.3 V AC ±5 % |
-| 6.3 V #2 (CHAN B heaters) | V7 pin 2 ↔ V7 pin 7 | 6.3 V AC ±5 % |
+| 6.3 V #1 (CHAN B heaters) | V2 pin 2 ↔ V2 pin 7 | 6.3 V AC ±5 % |
+| 6.3 V #2 (CHAN A heaters) | V7 pin 2 ↔ V7 pin 7 | 6.3 V AC ±5 % |
 | 6.3 V #1 either pin ↔ chassis | (with CT grounded) | 3.15 V AC |
 | 6.3 V #2 either pin ↔ chassis | (with CT grounded) | 3.15 V AC |
-| 55 V (bias winding) | RED/BLK lead ↔ RED/YEL CT | 55 V AC ±10 % |
+| 50 V (bias winding) | RED/BLK lead ↔ RED/YEL CT | 50 V AC ±10 % |
 
 ### HV winding
 
@@ -92,7 +92,7 @@ All voltages are RELATIVE TO CHASSIS GROUND unless noted otherwise. Tolerances a
 | V1 pin 6 ↔ chassis (CT grounded) | 360 V AC ±5 % |
 | RED/YEL CT ↔ chassis | 0 V |
 
-**Don't probe pin-to-pin across the full HV secondary.** 720 V AC peak-to-peak exceeds the 600 V rating of most CAT III DMMs and probes. Always measure each end to ground (chassis) separately.
+**Don't probe pin-to-pin across the full HV secondary.** 720 V RMS (over 1,000 V at the peaks) exceeds the 600 V rating of most CAT III DMMs and probes. Always measure each end to ground (chassis) separately.
 
 ### B+ rail (after rectifier and filter)
 
@@ -102,7 +102,7 @@ Per the manual's voltage table (page 19), with all tubes warm and biased to 1.56
 |---|---|---|---|
 | Filter cap lug D | DC | 435 V | First filter cap (direct from rectifier) |
 | Filter cap lug C | DC | 415 V | After choke; B+ to OPT primary CT |
-| Filter cap lug B | DC | 375 V | After 6.8 kΩ — feeds EL-34 screen network |
+| Filter cap lug B | DC | 375 V | After 6.8 kΩ — feeds the PC-3A board via eyelet 20 (pentode screens + triode plates); the EL-34 screens come from the UL taps at 415 V |
 | Filter cap lug A | DC | 305 V | After 22 kΩ — feeds 6GH8A pentode plate / input stage |
 | PC-3 eyelets #3 and #18 | DC | 370 V | On-board dropping network output |
 
@@ -143,12 +143,12 @@ The grid voltage is what actually sets the tube's idle current. The bias supply 
 
 | Pin | Function | Expected |
 |---|---|---|
-| 1 | Cathode (joined with pin 8) | 1.56 V DC (= 100 mA per pair × 15.6 Ω) |
+| 1 | Suppressor (g3), strapped to the cathode by the daisy wire | 1.56 V DC (= 100 mA per pair × 15.6 Ω) |
 | 3 | Plate (anode) | 410 V DC |
 | 4 | Screen (g2) | 415 V DC |
 | 5 | Control grid (g1) | −32 V DC (the bias) |
-| 6 | Suppressor (internally tied to g1 region) | −32 V DC (same as pin 5) |
-| 8 | Cathode (joined with pin 1) | 1.56 V DC |
+| 6 | Unused tie point — fed by the 1 kΩ grid stopper from pin 5 | −32 V DC (same as pin 5) |
+| 8 | Cathode | 1.56 V DC |
 | 2 / 7 | Heater pins | 3.15 V AC each (relative to CT-grounded reference) |
 
 If a tube has a plate voltage WAY different from its mate (V2 vs V6, V3 vs V7): something is wrong with that tube or its socket.

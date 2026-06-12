@@ -66,25 +66,25 @@
 
 The output transformer's primary is center-tapped. One end carries the audio swing from one EL34's plate; the other end carries the opposite-phase swing from its push-pull partner.
 
-In normal operation, when the BLUE end swings positive, the GREEN end swings negative — and vice versa. The two halves of the primary push and pull current through the core in opposite directions, which is what "push-pull" means.</title>
+In normal operation, when the BLUE end swings positive, the BLU/WHT end swings negative — and vice versa. The two halves of the primary push and pull current through the core in opposite directions, which is what "push-pull" means.</title>
     <line class="lead" x1="455" y1="200" x2="265" y2="200" stroke="#1a4e8a"/>
     <circle class="lead-dot" cx="265" cy="200" fill="#1a4e8a"/>
     <text class="lead-name" x="252" y="194" text-anchor="end" fill="#1a4e8a">BLUE</text>
     <text class="target" x="252" y="218" text-anchor="end">→ EL34 plate (one side of pair)</text>
   </g>
 
-  <!-- Blue/White UL tap (matches Blue plate) -->
+  <!-- Green UL tap (matches Blue plate — same half) -->
   <g class="lead-group">
-    <title>ULTRALINEAR SCREEN TAP (BLUE/WHITE).
+    <title>ULTRALINEAR SCREEN TAP (GREEN).
 
 A tap at ~43 % of the BLUE half of the primary. Connects to the screen grid (g2) of the EL34 whose plate is on the BLUE lead. Running the screen this way gives "ultralinear" operation — a hybrid between pentode (cleaner, more power) and triode (lower distortion, lower power) modes.
 
 The ST-70 was the first commercial amplifier to use this Dynaco-invented topology, and it's a big part of why the original sounded so much better than its contemporaries.
 
-The BLU/WHT tap belongs to the same half of the primary as the BLUE plate lead — don't cross-wire it with the GREEN plate or the UL config breaks.</title>
-    <line class="lead" x1="455" y1="270" x2="265" y2="270" stroke="#1a4e8a" stroke-dasharray="6 4"/>
-    <circle class="lead-dot" cx="265" cy="270" fill="#1a4e8a"/>
-    <text class="lead-name" x="252" y="264" text-anchor="end" fill="#1a4e8a">BLU/WHT</text>
+The GREEN tap belongs to the same half of the primary as the BLUE plate lead. Don't put this screen tap on a plate pin (pin 3) — a GREEN lead on a plate is the classic cross-wiring mistake, and it breaks the UL config.</title>
+    <line class="lead" x1="455" y1="270" x2="265" y2="270" stroke="#2a8c3a" stroke-dasharray="6 4"/>
+    <circle class="lead-dot" cx="265" cy="270" fill="#2a8c3a"/>
+    <text class="lead-name" x="252" y="264" text-anchor="end" fill="#2a8c3a">GREEN</text>
     <text class="target" x="252" y="288" text-anchor="end">→ EL34 screen g2 (matches BLUE plate)</text>
   </g>
 
@@ -92,38 +92,38 @@ The BLU/WHT tap belongs to the same half of the primary as the BLUE plate lead �
   <g class="lead-group">
     <title>PRIMARY CENTER TAP (RED) — B+ feed.
 
-The midpoint of the push-pull primary. Connects to the +450 V B+ rail (via the filter cap network from step 8).
+The midpoint of the push-pull primary. Connects to the +415 V B+ rail after the choke (via the filter cap network from step 8).
 
 The B+ DC flows symmetrically into both halves of the primary and back out through the EL34 plates. The DC currents from the two tubes flow in opposite directions in the core, so their magnetic effects cancel — meaning the core doesn't need a gap. This is one of the key advantages of push-pull over single-ended.</title>
     <line class="lead" x1="455" y1="340" x2="265" y2="340" stroke="#cc3a2a"/>
     <circle class="lead-dot" cx="265" cy="340" fill="#cc3a2a"/>
     <text class="lead-name" x="252" y="334" text-anchor="end" fill="#cc3a2a">RED <tspan class="lead-sub">(CT)</tspan></text>
-    <text class="target" x="252" y="358" text-anchor="end">→ +450 V B+ (step 8)</text>
+    <text class="target" x="252" y="358" text-anchor="end">→ +415 V B+ (step 8)</text>
   </g>
 
-  <!-- Green/White UL tap (matches Green plate) -->
+  <!-- Green/White UL tap (matches Blu/Wht plate — same half) -->
   <g class="lead-group">
     <title>ULTRALINEAR SCREEN TAP (GREEN/WHITE).
 
-A tap at ~43 % of the GREEN half of the primary. Connects to the screen grid (g2) of the EL34 whose plate is on the GREEN lead.
+A tap at ~43 % of the BLU/WHT half of the primary. Connects to the screen grid (g2) of the EL34 whose plate is on the BLU/WHT lead.
 
-The GRN/WHT tap belongs to the same half of the primary as the GREEN plate lead — don't cross-wire it with the BLUE plate or the UL config breaks.</title>
+The GRN/WHT tap belongs to the same half of the primary as the BLU/WHT plate lead. Don't put this screen tap on a plate pin — a green-family lead never goes to pin 3, or the UL config breaks.</title>
     <line class="lead" x1="455" y1="410" x2="265" y2="410" stroke="#2a8c3a" stroke-dasharray="6 4"/>
     <circle class="lead-dot" cx="265" cy="410" fill="#2a8c3a"/>
     <text class="lead-name" x="252" y="404" text-anchor="end" fill="#2a8c3a">GRN/WHT</text>
-    <text class="target" x="252" y="428" text-anchor="end">→ EL34 screen g2 (matches GREEN plate)</text>
+    <text class="target" x="252" y="428" text-anchor="end">→ EL34 screen g2 (matches BLU/WHT plate)</text>
   </g>
 
-  <!-- Green - other plate lead -->
+  <!-- Blue/White - other plate lead -->
   <g class="lead-group">
-    <title>PRIMARY plate lead (GREEN) — to the other EL34 plate.
+    <title>PRIMARY plate lead (BLUE/WHITE) — to the other EL34 plate.
 
 The other end of the center-tapped push-pull primary. Always exactly 180° out of phase with the BLUE end relative to the RED CT — same physics as the 720 V CT winding on the PA-060, just at audio frequencies.
 
-The A-470's primary has 5 leads total: BLUE plate, GREEN plate, RED center tap, and the two striped UL screen taps (BLU/WHT, GRN/WHT). All five exit the same end of the transformer.</title>
-    <line class="lead" x1="455" y1="480" x2="265" y2="480" stroke="#2a8c3a"/>
-    <circle class="lead-dot" cx="265" cy="480" fill="#2a8c3a"/>
-    <text class="lead-name" x="252" y="474" text-anchor="end" fill="#2a8c3a">GREEN</text>
+The A-470's primary has 5 leads total: BLUE plate, BLU/WHT plate, RED center tap, and the two green UL screen taps (GREEN, GRN/WHT). All five exit the same end of the transformer.</title>
+    <line class="lead" x1="455" y1="480" x2="265" y2="480" stroke="#1a4e8a" stroke-dasharray="6 4"/>
+    <circle class="lead-dot" cx="265" cy="480" fill="#1a4e8a"/>
+    <text class="lead-name" x="252" y="474" text-anchor="end" fill="#1a4e8a">BLU/WHT</text>
     <text class="target" x="252" y="498" text-anchor="end">→ EL34 plate (other side of pair)</text>
   </g>
 

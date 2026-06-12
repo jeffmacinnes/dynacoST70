@@ -60,7 +60,7 @@
   <g class="lead-group">
     <title>PLATE (anode) — pin 3.
 
-The outer envelope of the electron-collecting structure. Receives B+ (~450 V DC) through the output transformer primary (step 8). Audio signal swings ride on top of this DC.
+The outer envelope of the electron-collecting structure. Receives B+ through the output transformer primary (step 8) and sits at ~410 V DC. Audio signal swings ride on top of this DC.
 
 In normal operation, electrons emitted by the heated cathode are pulled across the vacuum to the plate. The grids in between control how many get through.</title>
     <rect class="plate interactive" x="335" y="155" width="210" height="290"/>
@@ -72,11 +72,11 @@ In normal operation, electrons emitted by the heated cathode are pulled across t
   <!-- Suppressor grid (g3) — closest to plate, internally tied to cathode in
        most EL34s (g3-internally-strapped variant). Shown as fine wire mesh. -->
   <g class="lead-group">
-    <title>SUPPRESSOR GRID (g3) — internally tied to cathode in the EL34.
+    <title>SUPPRESSOR GRID (g3) — pin 1, strapped externally to the cathode.
 
 Sits between the plate and the screen grid. Its job: catch secondary electrons knocked out of the plate so they don't end up on the screen grid (which would mess up the pentode's characteristic curve at low plate voltages).
 
-In the EL34 specifically, g3 is internally connected to the cathode — so there's no external pin for it. You see this in the pin list: pins 1, 6 are internal connections.</title>
+In the EL34, g3 is brought out on its own pin (pin 1). In this build it's strapped to pin 8 (cathode) at the socket. Pin 6 has no internal connection — it's just a handy tie point.</title>
     <!-- Two thin "grid wires" close to the plate (top/bottom + sides), drawn as light lines -->
     <line class="g3 interactive" x1="350" y1="170" x2="350" y2="430"/>
     <line class="g3 interactive" x1="530" y1="170" x2="530" y2="430"/>
@@ -86,9 +86,9 @@ In the EL34 specifically, g3 is internally connected to the cathode — so there
   <g class="lead-group">
     <title>SCREEN GRID (g2) — pin 4.
 
-Held at ~400 V DC (slightly below B+ via a series dropping resistor). Accelerates electrons from the cathode toward the plate AND shields the control grid from plate voltage swings.
+Held at ~415 V DC — fed from the UL tap on the A-470 primary, with no series dropping resistor, so it sits slightly ABOVE the ~410 V plate. Accelerates electrons from the cathode toward the plate AND shields the control grid from plate voltage swings.
 
-The "ultralinear" tap on the A-470 output transformer connects g2 to a fractional point on the primary, giving a hybrid of pentode and triode characteristics. The ST-70 runs UL by default — that's the GREEN lead on the OPT.</title>
+The "ultralinear" tap on the A-470 output transformer connects g2 to a fractional point on the primary, giving a hybrid of pentode and triode characteristics. The ST-70 runs UL by default — those are the GREEN and GRN/WHT leads on the OPT.</title>
     <line class="g2 interactive" x1="380" y1="180" x2="380" y2="420"/>
     <line class="g2 interactive" x1="500" y1="180" x2="500" y2="420"/>
   </g>
@@ -97,7 +97,7 @@ The "ultralinear" tap on the A-470 output transformer connects g2 to a fractiona
   <g class="lead-group">
     <title>CONTROL GRID (g1) — pin 5.
 
-The audio input. Held at ~−36 to −40 V DC by the bias supply (step 1 → 1N4007 → bias pots) and "modulated" up and down by the audio signal from the driver stage.
+The audio input. Held at ≈ −32 V DC by the bias supply (step 1 → 1N4007 → bias pots, from a raw −65 V rail) and "modulated" up and down by the audio signal from the driver stage.
 
 A small voltage swing on g1 produces a large current swing through the plate — this is what amplification IS.
 
@@ -112,7 +112,7 @@ If g1 drifts too positive (bias supply fails / hot bias), the tube draws runaway
 
 Heated indirectly by the filament inside. Emits electrons that the grids modulate and the plate collects.
 
-In the ST-70, the cathode is grounded through a small (1 Ω) "cathode resistor" — measuring the DC voltage across that resistor with Ohm's law gives you the tube's idle current (used during bias-up).</title>
+In the ST-70, each channel PAIR of EL34s shares one 15.6 Ω cathode resistor to ground — measuring the DC voltage across it gives the pair's idle current (1.56 V = 100 mA per pair, ~50 mA per tube; used during bias-up).</title>
     <rect class="cathode interactive" x="432" y="200" width="16" height="195" rx="3"/>
     <text class="body-label interactive-text" x="440" y="188" text-anchor="middle">Cathode</text>
   </g>
@@ -140,11 +140,11 @@ Inside the cathode sleeve, heating it indirectly. The two heater leads land at p
        Labels on the right with short leader lines to the grid stripes. -->
   <line x1="540" y1="220" x2="600" y2="200" stroke="#9b6a2e" stroke-width="1"/>
   <text class="body-label" x="605" y="204" fill="#9b6a2e">Suppressor grid (g3)</text>
-  <text class="pin-sub"    x="605" y="220">internal · tied to cathode</text>
+  <text class="pin-sub"    x="605" y="220">pin 1 · strapped to pin 8</text>
 
   <line x1="510" y1="260" x2="600" y2="260" stroke="#b08b00" stroke-width="1"/>
   <text class="body-label" x="605" y="264" fill="#8c6c00">Screen grid (g2)</text>
-  <text class="pin-sub"    x="605" y="280">→ pin 4 · ~400 V DC</text>
+  <text class="pin-sub"    x="605" y="280">→ pin 4 · ~415 V (UL tap)</text>
 
   <line x1="478" y1="310" x2="600" y2="320" stroke="#7a2f80" stroke-width="1"/>
   <text class="body-label" x="605" y="324" fill="#7a2f80">Control grid (g1)</text>
@@ -155,12 +155,12 @@ Inside the cathode sleeve, heating it indirectly. The two heater leads land at p
 
   <!-- 8 pins arranged linearly at y=590, x from 170..660 -->
   <g class="lead-group">
-    <title>Pin 1 — Internal connection.
+    <title>Pin 1 — Suppressor grid (g3).
 
-On many EL34s this is internally tied to the suppressor (g3) and to the cathode. Often left disconnected externally, sometimes used as a chassis-shield tie. Check the datasheet for your specific tube.</title>
-    <circle class="pin" cx="170" cy="600" r="9"/>
+Brought out on its own pin. In this build it's strapped externally to pin 8 (cathode) at the socket.</title>
+    <circle class="pin-g1" cx="170" cy="600" r="9"/>
     <text class="pin-num" x="170" y="580" text-anchor="middle">1</text>
-    <text class="pin-nc"  x="170" y="623" text-anchor="middle">IC</text>
+    <text class="pin-fn"  x="170" y="623" text-anchor="middle">g3 → 8</text>
   </g>
 
   <g class="lead-group">
@@ -175,7 +175,7 @@ One end of the 6.3 V heater filament. The GRN/BRN lead from the PA-060 lands her
   <g class="lead-group">
     <title>Pin 3 — Plate (anode).
 
-Receives B+ via the output transformer primary (step 8). Audio signal swings ride on top of the ~450 V DC.</title>
+Receives B+ via the output transformer primary (step 8). Audio signal swings ride on top of the ~410 V DC.</title>
     <circle class="pin-plate" cx="310" cy="600" r="9"/>
     <text class="pin-num" x="310" y="580" text-anchor="middle">3</text>
     <text class="pin-fn"  x="310" y="623" text-anchor="middle">Plate</text>
@@ -184,7 +184,7 @@ Receives B+ via the output transformer primary (step 8). Audio signal swings rid
   <g class="lead-group">
     <title>Pin 4 — Screen grid (g2).
 
-Fed from B+ through a series dropping resistor (or the OPT's UL tap if running ultralinear, which the ST-70 does by default). ~400 V DC nominal.</title>
+Fed from the OPT's UL tap (ultralinear — the ST-70 default), with no series dropping resistor. ~415 V DC nominal, slightly above the plate.</title>
     <circle class="pin-g2" cx="380" cy="600" r="9"/>
     <text class="pin-num" x="380" y="580" text-anchor="middle">4</text>
     <text class="pin-fn"  x="380" y="623" text-anchor="middle">Screen (g2)</text>
@@ -193,19 +193,19 @@ Fed from B+ through a series dropping resistor (or the OPT's UL tap if running u
   <g class="lead-group">
     <title>Pin 5 — Control grid (g1).
 
-The audio input. Sees the driver-stage output coupled through a coupling cap, plus the bias DC voltage (~−40 V) from the bias supply chain (step 1 → 1N4007 → bias pots).</title>
+The audio input. Sees the driver-stage output coupled through a coupling cap, plus the bias DC voltage (≈ −32 V) from the bias supply chain (step 1 → 1N4007 → bias pots).</title>
     <circle class="pin-g1" cx="450" cy="600" r="9"/>
     <text class="pin-num" x="450" y="580" text-anchor="middle">5</text>
     <text class="pin-fn"  x="450" y="623" text-anchor="middle">Control (g1)</text>
   </g>
 
   <g class="lead-group">
-    <title>Pin 6 — Internal connection.
+    <title>Pin 6 — No internal connection.
 
-Usually unused externally; on some EL34s it's another shield/g3 tie. Treat as NC unless your specific tube's datasheet says otherwise.</title>
+Nothing connects to it inside the tube — the ST-70 uses it as a convenient tie point for the 1 kΩ grid stopper and the bias feed at the socket.</title>
     <circle class="pin" cx="520" cy="600" r="9"/>
     <text class="pin-num" x="520" y="580" text-anchor="middle">6</text>
-    <text class="pin-nc"  x="520" y="623" text-anchor="middle">IC</text>
+    <text class="pin-nc"  x="520" y="623" text-anchor="middle">NC (tie point)</text>
   </g>
 
   <g class="lead-group">
@@ -220,12 +220,12 @@ Other end of the 6.3 V heater filament; the second lead in each heater pair land
   <g class="lead-group">
     <title>Pin 8 — Cathode.
 
-In the ST-70, cathode connects to a small (1 Ω) sense resistor to ground. Measuring DC volts across that resistor gives the idle current via Ohm's law — that's how bias is set during bring-up.</title>
+In the ST-70, the cathodes of each channel PAIR share one 15.6 Ω resistor to ground. Measuring DC volts across it gives the pair's idle current (1.56 V = 100 mA per pair) — that's how bias is set during bring-up.</title>
     <circle class="pin-cath" cx="660" cy="600" r="9"/>
     <text class="pin-num" x="660" y="580" text-anchor="middle">8</text>
     <text class="pin-fn"  x="660" y="623" text-anchor="middle">Cathode</text>
   </g>
 
   <!-- ============ FOOTER ============ -->
-  <text class="footer" x="450" y="695" text-anchor="middle">Indirectly heated · 6.3 V × 1.5 A heater · ~450 V plate · ~400 V screen · ~−40 V grid bias · cathode at ~0 V (with 1 Ω sense resistor)</text>
+  <text class="footer" x="450" y="695" text-anchor="middle">Indirectly heated · 6.3 V × 1.5 A heater · ~410 V plate · ~415 V screen (UL tap) · ≈ −32 V grid bias · cathode at ~1.56 V (shared 15.6 Ω per pair)</text>
 </svg>

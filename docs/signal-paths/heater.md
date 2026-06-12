@@ -23,7 +23,7 @@ The 5 V is its own thing — only the 5AR4 uses 5 V heaters, and it has its own 
   <figcaption>Three parallel rows: a dedicated 5 V winding for V1 (5AR4); a 6.3 V green winding daisied through the left channel; a 6.3 V brown winding daisied through the right channel. Both 6.3 V CTs return to chassis ground (dashed gold), holding heater AC symmetric about ground and suppressing hum coupling. Hover any winding or tube for details. Click to zoom.</figcaption>
 </figure>
 
-The center taps don't carry signal current — they're a **DC reference clamp** that holds the heater AC symmetric about ground, which suppresses hum coupling.
+The center taps don't carry signal current — they're an **AC reference** that holds the heater AC symmetric about ground, which suppresses hum coupling. (They reach ground through 0.02 µF disc caps, not a hard wire — the windings float at DC.)
 
 ## Stage by stage
 
@@ -59,15 +59,15 @@ Total right-channel heater load: same ~3.45 A.
 
 ### Stage 4 — Center taps to ground (both windings)
 
-Each 6.3 V winding has its own center tap — the **green/yellow** lead for the left winding, the **brown/yellow** lead for the right. Both CTs land on the [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) in [step 6](../build/power-supply/step-06-heater-cts.md), which is then grounded as part of the [star ground](../build/driver-stage/step-64-star-ground-completion.md).
+Each 6.3 V winding has its own center tap — the **green/yellow** lead for the left winding, the **brown/yellow** lead for the right. Both CTs land on the [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) (lugs 5 and 7) in [step 6](../build/power-supply/step-06-heater-cts.md). They are **not hard-wired to ground** — each reaches ground only through a 0.02 µF disc cap (see stage 5), which anchors the midpoint for AC while leaving the winding floating at DC.
 
-Why ground the CT instead of one end? Because the heater AC is then **symmetric around ground** — at any instant, one end of the heater is at +4.5 V and the other end is at −4.5 V (relative to ground). Any heater-to-cathode capacitance couples equal amounts of positive-going and negative-going AC into the cathode, which cancels at the audio output rather than appearing as hum.
+Why reference the CT instead of one end? Because the heater AC is then **symmetric around ground** — at any instant, one end of the heater is at +4.5 V and the other end is at −4.5 V (relative to ground). Any heater-to-cathode capacitance couples equal amounts of positive-going and negative-going AC into the cathode, which cancels at the audio output rather than appearing as hum.
 
-If you grounded one end of the heater instead, the heater would swing from 0 V to +9 V — all positive-going AC coupling into the cathode, audible as hum. The CT-ground arrangement is a free hum-reduction trick that costs only a wire.
+If you grounded one end of the heater instead, the heater would swing from 0 V to +9 V — all positive-going AC coupling into the cathode, audible as hum. The CT arrangement is a free hum-reduction trick that costs only a wire and a cap.
 
-### Stage 5 — RF bypass caps on the heater CTs (step 15)
+### Stage 5 — Bypass caps on the heater CTs (step 15)
 
-[Step 15](../build/output-stage/step-15-disc-caps.md) adds two **disc ceramic capacitors** (typically 0.01 µF) across each heater CT to ground. These don't do anything at 60 Hz — they're a short circuit only to RF — but they suppress high-frequency noise that can capacitively couple into the heater wires from outside the chassis (computer monitors, switching power supplies, radio signals).
+[Step 15](../build/output-stage/step-15-disc-caps.md) adds two **disc ceramic capacitors** (0.02 µF) from each heater CT to ground. These are the CTs' *only* path to ground: at 60 Hz and above they anchor the midpoint so the hum cancellation works, while at DC the windings float. They also short any RF riding on the heater wires (computer monitors, switching power supplies, radio signals) to ground.
 
 In modern environments with more RF pollution than 1959 had, these caps earn their place.
 
@@ -89,14 +89,14 @@ The two windings are **electrically isolated** all the way up to the chassis gro
 | One tube has no glow, others fine | Bad solder joint on that tube's heater pin | Probe AC voltage at the dark tube's pins 2 and 7 — should be 6.3 V (or 5 V for V1) |
 | All tubes on one channel are dark | Open in that channel's heater daisy chain | Trace continuity from PA-060 secondary through V2/V3 (or V7/V6) — look for the break |
 | All tubes dark | PA-060 primary fuse blown, or amp not plugged in | Check fuse first |
-| Audible 60 Hz hum, channel-specific | Heater CT not grounded, or one heater wire shorted to cathode (heater-cathode leakage in tube) | Probe each CT to ground — should be < 1 Ω. Swap tubes between channels; if hum follows the tube, replace it |
+| Audible 60 Hz hum, channel-specific | Heater CT bypass cap open or missing, or one heater wire shorted to cathode (heater-cathode leakage in tube) | A DMM continuity check from CT to ground reads through the 0.02 µF cap — expect OL/very high resistance, *not* < 1 Ω (a near-zero reading means a short). Verify the cap is present and intact; swap tubes between channels — if hum follows the tube, replace it |
 | Audible 120 Hz hum | Not a heater issue — that's B+ ripple. See [B+ path](b-plus.md) |
 | RF noise (buzz when nearby device runs) | Disc bypass caps on heater CTs missing or open | Visual inspection at 7-lug strip |
 | One channel dim, other normal | Heater voltage low on the dim channel (resistive joint, low PA-060 winding) | Measure AC at any heater pin on the dim channel — should be ~6.3 V; if 5–5.5 V, suspect a resistive joint |
 
 ## Why heater hum matters more than you'd think
 
-The heater is the **lowest-voltage** network in the amp (5 V or 6.3 V vs. 450 V B+), but it has by far the **largest current** (~10 A total). Big current + AC = big radiated magnetic field. That field induces voltage into anything close to it — including signal wires running nearby.
+The heater is the **lowest-voltage** network in the amp (5 V or 6.3 V vs. ~435 V B+), but it has by far the **largest current** (≈8.8 A total: ~6.9 A across the two 6.3 V windings plus 1.9 A on the 5 V winding). Big current + AC = big radiated magnetic field. That field induces voltage into anything close to it — including signal wires running nearby.
 
 The mitigations stack up:
 

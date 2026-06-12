@@ -155,5 +155,5 @@
   <text class="panel-note" x="900" y="640" text-anchor="middle">sees clean ground at the star point.</text>
 
   <!-- ============ FOOTER ============ -->
-  <text class="footer" x="600" y="690" text-anchor="middle">The seven-lug terminal strip in the ST-70 (step 6) is the start of this star-ground architecture — every channel's heater CT, signal ground, and supply return converge at the strip.</text>
+  <text class="footer" x="600" y="690" text-anchor="middle">In the ST-70 the main star point is the solder lug(s) at the quad filter cap. The seven-lug strip is a bias/heater-CT subnode — it ties into the star via lug 6.</text>
 </svg>

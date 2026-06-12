@@ -5,7 +5,7 @@
      aria-labelledby="pin-title pin-desc"
      font-family="Inter, system-ui, sans-serif">
   <title id="pin-title">Tube pinout reference — ST-70 build</title>
-  <desc id="pin-desc">Bottom-view pin charts for the three tube types used in this ST-70: the 5AR4 rectifier (octal), the EL34 output pentode (octal), and the 6GH8A driver (9-pin compactron with adapter).</desc>
+  <desc id="pin-desc">Bottom-view pin charts for the three tube types used in this ST-70: the 5AR4 rectifier (octal), the EL34 output pentode (octal), and the 6GH8A driver (9-pin noval, mounted directly in the PC-3A board sockets).</desc>
 
   <style>
     .lead-group { cursor: help; }
@@ -148,12 +148,12 @@
     <rect class="key-notch" x="-12" y="208" width="24" height="14" rx="2"/>
     <text class="pin-detail" x="0" y="232" text-anchor="middle">key</text>
 
-    <!-- pin 1 — internal connection -->
+    <!-- pin 1 — g3 suppressor -->
     <g class="lead-group">
-      <title>EL34 pin 1 — Internal connection. Often tied to g3/cathode internally; treat as IC externally.</title>
-      <circle class="pin-circle pin-default" cx="-71" cy="170" r="14"/>
+      <title>EL34 pin 1 — Suppressor grid (g3). Brought out on its own pin; strapped externally to pin 8 (cathode) at the socket in this build.</title>
+      <circle class="pin-circle pin-grid" cx="-71" cy="170" r="14"/>
       <text class="pin-num" x="-71" y="174">1</text>
-      <text class="pin-nc"  x="-95" y="190" text-anchor="middle">IC</text>
+      <text class="pin-detail" x="-95" y="190" text-anchor="middle">g3 → 8</text>
     </g>
     <!-- pin 2 — heater -->
     <g class="lead-group">
@@ -164,28 +164,28 @@
     </g>
     <!-- pin 3 — plate -->
     <g class="lead-group">
-      <title>EL34 pin 3 — Plate (anode). Receives B+ via the A-470 output transformer primary (step 8). ~450 V DC.</title>
+      <title>EL34 pin 3 — Plate (anode). Receives B+ via the A-470 output transformer primary (step 8). ~410 V DC.</title>
       <circle class="pin-circle pin-anode" cx="-102" cy="58" r="14"/>
       <text class="pin-num" x="-102" y="62">3</text>
       <text class="pin-detail" x="-138" y="58" text-anchor="end">Plate</text>
     </g>
     <!-- pin 4 — screen -->
     <g class="lead-group">
-      <title>EL34 pin 4 — Screen grid (g2). Fed from B+ via dropping resistor or the UL tap on the A-470. ~400 V DC.</title>
+      <title>EL34 pin 4 — Screen grid (g2). Fed from the UL tap on the A-470 primary — no dropping resistor. ~415 V DC, slightly above the plate.</title>
       <circle class="pin-circle pin-screen" cx="-71" cy="30" r="14"/>
       <text class="pin-num" x="-71" y="34">4</text>
       <text class="pin-detail" x="-94" y="14" text-anchor="end">Screen g2</text>
     </g>
     <!-- pin 5 — control grid -->
     <g class="lead-group">
-      <title>EL34 pin 5 — Control grid (g1). Audio input. Sees driver output coupled through a coupling cap, plus the bias DC (~−40 V).</title>
+      <title>EL34 pin 5 — Control grid (g1). Audio input. Sees driver output coupled through a coupling cap, plus the bias DC (≈ −32 V).</title>
       <circle class="pin-circle pin-grid" cx="71" cy="30" r="14"/>
       <text class="pin-num" x="71" y="34">5</text>
       <text class="pin-detail" x="94" y="14">Control g1</text>
     </g>
     <!-- pin 6 — internal -->
     <g class="lead-group">
-      <title>EL34 pin 6 — Internal connection. Treat as IC.</title>
+      <title>EL34 pin 6 — No internal connection. Used as an external tie point for the 1 kΩ grid stopper and bias feed.</title>
       <circle class="pin-circle pin-default" cx="102" cy="58" r="14"/>
       <text class="pin-num" x="102" y="62">6</text>
       <text class="pin-nc"  x="138" y="58">IC</text>
@@ -199,77 +199,76 @@
     </g>
     <!-- pin 8 — cathode -->
     <g class="lead-group">
-      <title>EL34 pin 8 — Cathode. In the ST-70, tied to ground through a 1 Ω sense resistor used for bias measurement.</title>
+      <title>EL34 pin 8 — Cathode. In the ST-70, each channel PAIR shares one 15.6 Ω cathode resistor to ground; 1.56 V across it = 100 mA per pair (used for bias measurement).</title>
       <circle class="pin-circle pin-cath" cx="71" cy="170" r="14"/>
       <text class="pin-num" x="71" y="174">8</text>
       <text class="pin-detail" x="94" y="190">Cathode</text>
     </g>
   </g>
 
-  <!-- ============ 6GH8A (right, 9-pin compactron) ============ -->
+  <!-- ============ 6GH8A (right, 9-pin noval) ============ -->
   <g transform="translate(1000, 200)">
-    <text class="tube-name" x="0" y="-20" text-anchor="middle">6GH8A (V4, V5)</text>
-    <text class="tube-sub"  x="0" y="-4" text-anchor="middle">9-pin · triode + pentode · driver / phase splitter</text>
+    <text class="tube-name" x="0" y="-20" text-anchor="middle">6GH8A</text>
+    <text class="tube-sub"  x="0" y="-4" text-anchor="middle">9-pin noval · triode + pentode · driver / phase splitter</text>
 
     <circle class="socket-outline" cx="0" cy="100" r="110"/>
-    <!-- 9-pin sockets have a key gap (no notch on the side, just a gap in the pin circle at top) -->
-    <text class="pin-detail" x="0" y="-22" text-anchor="middle"></text>
-    <text class="pin-detail" x="0" y="232" text-anchor="middle">(no notch — key gap at top of socket)</text>
+    <!-- 9-pin novals have no key notch — just a gap in the pin circle (at the bottom in this view) -->
+    <text class="pin-detail" x="0" y="232" text-anchor="middle">(no notch — gap in pin circle at bottom)</text>
+    <text class="pin-detail" x="0" y="248" text-anchor="middle">board sockets — no chassis V-number</text>
 
-    <!-- 9 pins around a circle, starting from pin 1 just clockwise of the gap -->
-    <!-- Angles for 9-pin (Noval): 9 pins arranged at 40° intervals starting near 100° -->
-    <!-- For a 9-pin tube viewed from below, pins are clockwise. -->
-    <!-- I'll approximate with reasonable positions. -->
+    <!-- Bottom view, basing 9AE: gap at the bottom, pin 1 at ~7 o'clock, ascending CLOCKWISE. -->
+    <!-- Pins on r=95 circle around (0,100), 36° apart; gap spans the bottom 72°. -->
+    <!-- Angles (SVG y-down, 0°=right, 90°=bottom): pin 1 = 126°, then +36° each, pin 9 = 54°. -->
 
     <g class="lead-group">
-      <title>6GH8A pin 1 — Pentode plate. See the driver board schematic for the exact role.</title>
-      <circle class="pin-circle pin-anode" cx="-87" cy="55" r="13"/>
-      <text class="pin-num" x="-87" y="59">1</text>
+      <title>6GH8A pin 1 — Triode plate (anode).</title>
+      <circle class="pin-circle pin-anode" cx="-56" cy="177" r="13"/>
+      <text class="pin-num" x="-56" y="181">1</text>
     </g>
     <g class="lead-group">
       <title>6GH8A pin 2 — Pentode control grid (g1).</title>
-      <circle class="pin-circle pin-grid" cx="-102" cy="110" r="13"/>
-      <text class="pin-num" x="-102" y="114">2</text>
+      <circle class="pin-circle pin-grid" cx="-90" cy="129" r="13"/>
+      <text class="pin-num" x="-90" y="133">2</text>
     </g>
     <g class="lead-group">
-      <title>6GH8A pin 3 — Pentode cathode + suppressor (g3).</title>
-      <circle class="pin-circle pin-cath" cx="-72" cy="165" r="13"/>
-      <text class="pin-num" x="-72" y="169">3</text>
+      <title>6GH8A pin 3 — Pentode screen grid (g2).</title>
+      <circle class="pin-circle pin-screen" cx="-90" cy="71" r="13"/>
+      <text class="pin-num" x="-90" y="75">3</text>
     </g>
     <g class="lead-group">
-      <title>6GH8A pin 4 — Heater (6.3 V AC).</title>
-      <circle class="pin-circle pin-heater" cx="-23" cy="195" r="13"/>
-      <text class="pin-num" x="-23" y="199">4</text>
+      <title>6GH8A pin 4 — Heater (6.3 V AC, 0.45 A).</title>
+      <circle class="pin-circle pin-heater" cx="-56" cy="23" r="13"/>
+      <text class="pin-num" x="-56" y="27">4</text>
     </g>
     <g class="lead-group">
       <title>6GH8A pin 5 — Heater (other end).</title>
-      <circle class="pin-circle pin-heater" cx="35" cy="195" r="13"/>
-      <text class="pin-num" x="35" y="199">5</text>
+      <circle class="pin-circle pin-heater" cx="0" cy="5" r="13"/>
+      <text class="pin-num" x="0" y="9">5</text>
     </g>
     <g class="lead-group">
-      <title>6GH8A pin 6 — Triode plate.</title>
-      <circle class="pin-circle pin-anode" cx="80" cy="165" r="13"/>
-      <text class="pin-num" x="80" y="169">6</text>
+      <title>6GH8A pin 6 — Pentode plate (anode).</title>
+      <circle class="pin-circle pin-anode" cx="56" cy="23" r="13"/>
+      <text class="pin-num" x="56" y="27">6</text>
     </g>
     <g class="lead-group">
-      <title>6GH8A pin 7 — Triode cathode.</title>
-      <circle class="pin-circle pin-cath" cx="105" cy="110" r="13"/>
-      <text class="pin-num" x="105" y="114">7</text>
+      <title>6GH8A pin 7 — Pentode cathode + suppressor (g3) + internal shield.</title>
+      <circle class="pin-circle pin-cath" cx="90" cy="71" r="13"/>
+      <text class="pin-num" x="90" y="75">7</text>
     </g>
     <g class="lead-group">
-      <title>6GH8A pin 8 — Triode grid.</title>
-      <circle class="pin-circle pin-grid" cx="92" cy="55" r="13"/>
-      <text class="pin-num" x="92" y="59">8</text>
+      <title>6GH8A pin 8 — Triode cathode.</title>
+      <circle class="pin-circle pin-cath" cx="90" cy="129" r="13"/>
+      <text class="pin-num" x="90" y="133">8</text>
     </g>
     <g class="lead-group">
-      <title>6GH8A pin 9 — Pentode screen (g2).</title>
-      <circle class="pin-circle pin-screen" cx="42" cy="20" r="13"/>
-      <text class="pin-num" x="42" y="24">9</text>
+      <title>6GH8A pin 9 — Triode grid.</title>
+      <circle class="pin-circle pin-grid" cx="56" cy="177" r="13"/>
+      <text class="pin-num" x="56" y="181">9</text>
     </g>
   </g>
 
   <!-- ============ FOOTER ============ -->
   <text class="footer" x="600" y="540" text-anchor="middle">Always confirm pinouts against the datasheet for your specific tube — manufacturers occasionally vary internal connections on "internal" pins.</text>
-  <text class="footer" x="600" y="560" text-anchor="middle">The 6GH8A pinout shown is approximate; refer to the RCA / GE datasheet for the exact 9-pin compactron configuration. The PC-3A driver board sockets fix these in place.</text>
+  <text class="footer" x="600" y="560" text-anchor="middle">The 6GH8A is a 9-pin noval (basing 9AE, heater 6.3 V / 0.45 A); the PC-3A driver board sockets take it directly — no adapter needed.</text>
   <text class="footer" x="600" y="585" text-anchor="middle">Hover any pin for what it connects to in the ST-70 build.</text>
 </svg>

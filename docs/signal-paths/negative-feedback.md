@@ -45,9 +45,9 @@ The wire length is calibrated — the manual notes that this wire must be routed
 
 ### Stage 3 — Through the feedback resistor R_fb on the PC-3A
 
-Inside the board, the feedback wire passes through the **feedback resistor** (~10 kΩ, sized for the desired feedback amount) on its way to the pentode's cathode. The value of this resistor, together with the pentode's cathode bias resistor, sets the feedback fraction `β` and therefore the closed-loop gain.
+Inside the board, the feedback wire passes through the **feedback resistor** (1 kΩ, sized for the desired feedback amount) on its way to the pentode's cathode. The value of this resistor, together with the pentode's cathode bias resistor, sets the feedback fraction `β` and therefore the closed-loop gain.
 
-The original ST-70 uses about **16 dB of feedback** — meaning the closed-loop gain is about 6× lower than the open-loop gain. See [feedback theory](../theory/feedback.md#what-feedback-buys-you-concretely) for what 16 dB buys.
+The original ST-70 uses about **20 dB of feedback** — meaning the closed-loop gain is about 10× lower than the open-loop gain. See [feedback theory](../theory/feedback.md#what-feedback-buys-you-concretely) for what 20 dB buys.
 
 ### Stage 4 — At the pentode cathode
 
@@ -59,12 +59,12 @@ Because the feedback is inverted (sampled at the OPT secondary after an even num
 
 A second wire per channel adds the HF compensation feed-forward:
 
-- **Right channel**: V6 pin 4 (GREEN/WHITE UL screen tap, already landed at V6 pin 4 in [step 14](../build/output-stage/step-14-left-opt-primary.md)) → eyelet 14, via 5½" wire in [step 48](../build/driver-stage/step-48-eyelet-14-to-v6-feedback.md).
+- **Right channel**: V6 pin 4 (GREEN UL screen tap of the right A-470, already landed at V6 pin 4 in [step 14](../build/output-stage/step-14-right-opt-primary.md)) → eyelet 14, via 5½" wire in [step 48](../build/driver-stage/step-48-eyelet-14-to-v6-feedback.md).
 - **Left channel**: V3 pin 4 (UL tap on the left side) → eyelet 11, via [step 58](../build/driver-stage/step-58-v3-to-eyelet-11-feedback.md).
 
 The UL tap is closer to the EL34 plate (electrically) than the secondary — it has the audio signal at a higher voltage and with less phase shift from the OPT. Sampling here gives the compensation network a "head start" on the phase rotation that the secondary will impose at HF.
 
-On the board, the wire goes through a small **RC network** (typically ~10–22 kΩ + ~100–470 pF) before joining the main feedback at the pentode cathode. The cap is the key: it shunts the resistor at high frequencies, letting more of the compensation signal through where it's needed; at audio frequencies, the cap looks open and the path contributes negligibly.
+On the board, the wire goes through a small **390 pF capacitor** before joining the main feedback at the pentode cathode. The cap is the key: it passes the compensation signal at high frequencies, where it's needed; at audio frequencies, the cap looks open and the path contributes negligibly.
 
 ## Why sampling from the UL tap (not the 16 Ω tap) for compensation
 
@@ -98,16 +98,16 @@ Per-channel feedback loops are completely independent — the right channel's fe
 | Slight hum on one channel only | Feedback wire routed too close to a heater wire or power transformer; inducing AC | Re-dress the wire close to the chassis; check the routing matches the pictorial |
 | Feedback wire fell off | Wire snapped or cold joint | Visual inspection; resolder |
 
-A note on debugging feedback: it's tempting to assume "the amp works without feedback so feedback isn't necessary." That's wrong — *without feedback, an ST-70 has roughly 6× more distortion and a much higher output impedance, plus drift problems*. Always restore feedback before judging the amp's sound; an "open-feedback" amp is broken, not honest.
+A note on debugging feedback: it's tempting to assume "the amp works without feedback so feedback isn't necessary." That's wrong — *without feedback, an ST-70 has roughly 10× more distortion and a much higher output impedance, plus drift problems*. Always restore feedback before judging the amp's sound; an "open-feedback" amp is broken, not honest.
 
 ## Why feedback is invisible until it's not
 
 When feedback is working, you don't hear it — by design. What you hear is the *absence* of the things feedback suppresses: distortion at low and mid power, woolly bass, drifty mid-band response. A well-functioning ST-70 sounds tight and clean.
 
 When feedback fails (open wire, dried-up cap, wrong resistor), the amp's character changes immediately and dramatically:
-- Gain goes up by 6×
-- THD goes up by 6×
-- Output impedance goes up by 6×
+- Gain goes up by 10×
+- THD goes up by 10×
+- Output impedance goes up by 10×
 - HF response gets ringy
 - And in the worst case, the amp oscillates
 

@@ -83,7 +83,7 @@ A real choke has resistance — the C-354 spec is **62 Ω**. That resistance dro
 
 `V_drop = I · R = 0.100 A · 62 Ω ≈ 6.2 V`
 
-So if your first filter cap sits at, say, 475 V, the second cap (after the choke) sits at ~469 V. The drop is small enough that the rest of the B+ chain barely notices it.
+So if your first filter cap sits at ~435 V (as in this amp), the resistive drop alone takes the second cap (after the choke) down a few volts; with the full idle current of all four output tubes flowing, the main rail lands around 415 V. The drop is small enough that the rest of the B+ chain barely notices it.
 
 This DC drop is one of the few downsides of using a choke — you lose a bit of supply voltage to inefficiency. Worth it for the smoothing.
 

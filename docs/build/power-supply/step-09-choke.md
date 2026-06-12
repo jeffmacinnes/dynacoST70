@@ -27,7 +27,7 @@ The choke is the inductor in the classic **LC pi-filter** that smooths B+ ripple
 |---|---|---|
 | V1 pin 8 (5AR4 cathode) | ~440 V pulsing | Rectifier output |
 | Filter cap lug 2 ("D") | ~435 V, ~10 V ripple | First filter cap section (30 µF) |
-| Choke (one lead at lug 2, other at lug 1) | 6.2 V drop across the 62 Ω DCR | Smoothing inductor |
+| Choke (one lead at lug 2, other at lug 1) | ~20 V drop under load (435 → 415 V per the manual's voltage chart) | Smoothing inductor |
 | Filter cap lug 1 ("C") | ~415 V, <1 V ripple | Second filter cap (20 µF) — main B+ rail |
 | Out via [step 8](step-08-opt-b-plus.md) RED leads | ~415 V | Feeds OPT primaries → EL-34 plates |
 

@@ -37,8 +37,8 @@ For each heater winding on the PA-060, probe between its two leads at their land
 | Winding | Probe between | Expected resistance |
 |---|---|---|
 | 5V (5AR4 heater) | V1 pin 2 ↔ V1 pin 8 (white pair) | ~0.5 Ω |
-| 6.3V #1 (channel A) | V2 pin 2 ↔ V2 pin 7 (green pair) | ~0.3 Ω |
-| 6.3V #2 (channel B) | V7 pin 2 ↔ V7 pin 7 (brown pair) | ~0.3 Ω |
+| 6.3V #1 (channel B) | V2 pin 2 ↔ V2 pin 7 (green pair) | ~0.3 Ω |
+| 6.3V #2 (channel A) | V7 pin 2 ↔ V7 pin 7 (brown pair) | ~0.3 Ω |
 
 If any reads OL: open winding (broken). Replace the PA-060.
 
@@ -102,9 +102,9 @@ For each A-470 output transformer:
 
 | Probe between | Expected |
 |---|---|
-| BLUE ↔ BROWN (primary) | ~150-250 Ω (full primary) |
+| BLUE ↔ BLUE/WHITE (primary) | ~150-250 Ω (full primary) |
 | BLUE ↔ RED (one half of primary) | ~75-125 Ω |
-| BROWN ↔ RED (other half) | ~75-125 Ω |
+| BLUE/WHITE ↔ RED (other half) | ~75-125 Ω |
 | BLACK ↔ BROWN (4Ω secondary) | <0.5 Ω |
 | BLACK ↔ ORANGE (8Ω) | <0.5 Ω |
 | BLACK ↔ YELLOW (16Ω) | <0.5 Ω |

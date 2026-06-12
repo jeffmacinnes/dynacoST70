@@ -19,7 +19,7 @@ Mounting procedure:
 
 The choke hangs under the chassis. Its 6"-long leads will be routed and connected in [step 9 of wiring](../power-supply/step-09-choke.md).
 
-## Choke specs (per manual page 25)
+## Choke specs (typical C-354 ratings)
 
 | Parameter | Value |
 |---|---|

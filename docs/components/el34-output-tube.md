@@ -15,12 +15,12 @@ The EL34 is the workhorse pentode that produces the ST-70's output power. Four o
 
 | Pin | Function | Notes |
 |---|---|---|
-| 1 | Internal connection / shield | Sometimes tied to ground |
+| 1 | Suppressor grid (g3) | Strapped to pin 8 (cathode) externally at the socket in this build |
 | 2 | Heater | 6.3V AC |
-| 3 | Plate (anode) | HV B+ via OPT primary |
-| 4 | Screen grid (g2) | Slightly below B+ via dropping resistor |
+| 3 | Plate (anode) | HV B+ via OPT primary (~410 V) |
+| 4 | Screen grid (g2) | Fed from the OPT's ultralinear taps at ~415 V — slightly *above* the plate; no dropping resistor |
 | 5 | Control grid (g1) | Negative bias from bias supply |
-| 6 | Internal connection | |
+| 6 | No connection | Used as a tie point for the 1 kΩ grid stopper |
 | 7 | Heater | 6.3V AC |
 | 8 | Cathode | Usually grounded via small R |
 
@@ -50,8 +50,8 @@ Wiring steps that touch the EL34 sockets:
 
 **Plates and screens** (pins 3 and 4):
 
-- [Step 13](../build/output-stage/step-13-right-opt-primary.md) — right OPT primary (V6/V7 plates + UL screens)
-- [Step 14](../build/output-stage/step-14-left-opt-primary.md) — left OPT primary (V2/V3 plates + UL screens)
+- [Step 13](../build/output-stage/step-13-left-opt-primary.md) — left OPT primary (V2/V3 plates + UL screens)
+- [Step 14](../build/output-stage/step-14-right-opt-primary.md) — right OPT primary (V6/V7 plates + UL screens)
 
 **Cathode sense for bias measurement** (pin 8):
 

@@ -12,13 +12,13 @@ When the ST-70 is powered up and operational:
 
 | Node | Voltage (approx.) | Notes |
 |---|---|---|
-| Each red lead (relative to center tap) | 360V AC | Swings ±360V around 0V |
-| Across full red-red winding | 720V AC peak-to-peak | Don't measure this; exceeds DMM safety rating |
-| 5AR4 anodes (pins 4 and 6) | 360V AC peak per side | Same as red leads |
+| Each red lead (relative to center tap) | 360V AC RMS | Swings ±509V peak around 0V |
+| Across full red-red winding | 720V AC RMS (~1,018V peak) | Don't measure this; exceeds DMM safety rating |
+| 5AR4 anodes (pins 4 and 6) | 360V RMS (≈509V peak) per side | Same as red leads |
 | 5AR4 cathode (pin 8) after rectification + filtering | ~450V DC | This is your B+ rail |
 | [Filter cap](../components/filter-capacitors.md) positive terminals | ~450V DC | **Holds charge after power-off!** |
 | [EL34](../components/el34-output-tube.md) plate pins | ~450V DC | Connected to B+ via output transformer primary |
-| EL34 screen pins | ~400V DC | Slightly below B+ via dropping resistor |
+| EL34 screen pins | ~415V DC | Fed from the OPT's ultralinear taps — slightly *above* the ~410V plate voltage; no dropping resistor |
 
 ## The two hazards
 
@@ -63,7 +63,7 @@ This is also why the **alligator-clip-on-ground / probe-in-hand** setup is so mu
 ## Other safety habits
 
 - **Power off and unplug before working inside**, even if you're going to power back up shortly
-- **Wait at least 30 seconds** after power-off before reaching in (filter caps need time to drain)
+- **Wait at least 60 seconds** after power-off before reaching in (filter caps need time to drain)
 - **Check filter cap voltage with a meter** before assuming they're discharged
 - **Wear safety glasses** — blown filter caps can spray electrolyte, and arc flash is bright
 - **Keep one hand free** during any live work

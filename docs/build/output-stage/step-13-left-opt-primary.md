@@ -1,13 +1,10 @@
 ---
-title: 'Step 13: Right OPT primary leads to V3 and V2'
+title: 'Step 13: Left OPT primary leads to V3 and V2'
 ---
 
-# Step 13: Wire the right output transformer primary to V3 and V2
+# Step 13: Wire the left output transformer primary to V3 and V2
 
 > *Twist the blue and green leads from the left output transformer together and connect the green lead to pin #4 of V3. Connect the blue lead to pin #3 of V3 (S). Twist blue-white and green-white together and connect the blue-white lead to pin #3 of V2 (S). Connect the green-white lead to pin #4 of V2 (S).* — manual page 7
-
-!!! note
-    The manual says "left output transformer" but means the one wired to V3 and V2 — the convention is that the V3/V2 pair sits on the *right* side of the chassis as you look at it from the back, but the manual's "left" refers to the wiring schematic side. Match the leads to V3 and V2 as shown; the physical chassis side doesn't matter here.
 
 ## What you're doing physically
 
@@ -39,13 +36,13 @@ If you cross-wire (e.g., BLUE plate with GREEN/WHITE screen tap), the screen see
 
 ## Pin 4 is NOT soldered yet at V3
 
-Note pin 4 of V3 is **not** soldered on this step (no S after V3 pin 4). The GREEN lead lands there and waits — pin 4 will get more wires in [step 48](../driver-stage/step-48-eyelet-14-to-v6-feedback.md) (the feedback path back to the driver board). Solder when all wires are present.
+Note pin 4 of V3 is **not** soldered on this step (no S after V3 pin 4). The GREEN lead lands there and waits — pin 4 will get one more wire in [step 58](../driver-stage/step-58-v3-to-eyelet-11-feedback.md) (V3 pin 4 → eyelet 11, the feedback path back to the driver board). Solder when all wires are present.
 
 Pin 4 of V2 IS soldered now (S after V2 pin 4) because it's the only wire landing there.
 
 ## See also
 
 - [A-470 output transformer](../../components/a-470-output-transformer.md) — lead colors and primary structure
-- [Step 14 — Left OPT primary](step-14-left-opt-primary.md) — mirror of this step for V6/V7
+- [Step 14 — Right OPT primary](step-14-right-opt-primary.md) — mirror of this step for V6/V7
 - [EL34 output tube](../../components/el34-output-tube.md) — pin 3 (plate) and pin 4 (screen) function
 - [Push-pull topology](../../theory/push-pull-topology.md) — why the primary is wired this way

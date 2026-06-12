@@ -8,7 +8,7 @@ title: 'Step 23: Lug 6 to chassis ground'
 
 ## What you're doing physically
 
-A 6" wire connects lug 6 of the seven-lug strip to the **main ground solder lug** near the filter capacitor (the lug installed in [M15](../mechanical-assembly/step-m15-ground-lugs.md)). Lug 6 is **soldered (S)** at this step — it now has the disc cap from step 15 + this ground wire.
+A 6" wire connects lug 6 of the seven-lug strip to the **main ground solder lug** near the filter capacitor (the lug installed in [M15](../mechanical-assembly/step-m15-ground-lugs.md)). Lug 6 is **soldered (S)** at this step — the joint now holds the two disc-cap leads from step 15, the lug-1 jumper from step 18, and this ground wire.
 
 The ground end of this wire is not yet soldered — more wires will land on the main ground lug in subsequent steps (and especially in step 64 when the star ground is completed).
 

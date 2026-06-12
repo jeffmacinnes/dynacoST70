@@ -41,24 +41,23 @@ Less commonly referenced today but occasionally cited in forum troubleshooting t
 
 ### DynakitParts (dynakitparts.com)
 
-Bob Latino's company. Sells:
+Dynakit, Inc. of Paramus, NJ — not affiliated with Bob Latino. Sells:
 
-- Complete ST-70 kits (new build with modern PC-board driver).
+- Complete ST-70 kits (faithful reproductions, including the kit this build uses).
 - Replacement parts for original ST-70s (transformers, sockets, caps).
-- Upgraded driver boards (the VTA-ST70 board).
 
-Latino's documentation and YouTube videos are some of the better current-era references for the platform.
+DynakitParts' assembly manuals are some of the better current-era references for the platform.
 
-### Tubes4HiFi (tubes4hifi.com) — Roy Mottram
+### Tubes4HiFi (tubes4hifi.com) — Roy Mottram and Bob Latino
 
-Roy Mottram's parallel parts and kit business. Source for:
+The separate parts and kit business through which Bob Latino's VTA boards and kits are sold. Source for:
 
-- Upgraded driver boards (VTA variants).
+- Upgraded driver boards (the VTA-ST70 variants — Bob Latino's design).
 - Bias circuit upgrades.
 - Quality coupling capacitors.
 - Tubes (matched-quad EL34s, etc.).
 
-Mottram's site and forum posts are valuable for "what's the best replacement?" questions.
+Latino's documentation and forum posts, and Mottram's site, are valuable for "what's the best replacement?" questions.
 
 ### Triode Electronics (triodeel.com)
 

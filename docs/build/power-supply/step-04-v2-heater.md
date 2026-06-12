@@ -19,12 +19,12 @@ This is the moment you start wiring up the heaters for the signal-carrying tubes
 The EL34 is an octal-base tube (8 pins). On an EL34, pins 2 and 7 are the heater pins. The full pinout, for reference:
 
 ```
-        Pin 1  ─  internal connection (sometimes shield)
+        Pin 1  ─  suppressor grid (g3) — strapped to the cathode externally in this build
         Pin 2  ─  heater
         Pin 3  ─  plate (anode)   ←── HV B+ comes in here via OPT
-        Pin 4  ─  screen grid     ←── slightly below B+ via dropping R
+        Pin 4  ─  screen grid     ←── fed from the OPT's ultralinear taps
         Pin 5  ─  control grid    ←── negative bias from bias supply
-        Pin 6  ─  internal connection
+        Pin 6  ─  no internal connection (used as a tie point)
         Pin 7  ─  heater
         Pin 8  ─  cathode         ←── usually grounded via small R
 ```

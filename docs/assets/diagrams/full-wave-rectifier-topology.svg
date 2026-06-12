@@ -54,7 +54,7 @@
   <text class="note"          x="870" y="112" text-anchor="middle">smooths to DC</text>
 
   <text class="section-label" x="1080" y="96" text-anchor="middle">B+ rail</text>
-  <text class="note"          x="1080" y="112" text-anchor="middle">~450 V DC</text>
+  <text class="note"          x="1080" y="112" text-anchor="middle">~435 V DC</text>
 
   <!-- ============ TRANSFORMER (left column) ============ -->
   <g id="transformer">
@@ -111,17 +111,12 @@ Step 7 connects RED/YEL to the filter-cap ground area.</title>
     <line class="wire-red" x1="185" y1="170" x2="485" y2="170"/>
     <text class="wire-label" x="335" y="160" text-anchor="middle" fill="#cc3a2a">RED · ±360 V</text>
 
-    <!-- Bottom RED lead -->
-    <line class="wire-red" x1="185" y1="470" x2="185" y2="430"/>
-    <!-- Wait, the bottom of the coil is y=470. Lead should exit downward. -->
   </g>
 
   <!-- ============ TRANSFORMER LEAD ROUTING (separate to be clean) ============ -->
-  <!-- Top RED → anode 1 -->
-  <!-- handled in transformer group above -->
+  <!-- Top RED → anode 1: handled in transformer group above -->
 
-  <!-- Bottom RED → anode 2 (exits at coil bottom y=470 going right at y=430) -->
-  <!-- Actually let me run the bottom lead from the bottom of the coil going right -->
+  <!-- Bottom RED → anode 2 (exits at coil bottom y=470, runs right at y=430) -->
   <line class="wire-red" x1="185" y1="470" x2="185" y2="430"/>
   <line class="wire-red" x1="185" y1="430" x2="485" y2="430"/>
   <text class="wire-label" x="335" y="445" text-anchor="middle" fill="#cc3a2a">RED · ±360 V</text>
@@ -199,7 +194,7 @@ When the bottom RED lead is positive relative to CT (the other half of every AC 
 
 Both diodes feed a single internal cathode. The cathode sees a positive pulse on EVERY half-cycle: top diode delivers one pulse, bottom diode delivers the next.
 
-The result is a 120 Hz pulsating positive voltage (twice the 60 Hz mains frequency), which the filter cap downstream smooths into ~450 V DC.</title>
+The result is a 120 Hz pulsating positive voltage (twice the 60 Hz mains frequency), which the filter cap downstream smooths into ~435 V DC.</title>
     <line class="wire-out interactive" x1="620" y1="170" x2="620" y2="430"/>
     <text class="part-label" x="635" y="278" fill="#1a4e8a">Cathode</text>
     <text class="note" x="635" y="292">pin 8</text>
@@ -216,7 +211,7 @@ The cathode delivers 120 Hz pulses; the cap charges on each pulse and discharges
 
 The cap is polarized — positive plate at top (connected to B+), negative plate at the bottom (connected to ground via the CT).
 
-Downstream, a choke + second filter cap smooth the supply further before it reaches the output tube plates as ~450 V DC.</title>
+Downstream, a choke + second filter cap smooth the supply further before it reaches the output transformer center taps as ~415 V DC (from ~435 V raw).</title>
     <!-- Drop from output wire down to cap -->
     <line class="wire-out" x1="870" y1="300" x2="870" y2="340"/>
     <!-- Cap top plate (straight, +) -->
@@ -237,7 +232,7 @@ Downstream, a choke + second filter cap smooth the supply further before it reac
   <!-- Arrow head pointing right -->
   <polygon class="arrow" points="1100,294 1115,300 1100,306"/>
   <text class="part-label" x="1075" y="285" text-anchor="middle" fill="#1a4e8a">B+ → tube plates</text>
-  <text class="note" x="1075" y="320" text-anchor="middle">~450 V DC</text>
+  <text class="note" x="1075" y="320" text-anchor="middle">~435 V DC</text>
 
   <!-- ============ GROUND BUS ============ -->
   <line class="wire-gnd" x1="380" y1="560" x2="870" y2="560"/>

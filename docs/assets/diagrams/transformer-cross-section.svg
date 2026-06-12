@@ -91,7 +91,7 @@ The bobbin material is critical for HV insulation between the high-voltage secon
     <g class="lead-group">
       <title>PRIMARY WINDING — 120 V AC.
 
-Many turns of relatively thin wire (carries low primary current ~1 A at 120 V). Wound closest to the bobbin / core so it's well-coupled to all the secondaries.
+Many turns of relatively thin wire (carries primary current ~1.5 A at 120 V — about 175 W). Wound closest to the bobbin / core so it's well-coupled to all the secondaries.
 
 In a step-down transformer the primary has MORE turns than the secondary; in step-up the reverse. The PA-060 has both: it steps UP to 720 V (HV) and DOWN to 5–6.3 V (heaters) — all from one primary.</title>
       <rect class="primary interactive" x="332" y="252" width="336" height="50"/>

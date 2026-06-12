@@ -14,7 +14,7 @@ For the left pot, lug 3 now has the step 26 wire (from seven-lug strip lug 2) + 
 
 ## What this completes
 
-By connecting the two pots' lug-3 terminals, both pots now share the same voltage at that end of their resistance elements — both at the "−65 V bias supply" rail.
+By connecting the two pots' lug-3 terminals, both pots now share the same voltage at that end of their resistance elements — the bias divider's bottom node (≈ −22 V, fed from strip lug 2). This is an intermediate node of the divider, not the raw −65 V rail; together with step 28 (which ties the lug-1 ends), the two inter-pot wires place both pots in parallel across the same section of the divider.
 
 The right channel's bias supply doesn't need its own separate wire from the seven-lug strip — it shares the left channel's supply via this inter-pot jumper. This works because:
 

@@ -26,7 +26,7 @@ V4 and V5 hold no tubes — they're front-panel sockets where you stick a meter 
 
 Each socket has two #4 mounting holes on either side. The socket sits on the TOP of the chassis with the contacts hanging down through the chassis hole. Insert a #4-40 screw from above (through the chassis top, through the socket's mounting tab), then thread a kep nut on from below.
 
-Eight sockets × 2 screws = 16 screws and 16 kep nuts for this step. Don't fully tighten any socket until all seven are placed — you may want to rotate one slightly to keep keyways aligned.
+Seven sockets × 2 screws = 14 screws and 14 kep nuts for this step. Don't fully tighten any socket until all seven are placed — you may want to rotate one slightly to keep keyways aligned.
 
 ## Why the keyway orientation matters
 

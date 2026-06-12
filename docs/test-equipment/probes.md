@@ -57,7 +57,7 @@ DMM probes on a scope: you'd lose all high-frequency content and the probe would
 
 A 10× passive probe has a built-in voltage divider that attenuates the signal by 10 before it reaches the scope. So 100V at the probe tip becomes 10V at the scope input. Reasons:
 
-1. **Higher voltage handling** — the scope's input is typically rated for ~300V max. With a 10× probe, you can probe 3× that voltage at the tip safely.
+1. **Protecting the scope input** — the scope's input is typically rated for ~300V max, and the 10× division keeps large signals within it. But note: the attenuation does *not* raise what you can safely put on the probe **tip**. The tip's own rating (typically 300–400V CAT II, derating further with frequency) is the hard limit — see the high-voltage probe section below. For plate-circuit work on a tube amp, use a 100:1 probe.
 2. **Lower circuit loading** — a 1× probe presents 1MΩ to the circuit. A 10× probe presents 10MΩ. The higher impedance disturbs the circuit less, which matters when measuring high-impedance nodes (like tube grids).
 
 Tradeoff: you lose vertical resolution (everything's 10× smaller on screen) and the probe has its own bandwidth limit.

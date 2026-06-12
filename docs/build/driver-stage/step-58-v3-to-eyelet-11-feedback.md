@@ -18,7 +18,7 @@ V3 pin 4 now has: the GREEN UL screen tap (from step 13) + this wire. Soldered f
 
 The **channel B feedback path**. Mirror of [step 48](step-48-eyelet-14-to-v6-feedback.md).
 
-Eyelet #11 is the channel B feedback return point on the PC-3 board. This wire delivers a sample of the OPT primary signal (from V3's UL screen tap, which is electrically the GREEN lead of the right A-470 primary) back to the input stage, where it provides global negative feedback.
+Eyelet #11 is the channel B feedback return point on the PC-3 board. This wire delivers a sample of the OPT primary signal (from V3's UL screen tap, which is electrically the GREEN lead of the **left** A-470 primary — V3 is a left-channel tube) back to the input stage, where it provides the high-frequency compensation leg of the feedback network through a 390 pF cap.
 
 The feedback reduces gain in the input stage by ~20 dB (about a factor of 10), at the cost of less distortion and tighter frequency response. See [feedback](../../theory/feedback.md) for the full picture.
 

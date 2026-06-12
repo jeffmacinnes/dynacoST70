@@ -26,11 +26,11 @@ A 3-lug potentiometer has:
 
 For the bias adjustment to work:
 
-- Lug 1 sits at the most-negative voltage (−65 V from this wire).
-- Lug 3 sits at chassis ground (will be wired in step 27/28).
+- Lug 1 sits at the more negative end of the bias divider (fed from strip lug 3 by this wire).
+- Lug 3 sits at the divider's bottom node (≈ −22 V via strip lug 2, wired in step 26; the divider only reaches ground through strip lug 2's 10 kΩ resistor — steps 27/28 merely interconnect the two pots, they don't ground anything).
 - Lug 2 (wiper) sits somewhere between, depending on the pot's position.
 
-Turning the pot moves lug 2's voltage between ~−65 V and ~0 V. That voltage drives the EL-34 grids through the rest of the bias network — controlling tube bias.
+Turning the pot moves lug 2's voltage between roughly −43 V and −22 V, centering near the −32 V the EL-34 grids need. That voltage drives the EL-34 grids through the rest of the bias network — controlling tube bias.
 
 ## See also
 

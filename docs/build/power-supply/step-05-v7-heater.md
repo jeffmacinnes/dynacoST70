@@ -24,8 +24,8 @@ The ST-70 has six 6.3V tubes to heat:
 | V3 (EL34) | 1.5A |
 | V6 (EL34) | 1.5A |
 | V7 (EL34) | 1.5A |
-| V4 ([6GH8A](../../components/6gh8a-driver-tube.md)) | 0.45A |
-| V5 (6GH8A) | 0.45A |
+| Left [6GH8A](../../components/6gh8a-driver-tube.md) (board-mounted) | 0.45A |
+| Right 6GH8A (board-mounted) | 0.45A |
 | **Total** | **6.9A** |
 
 If you tried to power all of this from a single 6.3V winding, you'd need a winding rated for at least 7A, with some headroom for inrush. The PA-060's two windings at 5A each (total 10A available) gives comfortable margin.

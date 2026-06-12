@@ -27,12 +27,14 @@ The can mounts to the chassis with a single twist-lock or threaded bolt. That mo
 
 Original Dynaco ST-70s shipped with various combinations across the years. A common configuration:
 
-| Section | Value | Voltage | Function |
+| Section (lug) | Value | Voltage | Function |
 |---|---|---|---|
-| 1 | 30 µF | 525 V | First filter stage (5AR4 cathode → choke input) |
-| 2 | 20 µF | 525 V | Second filter stage (after choke → output tube plates) |
-| 3 | 20 µF | 525 V | Screen grid / driver supply (via dropping R) |
-| 4 | 10 µF | 525 V | Input stage / bias decoupling |
+| Lug 2 | 30 µF | 525 V | First filter stage (5AR4 cathode → choke input) |
+| Lug 1 | 20 µF | 525 V | Second filter stage (after choke → main B+ rail, OPT primary CTs) |
+| Lug 4 | 20 µF | 525 V | Driver-board rail (to PC-3A eyelet 20) |
+| Lug 3 | 20 µF | 525 V | Driver-board pentode rail (to PC-3A eyelet 19) |
+
+(The bias supply is filtered separately — two individual 100 µF caps on the seven-lug terminal strip, not sections of the quad can.)
 
 Modern replacements often use slightly larger values (40-40-20-20 or 47-47-22-22 µF) — more capacitance means less ripple, with no downside if the rectifier can handle the inrush. Many replacement parts are rated to 500 V or 525 V WV; some are 450 V (acceptable if your line voltage is well-behaved).
 
@@ -60,7 +62,7 @@ For a B+ filter where you want bulk capacitance at audio frequencies, electrolyt
 
 ## Voltage rating
 
-The ST-70's B+ rail sits at ~450 V DC. During startup, before the load fully comes on, it can briefly reach 500 V+ — so the caps need a working-voltage rating *above* worst-case startup voltage.
+The ST-70's B+ rail sits at ~435 V DC at the first cap. During startup, before the load fully comes on, it can briefly reach 500 V+ — so the caps need a working-voltage rating *above* worst-case startup voltage.
 
 - **525 V WV** caps give comfortable headroom; this is the canonical Dynaco spec.
 - **500 V WV** parts are common today and acceptable if your mains is well-regulated.

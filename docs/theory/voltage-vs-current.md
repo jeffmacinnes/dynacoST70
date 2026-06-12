@@ -15,7 +15,7 @@ The same logic applies to every secondary on the [PA-060](../components/pa-060-p
 | State of the 5V heater winding | Resistance | Current |
 |---|---|---|
 | No tube installed | Infinite (open circuit) | 0 A |
-| 5AR4 installed (filament ~1.25Ω) | 1.25Ω | 4 A (designed) |
+| 5AR4 installed | ~2.6Ω hot | 1.9 A (tube's draw; the winding is rated for 4 A) |
 | Two leads tied directly together | ~0Ω | 100A+ theoretical, transformer destroyed |
 
 ## Why this matters for wiring errors
@@ -42,7 +42,7 @@ A van de Graaff generator can produce 400,000V and won't kill you — the curren
 
 What matters is the **product of voltage and the path's conductivity**. High voltage *across a low-resistance path* is what creates dangerous current.
 
-The ST-70's B+ rail is 450V, but more importantly the supply behind it can deliver well over 100mA of current. That combination — high voltage *and* high current capability — is what makes it lethal. Skin resistance of 1000Ω at 450V would push 450mA through your body, well past the ~100mA threshold that can stop the heart.
+The ST-70's B+ rail is ~435V, but more importantly the supply behind it can deliver well over 100mA of current. That combination — high voltage *and* high current capability — is what makes it lethal. Skin resistance of 1000Ω at 435V would push 435mA through your body, well past the ~100mA threshold that can stop the heart.
 
 This is why the safety practices in [high-voltage safety](../test-equipment/high-voltage-safety.md) are about *paths* — discharging caps before touching, keeping one hand in your pocket to avoid creating a chest-crossing path, using insulated probes to avoid creating any path at all.
 

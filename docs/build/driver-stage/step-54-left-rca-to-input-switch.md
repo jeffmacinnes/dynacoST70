@@ -12,17 +12,12 @@ A short wire (length whatever fits cleanly — typically 1-2") from the left RCA
 
 ## What this connects
 
-This wire establishes the **left channel's signal path through the input switch**:
+This wire ties the left RCA hot to switch lug 2 — the **pole** of the SPDT mono/stereo switch. It's the mirror of [step 49](step-49-input-switch-to-right-rca.md), which wired the right RCA hot to lug 3:
 
-- In STEREO position: switch lug 2 is connected to switch lug 1 (per the SPDT topology). So left RCA hot → this wire → switch lug 2 → switch lug 1 → which is wired (via the 470 kΩ grid leak) to ground. That means in STEREO position, the switch effectively shunts the left signal to the grid leak, which is fine — the grid leak is there anyway as a DC clamp.
+- **STEREO** position: the pole (lug 2, left input hot) is not connected to lug 3, so the left and right inputs stay independent.
+- **MONO** position: the pole connects lug 2 to lug 3, shorting the left and right input hots together so one source drives both channels.
 
-Actually wait — let me reconsider. Looking at SPDT switch operation: when in one position, lug 2 connects to lug 1; when in the other position, lug 2 connects to lug 3. So:
-
-- **STEREO**: lug 2 ↔ lug 1: left RCA signal flows to switch lug 1 to... the grid leak resistor and the left input ground. That doesn't seem right.
-
-Hmm, I think I'm misreading the topology. The SPDT input switch is probably arranged so that in MONO position, the left and right inputs get tied together; in STEREO position they stay independent. The exact lug-to-lug mapping depends on the switch's physical wiring. The user should follow the manual exactly without trying to derive the logic.
-
-What's clear: this step ties the left RCA hot to switch lug 2, completing the left channel's connection to the input switch. The mono/stereo selection function works correctly because Dynaco specified the SPDT switch and lug usage carefully.
+This step completes the left channel's connection to the input switch.
 
 ## See also
 

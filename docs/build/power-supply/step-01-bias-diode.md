@@ -16,10 +16,10 @@ This is the very first stage of the **bias supply circuit** — the small negati
 
 The chain you're starting to build:
 
-1. Wall AC (120V) → power transformer → stepped up to **55V AC** on the bias secondary winding
-2. The red-black lead is one end of that 55V winding
+1. Wall AC (120V) → power transformer → stepped down to **50V AC** on the bias secondary winding
+2. The red-black lead is one end of that 50V winding
 3. The diode you're connecting it to converts that AC to **pulsating DC** by blocking the negative half-cycles
-4. Downstream, this gets filtered, divided down by resistors (and individual bias pots in [this build's bias mod](../../modifications/individual-bias-pots.md)), and arrives at the EL34 grids as ~−40V DC
+4. Downstream, this gets filtered, divided down by resistors (and individual bias pots in [this build's bias mod](../../modifications/individual-bias-pots.md)), and arrives at the EL34 grids as ~−32V DC
 
 ## Why the banded end matters
 

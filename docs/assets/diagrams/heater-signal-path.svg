@@ -137,7 +137,7 @@ Heater draws 0.45 A. The board has its own heater wiring to deliver this from th
   <!-- GRN/YEL CT going down to ground -->
   <g class="lead-group" data-tooltip="GREEN/YELLOW CT — center tap of the left heater winding.
 
-Goes to the 7-lug terminal strip (step 6), which is grounded as part of the star ground. Holds the heater AC symmetric around 0 V — at any instant one heater end is at +4.5 V and the other at −4.5 V relative to ground. Heater-to-cathode capacitance couples equal +/− into the cathode, which cancels in the audio output.
+Goes to the 7-lug terminal strip (step 6), where it is referenced to ground through a 0.02 µF disc cap. Holds the heater AC symmetric around 0 V — at any instant one heater end is at +4.5 V and the other at −4.5 V relative to ground. Heater-to-cathode capacitance couples equal +/− into the cathode, which cancels in the audio output.
 
 Skip this connection and you get audible 60 Hz hum from heater coupling.">
     <path class="ct-wire" d="M 170 320 L 170 670"/>
@@ -210,11 +210,11 @@ Heater draws 0.45 A. Daisied off V6.">
   <!-- BRN/YEL CT going down to ground -->
   <g class="lead-group" data-tooltip="BROWN/YELLOW CT — center tap of the right heater winding.
 
-Same role as the green CT: holds heater AC symmetric around ground, suppressing heater-cathode hum coupling. Both CTs land on the 7-lug strip and ground there.">
-    <path class="ct-wire" d="M 170 490 L 170 670"/>
-    <text class="ct-label" fill="#b8851a" x="100" y="555">BRN/YEL CT</text>
-    <text class="ct-label" fill="#b8851a" x="100" y="571">to ground</text>
-    <text class="ct-label" fill="#b8851a" x="100" y="587">(step 6)</text>
+Same role as the green CT: holds heater AC symmetric around ground, suppressing heater-cathode hum coupling. Both CTs land on the 7-lug strip (lugs 5 and 7) and are referenced to ground there through 0.02 µF disc caps.">
+    <path class="ct-wire" d="M 182 490 L 182 670"/>
+    <text class="ct-label" fill="#b8851a" x="192" y="555">BRN/YEL CT</text>
+    <text class="ct-label" fill="#b8851a" x="192" y="571">to ground</text>
+    <text class="ct-label" fill="#b8851a" x="192" y="587">(step 6)</text>
   </g>
 
   <!-- =================================================== -->
@@ -224,7 +224,7 @@ Same role as the green CT: holds heater AC symmetric around ground, suppressing 
 
 Both heater windings share the same ground reference but stay otherwise isolated — separate windings, separate daisies. They only meet at ground.
 
-Also at step 15: small 0.01 µF disc caps from each CT to ground for RF bypass.">
+Also at step 15: small 0.02 µF disc caps from each CT to ground for RF bypass.">
     <line class="ground-bus" x1="100" y1="670" x2="250" y2="670"/>
     <text class="row-label" fill="#1a1a1a" x="175" y="660" text-anchor="middle">chassis ground</text>
     <text class="ct-label" x="175" y="690" text-anchor="middle">(7-lug strip → star ground)</text>
@@ -235,6 +235,6 @@ Also at step 15: small 0.01 µF disc caps from each CT to ground for RF bypass."
   </g>
 
   <!-- ============ FOOTER ============ -->
-  <text class="footer" x="640" y="725" text-anchor="middle">Heater wires carry no audio — but ~10 A of AC ripples a magnetic field that induces hum into nearby signal wires. Twist the pair, dress along the chassis, CT-ground.</text>
+  <text class="footer" x="640" y="725" text-anchor="middle">Heater wires carry no audio — but ≈ 6.9 A of AC on the 6.3 V windings (plus 1.9 A on the 5 V winding) ripples a magnetic field that induces hum into nearby signal wires. Twist the pair, dress along the chassis, CT-ground.</text>
   <text class="footer" x="640" y="742" text-anchor="middle">5 V winding floats (no CT) because the 5AR4 only has one tube to feed. The two 6.3 V windings are separately grounded, keeping channels electrically isolated.</text>
 </svg>

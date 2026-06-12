@@ -29,7 +29,7 @@ So V6 and V7 share the same heater AC — fed once from the PA-060, daisied betw
 
 ## Why twist the pair
 
-The two wires carry 6.3 V AC and the return current (or rather, the AC waveform on each wire is 180° out of phase relative to the CT, which is grounded at lug 7 of the seven-lug strip). When the two wires are twisted, the magnetic field from one wire cancels the magnetic field from the other — minimising radiated hum.
+The two wires carry 6.3 V AC and the return current (or rather, the AC waveform on each wire is 180° out of phase relative to the CT, which lands at lug 7 of the seven-lug strip and is AC-referenced to ground through a 0.02 µF disc cap — not hard-grounded). When the two wires are twisted, the magnetic field from one wire cancels the magnetic field from the other — minimising radiated hum.
 
 A twisted heater pair also looks neater than two separate wires and is mechanically more stable.
 

@@ -14,23 +14,11 @@ V6 pin 4 now has: the GREEN UL screen tap (from OPT primary, step 14) + this wir
 
 ## What this is — the feedback wire
 
-This is the **channel A feedback path**. Eyelet #14 is the on-board landing point for the global negative feedback signal coming back from the OPT.
+This is part of the **right channel's feedback network**. The main global negative feedback loop runs from the OPT's 16 Ω secondary tap → rear strip lug 1 → eyelet #13 → 1 kΩ → the 6GH8A pentode cathode (wired in [step 62](step-62-right-strip-1-to-eyelet-13.md)). The feedback voltage at the pentode cathode opposes the input signal → net gain drops, but distortion drops with it.
 
-Tracing the feedback loop for channel A:
-
-1. Audio signal at the EL-34 plates (V6 + V7) → through OPT primary → induces voltage in the OPT secondary.
-2. The secondary's 16 Ω tap (or sometimes the BLU/WHT and GRN/WHT UL primary points themselves) provides a sample of the output.
-3. This wire takes that sample (from V6 pin 4 = GREEN UL tap) and brings it back to eyelet #14 on the PC-3 board.
-4. On the board, eyelet #14 routes through a resistor + capacitor network to the **6GH8A pentode cathode** (the input stage).
-5. The feedback voltage at the pentode cathode opposes the input signal's effect on the same cathode → net gain is reduced, but distortion is also reduced.
+This wire is the **high-frequency compensation leg** of that network: it takes the signal at V6 pin 4 (the GREEN UL screen tap of the right A-470) back to eyelet #14, where a 390 pF capacitor couples it into the feedback node. That small cap adds extra feedback at high frequencies, stabilizing the loop against phase shift in the output transformer.
 
 This is **global negative feedback** — see [feedback](../../theory/feedback.md) for the full theory.
-
-## Why through V6 pin 4 (UL tap) instead of the 16 Ω secondary
-
-The Dynaco design samples feedback at the *UL screen tap* rather than the *speaker secondary*. The UL tap is closer to the EL-34 plate and has a different impedance characteristic — it provides effective feedback without loading the speaker output.
-
-Sampling at the 16 Ω secondary would also work and is more common in some other amp designs (e.g., Williamson topology). Dynaco's choice gives slightly different feedback characteristics — more emphasis on lowering output distortion vs. speaker-impedance-correction.
 
 ## Lead routing matters
 
@@ -42,4 +30,4 @@ The feedback wire carries low-level audio with feedback content — it's sensiti
 
 - [Step 58 — V3 to eyelet #11 (channel B feedback)](step-58-v3-to-eyelet-11-feedback.md) — the mirror
 - [Feedback](../../theory/feedback.md) — what this wire is doing electrically
-- [Step 14 — Left OPT primary](../output-stage/step-14-left-opt-primary.md) — where the UL tap is initially landed
+- [Step 14 — Right OPT primary](../output-stage/step-14-right-opt-primary.md) — where the UL tap is initially landed

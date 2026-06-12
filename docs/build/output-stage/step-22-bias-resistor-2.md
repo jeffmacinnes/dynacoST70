@@ -14,9 +14,7 @@ Lug 2 stays unsoldered for now — it'll receive one more wire in [step 26](step
 
 ## What this resistor + lug 2 do
 
-This 10 kΩ resistor + lug 2 form the **last RC stage** before the bias network distributes to the pots. The "C" in this stage is the wiring capacitance + the input capacitance of the bias pots — small but non-zero.
-
-More importantly, this resistor **isolates the bias pots' wipers from the filter capacitor**: any signal-frequency current that might leak from the EL-34 grids back through the bias pots doesn't get directly onto the filter capacitor where it could couple between channels. The 10 kΩ acts as a per-channel isolation resistor.
+This 10 kΩ resistor is the **shunt (bottom) leg of the bias-setting voltage divider**: it runs from lug 2 down to ground (lug 1 is tied to ground via the lug-6 jumper). With the divider's other resistances above it, lug 2 settles at roughly −22 V — the least negative node of the divider, and the node that feeds the less negative ends of the bias pots in [step 26](step-26-bias-pot-distribution-2.md). Without this resistor there would be no defined divider bottom, and the pots couldn't set the grid voltage in the right range.
 
 ## Why solder lug 1 now (S)
 

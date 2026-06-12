@@ -14,16 +14,14 @@ The pot's lug 3 is NOT soldered yet — it'll receive more wires in steps 27 and
 
 ## What this completes
 
-Lug 2 of the seven-lug strip is the **final output of the bias filter cascade** — clean −65 V DC. This wire delivers that voltage to lug 3 of the left bias pot's resistance element.
+Lug 2 of the seven-lug strip is the **bottom node of the bias-setting divider** — it sits at roughly −22 V, held there by the second 10 kΩ resistor (step 22) running from lug 2 to ground. This wire delivers that voltage to lug 3 of the left bias pot's resistance element.
 
-Together with step 24 (which wired lug 3 of the strip — also at −65 V — to lug 1 of the left pot), this creates a slightly unusual arrangement:
+Together with step 24 (which wired strip lug 3 — the more negative intermediate node of the divider — to lug 1 of the left pot), this places the pot's resistance element **across a section of the divider**:
 
-- **Left pot lug 1**: −65 V (via step 24 + 10 kΩ R from strip lug 3)
-- **Left pot lug 3**: −65 V (via this step + 10 kΩ R from strip lug 2)
+- **Left pot lug 1**: the more negative end (fed from strip lug 3)
+- **Left pot lug 3**: the less negative end (≈ −22 V, fed from strip lug 2 via this wire)
 
-Both ends of the pot's resistance element sit at −65 V! Why? Because the two 10 kΩ resistors form a **voltage divider** that the pot wiper taps into. Combined with the cathode return path (via 1 kΩ grid stoppers from the EL-34 grids), the pot wiper voltage is some compromise between −65 V and the per-channel cathode bias point. Turning the pot shifts that compromise, which adjusts the grid bias.
-
-This isn't quite how I described it in earlier steps — Dynaco's bias circuit is more clever than a simple "wiper between negative and ground" topology. The two 10 kΩ resistors on the seven-lug strip combine with the bias pots to form a *current-mode* bias driver, which is more resilient to source voltage variation.
+The two ends of the pot do **not** sit at the same potential — the pot is one leg of a voltage divider hanging across roughly −65 V at the raw end and ground at the bottom. The wiper taps a point between the two pot ends, swinging from about −43 V to about −22 V, centering near the −32 V the EL-34 grids need. Turning the pot moves the wiper along that range, which adjusts the grid bias.
 
 ## See also
 

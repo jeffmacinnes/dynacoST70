@@ -4,7 +4,7 @@ title: B+ signal path
 
 # B+ signal path
 
-**B+** is the high-voltage DC supply that every tube plate and screen in the amp depends on. It starts as 720 V peak-to-peak AC across the PA-060's high-voltage secondary, gets rectified by the 5AR4, then cascades through a multi-stage filter network that produces progressively cleaner, progressively lower-voltage DC for each load.
+**B+** is the high-voltage DC supply that every tube plate and screen in the amp depends on. It starts as 720 V RMS end-to-end across the PA-060's high-voltage secondary, gets rectified by the 5AR4, then cascades through a multi-stage filter network that produces progressively cleaner, progressively lower-voltage DC for each load.
 
 By the time the build is at idle, the rail looks something like:
 
@@ -30,7 +30,7 @@ Numbers are typical — see [voltage checks](../bring-up/voltage-checks.md) for 
 
 ### Stage 1 — PA-060 HV secondary
 
-The PA-060 [power transformer](../components/pa-060-power-transformer.md) has a center-tapped high-voltage secondary winding: two red leads at the ends of the winding, one red/yellow lead at the center tap. Across the full winding, ~720 V peak-to-peak AC at 60 Hz. From either red lead to the CT, ~510 V peak (~360 V RMS), shifted 180° between the two halves.
+The PA-060 [power transformer](../components/pa-060-power-transformer.md) has a center-tapped high-voltage secondary winding: two red leads at the ends of the winding, one red/yellow lead at the center tap. Across the full winding, ~720 V RMS end-to-end at 60 Hz. From either red lead to the CT, ~510 V peak (~360 V RMS), shifted 180° between the two halves.
 
 The CT establishes the **return reference** for the rectified current — every electron that flows out one half of the winding has to come back through the CT.
 
@@ -56,11 +56,11 @@ The voltage on lug 1 sits a bit lower than lug 2 due to the choke's DC resistanc
 
 ### Stage 5 — to the OPT primary center taps
 
-Each [A-470 output transformer](../components/a-470-output-transformer.md) has a center-tapped primary, with the center tap (RED lead) drawing B+. Current flows from lug 1 → A-470 red → through both halves of the primary → out the BLUE and GREEN plate leads → into the EL34 plates (pin 3 of V2/V3 for left, V6/V7 for right).
+Each [A-470 output transformer](../components/a-470-output-transformer.md) has a center-tapped primary, with the center tap (RED lead) drawing B+. Current flows from lug 1 → A-470 red → through both halves of the primary → out the BLUE and BLU/WHT plate leads → into the EL34 plates (pin 3 of V2/V3 for left, V6/V7 for right).
 
 Because the two halves of the primary are driven by **push-pull** plate currents (one half going up while the other goes down), the *quiescent* current draw on the B+ is steady, and only the *AC* signal swings oppositely in the two halves. This is what makes push-pull so efficient at rejecting B+ ripple — see [push-pull topology](../theory/push-pull-topology.md).
 
-The EL34 **screen grids** (pin 4) get their voltage from the UL taps (BLU/WHT and GRN/WHT), which sit at ~43% of the way from the CT to each plate — they see B+ minus some signal swing, not B+ minus a fixed drop.
+The EL34 **screen grids** (pin 4) get their voltage from the UL taps (GREEN and GRN/WHT), which sit at ~43% of the way from the CT to each plate — they see B+ minus some signal swing, not B+ minus a fixed drop.
 
 ### Stage 6 — 6.8 kΩ drop → third filter cap (lug 4)
 
@@ -99,7 +99,7 @@ By the time B+ has been through four stages, what arrives at the pentode plates 
 | B+ very low (e.g., 200 V at lug 2) | Filter cap shorted, or one half of HV secondary open | Disconnect lug 2 wire, measure DC across just the cap; should match HV secondary loaded behavior |
 | Loud 120 Hz hum | Choke not filtering (open) or lug 2 cap dried out | Measure ripple at lug 1 with scope; should be < 1 V AC. If much higher, choke or lug 2 cap is bad |
 | Hum on one channel only | Cap lug 3 or 4 section failed | Channel signals share later filter stages but EL34s share lug 1 — by elimination, hum on one channel implicates the PC-3A B+ rails |
-| EL34s red-plating | B+ way too high (shorted choke leg, lost CT, etc.) OR bias too low (separate issue) | Measure B+ at lug 1: > 500 V is suspect. Also check bias supply (-50 V at EL34 pin 5) |
+| EL34s red-plating | B+ way too high (shorted choke leg, lost CT, etc.) OR bias too low (separate issue) | Measure B+ at lug 1: > 500 V is suspect. Also check bias supply (≈ −32 V at EL34 pin 5; raw supply ≈ −65 V) |
 | Voltage at lug 4 = voltage at lug 1 | 6.8 kΩ resistor open or shorted | Measure across the resistor — should drop ~40 V at idle |
 | Voltage at lug 3 = voltage at lug 4 | 22 kΩ resistor open or shorted | Measure across the resistor — should drop ~70 V at idle |
 | No signal from input stage even with B+ on lug 4 | Eyelet 19 wire missing, or pentode plate-load resistor open on board | Measure DC at the pentode plate (PC-3A); should be ~150–200 V |

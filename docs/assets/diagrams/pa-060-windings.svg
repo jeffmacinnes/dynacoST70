@@ -193,17 +193,17 @@ This is the highest-voltage winding in the amp.</title>
 
   <!-- ============ SECONDARY 5: Bias (RED/BLK, shares RED/YEL CT) ============ -->
   <g class="lead-group">
-    <title>BIAS winding — 55V AC across RED/BLK and the RED/YEL center tap (shared with the HV winding).
+    <title>BIAS TAP — a single RED/BLK lead tapped off the HV winding, ~50V AC measured to the RED/YEL center tap (the return path — there is no separate bias winding).
 Step 1 wires RED/BLK to the cathode of the 1N4007 silicon diode.
-After half-wave rectification and filtering, this becomes ~−40V DC bias for the EL34 control grids.
+After half-wave rectification and filtering, this becomes −65V raw DC, divided down to ≈ −32V at the EL34 control grids.
 The bias supply must come up before the HV (the 5AR4's slow warm-up handles that), so the output tubes never see B+ without proper grid bias.</title>
 
     <line class="lead" x1="605" y1="610" x2="755" y2="610" stroke="url(#redblk)"/>
     <circle class="lead-dot" cx="755" cy="610" fill="url(#redblk)" stroke="#1a1a1a" stroke-width="1"/>
     <text class="lead-name" x="770" y="614" fill="#1a1a1a">RED/BLK</text>
 
-    <text class="voltage" x="880" y="600">55V</text>
-    <text class="purpose" x="880" y="620">Bias winding</text>
+    <text class="voltage" x="880" y="600">50V</text>
+    <text class="purpose" x="880" y="620">Bias tap (on HV winding)</text>
     <text class="target" x="880" y="638">→ 1N4007 cathode (step 1)</text>
     <text class="target" x="880" y="654">(returns via RED/YEL CT ↑)</text>
 

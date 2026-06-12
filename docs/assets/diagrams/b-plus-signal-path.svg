@@ -56,14 +56,14 @@
   <!-- ============ STAGE 1: PA-060 HV SECONDARY ============ -->
   <g class="lead-group" data-tooltip="PA-060 HV SECONDARY — center-tapped winding.
 
-Two red leads at the ends of the winding, red/yellow CT in the middle. Across the full winding, ~720 Vpp AC at 60 Hz. From either red lead to the CT, ~510 Vp (~360 Vrms), shifted 180° between the two halves.
+Two red leads at the ends of the winding, red/yellow CT in the middle. Across the full winding, 720 V RMS AC (360-0-360) at 60 Hz. From either red lead to the CT, ~510 Vp (~360 Vrms), shifted 180° between the two halves.
 
 This is the only AC stage in the B+ path — everything downstream is DC after rectification.">
     <rect class="stage-box stage-source" x="420" y="130" width="160" height="60" rx="6"/>
     <text class="stage-name" x="500" y="156" text-anchor="middle">PA-060 HV sec</text>
-    <text class="stage-sub"  x="500" y="174" text-anchor="middle">center-tapped, 720 Vpp AC</text>
+    <text class="stage-sub"  x="500" y="174" text-anchor="middle">center-tapped, 720 V RMS AC</text>
   </g>
-  <text class="volt-label" x="140" y="160" text-anchor="middle">720 Vpp AC</text>
+  <text class="volt-label" x="140" y="160" text-anchor="middle">720 V RMS AC</text>
   <text class="volt-sub"   x="140" y="178" text-anchor="middle">end-to-end across winding</text>
 
   <!-- Wire down to 5AR4 -->
@@ -73,7 +73,7 @@ This is the only AC stage in the B+ path — everything downstream is DC after r
   <!-- ============ STAGE 2: 5AR4 RECTIFIER ============ -->
   <g class="lead-group" data-tooltip="5AR4 RECTIFIER — full-wave dual-anode.
 
-Each anode (pins 4 and 6) conducts on alternate half-cycles, taking turns 120 times per second. The cathode (pin 8) sees a positive pulse on every half-cycle: pulsating DC at 120 Hz.
+Each anode (pins 4 and 6) conducts on alternate half-cycles — 60 times per second each, so together they deliver 120 pulses per second. The cathode (pin 8) sees a positive pulse on every half-cycle: pulsating DC at 120 Hz.
 
 Optional MOD: a 1N4007 in series with each plate provides arc-protection for the rectifier tube. See modifications/rectifier-diode-mod.">
     <rect class="stage-box stage-rect" x="430" y="215" width="140" height="60" rx="6"/>
@@ -90,7 +90,7 @@ Optional MOD: a 1N4007 in series with each plate provides arc-protection for the
   <!-- ============ STAGE 3: CAP LUG 2 (FIRST FILTER) ============ -->
   <g class="lead-group" data-tooltip="FILTER CAP — lug 2, first stage (~30 µF).
 
-This cap starts smoothing the pulsating DC: it absorbs current on the peak of each 120 Hz pulse and releases current between pulses. The result is DC with significant ripple (~20-30 Vpp of 120 Hz on top of the ~480 V average).
+This cap starts smoothing the pulsating DC: it absorbs current on the peak of each 120 Hz pulse and releases current between pulses. The result is DC with significant ripple (~20-30 Vpp of 120 Hz on top of the ~435 V average).
 
 Wired in step 29: V1 pin 8 → cap lug 2.">
     <rect class="stage-box stage-cap" x="430" y="300" width="140" height="60" rx="6"/>
@@ -108,7 +108,7 @@ Wired in step 29: V1 pin 8 → cap lug 2.">
 
 The choke resists rapid changes in current — together with the cap on lug 1 downstream, it forms an LC low-pass filter that removes essentially all of the 120 Hz ripple.
 
-Some DC voltage drops across the choke's resistance (the steady current × 100 Ω ≈ 30 V drop at typical idle).">
+Some DC voltage drops across the choke's resistance (the steady current × 100 Ω ≈ 20 V drop at typical idle).">
     <rect class="stage-box stage-choke" x="430" y="385" width="140" height="60" rx="6"/>
     <text class="stage-name" x="500" y="411" text-anchor="middle">Choke</text>
     <text class="stage-sub"  x="500" y="429" text-anchor="middle">~1.5 H inductor</text>
@@ -149,7 +149,7 @@ The red leads of both A-470 output transformers land on cap lug 1. Push-pull ope
   <!-- ============ STAGE 6: 6.8 kΩ DROPPING ============ -->
   <g class="lead-group" data-tooltip="6.8 kΩ DROPPING RESISTOR — between cap lug 1 and cap lug 4.
 
-Together with the cap on lug 4, forms an RC filter that drops the voltage and smooths it further. The voltage drop across the resistor depends on the current draw of everything downstream — typically ~80 V at idle.
+Together with the cap on lug 4, forms an RC filter that drops the voltage and smooths it further. The voltage drop across the resistor depends on the current draw of everything downstream — typically ~40 V at idle.
 
 Wired in step 30.">
     <rect class="stage-box stage-r" x="450" y="555" width="100" height="40" rx="4"/>

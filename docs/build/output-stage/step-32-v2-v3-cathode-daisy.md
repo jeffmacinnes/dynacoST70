@@ -23,7 +23,7 @@ All four pin connections are now electrically tied together: V2 pin 1, V2 pin 8,
 
 ## Why all four pins together
 
-The EL-34 has its **cathode** brought out to **both pin 1 AND pin 8** (they're internally tied — pin 6 is also sometimes joined depending on tube variant, see [EL34 pinout](../../appendices/tube-pinouts.md)). Wiring both pins externally is belt-and-suspenders: the connection works through either pin, so a single bad solder joint or pin doesn't open the cathode circuit.
+On the EL-34, pin 8 is the **cathode** and pin 1 is the **suppressor grid (g3)** — they are NOT internally tied. The suppressor needs to sit at cathode potential for the tube to work properly, and this daisy wire is what makes that connection: by threading through pin 1 on the way to pin 8, the wire straps g3 to the cathode externally. That's the whole reason the manual has you thread pin 1 rather than going straight to pin 8.
 
 By daisy-chaining V2 and V3 through this single wire, the two tubes' cathodes are tied together. Combined with the 15.6 Ω from step 31 (also at V2 pin 8 = same node), both V2 and V3 cathodes return to chassis through the SAME 15.6 Ω resistor.
 
