@@ -46,9 +46,6 @@
     <text class="label" x="22" y="6">GND (0 V)</text>
   </g>
 
-  <!-- Equation box (right side) -->
-  <g transform="translate(360, 110)">
-    <text class="ann" x="0" y="0">V_mid = V_in × R2 / (R1+R2)</text>
-    <text class="ann" x="0" y="18">     = 9 × 2/3 = 6 V</text>
-  </g>
+  <!-- Equation note (below) -->
+  <text class="ann" x="240" y="324" text-anchor="middle">V_mid = V_in × R2 / (R1 + R2) = 9 × 2/3 = 6 V</text>
 </svg>

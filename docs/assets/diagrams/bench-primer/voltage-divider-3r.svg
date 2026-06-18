@@ -53,7 +53,6 @@
     <text class="label" x="22" y="6">GND</text>
   </g>
 
-  <!-- Current annotation -->
-  <text class="ann" x="370" y="220" text-anchor="middle">I = 9/30k = 0.3 mA</text>
-  <text class="ann" x="370" y="238" text-anchor="middle">(same through all three)</text>
+  <!-- Current annotation (bottom — out of the way of R1/R2/R3 labels) -->
+  <text class="ann" x="240" y="408" text-anchor="middle">I = 9 V / 30 kΩ = 0.3 mA (same current through all three resistors)</text>
 </svg>

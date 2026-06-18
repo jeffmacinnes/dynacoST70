@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" font-family="Inter, system-ui, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" font-family="Inter, system-ui, sans-serif">
   <title>DMM in current mode — in series with the load</title>
   <desc>9 V battery, DMM in series in current (mA) mode, then a 1 kΩ resistor and return to ground.</desc>
   <style>
@@ -12,7 +12,7 @@
     .ann    { font-size: 12px; font-style: italic; fill: #555; }
     .dmm-lbl { font-size: 13px; fill: #2a6cad; font-weight: 700; }
   </style>
-  <rect width="480" height="320" fill="#ffffff"/>
+  <rect width="560" height="320" fill="#ffffff"/>
 
   <!-- Battery -->
   <g transform="translate(60, 100)">

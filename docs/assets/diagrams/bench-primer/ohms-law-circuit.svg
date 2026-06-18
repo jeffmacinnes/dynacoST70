@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" font-family="Inter, system-ui, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" font-family="Inter, system-ui, sans-serif">
   <title>Ohm's law bench circuit</title>
   <desc>A 9 V battery in a single loop with a 1 kΩ resistor. DMM probe points marked for measuring voltage across the resistor.</desc>
   <style>
@@ -11,7 +11,7 @@
     .ann    { font-size: 12px; font-style: italic; fill: #555; }
     .probe  { fill: #c0392b; }
   </style>
-  <rect width="480" height="320" fill="#ffffff"/>
+  <rect width="560" height="320" fill="#ffffff"/>
 
   <!-- Battery (left side) -->
   <g transform="translate(80, 80)">

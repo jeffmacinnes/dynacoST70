@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" font-family="Inter, system-ui, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" font-family="Inter, system-ui, sans-serif">
   <title>Leaky capacitor model — ideal cap in parallel with leakage resistance</title>
   <desc>An electrolytic capacitor modeled as an ideal capacitor in parallel with an internal leakage resistance R_leak. Larger R_leak means a healthier cap.</desc>
   <style>
@@ -11,7 +11,7 @@
     .val    { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
     .ann    { font-size: 12px; font-style: italic; fill: #555; }
   </style>
-  <rect width="480" height="320" fill="#ffffff"/>
+  <rect width="560" height="320" fill="#ffffff"/>
 
   <text class="val" x="240" y="30" text-anchor="middle">Real electrolytic cap — equivalent model</text>
 
