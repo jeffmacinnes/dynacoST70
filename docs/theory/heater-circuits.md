@@ -64,9 +64,9 @@ Most heater windings (the green and brown 6.3V windings, but not the white 5V on
 
 A heater winding without a CT-to-ground reference is **floating** with respect to the amp's signal ground. Its absolute voltage relative to the rest of the amp is undefined — it could drift anywhere within the limits of the transformer's insulation. In practice, capacitive coupling between the windings ties the heater leads to some imperfect reference, but it's not a clean one.
 
-The two heater leads swing symmetrically around the floating reference: at any instant, one is at +3.15V relative to the floating midpoint, the other at −3.15V. But that floating midpoint itself wanders around, picking up stray noise.
+The two heater leads swing symmetrically around the floating reference: at any instant, one is positive relative to the midpoint and the other equally negative (3.15 V RMS each, ±4.45 V at the peaks). But that floating midpoint itself wanders around, picking up stray noise.
 
-When you reference the **center tap to ground**, you anchor that midpoint at 0V relative to the amp's signal reference. (In this build, the CTs aren't hard-wired to ground — each one reaches ground through a 0.02 µF disc capacitor at the seven-lug strip. The cap anchors the midpoint at 60 Hz, which is all the hum cancellation needs, while leaving the winding floating at DC.) Now:
+When you reference the **center tap to ground**, you anchor that midpoint at 0V relative to the amp's signal reference. (That's the textbook version — a hard wire from CT to ground, which many amps use. This build does something slightly different: the CT is *capacitor-coupled* to ground through a 0.02 µF disc cap, which holds the midpoint at 0 V for AC purposes — the only thing hum cancellation needs — while leaving the winding DC-floating to avoid ground loops.) Now:
 
 - One heater lead is at **+3.15V relative to ground** at any instant
 - The other heater lead is at **−3.15V relative to ground** at the same instant

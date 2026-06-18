@@ -51,23 +51,94 @@ If any reads OL: open winding (broken). Replace the PA-060.
 
 If OL: the GRN/YEL or BRN/YEL CT lead isn't connected to its lug. Recheck [step 6](../build/power-supply/step-06-heater-cts.md).
 
+!!! important "The chassis IS ground in this amp"
+    The chassis is bonded to mains earth through the green wire of the 3-prong cord (see [3-prong cord mod](../modifications/3-prong-cord.md)), and the HV winding's RED/YEL center tap is wired to chassis at [step 7](../build/power-supply/step-07-hv-ct.md). So at the DMM:
+
+    **chassis ≡ RED/YEL CT ≡ signal ground**
+
+    These are the *same node* electrically. Any probe that touches "chassis" is really touching the CT.
+
+    This matters for the next few tests: when you probe one of the red HV leads to chassis, the current flows through the winding, to the CT, to chassis. You'll see the **winding resistance**, not OL — and that's the correct outcome. A "low reading to chassis" is not automatically a short. The right diagnostic question is whether the reading **matches the expected path**. A true short shows up as a reading *lower* than the expected path, because the unintended short is in parallel with the intended one. See [grounding and hum](../theory/grounding-and-hum.md) for the conceptual treatment.
+
 ### 3. HV secondary end-to-end
 
-Probe between V1 pin 4 and V1 pin 6 (the two red leads of the 720 V winding).
+!!! note "This build has the rectifier diode mod installed"
+    The two RED leads land on V1 **pin 3 and pin 5** (NC pins used as anchor lugs), with 1N4007s bridging pin 3→4 and pin 5→6. See [rectifier diode mod](../modifications/rectifier-diode-mod.md). Probe at pins 3 and 5 to measure the winding directly; probing at pins 4/6 measures *through* a diode and will read OL in one direction.
 
-- **Expected:** ~80-150 Ω (the full HV winding's DC resistance).
+Probe between V1 pin 3 and V1 pin 5 (the two ends of the 720 V HV winding).
+
+- **Expected:** ~50–150 Ω (the full HV winding's DC resistance). The PA-060 is a beefy 300 mA transformer; ~55 Ω is normal.
 - **OL:** open winding. PA-060 is dead.
 - **<1 Ω:** secondary is shorted. Stop, don't power up.
 
-### 4. HV CT to ground reference
+### 4. HV winding halves, via the CT
 
-Probe between V1 pin 8 (5AR4 cathode), the [filter cap +1 lug](../components/filter-capacitors.md), and chassis ground:
+The RED/YEL center tap lands somewhere in the ground network (per [step 7](../build/power-supply/step-07-hv-ct.md), at the main ground point near the filter cap — though builders sometimes route it to the star ground instead; both are electrically the same node). Either probe the CT lead directly at its landing point, **or just probe chassis**, since chassis = CT.
+
+| Probe between | Expected | What it tells you |
+|---|---|---|
+| V1 pin 3 ↔ chassis | ~25–75 Ω | DC resistance of one half of the HV winding |
+| V1 pin 5 ↔ chassis | ~25–75 Ω | DC resistance of the other half |
+| Both halves | within ~10% of each other | CT is electrically near the middle of the winding |
+
+The two halves should sum (within meter resolution) to the full-winding reading from Test 3.
+
+**A truly low reading here (e.g., <1 Ω) means a red lead is shorting directly to chassis somewhere — pinched against a chassis bolt, exposed wire touching a transformer frame, etc.** Find and fix before powering up. But a value matching the winding resistance is exactly correct.
+
+### 4a. Bias tap (RED/BLK)
+
+The RED/BLK lead is **a tap on the HV winding** — not a separate winding — partway up from the CT toward one of the RED ends. It feeds the bias rectifier diode (banded end), per [step 1](../build/power-supply/step-01-bias-diode.md).
+
+| Probe between | Expected | What it tells you |
+|---|---|---|
+| RED/BLK (at the bias diode's banded end) ↔ chassis | a few Ω to ~20 Ω | RED/BLK's resistance to the CT (and the CT is at chassis) |
+| RED/BLK ↔ V1 pin 3 | small if RED/BLK taps the pin-3 side; bigger if it taps the pin-5 side | which half of the winding hosts the bias tap |
+| RED/BLK ↔ V1 pin 5 | the complementary value | confirms the same |
+
+Sanity check: the small + the bigger should sum to your half-winding values from Test 4. The ratio of (RED/BLK ↔ chassis) to (its half-winding total) should roughly match 50 V / 360 V ≈ 14% — that's how the manual's voltage spec maps to a resistance ratio.
+
+### 4b. HV ↔ mains primary isolation
+
+This is the one HV-side test that *must* be OL. The primary and secondary share no ground path; any continuity here means insulation breakdown inside the PA-060 — the transformer is unsafe to power up.
 
 | Probe between | Expected |
 |---|---|
-| V1 pin 4 ↔ RED/YEL CT landing point (filter cap area) | ~40-75 Ω (half the winding) |
-| V1 pin 6 ↔ RED/YEL CT landing point | ~40-75 Ω (other half) |
-| RED/YEL CT landing point ↔ chassis | varies (depends on whether step 7 is wired) |
+| V1 pin 3 ↔ mains black (at switch) | OL |
+| V1 pin 3 ↔ mains white (at fuse) | OL |
+| V1 pin 5 ↔ mains black | OL |
+| V1 pin 5 ↔ mains white | OL |
+
+If any of these read a finite value: **PA-060 is dead. Replace, do not power up.** This failure is rare but catastrophic — it means the line voltage can appear on the HV secondary (and through there, on the tube sockets and B+ rail).
+
+!!! example "Reference values from this build"
+    Measured on the actual ST-70 documented in this manual (units: Ω):
+
+    | Test | Value | Notes |
+    |---|---|---|
+    | Test 3 — pin 3 ↔ pin 5 | 55 | Full HV winding |
+    | Test 4 — pin 3 ↔ chassis | 26 | One half of the winding |
+    | Test 4 — pin 5 ↔ chassis | 28 | Other half (7% mismatch is fine) |
+    | Test 4 — halves sum | 54 ≈ 55 | Confirms CT placement |
+    | Test 4a — RED/BLK ↔ chassis | 4 | Bias tap, very close to CT |
+    | Test 4a — RED/BLK ↔ pin 3 | 22 | (26 − 4 = 22 ✓) tap sits on pin-3 side |
+    | Test 4a — RED/BLK ↔ pin 5 | 32 | (28 + 4 = 32 ✓) |
+    | Test 4a — ratio 4/26 ≈ 15% | matches | 50 V / 360 V tap ratio = 14% ✓ |
+    | Test 4b — all four probes | OL | Primary-to-secondary isolation intact |
+
+    These are reference values for a healthy PA-060 in a stock-current build with the rectifier diode mod. Your numbers will differ by some, but the *relationships* (halves sum to the full winding, bias-tap ratio matching the voltage ratio, all primary-secondary OL) should hold.
+
+### 4c. Diode-mod check (1N4007s on V1 pins 3→4 and 5→6)
+
+With the DMM in **diode-test mode** (not resistance/continuity), probe each 1N4007:
+
+| Probe direction | Expected |
+|---|---|
+| Red probe on V1 pin 3, black on pin 4 | ~0.5–0.7 V (forward) |
+| Red probe on V1 pin 4, black on pin 3 | OL (reverse) |
+| Red probe on V1 pin 5, black on pin 6 | ~0.5–0.7 V (forward) |
+| Red probe on V1 pin 6, black on pin 5 | OL (reverse) |
+
+The banded end (cathode) of each diode must face the **plate pin** (4 or 6). If a diode reads OL both ways → open. If it reads ~0 Ω both ways → shorted; replace. If it reads forward voltage in the *wrong* direction → installed backwards, and that half of the rectifier won't conduct (you'll get half-wave rectification: ~60 Hz hum and roughly half the expected B+).
 
 ### 5. Filter cap sections
 

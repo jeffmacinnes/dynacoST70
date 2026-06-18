@@ -8,8 +8,8 @@ title: Step 3 — 5AR4 anodes
 
 Both connections get soldered now (both have the (S) marker), unlike step 2 where pin 8 was left unsoldered for a later wire to land on.
 
-!!! tip "Optional: rectifier diode mod at this step"
-    Current DynakitParts kits include two 1N4007 diodes (on a separate sheet) for an optional **rectifier diode mod** that's installed exactly at this step. The red leads land on **pins 5 and 7** instead of 4 and 6, and a 1N4007 bridges each NC pin to its plate to protect the 5AR4 from warm-up failure. See [Rectifier diode mod](../../modifications/rectifier-diode-mod.md) for the full explanation and wiring — including a retrofit procedure if you've already soldered this step the stock way.
+!!! info "This build has the rectifier diode mod installed"
+    The two 1N4007s shipped with the kit (on a separate sheet) were installed at this step. The red leads land on V1 **pins 3 and 5** (NC pins used as anchor lugs), and a 1N4007 bridges each anchor pin to its adjacent plate — pin 3 → pin 4, and pin 5 → pin 6. The banded end (cathode) of each diode faces the plate pin. This protects the 5AR4 from warm-up arc-over failure. See [Rectifier diode mod](../../modifications/rectifier-diode-mod.md) for the full electrical rationale.
 
 ## What you're doing physically
 
