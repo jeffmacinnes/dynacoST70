@@ -61,6 +61,8 @@ extra_css:
 
 extra_javascript:
   - javascripts/preview-panel.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - admonition
@@ -88,6 +90,8 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.caret
   - pymdownx.smartsymbols
+  - pymdownx.arithmatex:
+      generic: true
 
 plugins:
   - search

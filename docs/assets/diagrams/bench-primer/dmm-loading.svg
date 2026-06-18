@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" font-family="Inter, system-ui, sans-serif">
+  <title>DMM loading effect on a high-impedance divider</title>
+  <desc>A 1 MΩ + 1 MΩ voltage divider with the DMM's 10 MΩ input impedance shown in parallel with R2, lowering the effective bottom-leg resistance.</desc>
+  <style>
+    .wire   { stroke: #1a1a1a; stroke-width: 2.2; fill: none; }
+    .comp   { fill: #f4efe5; stroke: #1a1a1a; stroke-width: 2; }
+    .dmm    { fill: #eef4ec; stroke: #2a6cad; stroke-width: 2; }
+    .gnd    { stroke: #1a1a1a; stroke-width: 2; fill: none; }
+    .label  { font-size: 14px; fill: #1a1a1a; }
+    .val    { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .ann    { font-size: 12px; font-style: italic; fill: #555; }
+    .tap    { fill: #2a6cad; }
+    .dmm-lbl { font-size: 13px; fill: #2a6cad; font-weight: 700; }
+  </style>
+  <rect width="560" height="360" fill="#ffffff"/>
+
+  <!-- V_in -->
+  <line class="wire" x1="180" y1="30" x2="180" y2="80"/>
+  <circle class="tap" cx="180" cy="30" r="4"/>
+  <text class="val" x="192" y="34">V_in = 9 V</text>
+
+  <!-- R1 -->
+  <rect class="comp" x="156" y="80" width="48" height="70" rx="3"/>
+  <text class="val" x="220" y="120">R1 = 1 MΩ</text>
+
+  <!-- Midpoint -->
+  <line class="wire" x1="180" y1="150" x2="180" y2="190"/>
+  <line class="wire" x1="180" y1="170" x2="320" y2="170"/>
+  <circle class="tap" cx="180" cy="170" r="4"/>
+  <text class="val" x="148" y="166" text-anchor="end">V_mid</text>
+  <text class="val" x="148" y="182" text-anchor="end">≈ 4.3 V</text>
+  <text class="ann" x="148" y="196" text-anchor="end">(predicted 4.5)</text>
+
+  <!-- R2 -->
+  <rect class="comp" x="156" y="190" width="48" height="70" rx="3"/>
+  <text class="val" x="220" y="230">R2 = 1 MΩ</text>
+
+  <!-- DMM input (parallel to R2) -->
+  <rect class="dmm" x="356" y="160" width="160" height="100" rx="6"/>
+  <text class="dmm-lbl" x="436" y="186" text-anchor="middle">DMM (DC volts)</text>
+  <text class="dmm-lbl" x="436" y="208" text-anchor="middle">R_in = 10 MΩ</text>
+  <text class="ann" x="436" y="232" text-anchor="middle">internal resistance</text>
+  <text class="ann" x="436" y="248" text-anchor="middle">in parallel with R2</text>
+
+  <!-- Wire from midpoint to DMM -->
+  <line class="wire" x1="320" y1="170" x2="320" y2="200"/>
+  <line class="wire" x1="320" y1="200" x2="356" y2="200"/>
+
+  <!-- DMM return to ground -->
+  <line class="wire" x1="436" y1="260" x2="436" y2="300"/>
+  <line class="wire" x1="180" y1="260" x2="180" y2="300"/>
+  <line class="wire" x1="180" y1="300" x2="436" y2="300"/>
+
+  <!-- Ground -->
+  <g transform="translate(308, 300)">
+    <line class="gnd" x1="-16" y1="0"  x2="16" y2="0" stroke-width="2.4"/>
+    <line class="gnd" x1="-11" y1="6"  x2="11" y2="6"/>
+    <line class="gnd" x1="-6"  y1="12" x2="6"  y2="12"/>
+    <text class="label" x="22" y="6">GND</text>
+  </g>
+
+  <!-- Effective parallel R note -->
+  <text class="ann" x="280" y="330" text-anchor="middle">R2 ∥ R_DMM = (1M × 10M)/(1M + 10M) ≈ 909 kΩ</text>
+</svg>

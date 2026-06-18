@@ -52,17 +52,10 @@ This is the exercise that makes loading viscerally real. You'll measure a high-i
 
 **Circuit:**
 
-```
-   9V battery (+)
-      │
-     [R1 = 1 MΩ]
-      │
-      ├── V_mid (probe here)
-      │
-     [R2 = 1 MΩ]
-      │
-   GND
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/dmm-loading.svg" alt="DMM loading a high-impedance divider">
+  <figcaption>Two 1 MΩ resistors form an "ideal" 4.5 V divider. The DMM's 10 MΩ input sits in parallel with the bottom 1 MΩ, dropping the effective bottom-leg resistance to ~909 kΩ and pulling V_mid down to ~4.3 V. Click to zoom.</figcaption>
+</figure>
 
 **Predict (ideal):**
 
@@ -88,15 +81,10 @@ Now **rebuild the same divider with 1 kΩ resistors instead of 1 MΩ.** The DMM'
 
 Don't skip this. Move the red probe to the current jack, set the meter to mA DC, and **break the circuit** to insert it:
 
-```
-   9V battery (+)
-      │
-     [DMM in series, on mA]
-      │
-     [R = 1 kΩ]
-      │
-   GND
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/dmm-current-measurement.svg" alt="DMM in series, current measurement">
+  <figcaption>The DMM in current mode is a near-short, inserted in series with the load. Reads the actual current flowing in the loop. Click to zoom.</figcaption>
+</figure>
 
 Predict 9 mA. Measure. Then move it to the **other** side of the resistor (between resistor and ground) — the reading is the same, because in a series loop the current is the same everywhere.
 

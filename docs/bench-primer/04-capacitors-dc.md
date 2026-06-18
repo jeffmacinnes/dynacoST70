@@ -22,18 +22,10 @@ $$ \tau = R \times C $$
 
 τ has units of seconds (when R is in ohms and C in farads). After one τ, the cap has reached **63%** of the supply voltage. After 3τ, 95%. After 5τ, 99% — essentially "done."
 
-```
-V(t) on a charging cap:
-
-    V_supply ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
-                            ╱─────
-                       ╱──── 95% at 3τ
-                  ╱─── 86% at 2τ
-            ╱──── 63% at 1τ
-       ╱
-   0 ─┴─────────────────────────────── time
-   t=0                  →
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/rc-charging-curve.svg" alt="Exponential charging curve toward V_supply">
+  <figcaption>The cap rises rapidly at first, then asymptotically approaches V_supply. The shape of the curve is identical for any RC pair — only the time axis stretches or compresses with τ. Click to zoom.</figcaption>
+</figure>
 
 The exact equation:
 
@@ -45,6 +37,11 @@ When you remove the source and connect the charged cap across just a resistor, i
 
 $$ V(t) = V_{\text{initial}} \times e^{-t/\tau} $$
 
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/cap-discharge-curve.svg" alt="Exponential discharge curve from V_initial">
+  <figcaption>The mirror image of the charging curve: rapid fall at first, asymptotic approach to zero. Same τ as the charge curve uses. Click to zoom.</figcaption>
+</figure>
+
 If you know any three of (V_initial, V_final, t, τ), you can solve for the fourth. **This is how you compute capacitor leakage.**
 
 ## Bench exercise 4A — predict and measure a charge curve
@@ -53,15 +50,10 @@ If you know any three of (V_initial, V_final, t, τ), you can solve for the four
 
 **Circuit:**
 
-```
-9V (+) ──[100 kΩ]──┬── DMM probe (DC volts)
-                    │
-                   [10 µF]   (electrolytic: + side up, − side at ground)
-                    │
-                   GND
-                    │
-                   9V (−)
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/rc-charging-circuit.svg" alt="RC charging circuit: 9V, 100 kΩ, 10 µF, DMM across cap">
+  <figcaption>The R and C set the time constant; the DMM in DC volts mode reads the cap voltage as it climbs. Discharge the cap (short its leads briefly) before each run. Click to zoom.</figcaption>
+</figure>
 
 **Predict:**
 
@@ -105,15 +97,10 @@ So at t = 100 s, the cap should still be at 0.37 × 9 V = **3.3 V**. At t = 200 
 
 A real electrolytic cap has some internal leakage, modeled as an equivalent parallel resistor:
 
-```
-    cap (+)
-       │
-       ├──[ideal cap]──┐
-       │               │
-       └──[R_leak]─────┤
-       │
-    cap (−)
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/cap-leakage-model.svg" alt="Electrolytic cap model — ideal cap in parallel with R_leak">
+  <figcaption>The dashed box is what you'd see at the bench — a single capacitor part. Inside, the equivalent model is an ideal cap in parallel with a leakage resistance. A healthy cap has R_leak in the GΩ range; a leaky cap might be down at MΩ. Click to zoom.</figcaption>
+</figure>
 
 R_leak is huge (MΩ to GΩ) for a healthy cap, smaller for a leaky one. You can't directly measure R_leak — but you can infer it from how fast the cap discharges when nothing else is connected.
 

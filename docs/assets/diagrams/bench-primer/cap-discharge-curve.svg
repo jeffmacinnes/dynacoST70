@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" font-family="Inter, system-ui, sans-serif">
+  <title>RC discharge curve — exponential decay</title>
+  <desc>Plot of V(t) for a charged capacitor discharging through a resistor, showing the 37% / 14% / 5% / 1% markers at 1τ, 2τ, 3τ, 5τ.</desc>
+  <style>
+    .axis   { stroke: #1a1a1a; stroke-width: 1.5; fill: none; }
+    .grid   { stroke: #d0d0d0; stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
+    .curve  { stroke: #c0392b; stroke-width: 2.6; fill: none; }
+    .marker { fill: #2a6cad; }
+    .label  { font-size: 13px; fill: #1a1a1a; }
+    .val    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .ann    { font-size: 12px; font-style: italic; fill: #555; }
+    .vsup   { stroke: #888; stroke-width: 1.4; fill: none; stroke-dasharray: 6 4; }
+  </style>
+  <rect width="520" height="340" fill="#ffffff"/>
+
+  <text class="val" x="260" y="24" text-anchor="middle">V(t) = V_initial × e^(−t/τ)</text>
+
+  <!-- Axes -->
+  <line class="axis" x1="60" y1="280" x2="480" y2="280"/>
+  <line class="axis" x1="60" y1="280" x2="60" y2="60"/>
+  <polygon points="480,280 472,276 472,284" fill="#1a1a1a"/>
+  <polygon points="60,60 56,68 64,68" fill="#1a1a1a"/>
+
+  <!-- V_initial line -->
+  <line class="vsup" x1="60" y1="80" x2="480" y2="80"/>
+  <text class="ann" x="476" y="74" text-anchor="end">V_initial</text>
+
+  <!-- Grid lines at τ markers -->
+  <line class="grid" x1="140" y1="280" x2="140" y2="80"/>
+  <line class="grid" x1="220" y1="280" x2="220" y2="80"/>
+  <line class="grid" x1="300" y1="280" x2="300" y2="80"/>
+  <line class="grid" x1="380" y1="280" x2="380" y2="80"/>
+
+  <!-- Discharge curve: V(t) = 200 * e^(-t/80), starting at (60, 80) -->
+  <path class="curve" d="
+    M 60 80
+    Q 100 134 140 154
+    Q 180 174 220 196
+    Q 260 218 300 234
+    Q 340 248 380 258
+    Q 420 266 480 274
+  "/>
+
+  <!-- Markers -->
+  <circle class="marker" cx="140" cy="154" r="4"/>
+  <circle class="marker" cx="220" cy="194" r="4"/>
+  <circle class="marker" cx="300" cy="232" r="4"/>
+  <circle class="marker" cx="460" cy="272" r="4"/>
+
+  <text class="val" x="140" y="298" text-anchor="middle">1τ</text>
+  <text class="val" x="220" y="298" text-anchor="middle">2τ</text>
+  <text class="val" x="300" y="298" text-anchor="middle">3τ</text>
+  <text class="val" x="460" y="298" text-anchor="middle">5τ</text>
+
+  <text class="ann" x="140" y="148" text-anchor="middle" fill="#2a6cad">37%</text>
+  <text class="ann" x="220" y="188" text-anchor="middle" fill="#2a6cad">14%</text>
+  <text class="ann" x="300" y="226" text-anchor="middle" fill="#2a6cad">5%</text>
+  <text class="ann" x="460" y="266" text-anchor="end" fill="#2a6cad">~1%</text>
+
+  <text class="label" x="40" y="282" text-anchor="end">0</text>
+  <text class="label" x="40" y="84"  text-anchor="end">V_i</text>
+
+  <text class="ann" x="260" y="324" text-anchor="middle">time (multiples of τ = R × C)</text>
+</svg>

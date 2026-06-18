@@ -10,17 +10,12 @@ When resistors are connected end-to-end (in **series**), the same current flows 
 
 $$ V_n = I \times R_n $$
 
-If two resistors are in series from V_in to ground, with the midpoint tapped off, the midpoint sits at a fraction of V_in determined by the ratio of resistances. This is the **voltage divider** — one of the most-used circuit patterns in electronics:
+If two resistors are in series from V_in to ground, with the midpoint tapped off, the midpoint sits at a fraction of V_in determined by the ratio of resistances. This is the **voltage divider** — one of the most-used circuit patterns in electronics.
 
-```
-V_in ──┬── R1
-       │
-       ├── V_mid
-       │
-       ├── R2
-       │
-      GND
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/voltage-divider-2r.svg" alt="Two-resistor voltage divider">
+  <figcaption>R1 on top, R2 on bottom, midpoint tapped off. The bottom resistor's value (R2) appears in the numerator of the divider formula. Click to zoom.</figcaption>
+</figure>
 
 $$ V_{\text{mid}} = V_{\text{in}} \times \dfrac{R_2}{R_1 + R_2} $$
 
@@ -30,19 +25,7 @@ Memorize that the **bottom resistor** appears in the numerator. Intuition: if R�
 
 **Parts:** 9 V battery, two resistors (1 kΩ and 2 kΩ, or anything where you know both values), DMM.
 
-**Circuit:**
-
-```
-   9V battery (+)
-      │
-     [R1 = 1 kΩ]
-      │
-      ├──── tap here, call it V_mid
-      │
-     [R2 = 2 kΩ]
-      │
-   9V battery (−) / GND
-```
+**Circuit:** the 2-resistor divider shown above, with R1 = 1 kΩ on top and R2 = 2 kΩ on bottom.
 
 **Predict:**
 
@@ -77,17 +60,10 @@ $$ V_{\text{mid}} = 9 \times \dfrac{1{,}000}{2{,}000 + 1{,}000} = 9 \times \dfra
 
 ## A second variation: three resistors
 
-```
-V_in (9 V)
-   │
-  [R1 = 10 kΩ]
-   │── V_a
-  [R2 = 10 kΩ]
-   │── V_b
-  [R3 = 10 kΩ]
-   │
-  GND
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/voltage-divider-3r.svg" alt="Three-resistor voltage divider">
+  <figcaption>Three equal 10 kΩ resistors in series across 9 V. Equal resistors → equal drops (3 V each), with intermediate taps at V_a = 6 V and V_b = 3 V. Click to zoom.</figcaption>
+</figure>
 
 Predict V_a and V_b (three equal resistors, so the drops are equal — 3 V each):
 

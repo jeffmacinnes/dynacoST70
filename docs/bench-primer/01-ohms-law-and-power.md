@@ -36,17 +36,10 @@ That's it. With those four expressions you can compute the current, voltage, or 
 
 **Circuit:**
 
-```
-   9V battery
-      │
-      + (red)
-      │
-     [R = 1 kΩ]
-      │
-      − (black)
-      │
-   battery
-```
+<figure class="diagram-fig" markdown="span">
+  <img src="../../assets/diagrams/bench-primer/ohms-law-circuit.svg" alt="A 9V battery with a 1 kΩ resistor in a single loop">
+  <figcaption>The simplest possible circuit. Probe across the resistor with the DMM on DC volts; insert it in series for current. Click to zoom.</figcaption>
+</figure>
 
 **Predict (do this before you touch anything):**
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" font-family="Inter, system-ui, sans-serif">
+  <title>Ohm's law bench circuit</title>
+  <desc>A 9 V battery in a single loop with a 1 kΩ resistor. DMM probe points marked for measuring voltage across the resistor.</desc>
+  <style>
+    .wire   { stroke: #1a1a1a; stroke-width: 2.2; fill: none; }
+    .comp   { fill: #f4efe5; stroke: #1a1a1a; stroke-width: 2; }
+    .gnd    { stroke: #1a1a1a; stroke-width: 2; fill: none; }
+    .label  { font-size: 14px; fill: #1a1a1a; }
+    .val    { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .ann    { font-size: 12px; font-style: italic; fill: #555; }
+    .probe  { fill: #c0392b; }
+  </style>
+  <rect width="480" height="320" fill="#ffffff"/>
+
+  <!-- Battery (left side) -->
+  <g transform="translate(80, 80)">
+    <line class="wire" x1="0" y1="0"  x2="0" y2="20"/>
+    <!-- battery long line (+) -->
+    <line class="wire" x1="-22" y1="20" x2="22" y2="20" stroke-width="3"/>
+    <!-- battery short line (-) -->
+    <line class="wire" x1="-14" y1="34" x2="14" y2="34" stroke-width="3"/>
+    <line class="wire" x1="0" y1="34" x2="0" y2="54"/>
+    <text class="val" x="40" y="24">9 V</text>
+    <text class="label" x="-40" y="24" text-anchor="end">+</text>
+    <text class="label" x="-40" y="38" text-anchor="end">−</text>
+  </g>
+
+  <!-- Top wire -->
+  <line class="wire" x1="80"  y1="80"  x2="80"  y2="50"/>
+  <line class="wire" x1="80"  y1="50"  x2="380" y2="50"/>
+  <line class="wire" x1="380" y1="50"  x2="380" y2="100"/>
+
+  <!-- Resistor on the right -->
+  <rect class="comp" x="356" y="100" width="48" height="80" rx="3"/>
+  <text class="val" x="416" y="140">R = 1 kΩ</text>
+  <text class="ann" x="416" y="158">(¼ W typical)</text>
+
+  <!-- Probe dots on resistor terminals -->
+  <circle class="probe" cx="380" cy="100" r="4"/>
+  <circle class="probe" cx="380" cy="180" r="4"/>
+  <text class="ann" x="320" y="140" text-anchor="end">DMM probes here</text>
+  <text class="ann" x="320" y="155" text-anchor="end">(across resistor)</text>
+
+  <!-- Bottom wire -->
+  <line class="wire" x1="380" y1="180" x2="380" y2="230"/>
+  <line class="wire" x1="380" y1="230" x2="80"  y2="230"/>
+  <line class="wire" x1="80"  y1="230" x2="80"  y2="134"/>
+
+  <!-- Ground symbol on bottom -->
+  <g transform="translate(230, 230)">
+    <line class="wire" x1="0" y1="0"   x2="0" y2="20"/>
+    <line class="gnd"  x1="-16" y1="20" x2="16" y2="20" stroke-width="2.4"/>
+    <line class="gnd"  x1="-11" y1="26" x2="11" y2="26"/>
+    <line class="gnd"  x1="-6"  y1="32" x2="6"  y2="32"/>
+    <text class="label" x="22" y="26">GND (battery −)</text>
+  </g>
+
+  <!-- Current direction arrow -->
+  <g transform="translate(230, 30)">
+    <line class="wire" x1="-30" y1="20" x2="30" y2="20" stroke="#c0392b" stroke-width="2"/>
+    <polygon points="30,20 22,16 22,24" fill="#c0392b"/>
+    <text class="ann" x="0" y="14" text-anchor="middle" fill="#c0392b">conventional current flow</text>
+  </g>
+</svg>

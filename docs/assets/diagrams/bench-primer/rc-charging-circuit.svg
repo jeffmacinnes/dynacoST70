@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" font-family="Inter, system-ui, sans-serif">
+  <title>RC charging circuit</title>
+  <desc>A 9 V source charges a 10 µF electrolytic capacitor through a 100 kΩ resistor. DMM probes monitor the cap voltage.</desc>
+  <style>
+    .wire   { stroke: #1a1a1a; stroke-width: 2.2; fill: none; }
+    .comp   { fill: #f4efe5; stroke: #1a1a1a; stroke-width: 2; }
+    .dmm    { fill: #eef4ec; stroke: #2a6cad; stroke-width: 2; }
+    .capln  { stroke: #1a1a1a; stroke-width: 3; fill: none; }
+    .gnd    { stroke: #1a1a1a; stroke-width: 2; fill: none; }
+    .label  { font-size: 14px; fill: #1a1a1a; }
+    .val    { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .ann    { font-size: 12px; font-style: italic; fill: #555; }
+    .tap    { fill: #2a6cad; }
+    .dmm-lbl { font-size: 13px; fill: #2a6cad; font-weight: 700; }
+  </style>
+  <rect width="520" height="320" fill="#ffffff"/>
+
+  <!-- V_in -->
+  <line class="wire" x1="80" y1="30" x2="80" y2="80"/>
+  <circle class="tap" cx="80" cy="30" r="4"/>
+  <text class="val" x="92" y="34">9 V</text>
+
+  <!-- Resistor -->
+  <rect class="comp" x="56" y="80" width="48" height="60" rx="3"/>
+  <text class="val" x="120" y="115">R = 100 kΩ</text>
+
+  <!-- Top horizontal to cap -->
+  <line class="wire" x1="80"  y1="140" x2="80"  y2="180"/>
+  <line class="wire" x1="80"  y1="160" x2="280" y2="160"/>
+
+  <!-- Capacitor (electrolytic, polarized) -->
+  <g transform="translate(280, 160)">
+    <line class="wire" x1="0" y1="0" x2="0" y2="20"/>
+    <line class="capln" x1="-22" y1="20" x2="22" y2="20"/>
+    <path class="capln" d="M -22 36 Q 0 26 22 36"/>
+    <text class="label" x="-30" y="20" text-anchor="end">+</text>
+    <text class="label" x="-30" y="40" text-anchor="end">−</text>
+    <text class="val" x="32" y="32">C = 10 µF</text>
+    <line class="wire" x1="0" y1="36" x2="0" y2="60"/>
+  </g>
+
+  <!-- DMM in parallel with cap -->
+  <rect class="dmm" x="380" y="140" width="120" height="60" rx="6"/>
+  <text class="dmm-lbl" x="440" y="166" text-anchor="middle">DMM (V_DC)</text>
+  <text class="ann" x="440" y="184" text-anchor="middle">across cap</text>
+
+  <line class="wire" x1="280" y1="180" x2="380" y2="180"/>
+  <line class="wire" x1="380" y1="170" x2="380" y2="180"/>
+
+  <!-- Wire down to ground -->
+  <line class="wire" x1="280" y1="220" x2="280" y2="250"/>
+  <line class="wire" x1="80"  y1="180" x2="80"  y2="250"/>
+  <line class="wire" x1="500" y1="200" x2="500" y2="250"/>
+  <line class="wire" x1="80"  y1="250" x2="500" y2="250"/>
+
+  <!-- Ground -->
+  <g transform="translate(220, 250)">
+    <line class="wire" x1="0" y1="0"   x2="0" y2="20"/>
+    <line class="gnd"  x1="-16" y1="20" x2="16" y2="20" stroke-width="2.4"/>
+    <line class="gnd"  x1="-11" y1="26" x2="11" y2="26"/>
+    <line class="gnd"  x1="-6"  y1="32" x2="6"  y2="32"/>
+    <text class="label" x="22" y="26">GND</text>
+  </g>
+
+  <text class="ann" x="260" y="300" text-anchor="middle">τ = R × C = 100 kΩ × 10 µF = 1 second</text>
+</svg>
