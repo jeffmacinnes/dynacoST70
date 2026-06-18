@@ -84,4 +84,4 @@ Every voltage on the ST-70's chassis is the result of a current flowing through 
 
 Once you can confidently apply V = IR and P = V²/R in your head, every node on the chassis becomes a quantitative prediction instead of a memorized number.
 
-[Next: Voltage dividers and series circuits →](02-voltage-dividers.md)
+[Next: Series, parallel, and voltage dividers →](02-voltage-dividers.md)

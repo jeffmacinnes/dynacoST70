@@ -1,8 +1,8 @@
 ---
-title: 2. Voltage dividers and series circuits
+title: 2. Series, parallel, and voltage dividers
 ---
 
-# Exercise 2 — Voltage dividers and series circuits
+# Exercise 2 — Series, parallel, and voltage dividers
 
 ## The concept
 
@@ -73,6 +73,66 @@ Predict V_a and V_b (three equal resistors, so the drops are equal — 3 V each)
 - Current = 9 V / 30 kΩ = 0.3 mA
 
 Build, measure, confirm. You've just modeled the ST-70's stock bias divider topology — a chain of resistors from the raw bias rail to ground, with the pot wiper tapping off at an intermediate node.
+
+## Resistors in parallel
+
+Series isn't the only way to combine resistors. When two resistors are connected at **both** ends to the same two nodes, they're in **parallel**:
+
+```
+V_in ──┬──[R1]──┬── GND
+       │        │
+       └──[R2]──┘
+```
+
+The current now has two paths to ground. Whatever current the source delivers gets *split* between them. The voltage *across* each resistor is the same (both span the same two nodes), but each carries its own current set by Ohm's law:
+
+$$ I_1 = \dfrac{V}{R_1} \qquad I_2 = \dfrac{V}{R_2} \qquad I_\text{total} = I_1 + I_2 $$
+
+If you wanted to replace the pair with a single equivalent resistor R_eq that draws the same total current at the same voltage, you'd need V/R_eq = V/R₁ + V/R₂. Dividing by V:
+
+$$ \dfrac{1}{R_\text{eq}} = \dfrac{1}{R_1} + \dfrac{1}{R_2} $$
+
+Rearranged for exactly two resistors, this becomes the most-used form:
+
+$$ R_\text{eq} = \dfrac{R_1 \times R_2}{R_1 + R_2} $$
+
+(The shape resembles the voltage-divider formula but it's a different rule entirely — series and parallel obey opposite arithmetic.)
+
+For N resistors in parallel, just keep adding reciprocals: 1/R_eq = 1/R₁ + 1/R₂ + … + 1/R_N.
+
+### Three intuitions that make this stick
+
+1. **Parallel R is always smaller than the smallest individual R.** More paths for current → less total opposition. Two side-by-side pipes carry more water than either alone, so the combined "resistance to flow" is lower than either pipe by itself.
+2. **Equal resistors in parallel divide by N.** Two 10 kΩ → 5 kΩ. Three equal → R/3. Useful shortcut.
+3. **A much smaller R dominates a much larger R.** 1 kΩ ∥ 1 MΩ ≈ 999 Ω. The big resistor barely conducts anything; the small one does almost all the work. When you're sanity-checking quickly, the smaller R wins.
+
+### Bench exercise — parallel resistors
+
+**Parts:** two resistors (say 10 kΩ and 22 kΩ), DMM.
+
+**Predict** the parallel combination:
+
+$$ R_\text{eq} = \dfrac{10{,}000 \times 22{,}000}{10{,}000 + 22{,}000} = \dfrac{220{,}000{,}000}{32{,}000} \approx 6{,}875\ \Omega $$
+
+Sanity check against intuition 1: R_eq (~6.9 kΩ) is smaller than the smaller of the two (10 kΩ). ✓
+
+**Build** it on the breadboard. Put the two resistors side by side so that both their left leads share a node, and both their right leads share a node. (Two parallel runs of breadboard tie strip work perfectly.)
+
+**Measure** the resistance across the pair with the DMM on ohms mode. You should read close to 6.9 kΩ — within tolerance of both resistors plus DMM accuracy, so anywhere from ~6.5 to ~7.3 kΩ.
+
+Now try **two equal resistors in parallel** (10 kΩ + 10 kΩ): predict 5 kΩ exactly, measure, confirm.
+
+And try **very-unequal** (100 Ω + 100 kΩ): predict ≈ 99.9 Ω (the small one wins almost completely), measure, confirm.
+
+### Why this matters for the DMM and beyond
+
+You've just done the math that makes the *next* exercise (DMM loading) work. The DMM's 10 MΩ input impedance, when probed across a node in a circuit, ends up in **parallel** with whatever was already there. If "whatever was already there" is high-impedance (MΩ range), the DMM significantly changes the effective resistance of that part of the circuit, which shifts the voltage you're trying to measure.
+
+The combine-resistors-in-parallel pattern also shows up:
+
+- **Anywhere two paths share endpoints**: the cathode of a triode tied to its grid bias resistor *and* a bypass cap to ground. The bypass cap acts like a low impedance at signal frequencies — that's a parallel combination of cathode-resistor and cap-impedance, which is why bypassed cathodes have much higher signal-frequency gain.
+- **Speaker loads in parallel**: two 8 Ω speakers in parallel = 4 Ω load.
+- **Loaded voltage dividers** (exercise 3): R₂ in parallel with the load resistance.
 
 ## Why this matters for the ST-70
 

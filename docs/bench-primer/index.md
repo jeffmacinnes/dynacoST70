@@ -48,7 +48,7 @@ The one exception: the final "apply it to the ST-70" exercise. By then you'll kn
 ## The exercises
 
 1. [Ohm's law and power](01-ohms-law-and-power.md) — the foundation. V = IR, P = IV, predicting current and dissipation.
-2. [Voltage dividers and series circuits](02-voltage-dividers.md) — how series resistance distributes voltage, and why the ST-70's bias network looks the way it does.
+2. [Series, parallel, and voltage dividers](02-voltage-dividers.md) — how series resistance distributes voltage (the bias network) and how parallel resistance reduces it (the trick behind DMM loading and bypass caps).
 3. [DMM fundamentals](03-dmm-fundamentals.md) — what your meter is actually doing in each mode, accuracy, and the "loading" effect that catches everyone.
 4. [Capacitors at DC](04-capacitors-dc.md) — charging, discharging, RC time constants, and what "leakage" really means quantitatively. **This is the exercise that explains the filter cap test.**
 5. [The oscilloscope](05-oscilloscope-fundamentals.md) — timebase, vertical, triggering, AC vs DC coupling, what each control actually does. First measurements.

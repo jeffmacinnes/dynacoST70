@@ -245,7 +245,7 @@ nav:
   - Bench primer:
       - bench-primer/index.md
       - "1. Ohm's law and power": bench-primer/01-ohms-law-and-power.md
-      - "2. Voltage dividers": bench-primer/02-voltage-dividers.md
+      - "2. Series, parallel, and dividers": bench-primer/02-voltage-dividers.md
       - "3. DMM fundamentals": bench-primer/03-dmm-fundamentals.md
       - "4. Capacitors at DC": bench-primer/04-capacitors-dc.md
       - "5. Oscilloscope fundamentals": bench-primer/05-oscilloscope-fundamentals.md
