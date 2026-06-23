@@ -92,9 +92,68 @@ If you wanted to replace the pair with a single equivalent resistor R_eq that dr
 
 $$ \dfrac{1}{R_\text{eq}} = \dfrac{1}{R_1} + \dfrac{1}{R_2} $$
 
+??? note "Algebra detour: how does dividing by V give us that?"
+
+    Two rules are doing the work:
+
+    1. **Equality axiom.** If A = B, then A/c = B/c. Whatever you do to one side of an equation, you do to the other.
+    2. **Distributive property of division over addition.** (a + b) / c = a/c + b/c. Dividing a sum by something means dividing each term.
+
+    Start from:
+
+    $$\dfrac{V}{R_\text{eq}} = \dfrac{V}{R_1} + \dfrac{V}{R_2}$$
+
+    Divide both sides by V (rule 1), then distribute on the right (rule 2):
+
+    $$\dfrac{V/R_\text{eq}}{V} = \dfrac{V/R_1}{V} + \dfrac{V/R_2}{V}$$
+
+    Simplify each fraction. The pattern is (V/R) / V — V is in the numerator and the divider, so it cancels:
+
+    $$\dfrac{V/R}{V} = \dfrac{V}{R \times V} = \dfrac{1}{R}$$
+
+    Apply to all three terms:
+
+    $$\dfrac{1}{R_\text{eq}} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$$
+
+    In plainer language: V appears as a *multiplicative factor* in every single term — left is V × (1/R_eq), right is V × (1/R₁) + V × (1/R₂). When the same thing multiplies every term in an equation, dividing through by it cancels it from every term, and you're left with what was underneath — here, the 1/R pieces. This is the **common-factor cancellation** trick, and it shows up constantly in circuit work. The same trick turns V_total = IR₁ + IR₂ + IR₃ into R_total = R₁ + R₂ + R₃ for series resistors.
+
 Rearranged for exactly two resistors, this becomes the most-used form:
 
 $$ R_\text{eq} = \dfrac{R_1 \times R_2}{R_1 + R_2} $$
+
+??? note "Algebra detour: how does 1/R_eq = 1/R₁ + 1/R₂ rearrange to that?"
+
+    Two steps: combine the two fractions on the right into one, then take the reciprocal of both sides.
+
+    **Step 1 — combine 1/R₁ + 1/R₂ into a single fraction.** To add two fractions, they need a common denominator. The smallest one that contains both R₁ and R₂ is their product, R₁ × R₂. Give each fraction that denominator by multiplying it by a clever form of 1:
+
+    $$\dfrac{1}{R_1} \times \dfrac{R_2}{R_2} = \dfrac{R_2}{R_1 \times R_2} \qquad \dfrac{1}{R_2} \times \dfrac{R_1}{R_1} = \dfrac{R_1}{R_1 \times R_2}$$
+
+    (Multiplying top and bottom by the same thing doesn't change a fraction's value — it's just multiplying by 1.) Now they share a denominator, so we can add the numerators:
+
+    $$\dfrac{1}{R_1} + \dfrac{1}{R_2} = \dfrac{R_2}{R_1 R_2} + \dfrac{R_1}{R_1 R_2} = \dfrac{R_1 + R_2}{R_1 \times R_2}$$
+
+    So the equation becomes:
+
+    $$\dfrac{1}{R_\text{eq}} = \dfrac{R_1 + R_2}{R_1 \times R_2}$$
+
+    **Step 2 — take the reciprocal of both sides.** If two quantities are equal, so are their reciprocals: multiply both sides of `a = b` by 1/(a × b) and you get 1/b = 1/a. Visually, just flip both fractions upside down:
+
+    $$R_\text{eq} = \dfrac{R_1 \times R_2}{R_1 + R_2}$$
+
+    Done.
+
+    **Alternative path — cross-multiplication.** From `1/R_eq = (R₁ + R₂) / (R₁ × R₂)`, multiply both sides by R_eq × (R₁ × R₂):
+
+    $$R_1 \times R_2 = R_\text{eq} \times (R_1 + R_2)$$
+
+    Then divide both sides by (R₁ + R₂):
+
+    $$\dfrac{R_1 \times R_2}{R_1 + R_2} = R_\text{eq}$$
+
+    Same result, different mechanical path. Both are worth being able to do.
+
+    **Sanity check** with the bench-exercise numbers (R₁ = 10 kΩ, R₂ = 22 kΩ): R_eq = (10,000 × 22,000) / (10,000 + 22,000) = 220,000,000 / 32,000 ≈ **6,875 Ω**, matching the prediction below.
 
 (The shape resembles the voltage-divider formula but it's a different rule entirely — series and parallel obey opposite arithmetic.)
 
