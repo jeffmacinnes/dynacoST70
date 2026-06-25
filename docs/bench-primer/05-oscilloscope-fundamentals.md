@@ -60,33 +60,98 @@ This is sometimes useful for noisy DC signals — you can see if the "DC" you're
 
 ## Bench exercise 5C — first AC waveform
 
-The single best AC source on your bench: the 6.3 V heater winding of the ST-70 itself, when powered. But you don't need to power the amp to do this exercise. Instead, use a **signal generator** if you have one, or an unloaded transformer's secondary (like a 9 V wall wart, which is actually ~9 V AC at the secondary before its internal rectifier).
+The single best AC source on your bench is the 6.3 V heater winding of the ST-70 itself, when powered. But you don't need to power the amp to do this exercise. Two paths below depending on whether you have a signal generator (or a software equivalent). Both arrive at the same goal: a clean, stable waveform on screen, and confidence with the trigger.
 
-If you don't have either: use the scope's calibrator (it's a square wave, not a sine, but the exercise is about *triggering* and that works on any waveform).
+### Path A — If you have a signal generator (hardware or software)
 
-**Setup with the calibrator (and the probe still on it):**
+A "signal generator" here can be any of:
 
-1. Time base: 200 µs/div (faster than 5A).
-2. V/div: 1 V/div.
-3. Coupling: DC.
-4. Trigger source: **channel 1** (the channel you're using).
-5. Trigger mode: **Auto** (vs. Normal).
+- A bench function generator (BNC output).
+- A USB function generator (Analog Discovery, OWON, etc.).
+- A **software signal generator running on your Mac**: REW (Room EQ Wizard) or Audacity will produce a clean sine on the headphone output. See [test equipment / signal sources](../test-equipment/index.md) for setup notes.
+
+**Settings:**
+
+- **1 kHz sine wave**, amplitude **~0.5 V to 2 V peak-to-peak** (whatever your source can give you).
+- Output it via the appropriate connector for your scope: BNC-to-BNC, BNC-to-banana, or **3.5 mm headphone jack → TRS-to-dual-RCA adapter cable → exposed RCA** if you're using your Mac.
+
+**Where to clip the scope probe's ground:** to the **return / shield / sleeve of the signal source itself**, NOT to chassis ground or wall earth or "anywhere convenient."
+
+- **BNC source** → the BNC's outer shell. Easiest: use a BNC-to-BNC coax cable straight into the scope channel (no probe needed), or a BNC-to-clip adapter and clip the ground to the BNC shell.
+- **Mac → TRS-to-RCA adapter** → the RCA's **outer ring** (the shield) is the ground. The center pin is the signal. Probe tip on center pin, ground clip on the outer ring.
+- **Bare wires from a pigtail** → identify the signal wire and the ground/shield wire from the cable's wiring (or from the source's manual). Ground clip to the shield wire.
+
+The rule beneath this rule: **the scope probe's ground clip is *electrically the scope's chassis*, which is at mains earth.** Whatever you clip it to gets tied to earth. So it must be a node that is *supposed* to be at ground potential. The signal source's own ground qualifies — it's already at or near earth. A node that is NOT at ground (a tube plate, a hot side of a floating transformer secondary, the +B rail) is *never* a valid place to put the ground clip; you'll short that node to earth through the probe and either pop the probe, damage the source, or worse. We'll revisit this rule at bring-up.
+
+**Scope setup:**
+
+1. Time base: **500 µs/div** (so ~2 cycles of 1 kHz fit on screen).
+2. V/div: **0.2 V/div** (start sensitive; adjust to fit the wave).
+3. Coupling: **DC**.
+4. Trigger source: the channel you're probing on (usually CH1).
+5. Trigger mode: **Auto**.
 6. Trigger slope: **Rising**.
-7. Trigger level: **about half-way up the visible wave**. Adjust the level knob — watch a line move up and down on the screen — and put it at the middle of the wave's vertical range.
+7. Trigger level: **mid-amplitude of the wave** (turn the level knob and put the indicator line through the middle of the sine).
 
-A clean square wave should appear, locked in place. As you adjust the trigger level, the rising edge moves left/right (the scope is triggering at a slightly different point on the wave), but the picture stays stable.
+A clean, stable sine should lock in place. Confirm: amplitude matches what the generator is set to (within probe ratio); period is 1 ms (1 / 1 kHz); 2 cycles visible. Then proceed to **the trigger experiment** below.
 
-Now move the trigger level **above** the top of the wave or **below** the bottom. The picture loses sync and slides around. That's the trigger never finding a rising edge that crosses its level — the scope falls back to Auto mode and shows you free-running garbage.
+### Path B — If you don't have a signal generator
+
+Use the scope's built-in **calibration output** as the test signal. It's a square wave (typically 1 kHz, a few hundred mV to 5 Vp-p — check your scope's spec), but that's perfectly fine for the trigger exercise — triggering works on any waveform with a clean crossing.
+
+The probe should already be on the calibrator from exercise 5A. If not: probe tip on the calibration test point, ground clip on the chassis ground tab next to it.
+
+**Scope setup:**
+
+1. Time base: **200 µs/div**.
+2. V/div: **1 V/div**.
+3. Coupling: **DC**.
+4. Trigger source: the channel you're probing.
+5. Trigger mode: **Auto**.
+6. Trigger slope: **Rising**.
+7. Trigger level: **mid-amplitude of the wave**.
+
+A clean square wave should lock in place. Now proceed to **the trigger experiment**.
+
+### The trigger experiment (do this regardless of path)
+
+With the wave locked stable, slowly adjust the **trigger level** knob. Watch the indicator line move up and down across the wave; the picture stays still but the rising edge shifts left or right because the scope is triggering at a slightly different point on the same wave each sweep.
+
+Now move the trigger level **above the top** of the wave (or **below the bottom**). The picture loses sync and slides around. That's the trigger never finding a rising edge that crosses its level — the scope falls back to Auto mode and shows you free-running garbage.
 
 This is the single most common scope problem: **the trigger level is set somewhere the signal never crosses.** Fix is always the same: set the level into the middle of the signal's range.
 
 ## Bench exercise 5D — AC vs DC coupling
 
-If you have a signal generator: set it to a 1 kHz sine, 2 Vp-p, **with a 2 V DC offset** (so the wave swings from 1 V to 3 V).
+Goal: see what AC coupling actually *does* by comparing the same signal on both settings. You need a signal that has an AC component riding on a DC offset.
 
-If you don't have one: take a 9 V battery and a function generator app on your phone playing through a small speaker, then measure the speaker terminals (it'll have an AC signal riding on a small DC offset from the speaker's coil).
+### Path A — If you have a signal generator with DC offset capability
 
-Probe the signal with the scope. In **DC coupling**, you see the wave centered on its DC offset (between 1 V and 3 V). In **AC coupling**, the DC is blocked and the wave centers on 0 V (between −1 V and +1 V).
+Bench function generators and most software signal generators include a DC offset control.
+
+- **Settings:** 1 kHz sine, 2 Vp-p, **with a 2 V DC offset** (the wave swings from +1 V to +3 V).
+- Probe the source the same way as 5C (signal at the source, ground clip on the source's ground/shield).
+
+### Path B — If your sig gen has no DC offset (most software gens)
+
+Build a tiny adder circuit on the breadboard that sums a software-generated AC signal with a DC source from a battery.
+
+- Software gen produces an AC sine on the Mac's headphone output.
+- Run the signal through a **10 µF film cap** (or any non-electrolytic, the polarity doesn't matter), then to your breadboard node X.
+- Tie node X through a **100 kΩ resistor** to a fresh **9 V battery's +** terminal. Tie the **battery's −** terminal to the same ground as the signal generator (Mac audio sleeve).
+- Probe node X with the scope.
+
+That circuit gives you the AC signal centered on a non-zero DC level — about **+9 V offset** with the AC riding on top. The 100 kΩ + 10 µF pair is a high-pass filter from the AC source side and a "DC injection" from the battery side; node X averages the two.
+
+### Path C — If you have no sig gen at all
+
+Skip 5D's quantitative exploration for now and read on. The concept is straightforward enough to grok without a personal demo, and you'll see AC vs DC coupling in action at bring-up when you measure B+ ripple (described below). If you want to try something approximate, use the scope's calibrator (a square wave) and watch how AC coupling shifts its average to zero — the square's DC offset to ground goes away in AC mode.
+
+### What you should see (path A or B)
+
+In **DC coupling**, the wave sits centered on its DC offset (between +1 V and +3 V for path A, or between roughly +8 V and +10 V for path B). The whole wave is shifted up by the offset.
+
+In **AC coupling**, the DC is blocked at the scope's input by an internal series capacitor, and the wave centers on **0 V** (between −1 V and +1 V for path A, between −1 V and +1 V for path B — the offset goes away, leaving only the AC swing).
 
 Use cases:
 
