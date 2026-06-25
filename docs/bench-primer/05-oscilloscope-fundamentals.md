@@ -174,7 +174,8 @@ These are the ones you'll actually use at the bench. Names vary slightly by manu
 | **Vmin** | Lowest instantaneous voltage | Same, on the negative side |
 | **Vp-p** (Vpp, peak-to-peak) | Vmax − Vmin — total vertical swing of the waveform | The single most-quoted AC signal level |
 | **Vamp** (Vamplitude) | Peak-to-peak of the *AC component* only, ignoring spikes — basically Vtop − Vbase, where Vtop is the steady "high" level and Vbase is the steady "low" level (smarter than Vmax − Vmin when there's ringing on the edges) | Square-wave amplitude, signal level on a noisy waveform |
-| **Vmean** (Vavg, Vaverage) | Arithmetic mean voltage of the visible window — equals the DC component of the signal | DC offsets, bias voltages, the midpoint of an AC waveform riding on DC |
+| **Vmean** (Vavg, Vaverage) | Arithmetic mean voltage of the visible window — equals the DC component of the signal | DC offsets, bias voltages, the midpoint of a symmetric AC waveform riding on DC |
+| **Vmid** (Vcenter) | Geometric center of the vertical excursion: (Vmax + Vmin) / 2. Equals Vmean for symmetric waveforms (sine, triangle, 50%-duty square); differs for sawtooth, narrow pulses, or signals with overshoot. Not present on every scope | "Middle of the wave" interpretation, asymmetric signal analysis |
 | **Vrms** | Root-mean-square voltage — equivalent DC that delivers the same heating power into a resistor | Quoting AC voltages the way the rest of the world does (e.g., "120 V mains" means 120 V RMS) |
 | **Vbase / Vtop** | Steady "low" and "high" levels on a pulse or square wave, excluding overshoot/undershoot | Square wave analysis |
 | **Vovershoot / Vundershoot** | Percentage by which the wave exceeds Vtop / Vbase on transitions | Ringing on edges, damping behavior |
