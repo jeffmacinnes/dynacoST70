@@ -160,6 +160,66 @@ Use cases:
 
 The classic AC-coupling trick for the ST-70: at bring-up, AC-couple a probe to a B+ rail and read the ripple amplitude directly. <100 mV at lug 1 = excellent supply; >1 V = ailing.
 
+## Reading the scope's auto-measurements
+
+Most digital scopes can compute and display measurements *from* the waveform in real time — vertical voltage stats, horizontal timing stats, and pulse-shape stats. You enable them via a **Measure** button (sometimes a "Measurements" menu). Pick which channel to measure on, then add the specific measurements you want.
+
+These are the ones you'll actually use at the bench. Names vary slightly by manufacturer (Rigol, Siglent, Tektronix, Keysight all use different conventions), but the underlying quantities are the same.
+
+### Vertical (voltage) measurements
+
+| Measurement | What it tells you | Useful for |
+|---|---|---|
+| **Vmax** | Highest instantaneous voltage in the visible window | Spotting peak excursions and clipping |
+| **Vmin** | Lowest instantaneous voltage | Same, on the negative side |
+| **Vp-p** (Vpp, peak-to-peak) | Vmax − Vmin — total vertical swing of the waveform | The single most-quoted AC signal level |
+| **Vamp** (Vamplitude) | Peak-to-peak of the *AC component* only, ignoring spikes — basically Vtop − Vbase, where Vtop is the steady "high" level and Vbase is the steady "low" level (smarter than Vmax − Vmin when there's ringing on the edges) | Square-wave amplitude, signal level on a noisy waveform |
+| **Vmean** (Vavg, Vaverage) | Arithmetic mean voltage of the visible window — equals the DC component of the signal | DC offsets, bias voltages, the midpoint of an AC waveform riding on DC |
+| **Vrms** | Root-mean-square voltage — equivalent DC that delivers the same heating power into a resistor | Quoting AC voltages the way the rest of the world does (e.g., "120 V mains" means 120 V RMS) |
+| **Vbase / Vtop** | Steady "low" and "high" levels on a pulse or square wave, excluding overshoot/undershoot | Square wave analysis |
+| **Vovershoot / Vundershoot** | Percentage by which the wave exceeds Vtop / Vbase on transitions | Ringing on edges, damping behavior |
+
+A few important interactions with coupling mode:
+
+- **Vmean on a DC-coupled signal**: equals the DC component of the signal.
+- **Vmean on an AC-coupled signal**: equals roughly 0 V, because the scope's AC coupling blocks the DC at the input.
+- **Vrms on a DC-coupled signal**: includes both DC and AC contributions — `Vrms = √(Vmean² + Vac_rms²)`.
+- **Vrms on an AC-coupled signal**: includes only the AC component — equivalent to the "AC RMS" or "Vac" that you'd get from a true-RMS DMM in AC volts mode.
+
+This is why the coupling button matters more than it looks — switching coupling changes *which numbers the measurements report*, not just where the wave sits on screen.
+
+### Horizontal (timing) measurements
+
+| Measurement | What it tells you | Useful for |
+|---|---|---|
+| **Frequency** | Cycles per second of the fundamental | Confirming oscillator frequency, identifying hum (60 Hz line vs 120 Hz ripple), test signals |
+| **Period** | Time per cycle — 1 / Frequency | Same info, reciprocal form. Useful for direct timing reads |
+| **Duty cycle** | For square / pulse waves, ratio of high time to total period (50% for a symmetric square) | PWM circuits, switcher analysis |
+| **Rise time / Fall time** | How long the edge takes to transition between 10% and 90% of the swing | Bandwidth-limited circuits, slew rate testing |
+| **Phase** | Phase difference between two channels (requires both channels active) | Comparing input and output, identifying inversion, push-pull pair balance |
+
+### Which measurements to enable for ST-70 work
+
+Different tasks want different measurements active. A reasonable default loadout for general bench work:
+
+- **Vp-p** — quick signal level check
+- **Vmean** — DC bias / offset
+- **Frequency** — confirm test signal frequency, identify hum source
+- **Vrms** — convenient for ripple measurements
+
+Specific use cases at bring-up:
+
+- **Heater verification (V2/V3/V6/V7 pins 2 and 7)**: Vp-p ≈ 17.8 V, Vrms ≈ 6.3 V, Frequency = 60 Hz. Quick check that the heater winding is alive and at the right voltage.
+- **B+ ripple measurement (AC-coupled, on lug 1 or 2)**: Vp-p tells you the ripple amplitude directly; Frequency should be 120 Hz (full-wave rectified) — if you see 60 Hz, one rectifier leg is dead.
+- **Audio signal trace (at any node along the audio path)**: Vp-p at each stage to verify gain; Frequency to confirm it's the test signal you injected and not parasitic oscillation.
+- **Cathode voltage on an EL34 (DC coupled)**: Vmean gives you the steady cathode voltage, which divided by the cathode resistor gives plate current — same trick the manual uses for bias adjustment.
+
+### Three caveats every scope-user learns the hard way
+
+1. **Measurements are computed from what's on the screen.** If your wave is only one cycle wide, the frequency calculation has limited data and can wobble. Use a time base setting that shows at least 3–5 full cycles for stable frequency reads.
+2. **Vrms/Vmean assume a periodic waveform.** A transient (a single click, a step response) doesn't have a meaningful Vrms. The measurement will still display a number; the number isn't useful.
+3. **Bandwidth limit affects measurements.** If your signal has high-frequency content beyond the scope's bandwidth, Vmax and Vp-p will underread. This rarely matters for audio frequencies on any modern scope (their bandwidth is in the MHz, audio is sub-MHz), but is worth knowing.
+
 ## A few key scope rules
 
 - **The probe ground clip is at the same potential as the scope chassis, which is at mains earth.** Never put the ground clip on a "hot" node (e.g., one side of an isolation transformer's output, or a non-grounded chassis). You will short that node to earth through the scope. The classic blown-up scope mistake.
