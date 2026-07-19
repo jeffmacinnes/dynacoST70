@@ -8,6 +8,13 @@ The bias path is the **small negative-DC auxiliary supply** that holds each EL34
 
 The bias supply is the smallest power network in the amp — a few milliamps of total current — but getting it wrong has the most immediate consequences: a misbiased EL34 either red-plates (too little negative bias → tube draws too much current) or runs cold and distorts (too much negative bias → tube barely conducts).
 
+## The big picture
+
+An output tube with ~430 V on its plate is like a car parked on a steep hill: left alone, it rolls — hard. The bias supply is the parking brake, a steady negative voltage on the grid that holds each EL34 back to a safe, useful idle (~50 mA per tube on this build). The whole path is just four moves: **make a small negative voltage** (tap + diode), **smooth it** (two RC filters), **make it adjustable** (pot as voltage divider), **deliver it to four grids**.
+
+!!! note "In plain words — why *negative*, and why it must be adjustable"
+    The grid is a throttle: the more negative it sits relative to the cathode, the fewer electrons get through. At 0 V the throttle is wide open — with 430 V behind it, the tube destroys itself in seconds. So the grid must be *held* negative at all times; that's the entire reason this supply exists. And it must be **adjustable** because no two EL34s are identical — the same −32 V produces different idle currents in different tubes. The pot lets you dial each channel's brake to the exact tube you plugged in, and re-dial it as the tubes age.
+
 ## At a glance
 
 <figure class="diagram-fig" markdown="span">
@@ -25,11 +32,14 @@ The tap goes through the 1N4007 rectifier; the return path for the bias current 
 
 ### Stage 2 — 1N4007 half-wave rectifier
 
-The bias supply uses **half-wave** rectification (one diode, conducting on every other half-cycle) because the load is tiny — a few mA of grid current at most — and the resulting ripple is easy to filter. No need for full-wave.
+The bias supply uses **half-wave** rectification (one diode, conducting on every other half-cycle) because the load is tiny — a few mA of grid current at most — and the resulting ripple is easy to filter. No need for full-wave. Compare the B+ supply, which moves ~200 mA and needs both halves of every cycle; here one diode and a big cap do the job for pennies. (For the one-way-valve behavior itself, see [LEDs and diodes](../bench-primer/extras/e3-leds-and-diodes.md) — this is the same 1N4007 you used on the bench.)
 
 The 1N4007 is oriented with its **cathode (banded end) at the transformer side** and its **anode at the filter network** ([step 1](../build/power-supply/step-01-bias-diode.md) wires the cathode end, [step 25](../build/output-stage/step-25-bias-from-diode.md) wires the anode end to lug 4 of the 7-lug strip). This is "backwards" compared to a B+ rectifier — the polarity inversion is what makes the output **negative** relative to ground.
 
-When the transformer's red-black lead swings negative on a half-cycle, the diode conducts and pulls current *out* of lug 4 (current flows lug 4 → anode → cathode → transformer). The filter cap on lug 4 charges with the negative side up, settling at approximately the negative peak of the bias winding minus a diode drop — typically **−60 to −70 V DC**.
+When the transformer's red-black lead swings negative on a half-cycle, the diode conducts and pulls current *out* of lug 4 (current flows lug 4 → anode → cathode → transformer). The filter cap on lug 4 charges with the negative side up, settling at approximately the negative peak of the bias winding minus a diode drop — typically **−60 to −70 V DC** (−65 V on this build).
+
+!!! note "In plain words — how flipping a diode makes a negative voltage"
+    A one-way valve doesn't care which way you install it. Point it one direction and it only lets current *into* the cap — the cap fills up positive (that's B+). Point it the other way and it only lets current *out* — the cap can only ever be drained below zero, so it settles at a *negative* voltage. Same parts, same AC source; the diode's orientation alone decides the sign of the output. That's why the build steps are so fussy about which end of the 1N4007 has the band.
 
 The original ST-70 used a **selenium rectifier** here, which the kit (and this build) replaces with a 1N4007. See [silicon diode (historical context)](../modifications/1n4007-replacement.md).
 
@@ -41,6 +51,8 @@ The filtering happens on the [seven-lug terminal strip](../components/seven-lug-
 - **Second stage**: 100 µF cap on lug 3 ([step 21](../build/output-stage/step-21-bias-cap-2.md)).
 
 Each cap is wired with its **negative terminal toward the bias rail and its positive terminal toward ground** (lug 1) — opposite of the B+ filter caps, because the rail is negative. Get the polarity wrong and the cap fails (usually noisily, sometimes spectacularly).
+
+**Why the filtering must be this good:** the bias voltage sits directly on the EL34 *grids* — the amp's most sensitive control inputs. Any ripple on the bias rail is indistinguishable from audio signal to the tube, so it gets amplified straight into the speakers as hum. A supply that merely *powers* something can tolerate some ripple; a supply that *controls* something cannot. Two RC stages with big 100 µF caps (see [capacitors at DC](../bench-primer/04-capacitors-dc.md) for the smoothing mechanics) knock the half-wave ripple down to millivolts precisely because the grids will believe anything they're told.
 
 After two RC stages, the rail on lug 3 is the **clean bias rail** — typically around −55 to −60 V DC with millivolt-level ripple. This is what feeds the bias pots.
 
@@ -55,6 +67,15 @@ Each bias pot is wired as a **voltage divider** between the bias rail and the di
 - **Pot lug 2** = wiper = the adjustable output, going to the EL34's grid.
 
 Turning the pot moves the wiper between the −60 V end (lug 1) and the less-negative end (lug 3), letting you dial in the exact bias voltage needed to hit the target idle current for that tube. Inter-pot jumpers ([step 27](../build/output-stage/step-27-bias-pot-interconnect-1.md), [step 28](../build/output-stage/step-28-bias-pot-interconnect-2.md)) tie the left and right pots together so they share the same divider rails.
+
+This is a textbook [voltage divider](../bench-primer/02-voltage-dividers.md) — the exact circuit you built on the bench, just running on a negative rail. And a pot is nothing more than a divider whose tap point you can slide ([potentiometers](../bench-primer/extras/e2-potentiometers.md)).
+
+??? note "Do the math — predicting the pot voltages from the bench-primer divider rule"
+    Zoom out and the whole distribution network is **three ~10 kΩ resistances in series** between the −65 V raw rail and ground: the 10 kΩ filter resistor (lug 4 → lug 3), the 10 kΩ pot element, and the 10 kΩ shunt resistor (lug 2 → lug 1/ground). Equal resistances split the voltage into equal thirds:
+
+    $$ V_{pot,top} \approx -65\,\text{V} \times \tfrac{2}{3} \approx -43\,\text{V}, \qquad V_{pot,bottom} \approx -65\,\text{V} \times \tfrac{1}{3} \approx -22\,\text{V} $$
+
+    Measured on this build: pot terminals sit at ≈ **−43 V** and ≈ **−22 V** — right on the divider prediction. The wiper can therefore be dialed anywhere in that window, and the grids on this build sit at ≈ **−32 V**, comfortably mid-range with adjustment room in both directions. That margin is the *why* behind the three-resistor design: the pot can never reach 0 V (which would cook the tubes) nor the full −65 V (which would cut them off).
 
 The stock Dynaco design — used in this build — has **two bias pots** (one per channel — both EL34s in a channel see the same wiper voltage). The [individual bias pots](../modifications/individual-bias-pots.md) mod, which gives each tube its own pot for finer control, is documented as an option.
 
@@ -71,6 +92,8 @@ At pin 5, the bias voltage (≈ −32 V, ±20% depending on adjustment) is **sum
 ## Setting the bias
 
 The bias voltage isn't directly measured — instead, you measure the **plate current** indirectly via a small **cathode-sense resistor** (15.6 Ω at each EL34 cathode, from [steps 31–36](../build/output-stage/step-31-v2-cathode-sense.md)). The voltage across this resistor is proportional to plate current; the target is **1.56 V** at the front-panel Biaset socket, which corresponds to 100 mA per pair (50 mA per tube).
+
+**Why measure current instead of just setting the grid to −32 V?** Because −32 V is the *means*, not the goal. The goal is the right idle **current** — that's what determines tube dissipation, distortion, and lifespan — and the grid voltage needed to produce it varies tube to tube. So the design gives you a window onto the current itself: all cathode current must pass through the 15.6 Ω resistor, and Ohm's law converts it to a voltage a DMM can read ($V = I \times R$: 100 mA × 15.6 Ω = 1.56 V). You adjust the *voltage* knob while watching the *current* answer.
 
 You measure with a DMM at the front-panel Biaset socket, turn the bias pot, watch the voltage adjust, lock it in at 1.56 V. See [bias adjustment](../bring-up/bias-adjustment.md) for the procedure.
 
@@ -102,6 +125,14 @@ Bias is one of those things that's invisible until it isn't. You wire it once, s
 2. **Tubes age.** As a tube's cathode emission drops, its plate current at a given bias voltage drops too. You can sometimes recover by adjusting bias more positive (less negative), trading some headroom for current.
 
 A good biennial maintenance habit: re-measure bias, re-adjust if needed. Doesn't take long; preserves the amp.
+
+## What to remember
+
+- Bias is the **parking brake**: a steady negative voltage on each EL34 grid that holds the tube at a safe idle. No bias → grids at 0 V → runaway current → dead tubes in seconds.
+- The path is four moves: **tap + flipped diode** make −65 V, **two RC filters** clean it, **a pot-in-a-divider** makes it adjustable, **wires to four grids** deliver it.
+- The diode's *orientation* sets the *sign*: pointed to drain the cap rather than fill it, the same one-way valve that makes B+ positive makes this rail negative.
+- The whole distribution is the bench-primer divider in the wild: three ~10 kΩ sections across −65 V put the pot terminals at ≈ −43 V and −22 V (measured on this build), and the wiper picks the grid voltage in between (≈ −32 V here).
+- You *set* a voltage but you're *targeting* a current: 1.56 V across 15.6 Ω = 50 mA per tube. Ohm's law is the measuring instrument.
 
 ## See also
 

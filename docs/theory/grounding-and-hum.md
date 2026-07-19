@@ -8,6 +8,13 @@ title: Grounding and hum
 
 This page is the conceptual reference for the grounding decisions you'll see scattered across the build steps. The TL;DR: route each return *independently* to one common point. Don't share wires between sensitive stages and high-current stages.
 
+## The big picture
+
+Every circuit is a loop — current leaves the supply, does its work, and must flow *back*. "Ground" is just the name we give the return side of all those loops. The trouble starts because return wires aren't perfect: they have a little resistance, so return current creates little voltages along them (plain [Ohm's law](../bench-primer/01-ohms-law-and-power.md), nothing exotic). If a sensitive stage uses a stretch of wire as its "zero volts" reference while 100 mA of pulsing output-stage current is flowing through that same stretch, the reference *isn't* zero — it's wobbling at 120 Hz, and the amp faithfully amplifies the wobble as hum. Every rule on this page is one idea wearing different hats: **never let a big, dirty return current flow through wire that a small, sensitive signal is using as its reference.**
+
+!!! note "In plain words"
+    Think of ground as the drain plumbing of a house. Every fixture needs a drain, and you *could* daisy-chain them all into one skinny shared pipe — but then flushing the toilet (the output stage) makes the sink (the input stage) gurgle. The fix is what plumbers actually do: give each fixture its own run to one main stack. That's a star ground. Same water, same pipes — the only thing that changed is *who shares a pipe with whom*.
+
 <figure class="diagram-fig" markdown="span">
   <img src="../../assets/diagrams/star-ground-topology.svg" alt="Star ground vs daisy chain grounding topology comparison">
   <figcaption>Two grounding topologies side by side. The same components, same currents — but the daisy chain creates a hum loop while the star topology doesn't. In the ST-70 the star point is the solder lug(s) at the quad filter cap. Click to zoom.</figcaption>
@@ -29,6 +36,11 @@ For 100 mA flowing through 4 inches of 18 AWG wire:
 
 That's the entire grounding problem in one calculation: ground wires have impedance, currents flowing through them create voltages, and sensitive stages will pick up those voltages as if they were signal.
 
+!!! note "In plain words"
+    This is the same "there's no such thing as a perfect wire" lesson from [source impedance and sag](../bench-primer/extras/e4-source-impedance-and-sag.md), pointed at the return path instead of the supply. A stage doesn't know what "zero volts" is in any absolute sense — it only knows the voltage of the piece of metal its ground connection touches. If that piece of metal is bouncing up and down by a few millivolts, then as far as that stage is concerned, *the whole world* is bouncing by a few millivolts — indistinguishable from an input signal. The stage isn't malfunctioning when it amplifies hum; it's doing its job perfectly on a corrupted reference.
+
+Notice what this means for the fix: you can't solve it with better parts, because the resistance of copper is what it is. You solve it with **routing** — deciding which currents are allowed to flow through which wires.
+
 ## Different grounds in the ST-70
 
 The ST-70 has at least these distinct "grounds" by function:
@@ -45,9 +57,16 @@ The ST-70 has at least these distinct "grounds" by function:
 
 Tie all of these to the same wire and you get hum. Route each to a dedicated path and you don't.
 
+Look at the spread in that table — that's the whole story. The output stage returns roughly **a thousand times more current** than the input stage, and the input stage is the one whose signal is smallest. The worst possible wiring puts those two on the same wire; the daisy chain does exactly that. And note the last two rows: the heater CT return isn't even the same *frequency* as the audio (60 Hz AC vs. DC-plus-signal), and the safety earth should carry no current at all in normal operation. Different jobs, different currents, one shared name — "ground."
+
 ## Star ground
 
 The solution: designate ONE physical point on the chassis as "ground," and run a dedicated wire from each stage's return to that one point. No daisy-chaining. No "while we're here, let's also ground X to this convenient spot." One star.
+
+Why does this work? Because each stage's return current now flows through **its own private wire** on the way to the star point. The output stage's 100 mA still creates a voltage drop along its own return wire — that hasn't changed, and can't — but nobody else's ground reference lives on that wire, so nobody else cares. Every stage's reference is the star point itself, and (almost) no current flows *through* the star point sideways from one stage to another. The voltage drops still exist; they've just been moved where they can't do harm.
+
+!!! note "In plain words"
+    A daisy chain is a shared hallway: everyone's footsteps shake everyone else's floor. A star is a hub with private hallways: the output stage can stomp as hard as it wants down its own corridor, and the input stage's floor never moves, because the only place the corridors meet is a single solid point.
 
 In practice for a tube amp, the star point is usually:
 
@@ -55,6 +74,8 @@ In practice for a tube amp, the star point is usually:
 - Located physically near the most current-hungry stages (the output tubes + filter cap), so high-current wires are short.
 
 In the ST-70 specifically, the star point is the **solder lug(s) at the quad filter cap** — physically right where the heaviest currents return. The [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) is a *subnode*: it hosts the bias supply filter network and the heater-CT anchors, and ties back to the star point via its lug 6 — see [step 6](../build/power-supply/step-06-heater-cts.md) for where the heater CTs anchor.
+
+Why put the star at the filter cap rather than, say, near the input jacks? Because wire length is resistance, and the drops that matter most come from the biggest currents ($V = I \cdot R$ — big I is where you spend your short wire). Putting the star where the ~200 mA of B+ return current already lands means the heavy currents travel almost zero shared distance. The input stage's 0.1 mA can afford a longer private run to the star — at that current, even a foot of wire drops only microvolts.
 
 ## Why daisy-chained ground creates hum
 
@@ -70,6 +91,9 @@ Heater AC at 60 Hz is the OTHER common hum source. The [heater circuits page](he
 
 In the ST-70, the heater CTs land on lugs 5 and 7 of the terminal strip and reach ground **through 0.02 µF disc capacitors, not a hard wire**. At 60 Hz the caps anchor the midpoint for AC balance; at DC the CTs float. The reference is the same star ground the audio uses, so the heater 60 Hz field is balanced against the audio's own ground reference and any residual hum is rejected by the amp's natural common-mode rejection.
 
+!!! note "Why a cap and not a wire?"
+    Because a cap passes AC and blocks DC ([capacitors at DC](../bench-primer/04-capacitors-dc.md), [caps with AC](../bench-primer/extras/e5-caps-with-ac.md)). Hum cancellation only needs the heater midpoint pinned *at 60 Hz* — the cap provides that. But a hard wire would also add one more DC path into the ground network, and this whole page is about being stingy with ground paths: every extra one is a potential loop. The cap buys the AC anchor without the DC entanglement. It's the grounding philosophy in miniature — give each connection exactly the job it needs and nothing more.
+
 If the heater CTs referenced a *different* ground point than the audio star ground, you'd get a hum loop between them.
 
 ## Chassis safety earth vs. audio ground
@@ -80,13 +104,22 @@ Why? Because mains earth carries the fault currents of every device sharing the 
 
 The standard fix: tie chassis earth and audio ground at ONE single point, through a resistor (typically 10 Ω) or directly with a single low-impedance link. NOT at multiple points (which creates a ground loop). NOT at zero points (which leaves audio ground floating).
 
+Why exactly one link? Walk through the alternatives:
+
+- **Zero links**: audio ground floats relative to the chassis and mains earth. Its voltage is undefined — it drifts with capacitive leakage, the amp becomes touch-sensitive, and a fault from B+ to the audio circuitry has no path to trip the breaker. Unsafe *and* noisy.
+- **Two or more links**: the two links plus the wiring between them form a closed conducting loop. A loop is a one-turn transformer secondary — stray magnetic fields (from the power transformer, from house wiring) induce circulating current in it, and that current drops voltage across the audio ground it passes through. That's a **ground loop**, the classic source of stubborn hum.
+- **Exactly one link**: the audio ground gets a defined, safe reference, but there's no closed loop for stray fields to drive current around. Noise on mains earth has nowhere to *flow to* through the audio ground, because a single connection point carries no through-current.
+
+!!! note "In plain words"
+    One anchor holds a boat steady. Two anchors in a moving current let the boat pull against itself. The 10 Ω resistor option loosens the single anchor line just slightly — enough to discourage any residual noise current from flowing between the two ground worlds (10 Ω is huge compared to milliohm wiring), while staying a solid connection at the scale that matters for safety.
+
 This is also why the 3-prong cord earth goes to its OWN dedicated chassis bolt, separate from the audio star ground bolt. The two are linked at exactly one place, deliberately.
 
 ## Hum diagnosis with a scope
 
 When you have hum in a built amp, the procedure is:
 
-1. **Check the residue at the speaker output.** Connect a scope at the speaker terminals with no signal input. Is it 60 Hz (heater hum) or 120 Hz (B+ ripple / rectifier hum)? Different frequencies = different causes.
+1. **Check the residue at the speaker output.** Connect a scope at the speaker terminals with no signal input. Is it 60 Hz (heater hum) or 120 Hz (B+ ripple / rectifier hum)? Different frequencies = different causes. Why does frequency identify the culprit? Because the heaters run on raw 60 Hz mains, while everything downstream of the full-wave rectifier pulses at *doubled* 120 Hz — the hum carries its origin's fingerprint. (On a scope, one full cycle of 60 Hz spans 16.7 ms; 120 Hz spans 8.3 ms.)
 2. **Trace backward through the signal chain.** Probe at successive stage outputs (output of input stage, output of phase splitter, etc.). At what stage does the hum first appear?
 3. **The hum source is just before where it first appears.** If hum appears at the driver stage but not the input stage, the driver's ground reference or supply is the problem.
 4. **Touch a finger to the chassis at the star ground point**, then at suspected ground tabs along the chassis. If the hum changes, you've found an unintended current path.
@@ -103,6 +136,15 @@ This is a slow, methodical process. Hum problems rarely have one big cause; usua
 - **Filter cap returns** can be heavy and short. If the cap mounts to the chassis directly, that's already the star path.
 
 The ST-70 follows all of these. The star point is the solder lug(s) at the quad filter cap — right where the heavy currents already are. The [seven-lug terminal strip](../components/seven-lug-terminal-strip.md) is a subnode for the bias supply and heater CTs, tied to the star point via its lug 6.
+
+## What to remember
+
+- "Ground" is not one thing — it's the **return half of many different loops**, carrying currents that differ by a factor of a thousand.
+- Wires have resistance, so **return current creates voltage along the return wire** (V = I·R). A stage amplifies whatever its ground reference does — including that wobble.
+- The fix is **routing, not parts**: give every stage its own return to one star point, so big currents never flow through wire that small signals use as their reference.
+- Put the star **where the heavy currents already land** (the quad filter cap lugs, in this amp) so the biggest currents share the least wire.
+- **60 Hz hum smells like heaters; 120 Hz smells like B+ ripple** — the frequency tells you which loop to inspect.
+- Safety earth and audio ground meet at **exactly one point**: zero links is unsafe and floating, two links is a hum loop.
 
 ## See also
 
