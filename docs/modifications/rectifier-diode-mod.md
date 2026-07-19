@@ -44,7 +44,12 @@ The 1N4007 is in series with the tube's internal diode. On the *reverse* half-cy
 | Forward Vf | ~1 V | Negligible vs. 360 V RMS per half-winding |
 | Cost | ~$0.10 | — |
 
-A note on the PIV math, because it's easy to get wrong: in a full-wave center-tapped rectifier, the *non-conducting* leg sees roughly **twice the per-side peak** — the conducting side holds the cathode near +509 V while the blocking side's end of the winding swings to −509 V, putting up to ~1,018 V of reverse voltage across that leg. That exceeds a single 1N4007's 1000 V rating on paper. The reason the mod works anyway is that the silicon diode is **in series with the 5AR4's own internal diode**, and the two share the reverse voltage — which is exactly why this mod keeps the tube rather than replacing it. Builders who want hard margin on the silicon alone use two 1N4007s in series per leg (or a UF4007-class part chosen for headroom).
+A note on the PIV math, because it's easy to get wrong: in a full-wave center-tapped rectifier, the *non-conducting* leg sees roughly **twice the per-side peak** — the conducting side holds the cathode near +509 V while the blocking side's end of the winding swings to −509 V, putting up to ~1,018 V of reverse voltage across that leg. That exceeds a single 1N4007's 1000 V rating on paper. Builders who want hard margin on the silicon use two 1N4007s in series per leg (or a UF4007-class part chosen for headroom).
+
+**What actually happens, measured on this build:** with the mod installed, the 5AR4's anode pin (4 or 6) never swings negative at all. During its blocking half-cycle the winding end goes to −509 V, but the silicon diode blocks — so the anode on the far side of it *floats*, held near the cathode's ~+425 V through the tube's internal plate–cathode capacitance. Scoped, pin 4 stays between about **+375 V and +470 V** (~95 Vp-p), and pins 4 and 6 mirror each other within 1 V, half a cycle (8.3 ms) apart. Two consequences:
+
+1. The **tube's** internal diode sees almost no reverse voltage — the mod genuinely shelters it, which is the point.
+2. The **silicon** takes nearly all of the reverse voltage: winding at −509 V on one side, floating anode at ~+425 V on the other ≈ **930+ V across the 1N4007** at nominal mains. That's inside the 1000 V rating but with thin margin — which is the concrete, measured reason for the series-pair recommendation above, rather than a hand-wave about "sharing."
 
 The 1N4007 is the cheapest reasonable choice for this series duty. The same part number is used for [the bias diode](1n4007-replacement.md) — it's the workhorse high-voltage rectifier diode of the modern era.
 

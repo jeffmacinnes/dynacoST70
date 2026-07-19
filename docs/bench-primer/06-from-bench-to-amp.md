@@ -17,18 +17,20 @@ From the [B+ signal path](../signal-paths/b-plus.md), the rails are:
 
 These aren't memorized magic numbers. They come from V = IR applied to the load current at each stage.
 
-**Compute the choke drop yourself.** The choke has ~100 Ω DCR (a number you can verify in [exercise 1's continuity check](../bring-up/continuity-checks.md)). The total current through it is the sum of:
+**Compute the choke drop yourself.** The choke's DCR is spec'd at 62 Ω and measures **71 Ω** on this build (a number you can verify in [exercise 1's continuity check](../bring-up/continuity-checks.md)). The total current through it is the sum of:
 
 - Four EL34s, ~50 mA each plate current (manual p.11) = 200 mA total.
-- PC-3A board draw, ~10 mA.
+- PC-3A board draw, ~12 mA (see below).
 
-So total ≈ 210 mA. Choke drop = 0.21 × 100 = **21 V**. Predicted lug 1 = 435 − 21 = **414 V**. Matches the manual chart's 415.
+So total ≈ 212 mA. Choke drop = 0.212 × 71 = **15 V**. Predicted lug 1 = 428 − 15 = **413 V**. Measured on this build: **413 V** ✓.
 
-**Now compute the 6.8 kΩ drop.** The PC-3A board pulls a few mA through that resistor (just the cathodyne plate-load and pentode screen current — order ~6 mA). Drop = 0.006 × 6800 = **41 V**. Predicted lug 4 = 414 − 41 = **373 V**. Manual says 375 ✓.
+**Now compute the 6.8 kΩ drop.** The PC-3A board pulls current through that resistor — the cathodyne plate loads plus pentode screens. The manual's chart implies ~6 mA (which would drop 41 V, landing lug 4 at 375 V), but this build **measures a 64 V drop → 349 V at lug 4** — meaning the board actually draws 64/6800 ≈ **9.4 mA**. Neither number is "wrong": the manual's chart is one nominal operating point, and real 6GH8As at real voltages draw what they draw. The resistor is right, the board is healthy, the current is just higher than the chart implies.
 
-**The 22 kΩ drop.** Pentode plate-load current alone, ~3 mA. Drop = 0.003 × 22,000 = **66 V**. Predicted lug 3 = 373 − 66 = **307 V**. Manual says 305 ✓.
+**The 22 kΩ drop.** Pentode plate-load current alone: this build measures a 69 V drop → **3.1 mA**, landing lug 3 at **280 V** (manual chart: 305 V).
 
-When you bring up the amp and measure a rail that's 30 V different from what *you* just computed, the math tells you exactly where to look: the current through that stage's dropping element isn't what you assumed, which means either the element is wrong, or the downstream load is wrong.
+**The calibrated model for this amp:** choke DCR 71 Ω; total B+ load ≈ 212 mA (200 mA EL34s + 9.4 mA driver + 3.1 mA pentode); mains slightly low (~116 V) so everything starts ~7 V below chart at lug 2 (428 vs 435). Run V = IR down the chain with those numbers and every rail predicts within 1 V of measurement.
+
+When you bring up the amp and measure a rail that's 30 V different from what *you* just computed, the math tells you exactly where to look: the current through that stage's dropping element isn't what you assumed, which means either the element is wrong, or the downstream load is different from assumed. The lug-4 story above is that logic working in real life — the 26 V "discrepancy" wasn't a fault, it was the measurement *correcting the assumed current*, and once corrected, the whole chain became self-consistent.
 
 ## 6B — Heater AC on the scope
 
@@ -56,30 +58,40 @@ Then probe **just one heater pin to chassis**: V2 pin 2 to ground (with the CT n
 
 This one needs B+ powered. Discharge everything between measurements (including before connecting/disconnecting the probe).
 
-**Predict the ripple at lug 1.** A choke-input filter with 1.5 H, 20 µF, at 120 Hz, and a load of 210 mA:
+**Predict the ripple at lug 2 first** (before the choke). The 30 µF cap there is being drained by the full ~210 mA load between charging pulses, which arrive every half-cycle (Δt ≈ 1/120 s, and the cap supplies the load for most of it — call it ~7 ms). The sawtooth's depth is the charge drained divided by the capacitance:
 
-The 120 Hz ripple coming off the rectifier (before the choke) is large — the cap at lug 2 only smooths the peaks by ~50%. Let's say ~30 Vp-p of 120 Hz at lug 2 (worst case).
+$$ V_{\text{rip}} \approx \dfrac{I \times \Delta t}{C} = \dfrac{0.21 \times 0.007}{30 \times 10^{-6}} \approx 49\text{ Vp-p worst case} $$
 
-The choke + 20 µF at lug 1 forms a low-pass filter. At 120 Hz, the inductive reactance is X_L = 2πfL = 2π × 120 × 1.5 = 1131 Ω. The capacitive reactance is X_C = 1/(2πfC) = 1/(2π × 120 × 20e-6) = 66 Ω. The attenuation factor is roughly X_C / X_L = 66/1131 = 0.058, so ~17× attenuation, or ~25 dB.
+Measured on this build: **~40 Vp-p of 120 Hz sawtooth** — big, and *normal*. (An earlier draft of this exercise guessed 5–10 V by intuition; the I·Δt/C math is the reliable path, and the measurement sided with the math.)
 
-Predicted lug 1 ripple: 30 Vp-p / 17 ≈ **1.8 Vp-p of 120 Hz**. Realistically lower because we overestimated the lug-2 ripple — call it **~100 mV to 500 mV** as a healthy range.
+**Now predict lug 1.** The choke + 20 µF at lug 1 forms a low-pass filter. At 120 Hz, the inductive reactance is X_L = 2πfL = 2π × 120 × 1.5 = 1131 Ω. The capacitive reactance is X_C = 1/(2πfC) = 1/(2π × 120 × 20e-6) = 66 Ω. The attenuation factor is roughly X_C / X_L = 66/1131 = 0.058, so ~17× attenuation, or ~25 dB.
+
+Predicted lug 1 ripple: 40 Vp-p / 17 ≈ **2.4 Vp-p of 120 Hz**. Measured on this build: **~2–3 Vp-p** ✓. Trust the divider math — don't second-guess it downward.
 
 **Setup the scope:**
 
 - **AC coupling** (essential — the DC offset is 415 V).
 - 10× probe (rated; check your spec).
 - Probe tip to lug 1, ground clip to chassis ground at the cap.
-- 100 mV/div vertical.
+- 500 mV/div vertical.
 - 2 ms/div horizontal (so ~2 cycles of 120 Hz fit).
 - Trigger on channel, rising, level at 0 V.
 
 You should see a roughly-triangular 120 Hz ripple riding on the rail. Amplitude is the diagnostic:
 
-- **<200 mVp-p:** excellent. Choke and caps are doing their job.
-- **200 mV – 1 Vp-p:** acceptable.
-- **>1 Vp-p:** something is wrong — probably the lug-2 cap section has lost capacitance, or one half of the 5AR4 is dead (which would show 60 Hz instead of 120 Hz).
+- **~1–3 Vp-p of 120 Hz:** healthy — matches the LC math above.
+- **5+ Vp-p:** something is wrong — probably the lug-2 cap section has lost capacitance, or the choke isn't in circuit.
+- **Dominant 60 Hz instead of 120 Hz:** see the pickup warning below *before* concluding anything — but genuine 60 Hz ripple means half-wave failure (one rectifier leg dead).
 
-The **frequency** is also diagnostic: 120 Hz = full-wave rectification working; 60 Hz = half-wave failure (one rectifier leg dead).
+!!! warning "Probe pickup will lie to you at this node"
+    On this build, probing lug 1 with a standard alligator-clip ground lead showed **7.6 Vp-p of clean 60 Hz sine** — which looks exactly like a dying rectifier. It wasn't. It was **magnetic pickup from the PA-060** induced in the loop formed by the probe tip and its dangling ground lead. Two ways to unmask it:
+
+    1. **Tight ground loop:** use the probe's spring ground tip (or the shortest possible ground path). The same node then shows only ~100 mVp-p of noise floor from the loop itself.
+    2. **FFT mode:** the scope's FFT separates the frequencies. On this build the FFT showed the rail's *true* 60 Hz content is under 5 mV — the 7.6 V of 60 Hz in the time-domain trace was entirely pickup. The real ripple is the ~2–3 Vp-p at 120 Hz.
+
+    General rule from this: **for any small AC measurement on a high-voltage rail, a time-domain trace with a long ground lead is untrustworthy.** Tighten the loop, or characterize with FFT, before diagnosing.
+
+The **frequency** is still diagnostic once pickup is ruled out: 120 Hz = full-wave rectification working; 60 Hz = half-wave failure.
 
 ## 6D — Bias voltage divider on the live amp
 
@@ -121,12 +133,15 @@ Probe the scope through the audio path:
 |---|---|---|
 | Input RCA (left) | ~100 mVp-p | The clean source |
 | Pentode grid (V_a of 6GH8A, board eyelet 17 → left grid) | ~100 mVp-p (no gain yet — the input switch is unity) | Same as input |
-| Pentode plate (board eyelet for V_a plate node) | ~5 Vp-p, **inverted** | 50× voltage gain from the pentode |
-| Triode plate (V_b of 6GH8A) | ~5 Vp-p, same phase as pentode plate (cathodyne unity) | Splits to two outputs |
-| Triode cathode | ~5 Vp-p, **inverted** vs the plate output | The other half of the split |
-| V3 grid (EL34, left channel, via board eyelet 2) | ~5 Vp-p | Direct from cathodyne |
-| V2 grid (EL34, left channel, via board eyelet 1) | ~5 Vp-p, opposite phase from V3 | Push-pull drive |
-| OPT secondary, 16 Ω tap | ~6 Vp-p (depends on output level setting and feedback) | The amplified signal |
+| Pentode plate (board eyelet for V_a plate node) | ~2 Vp-p, **inverted** | ~19× measured on this build (see note below) |
+| Triode plate (pin 1) | ~2 Vp-p, **inverted vs the pentode plate** — i.e., back in phase with the RCA input (measured −1° on this build) | Cathodyne unity; the pentode's inversion plus the triode plate's inversion cancel |
+| Triode cathode (pin 8) | ~2 Vp-p, **180° from the plate output** (so: in phase with the pentode plate, anti-phase to the input) | The other half of the split — a cathode follower doesn't invert |
+| V3 grid (EL34, left channel, via board eyelet 2) | ~2 Vp-p | Direct from cathodyne |
+| V2 grid (EL34, left channel, via board eyelet 1) | ~2 Vp-p, opposite phase from V3 | Push-pull drive |
+| OPT secondary, 16 Ω tap | a few Vp-p (depends on output level setting and feedback) | The amplified signal |
+
+!!! note "Why ~19× and not the pentode's 'gain of ~50×'?"
+    The pentode *stage* has an open-loop gain of roughly 50× — that's what the tube and its plate load would do in isolation. But you're probing a **working amp with the global feedback loop closed**, and the feedback signal arriving at the pentode's cathode opposes the input, cutting the *measured* input-to-plate gain. On this build the measured value is **19× (1.75 Vp-p at the plate from 90 mVp-p in)**. Expect **15–25×** on any healthy ST-70 with feedback connected. Below ~5× or above ~50× means a stage problem — and *exactly* ~50× is itself a clue that the feedback loop is open ([why loud = open loop](../signal-paths/negative-feedback.md#where-it-can-break)).
 
 The phase relationships are as important as the amplitudes. The pentode inverts, the cathodyne produces equal-and-opposite outputs, the EL34s drive the OPT primary in push-pull. If any stage isn't doing what it should, the probe-down-the-chain method finds it in 60 seconds.
 

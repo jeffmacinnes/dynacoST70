@@ -65,13 +65,13 @@ Above 27 Hz: filter rolls off at 40 dB / decade (12 dB / octave).
 
 The 120 Hz ripple is about 4.4× the corner frequency, deep in the rolloff region. Math gives ~26 dB attenuation — the diagram above shows the curve.
 
-26 dB is a factor of about 20 in voltage. If the first filter cap leaves ~10 V of ripple on the B+, the choke + second cap reduce it to ~500 mV. Then any further filtering (a small decoupling cap on the driver stage, for instance) drops it further into the millivolts range.
+26 dB is a factor of about 20 in voltage. On this build the first filter cap leaves a measured **~40 Vp-p** of 120 Hz sawtooth on the B+ at full idle current; the choke + second cap reduce it to a measured **~2–3 Vp-p** — right on the ÷20 the math promises. Then the further RC filtering stages (the 6.8 kΩ and 22 kΩ dropping resistors with their cap sections) drop the driver-board rails into the millivolts range.
 
 ## Why an L+C is so much better than just bigger C
 
 You can imagine "what if I just used a 200 µF first cap instead of adding a choke?" The math:
 
-- 200 µF + 100 mA load, 8.33 ms ripple period → droop = 100·8.33e-3/200e-6 = 4.2 V ripple at first cap. Lower than the 30 µF cap's ~28 V, but still meaningful.
+- 200 µF at the ST-70's full ~210 mA load, ~7 ms discharge per half-cycle → droop = 0.21·7e-3/200e-6 ≈ 7.4 V ripple at first cap. Lower than the 30 µF cap's ~40–49 V (the measured value on this build is ~40 Vp-p), but still meaningful.
 - That single cap is acting as a *first-order* low-pass filter — only 20 dB/decade rolloff.
 - The LC combo gives 40 dB/decade rolloff — twice the slope. So even with modest L and C values, it crushes ripple much harder than a giant single cap would.
 
@@ -79,11 +79,11 @@ This is why every serious tube amp has a choke in the B+ chain. Solid-state amps
 
 ## DC resistance and voltage drop
 
-A real choke has resistance — the C-354 spec is **62 Ω**. That resistance drops some voltage:
+A real choke has resistance — the C-354 spec is **62 Ω**, and this build's choke measures **71 Ω** (spec plus winding tolerance and temperature). That resistance drops voltage at the full B+ load:
 
-`V_drop = I · R = 0.100 A · 62 Ω ≈ 6.2 V`
+`V_drop = I · R = 0.212 A · 71 Ω ≈ 15 V`
 
-So if your first filter cap sits at ~435 V (as in this amp), the resistive drop alone takes the second cap (after the choke) down a few volts; with the full idle current of all four output tubes flowing, the main rail lands around 415 V. The drop is small enough that the rest of the B+ chain barely notices it.
+So if your first filter cap sits at ~428–435 V (as in this amp), the resistive drop takes the second cap (after the choke) down ~15 V; the main rail lands around 413–415 V. Measured on this build: 428 V → 413 V, matching the arithmetic exactly. The drop is small enough that the rest of the B+ chain barely notices it.
 
 This DC drop is one of the few downsides of using a choke — you lose a bit of supply voltage to inefficiency. Worth it for the smoothing.
 

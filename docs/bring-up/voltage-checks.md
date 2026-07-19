@@ -108,6 +108,16 @@ Per the manual's voltage table (page 19), with all tubes warm and biased to 1.56
 
 10% tolerance applies. If B+ is consistently low everywhere: line voltage might be low, or the EL-34s are biased too hot. If consistently high: line voltage is high, or EL-34s aren't drawing current (bias too cold, dead tube). Check bias either way.
 
+!!! note "Measured baseline on this build (2026-06, healthy, biased at spec, mains ~116 V)"
+    | Node | Manual | This build measured | Why the difference |
+    |---|---|---|---|
+    | Lug D | 435 V | **428 V** | Mains slightly low (~116 V) |
+    | Lug C | 415 V | **413 V** | 15 V choke drop (71 Ω measured DCR × 212 mA) |
+    | Lug B | 375 V | **349 V** | Driver board draws ~9.4 mA through the 6.8 kΩ, not the ~6 mA the manual chart implies → 64 V drop |
+    | Lug A | 305 V | **280 V** | Pentode plate draw 3.1 mA → 69 V across the 22 kΩ |
+
+    All four rails are self-consistent under V = IR with that one calibrated load model — this is what "healthy but not at chart values" looks like. Use these as the reference for *this* amp; a future reading that drifts from **these** numbers matters more than distance from the manual's chart.
+
 !!! tip "4-ch scope: ripple across the B+ cascade"
     DMMs read average DC and average AC separately; they don't show you the *ripple riding on top of DC* unless you switch to AC mode (which is a peak-detection measurement, not RMS, on most cheap DMMs). A scope shows everything.
 
@@ -118,14 +128,16 @@ Per the manual's voltage table (page 19), with all tubes warm and biased to 1.56
     - **Ch3**: Filter cap lug B (after 6.8 kΩ)
     - **Ch4**: Filter cap lug A (after 22 kΩ)
 
-    What you should see: a 120 Hz sawtooth-ish ripple decreasing dramatically from ch1 → ch2 → ch3 → ch4. Typical magnitudes at idle:
+    What you should see: a 120 Hz sawtooth-ish ripple decreasing dramatically from ch1 → ch2 → ch3 → ch4. Measured magnitudes at idle on this healthy build (FFT-verified):
 
-    - **Lug D**: 15–25 Vp-p ripple (lots, expected — this is right after rectification)
-    - **Lug C**: 0.5–1.5 Vp-p (choke + cap drops it by ~25 dB)
-    - **Lug B**: 50–200 mVp-p
-    - **Lug A**: 10–50 mVp-p (essentially flat — input-stage grade B+)
+    - **Lug D**: **~40 Vp-p** 120 Hz sawtooth (lots, expected — this is right after rectification; V ≈ I·Δt/C ≈ 0.21 × 7 ms / 30 µF ≈ 49 V worst case)
+    - **Lug C**: **~2–3 Vp-p** 120 Hz (choke + cap drops it by ~25 dB)
+    - **Lug B**: **~110 mVp-p** total (FFT: ~25 mV of 120 Hz + small 60 and 240 Hz terms)
+    - **Lug A**: **<1 mVp-p** — below the scope noise floor. This is the point of the cascade.
 
-    What it tells you: each filter stage is doing its job. If lug C has 5+ Vp-p ripple, the choke isn't filtering (open inductor) OR the lug-1 cap is dry. If lug A has ~100 mVp-p, the 22 kΩ resistor between lugs is fine but the lug-3 cap may have lost capacitance.
+    What it tells you: each filter stage is doing its job. If lug C has 8–10+ Vp-p ripple, the choke isn't filtering (open inductor) OR the lug-1 cap is dry. If lug A has ~100 mVp-p, the 22 kΩ resistor between lugs is fine but the lug-3 cap may have lost capacitance.
+
+    **Beware probe pickup on these measurements.** With a standard alligator ground lead, this build showed 7.6 Vp-p of 60 Hz at lug C that was pure magnetic pickup from the power transformer, not rail ripple (true 60 Hz content: <5 mV, confirmed by FFT and by a tight-loop spring-ground-tip measurement). For any sub-volt reading here, use the spring ground tip and/or the scope's FFT before drawing conclusions — a big clean 60 Hz sine on a B+ rail is more often your probe loop acting as an antenna than a failing rectifier.
 
     **Use AC coupling on the scope** so the input attenuator can handle the small ripple signal without your big DC level pinning the trace off-screen. The 10:1 probe still applies — for 50 mVp-p ripple riding on 400 V DC, you want headroom.
 

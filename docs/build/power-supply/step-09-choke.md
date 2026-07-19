@@ -26,12 +26,12 @@ The choke is the inductor in the classic **LC pi-filter** that smooths B+ ripple
 | Node | Voltage | What's there |
 |---|---|---|
 | V1 pin 8 (5AR4 cathode) | ~440 V pulsing | Rectifier output |
-| Filter cap lug 2 ("D") | ~435 V, ~10 V ripple | First filter cap section (30 µF) |
-| Choke (one lead at lug 2, other at lug 1) | ~20 V drop under load (435 → 415 V per the manual's voltage chart) | Smoothing inductor |
-| Filter cap lug 1 ("C") | ~415 V, <1 V ripple | Second filter cap (20 µF) — main B+ rail |
+| Filter cap lug 2 ("D") | ~435 V, ~40 Vp-p ripple | First filter cap section (30 µF) |
+| Choke (one lead at lug 2, other at lug 1) | ~15–20 V drop under load (435 → 415 V per the manual's chart; 428 → 413 V measured on this build, matching its 71 Ω DCR × 212 mA) | Smoothing inductor |
+| Filter cap lug 1 ("C") | ~415 V, ~2–3 Vp-p ripple | Second filter cap (20 µF) — main B+ rail |
 | Out via [step 8](step-08-opt-b-plus.md) RED leads | ~415 V | Feeds OPT primaries → EL-34 plates |
 
-The choke + second cap together form a **second-order low-pass filter**. At 120 Hz (the full-wave ripple frequency), the filter provides about 26 dB of attenuation — turning ~10 V of ripple at lug 2 into ~500 mV at lug 1. That's quiet enough for tube audio.
+The choke + second cap together form a **second-order low-pass filter**. At 120 Hz (the full-wave ripple frequency), the filter provides about 25 dB of attenuation — turning ~40 Vp-p of sawtooth ripple at lug 2 into ~2–3 Vp-p at lug 1 (both values measured on this build). The push-pull output stage rejects most of what remains, and the further RC stages drop the driver-board rails into the millivolts. That's quiet enough for tube audio.
 
 For the full theory and frequency-response math, see [choke](../../components/choke.md) and [rectification — smoothing](../../theory/rectification.md#smoothing-from-pulsating-dc-to-clean-dc).
 

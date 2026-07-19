@@ -201,6 +201,6 @@ Pot wiper at center → grid bias roughly at the midpoint of those = roughly **�
 
 Now you understand *why* it's −32 V from first principles. It's just a voltage divider.
 
-The B+ supply uses the same idea with dropping resistors between filter cap sections: 415 V at lug 1, then drop ~40 V across 6.8 kΩ at ~6 mA (load current of the driver board) to land at 375 V on lug 4. **You can predict every B+ rail with V = IR.**
+The B+ supply uses the same idea with dropping resistors between filter cap sections: 415 V at lug 1, then a drop across the 6.8 kΩ set by the driver board's load current to land at lug 4. (The manual's chart implies ~6 mA → 40 V → 375 V; this build measures ~9.4 mA → 64 V → 349 V. Same V = IR, different real-world current.) **You can predict every B+ rail with V = IR.**
 
 [Next: DMM fundamentals →](03-dmm-fundamentals.md)

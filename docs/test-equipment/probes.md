@@ -62,6 +62,18 @@ A 10× passive probe has a built-in voltage divider that attenuates the signal b
 
 Tradeoff: you lose vertical resolution (everything's 10× smaller on screen) and the probe has its own bandwidth limit.
 
+### The ground lead is an antenna
+
+The alligator-clip ground lead that ships on a scope probe forms a **loop** with the probe tip, and any AC magnetic field passing through that loop induces a voltage the scope cannot distinguish from real signal. Next to a power transformer, this is not a subtle effect: measured on this ST-70, probing the main B+ rail with a standard ground lead showed **7.6 Vp-p of clean 60 Hz sine** that looked exactly like rectifier trouble — while the rail's true 60 Hz content, verified by FFT and a tight-loop measurement, was under 5 mV. The "signal" was the probe loop picking up the PA-060's field.
+
+Defenses, in order of preference:
+
+1. **Spring ground tip** — the little coiled attachment that replaces the alligator lead and grounds at the probe barrel, shrinking the loop from ~15 cm across to ~1 cm. Pickup drops by orders of magnitude.
+2. **FFT mode on the scope** — separates real rail content by frequency, so induced 60 Hz stands apart from genuine 120 Hz ripple.
+3. **Sanity-check the loop itself** — touch the probe tip to the same ground the clip is on; anything the scope still shows is pure pickup, and that's your measurement floor.
+
+Rule of thumb: **any sub-volt AC measurement near the power transformer is untrustworthy through a dangling ground clip.** Tighten the loop or use FFT before diagnosing.
+
 ### High-voltage scope probes
 
 Standard 10× passive probes are typically rated 300V CAT II or 400V CAT II. **That's not enough headroom for the B+ rail on a tube amp.**

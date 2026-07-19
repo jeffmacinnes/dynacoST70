@@ -14,14 +14,16 @@ Take the **6.8 kΩ resistor** (DynakitParts #114682). Trim its leads to 1" each 
 
 This resistor extends the B+ chain to the next stage. Specifically, it drops the voltage from lug 1 (= "lug C", 415 V — the main B+ rail) down to lug 4 (= "lug B", 375 V — the screen/driver-stage feed).
 
-Math:
+Math (manual's nominal operating point):
 
 - Voltage drop needed: 415 − 375 = 40 V
-- Current through this resistor: ~6 mA (driver-stage current)
+- Current through this resistor: ~6 mA (driver-stage current per the manual's chart)
 - Required resistance: 40 V / 6 mA = ~6.7 kΩ
 - Actual value: 6.8 kΩ (closest standard E12 value)
 
-Power dissipation: 6 mA × 40 V = 0.24 W. A ½ W resistor handles this comfortably with a 2× safety margin.
+Power dissipation at the nominal point: 6 mA × 40 V = 0.24 W.
+
+**Measured on this build**, the driver board actually draws ~9.4 mA, so the resistor drops 64 V (413 → 349 V) and dissipates 9.4 mA × 64 V ≈ **0.6 W** — real 6GH8As at real voltages pull more than the chart implies, and the amp is healthy at those numbers. So this position needs a resistor rated well above ½ W — at the measured operating point a ½ W part would be over its rating. Check the rating printed on (or the physical size of) the kit-supplied part; it should be a visibly larger multi-watt resistor.
 
 ## Why a dropping resistor instead of a separate winding
 
@@ -33,7 +35,7 @@ Advantages of dropping resistors:
 - **Cheaper**: a resistor costs $0.10; a transformer with extra taps costs significantly more.
 - **Per-stage isolation**: each dropping resistor + cap = an RC filter that isolates the stages from each other (one stage's transients don't propagate to others).
 
-Disadvantage: the resistor wastes some power as heat (0.24 W here — not much).
+Disadvantage: the resistor wastes some power as heat (~0.6 W here at the measured operating point — not much).
 
 ## Mapping back to manual lug numbers
 

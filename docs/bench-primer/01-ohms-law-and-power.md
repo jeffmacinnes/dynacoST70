@@ -80,7 +80,7 @@ To measure current, the DMM goes **in series** with the resistor — break the c
 
 ## Why this matters for the ST-70
 
-Every voltage on the ST-70's chassis is the result of a current flowing through a resistance. The B+ rail at 435 V dropping to 415 V across the choke? That's V = IR — about 200 mA flowing through the choke's ~100 Ω DCR gives a 20 V drop. The bias supply's −65 V to ~−32 V at the EL34 grids? Same math, divided by a different resistor.
+Every voltage on the ST-70's chassis is the result of a current flowing through a resistance. The B+ rail at 435 V dropping to 415 V across the choke? That's V = IR — about 210 mA flowing through the choke's ~70 Ω DCR (spec 62 Ω; 71 Ω measured on this build) gives a ~15 V drop. On this amp that's a measured 428 V → 413 V — the same physics as the manual's 435 → 415 chart, shifted slightly by low wall voltage. The bias supply's −65 V to ~−32 V at the EL34 grids? Same math, divided by a different resistor.
 
 Once you can confidently apply V = IR and P = V²/R in your head, every node on the chassis becomes a quantitative prediction instead of a memorized number.
 

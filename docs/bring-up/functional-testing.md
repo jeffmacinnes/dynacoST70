@@ -78,17 +78,17 @@ If you hear:
     This is the educational measurement that ties the whole signal path together. Inject a 1 kHz sine, 50 mV into one input. Probe (AC-coupled, time base 200 µs/div for ~2 cycles):
 
     - **Ch1**: Left RCA input (~50 mVp-p, the original signal)
-    - **Ch2**: 6GH8A pentode plate (PC-3A eyelet for plate, look for ~2.5 Vp-p — that's gain of ~50)
+    - **Ch2**: 6GH8A pentode plate (PC-3A eyelet for plate, look for ~1 Vp-p — that's a measured gain of ~15–25× with the feedback loop active; this build measures 19×)
     - **Ch3**: 6GH8A triode plate (the **+phase** output of the cathodyne)
     - **Ch4**: 6GH8A triode cathode (the **−phase** output of the cathodyne)
 
     What you should see:
 
     - Ch1 is the small input sine.
-    - Ch2 is the same waveform amplified ~50× and **inverted** (pentodes invert phase by their nature; the plate goes negative when the grid goes positive).
+    - Ch2 is the same waveform amplified ~15–25× and **inverted** (pentodes invert phase by their nature; the plate goes negative when the grid goes positive). The pentode's *open-loop* stage gain is ~50×, but with the global feedback loop connected, the feedback arriving at the pentode cathode opposes the input and the measured gain lands lower — 19× on this build.
     - Ch3 and Ch4 are the same amplitude as ch2 (unity gain through the cathodyne), but **ch3 and ch4 are exactly 180° apart from each other** — that's the [phase split](../theory/phase-splitting.md). When one rises, the other falls by the same amount. Their sum equals zero at all times.
 
-    What it tells you: every gain and inversion stage from input to phase-splitter output is working as designed. If ch3 and ch4 are *unequal* in amplitude, the cathodyne resistors don't match (or the triode itself is asymmetric — possibly a tube on its way out). If ch2 isn't ~50× ch1, the pentode B+ is wrong or the cathode bypass is failing.
+    What it tells you: every gain and inversion stage from input to phase-splitter output is working as designed. If ch3 and ch4 are *unequal* in amplitude, the cathodyne resistors don't match (or the triode itself is asymmetric — possibly a tube on its way out). If ch2 is under ~5× ch1, the pentode B+ is wrong or the cathode bypass is failing; if it's ~50× (the full open-loop gain), the feedback loop is probably open — check the wire at rear strip lug 1.
 
 !!! tip "4-ch scope: see push-pull at the output stage"
     With the same input signal applied, swap the probes to:
