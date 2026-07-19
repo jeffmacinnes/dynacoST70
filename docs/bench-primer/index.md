@@ -56,6 +56,12 @@ The one exception: the final "apply it to the ST-70" exercise. By then you'll kn
 
 By the end of exercise 4 you'll be able to make a definitive judgment about whether your ST-70 filter cap is healthy. By the end of exercise 6 you'll be able to make a definitive judgment about anything in the amp.
 
+## Optional extras
+
+Beyond the core sequence there's a set of [**optional extra modules**](extras/index.md) — standalone breadboard experiments in the same predict–build–measure style, covering circuit patterns that show up throughout audio amplifiers: wattage and heat, pots, diodes and LEDs, source impedance and sag, RC filters and coupling caps, speaker loads, and the negative-feedback divider.
+
+**Nothing in the amp work waits on these.** Exercises 1–6 are the complete preparation; the extras are for when the predict-and-measure loop is fun in its own right and you want more reps. Dip into them in any order, any time.
+
 ## A note on uncertainty
 
 Real components vary. A "10 kΩ 5%" resistor can be anywhere from 9.5 kΩ to 10.5 kΩ. A "30 µF" cap might be 28 or 32 µF. Your DMM has its own accuracy spec (typically 0.5–1% for DC volts, worse for AC and resistance). The point of "predict then measure" isn't to hit the exact number — it's to confirm the measurement is **inside the band** that all those tolerances allow. A reading 3% off from prediction is fine; a reading 30% off is a real signal.

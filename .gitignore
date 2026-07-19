@@ -11,3 +11,4 @@ venv/
 # Private reference material — original Dynaco manual PDF, copyright Dynakit.
 # Kept locally for build reference; not committed.
 originalFiles/
+.playwright-mcp/

@@ -250,6 +250,15 @@ nav:
       - "4. Capacitors at DC": bench-primer/04-capacitors-dc.md
       - "5. Oscilloscope fundamentals": bench-primer/05-oscilloscope-fundamentals.md
       - "6. From bench to amp": bench-primer/06-from-bench-to-amp.md
+      - Optional extras:
+          - bench-primer/extras/index.md
+          - "E1. Wattage — power and heat": bench-primer/extras/e1-power-and-heat.md
+          - "E2. Potentiometers": bench-primer/extras/e2-potentiometers.md
+          - "E3. LEDs and diodes": bench-primer/extras/e3-leds-and-diodes.md
+          - "E4. Source impedance and sag": bench-primer/extras/e4-source-impedance-and-sag.md
+          - "E5. Caps with AC — filters": bench-primer/extras/e5-caps-with-ac.md
+          - "E6. Driving a speaker": bench-primer/extras/e6-driving-a-speaker.md
+          - "E7. The feedback divider": bench-primer/extras/e7-feedback-divider.md
   - Bring-up:
       - bring-up/index.md
       - Pre-power checklist: bring-up/pre-power-checklist.md
