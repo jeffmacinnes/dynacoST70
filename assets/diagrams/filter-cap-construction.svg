@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 720"
+     role="img"
+     aria-labelledby="fcap-title fcap-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="fcap-title">Multi-section filter capacitor — construction and B+ chain</title>
+  <desc id="fcap-desc">The ST-70's "quad cap" — a cylindrical can containing four electrolytic capacitors with a shared negative terminal (the can itself). The four positive lugs feed different points along the B+ filter chain.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .interactive { filter: brightness(1.08); }
+    .lead-group:hover .section-label { font-weight: 700; }
+
+    .header   { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead  { font-size: 12px; fill: #444; }
+    .label    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .sub      { font-size: 11px; fill: #444; }
+    .footer   { font-size: 11px; font-style: italic; fill: #555; }
+
+    .can-outline     { fill: #d8c98a; stroke: #6a5a1a; stroke-width: 1.8; }
+    .can-top         { fill: #b8a050; stroke: #6a5a1a; stroke-width: 1.5; }
+    .can-base        { fill: #b0b0b0; stroke: #555; stroke-width: 1.3; }
+    .section-divider { stroke: #6a5a1a; stroke-width: 1; stroke-dasharray: 4 3; fill: none; }
+    .section-1       { fill: #d4a76a; opacity: 0.6; }
+    .section-2       { fill: #c8995a; opacity: 0.6; }
+    .section-3       { fill: #be8b4a; opacity: 0.6; }
+    .section-4       { fill: #b27d3a; opacity: 0.6; }
+    .lug             { fill: #888; stroke: #444; stroke-width: 1.2; }
+    .lug-positive    { fill: #cc3a2a; }
+    .lug-negative    { fill: #1a1a1a; }
+    .wire-bplus      { stroke: #1a4e8a; stroke-width: 2.2; fill: none; }
+    .wire-gnd        { stroke: #333;    stroke-width: 2.2; fill: none; }
+    .stage-box       { fill: #f0f4fa; stroke: #1a4e8a; stroke-width: 1.5; }
+  </style>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="600" y="36" text-anchor="middle">Multi-section filter capacitor — four caps in one can</text>
+  <text class="subhead" x="600" y="58" text-anchor="middle">Cutaway view of the ST-70's "quad cap" and where each section sits in the B+ chain.</text>
+
+  <!-- ============ CAN CUTAWAY (LEFT) ============ -->
+  <!-- Cylindrical can shown in side cross-section. Top dome, body with
+       four stacked sections separated by dashed lines, base plate with
+       four positive lugs and one ground tab. -->
+
+  <!-- Can top (dome) -->
+  <g class="lead-group">
+    <title>The aluminium can. One physical container houses four separate electrolytic capacitors.
+
+The can itself is also the SHARED NEGATIVE TERMINAL of all four caps — it bolts to the chassis (the ground tab), and that bolted connection is the negative side of every section. There's no separate negative lead for each cap.</title>
+    <path class="can-top interactive" d="M 180 130 Q 180 90 240 90 L 380 90 Q 440 90 440 130 L 440 145 L 180 145 Z"/>
+    <text class="label" x="310" y="118" text-anchor="middle">aluminium can</text>
+    <text class="sub"   x="310" y="134" text-anchor="middle">(also the shared NEGATIVE terminal)</text>
+  </g>
+
+  <!-- Can body with four sections -->
+  <rect class="can-outline" x="180" y="145" width="260" height="420"/>
+
+  <!-- Four sections inside the can — color-coded -->
+  <g class="lead-group">
+    <title>SECTION 1 — the largest (30 µF).
+
+This is the FIRST filter cap, sitting directly at the 5AR4 cathode. It takes the brunt of the rectified pulse-and-droop cycle. Sized large because it has to hold the rail voltage between 120 Hz pulses with the full B+ load drawing through it.</title>
+    <rect class="section-1 interactive" x="190" y="155" width="240" height="100"/>
+    <text class="section-label label" x="310" y="200" text-anchor="middle" fill="#1a1a1a">Section 1</text>
+    <text class="sub"   x="310" y="218" text-anchor="middle">30 µF · first stage</text>
+    <text class="sub"   x="310" y="234" text-anchor="middle">5AR4 cathode → choke input</text>
+  </g>
+  <line class="section-divider" x1="190" y1="255" x2="430" y2="255"/>
+
+  <g class="lead-group">
+    <title>SECTION 2 — second stage filter (20 µF).
+
+Sits AFTER the choke. The choke + this cap form an LC pi-filter — the choke smooths current, this cap smooths voltage. This is where the B+ rail becomes clean enough to drive the output tube plates.</title>
+    <rect class="section-2 interactive" x="190" y="255" width="240" height="100"/>
+    <text class="section-label label" x="310" y="300" text-anchor="middle" fill="#1a1a1a">Section 2</text>
+    <text class="sub"   x="310" y="318" text-anchor="middle">20 µF · second stage</text>
+    <text class="sub"   x="310" y="334" text-anchor="middle">after choke → tube plates</text>
+  </g>
+  <line class="section-divider" x1="190" y1="355" x2="430" y2="355"/>
+
+  <g class="lead-group">
+    <title>SECTION 3 — driver board supply (20 µF).
+
+Fed from the main B+ through the 6.8 kΩ dropping resistor (~375 V). This rail leaves for the PC-3A driver board via eyelet 20, feeding the pentode screens and triode plates there. The EL34 screens are NOT fed from here — they come from the OPT's UL taps.</title>
+    <rect class="section-3 interactive" x="190" y="355" width="240" height="100"/>
+    <text class="section-label label" x="310" y="400" text-anchor="middle" fill="#1a1a1a">Section 3</text>
+    <text class="sub"   x="310" y="418" text-anchor="middle">20 µF · driver board feed</text>
+    <text class="sub"   x="310" y="434" text-anchor="middle">via 6.8 kΩ → eyelet 20</text>
+  </g>
+  <line class="section-divider" x1="190" y1="455" x2="430" y2="455"/>
+
+  <g class="lead-group">
+    <title>SECTION 4 — driver pentode rail (20 µF).
+
+Fed from the previous section through the 22 kΩ resistor (~305 V); supplies the pentode plate-load rail on the PC-3A via eyelet 19. The bias supply is NOT filtered here — it has its own caps on the 7-lug strip.</title>
+    <rect class="section-4 interactive" x="190" y="455" width="240" height="100"/>
+    <text class="section-label label" x="310" y="500" text-anchor="middle" fill="#1a1a1a">Section 4</text>
+    <text class="sub"   x="310" y="518" text-anchor="middle">20 µF · pentode rail</text>
+    <text class="sub"   x="310" y="534" text-anchor="middle">via 22 kΩ → eyelet 19</text>
+  </g>
+
+  <!-- Base plate -->
+  <rect class="can-base" x="170" y="555" width="280" height="20" rx="3"/>
+
+  <!-- Lugs at the bottom — 4 positive + 1 negative (ground tab to side) -->
+  <g class="lead-group">
+    <title>Lug 1 — positive terminal of Section 1 (first stage, 30 µF).</title>
+    <rect class="lug lug-positive" x="200" y="575" width="20" height="40"/>
+    <text class="sub" x="210" y="635" text-anchor="middle" fill="#cc3a2a">+1</text>
+  </g>
+  <g class="lead-group">
+    <title>Lug 2 — positive terminal of Section 2 (second stage, 20 µF).</title>
+    <rect class="lug lug-positive" x="265" y="575" width="20" height="40"/>
+    <text class="sub" x="275" y="635" text-anchor="middle" fill="#cc3a2a">+2</text>
+  </g>
+  <g class="lead-group">
+    <title>Lug 3 — positive terminal of Section 3 (driver board feed, 20 µF).</title>
+    <rect class="lug lug-positive" x="330" y="575" width="20" height="40"/>
+    <text class="sub" x="340" y="635" text-anchor="middle" fill="#cc3a2a">+3</text>
+  </g>
+  <g class="lead-group">
+    <title>Lug 4 — positive terminal of Section 4 (pentode rail, 20 µF).</title>
+    <rect class="lug lug-positive" x="395" y="575" width="20" height="40"/>
+    <text class="sub" x="405" y="635" text-anchor="middle" fill="#cc3a2a">+4</text>
+  </g>
+
+  <!-- Ground tab on the side -->
+  <g class="lead-group">
+    <title>Ground tab — the SHARED NEGATIVE terminal for all four sections.
+
+This is also how the can mounts to the chassis. The bolt that holds the can in place IS the negative connection — so the chassis itself becomes the cap's negative return path.
+
+This is why filter cap mounting hardware must be TIGHT and have a clean contact area on the chassis. A loose or oxidised mount = noisy/non-functional caps.</title>
+    <rect class="lug lug-negative" x="445" y="585" width="35" height="14" rx="2"/>
+    <text class="sub" x="490" y="595" fill="#1a1a1a">GND (chassis bolt)</text>
+  </g>
+
+  <!-- Label "lugs" -->
+  <text class="sub" x="310" y="660" text-anchor="middle">positive lugs (one per section) →</text>
+
+  <!-- ============ B+ CHAIN (RIGHT) ============ -->
+  <!-- Schematic showing how the four sections feed different points in
+       the supply. -->
+
+  <text class="label" x="850" y="118" text-anchor="middle">How the four sections feed the supply</text>
+
+  <!-- 5AR4 cathode -->
+  <rect class="stage-box" x="650" y="160" width="120" height="40" rx="4"/>
+  <text class="sub" x="710" y="178" text-anchor="middle" fill="#1a4e8a" font-weight="700">5AR4 cathode</text>
+  <text class="sub" x="710" y="194" text-anchor="middle">pulsating DC</text>
+
+  <!-- Wire to Section 1 + choke -->
+  <line class="wire-bplus" x1="770" y1="180" x2="830" y2="180"/>
+  <circle cx="830" cy="180" r="3.5" fill="#1a4e8a"/>
+  <!-- Drop to Section 1 cap -->
+  <line class="wire-bplus" x1="830" y1="180" x2="830" y2="220"/>
+  <text class="sub" x="830" y="240" text-anchor="middle" fill="#cc3a2a">↓ to lug +1</text>
+  <text class="sub" x="830" y="256" text-anchor="middle">(Section 1)</text>
+
+  <!-- Continue to choke -->
+  <line class="wire-bplus" x1="830" y1="180" x2="900" y2="180"/>
+
+  <rect class="stage-box" x="900" y="160" width="100" height="40" rx="4"/>
+  <text class="sub" x="950" y="178" text-anchor="middle" fill="#1a4e8a" font-weight="700">Choke</text>
+  <text class="sub" x="950" y="194" text-anchor="middle">~1.5 H</text>
+
+  <!-- After choke node -->
+  <line class="wire-bplus" x1="1000" y1="180" x2="1060" y2="180"/>
+  <circle cx="1060" cy="180" r="3.5" fill="#1a4e8a"/>
+  <line class="wire-bplus" x1="1060" y1="180" x2="1060" y2="220"/>
+  <text class="sub" x="1060" y="240" text-anchor="middle" fill="#cc3a2a">↓ to lug +2</text>
+  <text class="sub" x="1060" y="256" text-anchor="middle">(Section 2)</text>
+
+  <!-- B+ continues down to tube plates -->
+  <line class="wire-bplus" x1="1060" y1="180" x2="1110" y2="180"/>
+  <polygon points="1110,176 1120,180 1110,184" fill="#1a4e8a"/>
+  <text class="sub" x="1125" y="184" fill="#1a4e8a" font-weight="700">B+ → plates</text>
+
+  <!-- Drop from main B+ to dropping resistor, then to Section 3 -->
+  <line class="wire-bplus" x1="1060" y1="180" x2="1060" y2="350"/>
+  <rect class="stage-box" x="990" y="355" width="140" height="40" rx="4"/>
+  <text class="sub" x="1060" y="373" text-anchor="middle" fill="#1a4e8a">Dropping R</text>
+  <text class="sub" x="1060" y="389" text-anchor="middle">(6.8 kΩ)</text>
+  <line class="wire-bplus" x1="1060" y1="395" x2="1060" y2="430"/>
+  <circle cx="1060" cy="430" r="3.5" fill="#1a4e8a"/>
+  <line class="wire-bplus" x1="1060" y1="430" x2="1060" y2="465"/>
+  <text class="sub" x="1060" y="480" text-anchor="middle" fill="#cc3a2a">↓ to lug +3</text>
+  <text class="sub" x="1060" y="496" text-anchor="middle">(Section 3)</text>
+  <!-- Continue to screens -->
+  <line class="wire-bplus" x1="1060" y1="430" x2="1110" y2="430"/>
+  <polygon points="1110,426 1120,430 1110,434" fill="#1a4e8a"/>
+  <text class="sub" x="1125" y="434" fill="#1a4e8a" font-weight="700">→ driver board</text>
+
+  <!-- Another drop for Section 4 -->
+  <line class="wire-bplus" x1="1060" y1="430" x2="1060" y2="555"/>
+  <rect class="stage-box" x="990" y="555" width="140" height="40" rx="4"/>
+  <text class="sub" x="1060" y="573" text-anchor="middle" fill="#1a4e8a">Dropping R</text>
+  <text class="sub" x="1060" y="589" text-anchor="middle">(22 kΩ)</text>
+  <line class="wire-bplus" x1="1060" y1="595" x2="1060" y2="625"/>
+  <text class="sub" x="1060" y="640" text-anchor="middle" fill="#cc3a2a">↓ to lug +4</text>
+  <text class="sub" x="1060" y="656" text-anchor="middle">(Section 4 — driver pentode rail, eyelet 19)</text>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="600" y="700" text-anchor="middle">The ST-70 quad cap is 30/20/20/20 µF — a large first stage, then smaller downstream sections. The EL34 screens are fed from the OPT UL taps, not from this can.</text>
+</svg>

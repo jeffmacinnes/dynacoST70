@@ -1,0 +1,10 @@
+# Dependencies for generating static diagram SVGs from Python source.
+# These are NOT runtime deps for the site itself — only needed when
+# (re)generating diagrams. The output SVGs are committed to the repo.
+#
+# To install:  pip install -r docs/assets/diagrams/src/requirements.txt
+# To regenerate one diagram:  python docs/assets/diagrams/src/<name>.py
+# To regenerate all:          python docs/assets/diagrams/src/build_all.py
+
+numpy>=1.24
+matplotlib>=3.7

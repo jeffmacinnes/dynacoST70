@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 760"
+     role="img"
+     aria-labelledby="aud-title aud-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="aud-title">Audio signal path through the ST-70 (one channel)</title>
+  <desc id="aud-desc">From RCA input through the 6GH8A pentode (gain), the 6GH8A triode (cathodyne phase splitter), the EL34 push-pull pair, the A-470 output transformer, to the speaker terminals. Feedback wire shown returning from the OPT to the pentode cathode.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.6; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-name    { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-sub     { font-size: 11px; fill: #444; }
+    .wire-label    { font-size: 11px; font-weight: 600; fill: #1a4e8a; }
+    .voltage-label { font-size: 10px; font-style: italic; fill: #666; }
+    .phase-label   { font-size: 11px; font-weight: 700; fill: #cc3a2a; }
+    .fb-label      { font-size: 11px; font-weight: 700; fill: #cc3a2a; }
+
+    .stage-input  { fill: #eef4fc; stroke: #555;    stroke-width: 1.8; }
+    .stage-amp    { fill: #f4f4f4; stroke: #1a4e8a; stroke-width: 1.8; }
+    .stage-split  { fill: #f9f4e8; stroke: #b8851a; stroke-width: 1.8; }
+    .stage-output { fill: #fce8e8; stroke: #cc3a2a; stroke-width: 1.8; }
+    .stage-opt    { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+    .stage-speak  { fill: #eef4fc; stroke: #1a4e8a; stroke-width: 1.8; }
+
+    .signal-wire   { stroke: #1a4e8a; stroke-width: 2.5; fill: none; }
+    .signal-pos    { stroke: #1a4e8a; stroke-width: 2.2; fill: none; }
+    .signal-neg    { stroke: #1a4e8a; stroke-width: 2.2; fill: none; stroke-dasharray: 6,3; }
+    .fb-wire       { stroke: #cc3a2a; stroke-width: 2.2; fill: none; stroke-dasharray: 5,4; }
+    .bplus-wire    { stroke: #cc3a2a; stroke-width: 2.2; fill: none; }
+    .coupling-cap  { stroke: #444; stroke-width: 1.8; fill: none; }
+    .grid-stop     { fill: #f4f4f4; stroke: #444; stroke-width: 1.5; }
+  </style>
+
+  <rect width="1280" height="760" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Audio signal path — one channel, end to end</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">RCA input → 6GH8A pentode (gain) → 6GH8A triode (phase split) → EL34 push-pull pair → A-470 → speaker</text>
+
+  <!-- ============ STAGE 1: INPUT ============ -->
+  <g class="lead-group" data-tooltip="INPUT — RCA jack + input switch + 470 kΩ grid leak.
+
+The RCA jack on the rear panel feeds the input switch (front), which selects between sources. A 470 kΩ grid leak resistor ties the pentode grid to ground, giving it a DC reference while presenting a high input impedance to the source.
+
+Typical level here: ~1 Vpp line level.">
+    <rect class="stage-box stage-input" x="40" y="280" width="140" height="100" rx="6"/>
+    <text class="stage-name" x="110" y="310" text-anchor="middle">Input</text>
+    <text class="stage-sub"  x="110" y="328" text-anchor="middle">RCA jack +</text>
+    <text class="stage-sub"  x="110" y="342" text-anchor="middle">input switch +</text>
+    <text class="stage-sub"  x="110" y="356" text-anchor="middle">470 kΩ grid leak</text>
+    <text class="voltage-label" x="110" y="395" text-anchor="middle">~1 Vpp</text>
+  </g>
+
+  <!-- Wire 1→2 -->
+  <path class="signal-wire" d="M 180 330 L 220 330"/>
+  <polygon points="220,330 213,326 213,334" fill="#1a4e8a"/>
+
+  <!-- ============ STAGE 2: 6GH8A PENTODE ============ -->
+  <g class="lead-group" data-tooltip="6GH8A PENTODE — input voltage amplifier.
+
+The signal arrives at the control grid; the pentode amplifies it by ~50× and outputs the larger AC swing at its plate. Plate sits at high DC (~150-200 V) so a coupling cap is needed to pass the signal to the next stage.
+
+The pentode's CATHODE is where the global feedback returns (mixed with local cathode bias). Hover the dashed red wire below for the feedback summing.">
+    <rect class="stage-box stage-amp" x="220" y="280" width="170" height="100" rx="6"/>
+    <text class="stage-name" x="305" y="310" text-anchor="middle">6GH8A pentode</text>
+    <text class="stage-sub"  x="305" y="328" text-anchor="middle">input gain stage</text>
+    <text class="stage-sub"  x="305" y="346" text-anchor="middle">gain ≈ 50×</text>
+    <text class="stage-sub"  x="305" y="364" text-anchor="middle">on PC-3A board</text>
+
+    <!-- Cathode marker for feedback return -->
+    <circle cx="305" cy="380" r="6" fill="#fff" stroke="#cc3a2a" stroke-width="2"/>
+    <text class="fb-label" x="305" y="404" text-anchor="middle">cathode</text>
+    <text class="voltage-label" x="430" y="285" text-anchor="middle">~50 Vpp</text>
+  </g>
+
+  <!-- Coupling cap on wire 2→3 -->
+  <path class="signal-wire" d="M 390 330 L 430 330"/>
+  <g class="lead-group" data-tooltip="COUPLING CAPACITOR — blocks DC, passes AC.
+
+The pentode's plate sits at high DC voltage. The coupling cap passes the AC audio signal to the next grid while blocking that DC, so the triode's grid stays at its own designed bias point.
+
+These caps age over decades; leaky coupling caps put DC on the next grid and skew bias. The #1 PC-3A failure mode.">
+    <line class="coupling-cap" x1="430" y1="318" x2="430" y2="342"/>
+    <line class="coupling-cap" x1="437" y1="318" x2="437" y2="342"/>
+    <text class="stage-sub" x="433" y="362" text-anchor="middle">C</text>
+  </g>
+  <path class="signal-wire" d="M 437 330 L 475 330"/>
+  <polygon points="475,330 468,326 468,334" fill="#1a4e8a"/>
+
+  <!-- ============ STAGE 3: 6GH8A TRIODE / CATHODYNE ============ -->
+  <g class="lead-group" data-tooltip="6GH8A TRIODE — cathodyne phase splitter.
+
+The triode has equal-value resistors above and below it (47 kΩ each, matched to 1%). Because the same current flows through both, the plate output and the cathode output have IDENTICAL amplitude but OPPOSITE phase — 180° apart. Exactly what push-pull needs.
+
+This is the magic: one tube section + two equal resistors gives you a perfectly balanced phase-split signal, no calibration needed.">
+    <rect class="stage-box stage-split" x="475" y="270" width="180" height="120" rx="6"/>
+    <text class="stage-name" x="565" y="298" text-anchor="middle">6GH8A triode</text>
+    <text class="stage-sub"  x="565" y="316" text-anchor="middle">cathodyne phase splitter</text>
+    <text class="stage-sub"  x="565" y="334" text-anchor="middle">unity gain, two outputs</text>
+    <text class="phase-label" x="565" y="358" text-anchor="middle">+ and − phase</text>
+    <text class="phase-label" x="565" y="375" text-anchor="middle">180° apart</text>
+  </g>
+
+  <!-- Two outputs from triode (fan out) -->
+  <!-- Top: plate (positive phase) -->
+  <path class="signal-pos" d="M 655 300 C 700 300, 720 280, 760 250"/>
+  <text class="wire-label" x="700" y="275" text-anchor="middle">+ phase</text>
+  <!-- Coupling cap on top -->
+  <g class="lead-group" data-tooltip="COUPLING CAP — blocks the triode plate's DC, passes AC to the EL34 grid.">
+    <line class="coupling-cap" x1="755" y1="240" x2="755" y2="260"/>
+    <line class="coupling-cap" x1="762" y1="240" x2="762" y2="260"/>
+  </g>
+
+  <!-- Bottom: cathode (negative phase) -->
+  <path class="signal-neg" d="M 655 360 C 700 360, 720 380, 760 410"/>
+  <text class="wire-label" x="700" y="405" text-anchor="middle">− phase</text>
+  <!-- Coupling cap on bottom -->
+  <g class="lead-group" data-tooltip="COUPLING CAP — blocks the triode cathode's DC, passes AC to the other EL34 grid.">
+    <line class="coupling-cap" x1="755" y1="400" x2="755" y2="420"/>
+    <line class="coupling-cap" x1="762" y1="400" x2="762" y2="420"/>
+  </g>
+
+  <!-- Grid stoppers (1 kΩ each) -->
+  <g class="lead-group" data-tooltip="1 kΩ GRID STOPPER — suppresses RF parasitic oscillation.
+
+Mounted directly at the EL34 socket (pin 5 to pin 6). Without it, the high-gain EL34 + the inductance of the lead wires can form an unintended RF oscillator at MHz frequencies.">
+    <rect class="grid-stop" x="775" y="232" width="40" height="16" rx="2"/>
+    <text class="stage-sub" x="795" y="244" text-anchor="middle">1 kΩ</text>
+  </g>
+  <g class="lead-group" data-tooltip="1 kΩ GRID STOPPER — suppresses RF parasitic oscillation on the other EL34.">
+    <rect class="grid-stop" x="775" y="402" width="40" height="16" rx="2"/>
+    <text class="stage-sub" x="795" y="414" text-anchor="middle">1 kΩ</text>
+  </g>
+
+  <!-- Wires from grid stops to EL34s -->
+  <path class="signal-pos" d="M 815 240 L 858 240"/>
+  <polygon points="858,240 851,236 851,244" fill="#1a4e8a"/>
+  <path class="signal-neg" d="M 815 410 L 858 410"/>
+  <polygon points="858,410 851,406 851,414" fill="#1a4e8a"/>
+
+  <!-- ============ STAGE 4: EL34 PUSH-PULL PAIR ============ -->
+  <g class="lead-group" data-tooltip="EL34 #1 (V2 left ch / V6 right ch) — receives the + phase signal at its grid (pin 5), bias holds it at ~50 mA idle, AC swings the plate current up and down. Its plate (pin 3) drives one end of the A-470 primary via the BLU/WHT lead.">
+    <rect class="stage-box stage-output" x="858" y="200" width="120" height="90" rx="6"/>
+    <text class="stage-name" x="918" y="226" text-anchor="middle">EL34 #1</text>
+    <text class="stage-sub"  x="918" y="244" text-anchor="middle">V2 (or V6)</text>
+    <text class="stage-sub"  x="918" y="262" text-anchor="middle">+phase grid</text>
+    <text class="stage-sub"  x="918" y="280" text-anchor="middle">plate → BLU/WHT</text>
+  </g>
+  <g class="lead-group" data-tooltip="EL34 #2 (V3 left ch / V7 right ch) — receives the − phase signal at its grid; plate current swings opposite to EL34 #1 at every instant. Its plate (pin 3) drives the other end of the A-470 primary via the BLUE lead. This is push-pull: the two tubes alternate driving the OPT primary's two halves.">
+    <rect class="stage-box stage-output" x="858" y="370" width="120" height="90" rx="6"/>
+    <text class="stage-name" x="918" y="396" text-anchor="middle">EL34 #2</text>
+    <text class="stage-sub"  x="918" y="414" text-anchor="middle">V3 (or V7)</text>
+    <text class="stage-sub"  x="918" y="432" text-anchor="middle">−phase grid</text>
+    <text class="stage-sub"  x="918" y="450" text-anchor="middle">plate → BLUE</text>
+  </g>
+
+  <!-- Plates from EL34s to OPT primary -->
+  <path class="signal-pos" d="M 978 245 L 1015 245 L 1015 295"/>
+  <text class="wire-label" x="996" y="240" >BLU/WHT</text>
+  <path class="signal-neg" d="M 978 415 L 1015 415 L 1015 365"/>
+  <text class="wire-label" x="996" y="430" >BLUE</text>
+
+  <!-- B+ feed to center tap (red wire from above) -->
+  <g class="lead-group" data-tooltip="B+ CENTER TAP — the RED lead on the A-470 primary brings B+ in at the middle of the winding. Push-pull plate currents balance around this point; the quiescent current draw on B+ is steady, only the AC swings oppositely in the two halves.">
+    <path class="bplus-wire" d="M 1015 150 L 1015 295"/>
+    <text class="wire-label" x="1015" y="142" text-anchor="middle" fill="#cc3a2a">B+ (RED CT)</text>
+  </g>
+
+  <!-- ============ STAGE 5: A-470 OPT ============ -->
+  <g class="lead-group" data-tooltip="A-470 OUTPUT TRANSFORMER PRIMARY — center-tapped, push-pull.
+
+The two halves of the primary (BLU/WHT lead and BLUE lead) are driven by EL34 plate currents that swing oppositely. Push-pull cancels DC magnetization in the core (so the core doesn't saturate on signal) and reinforces the AC signal in the secondary. Also rejects B+ ripple by common-mode cancellation.">
+    <rect class="stage-box stage-opt" x="998" y="295" width="68" height="70" rx="4"/>
+    <text class="stage-sub" x="1032" y="318" text-anchor="middle">A-470</text>
+    <text class="stage-sub" x="1032" y="332" text-anchor="middle">primary</text>
+    <text class="stage-sub" x="1032" y="350" text-anchor="middle">4300 Ω</text>
+  </g>
+  <g class="lead-group" data-tooltip="A-470 SECONDARY — multiple impedance taps.
+
+The secondary is a low-voltage, low-impedance winding with four taps: BLACK (common, 0 Ω reference), BROWN (4 Ω), ORANGE (8 Ω), YELLOW (16 Ω). Most modern speakers use ORANGE + BLACK. The YELLOW tap is also the global feedback sample point.">
+    <rect class="stage-box stage-opt" x="1080" y="295" width="68" height="70" rx="4"/>
+    <text class="stage-sub" x="1114" y="318" text-anchor="middle">A-470</text>
+    <text class="stage-sub" x="1114" y="332" text-anchor="middle">secondary</text>
+    <text class="stage-sub" x="1114" y="350" text-anchor="middle">4/8/16 Ω</text>
+  </g>
+
+  <!-- Magnetic coupling lines between primary and secondary -->
+  <line x1="1066" y1="310" x2="1080" y2="310" stroke="#666" stroke-width="1.2"/>
+  <line x1="1066" y1="330" x2="1080" y2="330" stroke="#666" stroke-width="1.2"/>
+  <line x1="1066" y1="350" x2="1080" y2="350" stroke="#666" stroke-width="1.2"/>
+
+  <text class="voltage-label" x="1032" y="385" text-anchor="middle">~1.1 kVpp plate-to-plate</text>
+  <text class="voltage-label" x="1114" y="385" text-anchor="middle">~25 Vpp @ 8 Ω</text>
+
+  <!-- ============ STAGE 6: SPEAKER ============ -->
+  <g class="lead-group" data-tooltip="SPEAKER — the load.
+
+Connected between the BLACK (common) and the appropriate impedance tap (typically ORANGE for 8 Ω speakers). Drives the air. The damping factor (how stiffly the amp resists speaker motion) is set by the OPT's secondary impedance plus any feedback-reduced output impedance.">
+    <rect class="stage-box stage-speak" x="1170" y="305" width="80" height="50" rx="4"/>
+    <text class="stage-name" x="1210" y="328" text-anchor="middle">Speaker</text>
+    <text class="stage-sub"  x="1210" y="346" text-anchor="middle">audio out</text>
+  </g>
+  <path class="signal-wire" d="M 1148 330 L 1170 330"/>
+  <polygon points="1170,330 1163,326 1163,334" fill="#1a4e8a"/>
+
+  <!-- ============ FEEDBACK LOOP ============ -->
+  <g class="lead-group" data-tooltip="FEEDBACK LOOP — from OPT secondary (16 Ω YELLOW tap) back to pentode cathode.
+
+A single resistor (R_fb) samples the speaker-level signal and routes it back to the pentode's cathode. Because it sums there with opposite phase, the amp ends up controlled by the feedback ratio rather than open-loop gain. Trades ~16 dB of gain for ~16 dB lower distortion, output impedance, and bandwidth ripple.
+
+A second wire from the UL primary tap provides HF stability compensation — see negative-feedback path page for both.">
+    <path class="fb-wire" d="M 1114 365 L 1114 580 L 305 580 L 305 386"/>
+    <polygon points="305,386 301,395 309,395" fill="#cc3a2a"/>
+    <text class="fb-label" x="700" y="595" text-anchor="middle">global negative feedback (from 16 Ω tap, through R_fb, to pentode cathode)</text>
+  </g>
+
+  <!-- ============ STAGE LABELS ABOVE ============ -->
+  <text class="section-label" x="110" y="260" text-anchor="middle">stage 1</text>
+  <text class="section-label" x="305" y="260" text-anchor="middle">stage 2 (gain)</text>
+  <text class="section-label" x="565" y="250" text-anchor="middle">stage 3 (phase split)</text>
+  <text class="section-label" x="918" y="180" text-anchor="middle">stage 4 (push-pull output)</text>
+  <text class="section-label" x="1073" y="275" text-anchor="middle">stage 5 (OPT)</text>
+  <text class="section-label" x="1210" y="290" text-anchor="middle">stage 6</text>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="640" y="680" text-anchor="middle">Solid blue = positive-phase signal. Dashed blue = negative-phase signal (180° apart from the cathodyne).</text>
+  <text class="footer" x="640" y="700" text-anchor="middle">Dashed red = negative feedback loop. Red = B+ feed at the OPT primary center tap.</text>
+  <text class="footer" x="640" y="720" text-anchor="middle">Right channel is the mirror: substitute V6/V7 for V2/V3.</text>
+</svg>

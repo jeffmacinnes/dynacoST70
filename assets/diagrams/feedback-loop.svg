@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 720"
+     role="img"
+     aria-labelledby="fb-title fb-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="fb-title">Global negative feedback loop in the ST-70</title>
+  <desc id="fb-desc">The full signal path from input to speaker, with a single resistor sampling the OPT 16Ω secondary and returning it to the input stage cathode. The feedback opposes any change the amp introduced, dramatically reducing distortion and output impedance.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.5; }
+
+    .header  { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 12px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .label         { font-size: 12px; font-weight: 600; fill: #1a1a1a; }
+    .sub           { font-size: 11px; fill: #444; }
+    .stage-name    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .feedback      { font-size: 12px; font-weight: 700; fill: #cc3a2a; }
+
+    .stage-input    { fill: #eef4fc; stroke: #555;    stroke-width: 1.8; }
+    .stage-amp      { fill: #f4f4f4; stroke: #1a4e8a; stroke-width: 1.8; }
+    .stage-output   { fill: #fce8e8; stroke: #cc3a2a; stroke-width: 1.8; }
+    .speaker        { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+    .signal-wire    { stroke: #1a4e8a; stroke-width: 2.5; fill: none; }
+    .feedback-wire  { stroke: #cc3a2a; stroke-width: 2.5; fill: none; stroke-dasharray: 0; }
+    .summing-circle { fill: #f4f4f4; stroke: #cc3a2a; stroke-width: 2; }
+  </style>
+
+  <rect width="1280" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Global negative feedback — one wire, big consequences</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">A single resistor from the 16Ω OPT tap back to the input stage cathode wraps the whole amplifier in a feedback loop.</text>
+
+  <!-- ============ MAIN SIGNAL PATH (LEFT TO RIGHT, TOP HALF) ============ -->
+
+  <!-- Input -->
+  <g class="lead-group" data-tooltip="Audio input. Comes from the source (preamp, phono, etc.) via the input jack.">
+    <rect class="stage-input" x="60" y="200" width="100" height="60" rx="4"/>
+    <text class="stage-name" x="110" y="225" text-anchor="middle">Input</text>
+    <text class="sub"        x="110" y="243" text-anchor="middle">(audio in)</text>
+  </g>
+
+  <!-- Summing junction (where feedback subtracts from input) -->
+  <g class="lead-group" data-tooltip="SUMMING JUNCTION — physically the input stage's cathode resistor network.
+
+The input signal and the feedback signal meet here. The feedback is wired to OPPOSE the input (180° out of phase), so the input stage actually sees:
+
+  effective_input = audio_in − (small fraction of) output_at_speaker
+
+If the output starts to distort (deviate from a clean copy of input), the feedback signal becomes a slightly distorted version of input. Subtracting that from input cancels some of the distortion. The more loop gain, the more cancellation.">
+    <circle class="summing-circle" cx="210" cy="230" r="18"/>
+    <text class="label" x="210" y="234" text-anchor="middle" fill="#cc3a2a">Σ</text>
+    <text class="sub"   x="210" y="266" text-anchor="middle">summing</text>
+    <text class="sub"   x="210" y="280" text-anchor="middle">junction</text>
+  </g>
+  <line class="signal-wire" x1="160" y1="230" x2="192" y2="230"/>
+  <polygon points="192,226 200,230 192,234" fill="#1a4e8a"/>
+
+  <!-- Input stage -->
+  <g class="lead-group" data-tooltip="INPUT STAGE — the first voltage amplifier.
+
+In the ST-70 this is the pentode section of the 6GH8A driver tube. Modest gain (~50×), low noise.
+
+The cathode of this stage is where the negative feedback signal arrives — it modifies the effective ground reference of the input tube, opposing any change at the output.">
+    <rect class="stage-amp" x="270" y="200" width="120" height="60" rx="4"/>
+    <text class="stage-name" x="330" y="225" text-anchor="middle">Input stage</text>
+    <text class="sub"        x="330" y="243" text-anchor="middle">pentode · ~50× gain</text>
+  </g>
+  <line class="signal-wire" x1="228" y1="230" x2="270" y2="230"/>
+  <polygon points="270,226 278,230 270,234" fill="#1a4e8a"/>
+
+  <!-- Phase splitter -->
+  <g class="lead-group" data-tooltip="PHASE SPLITTER — produces the two opposite-phase signals push-pull needs.
+
+In the ST-70 this is the triode section of the 6GH8A, configured as a cathodyne (split-load) phase splitter. See the phase-splitting page for the topology.">
+    <rect class="stage-amp" x="430" y="200" width="120" height="60" rx="4"/>
+    <text class="stage-name" x="490" y="225" text-anchor="middle">Phase splitter</text>
+    <text class="sub"        x="490" y="243" text-anchor="middle">triode · cathodyne</text>
+  </g>
+  <line class="signal-wire" x1="390" y1="230" x2="430" y2="230"/>
+  <polygon points="430,226 438,230 430,234" fill="#1a4e8a"/>
+
+  <!-- Push-pull pair -->
+  <g class="lead-group" data-tooltip="PUSH-PULL OUTPUT STAGE — two EL34s in class-AB push-pull.
+
+Big gain, big power. Also the biggest source of distortion in the amp (output tubes are non-linear under load). The feedback loop dramatically cleans up this stage's distortion.">
+    <rect class="stage-amp" x="590" y="200" width="120" height="60" rx="4"/>
+    <text class="stage-name" x="650" y="225" text-anchor="middle">PP EL34s</text>
+    <text class="sub"        x="650" y="243" text-anchor="middle">push-pull output</text>
+  </g>
+  <line class="signal-wire" x1="550" y1="230" x2="590" y2="230"/>
+  <polygon points="590,226 598,230 590,234" fill="#1a4e8a"/>
+
+  <!-- A-470 OPT -->
+  <g class="lead-group" data-tooltip="A-470 OUTPUT TRANSFORMER — couples the high-voltage / high-impedance tube plates to the low-impedance speaker.
+
+The transformer's frequency response and phase shift become PART of the feedback loop. Anything that delays the signal here delays the feedback too — which can cause oscillation at frequency extremes if the loop isn't designed carefully. The A-470's extraordinary bandwidth (−1 dB from 6 Hz to 30 kHz) is what makes the ST-70's modest feedback amount stable.">
+    <rect class="stage-amp" x="750" y="200" width="120" height="60" rx="4"/>
+    <text class="stage-name" x="810" y="225" text-anchor="middle">A-470 OPT</text>
+    <text class="sub"        x="810" y="243" text-anchor="middle">step-down</text>
+  </g>
+  <line class="signal-wire" x1="710" y1="230" x2="750" y2="230"/>
+  <polygon points="750,226 758,230 750,234" fill="#1a4e8a"/>
+
+  <!-- Speaker -->
+  <g class="lead-group" data-tooltip="SPEAKER OUTPUT.
+
+The output across the secondary is what gets sampled and fed back. The feedback resistor connects to the 16 Ω tap specifically — higher impedance taps give a stronger feedback signal for the same speaker output.">
+    <rect class="speaker" x="910" y="200" width="120" height="60" rx="4"/>
+    <text class="stage-name" x="970" y="225" text-anchor="middle">Speaker</text>
+    <text class="sub"        x="970" y="243" text-anchor="middle">output</text>
+  </g>
+  <line class="signal-wire" x1="870" y1="230" x2="910" y2="230"/>
+  <polygon points="910,226 918,230 910,234" fill="#1a4e8a"/>
+
+  <!-- ============ FEEDBACK LOOP (BOTTOM HALF) ============ -->
+
+  <!-- Output tap node -->
+  <circle cx="970" cy="260" r="4" fill="#cc3a2a"/>
+  <text class="sub" x="990" y="265" fill="#cc3a2a">16 Ω tap</text>
+
+  <!-- Feedback wire down, left, and back up to summing junction -->
+  <line class="feedback-wire" x1="970" y1="260" x2="970" y2="430"/>
+  <line class="feedback-wire" x1="970" y1="430" x2="380" y2="430"/>
+
+  <!-- Feedback resistor in the loop -->
+  <g class="lead-group" data-tooltip="FEEDBACK RESISTOR — 1 kΩ in the ST-70.
+
+This value sets the AMOUNT of feedback. Larger resistor → less feedback (more &apos;natural&apos; amp character, more distortion, higher output impedance). Smaller resistor → more feedback (more correction, more risk of instability if the loop isn&apos;t well-designed).
+
+The ST-70 runs about 20 dB of feedback (≈10×). Some designs use more, some use zero. There are religious arguments about the right amount.">
+    <rect x="540" y="412" width="50" height="36" rx="3" fill="#f4f4f4" stroke="#cc3a2a" stroke-width="1.5"/>
+    <text class="sub" x="565" y="436" text-anchor="middle" fill="#cc3a2a">R_fb</text>
+  </g>
+
+  <!-- Continue feedback wire to the summing junction -->
+  <line class="feedback-wire" x1="380" y1="430" x2="210" y2="430"/>
+  <line class="feedback-wire" x1="210" y1="430" x2="210" y2="248"/>
+  <polygon points="206,250 210,242 214,250" fill="#cc3a2a"/>
+
+  <!-- Label for the feedback path -->
+  <text class="feedback" x="690" y="395" text-anchor="middle">global negative feedback</text>
+  <text class="sub" x="690" y="412" text-anchor="middle" fill="#cc3a2a">(180° out of phase with input)</text>
+
+  <!-- ============ NOTE BOX ON LEFT ============ -->
+  <g transform="translate(60, 510)">
+    <rect x="0" y="0" width="500" height="170" rx="4" fill="#f4f4f4" stroke="#aaa" stroke-width="1"/>
+    <text class="section-label" x="20" y="28">What feedback buys you</text>
+    <text class="sub" x="20" y="52">① <tspan font-weight="700">Lower distortion</tspan> — by a factor of (1 + loop_gain).</text>
+    <text class="sub" x="20" y="72">  At 20 dB feedback (~10× loop gain), distortion drops ~10×.</text>
+    <text class="sub" x="20" y="96">② <tspan font-weight="700">Lower output impedance</tspan> — better speaker damping.</text>
+    <text class="sub" x="20" y="116">  Helps the amp grip the speaker cone, tighter bass.</text>
+    <text class="sub" x="20" y="140">③ <tspan font-weight="700">Wider, flatter bandwidth</tspan> — feedback fights roll-off.</text>
+    <text class="sub" x="20" y="160">  Without it the A-470 alone would roll off earlier.</text>
+  </g>
+
+  <!-- ============ NOTE BOX ON RIGHT ============ -->
+  <g transform="translate(720, 510)">
+    <rect x="0" y="0" width="500" height="170" rx="4" fill="#fce8e8" stroke="#cc3a2a" stroke-width="1"/>
+    <text class="section-label" x="20" y="28" fill="#cc3a2a">What feedback costs you</text>
+    <text class="sub" x="20" y="52">① <tspan font-weight="700">Stability</tspan> — too much feedback + a slow OPT can</text>
+    <text class="sub" x="20" y="72">  cause oscillation at high frequencies. Compensation needed.</text>
+    <text class="sub" x="20" y="96">② <tspan font-weight="700">Character</tspan> — feedback cancels 2nd-harmonic &apos;warmth&apos;</text>
+    <text class="sub" x="20" y="116">  that some listeners actually like. Audiophile-tier debate.</text>
+    <text class="sub" x="20" y="140">③ <tspan font-weight="700">Tighter design constraints</tspan> — the OPT and entire</text>
+    <text class="sub" x="20" y="160">  loop must be carefully phase-matched to stay stable.</text>
+  </g>
+</svg>

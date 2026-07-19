@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1140 760"
+     role="img"
+     aria-labelledby="pa060-title pa060-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="pa060-title">PA-060 power transformer winding diagram</title>
+  <desc id="pa060-desc">The Dynaco PA-060 power transformer: one 120V primary on the left, five color-coded secondary windings on the right. Hover any lead group for its voltage, current, and where it lands in the build.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .lead { stroke-width: 5; }
+    .lead-group:hover .voltage { font-size: 17px; }
+    .lead { stroke-width: 3; fill: none; stroke-linecap: round; }
+    .lead-dot { r: 5.5; }
+    .lead-name { font-size: 13px; font-weight: 700; }
+    .lead-sub { font-size: 10px; font-weight: 600; fill: #555; }
+    .voltage { font-size: 16px; font-weight: 700; }
+    .purpose { font-size: 12px; font-weight: 600; }
+    .target { font-size: 11px; font-style: italic; }
+    .ct-line { stroke-dasharray: 7 4; }
+    .header { font-size: 21px; font-weight: 700; }
+    .subhead { font-size: 12px; }
+    .footer { font-size: 11px; font-style: italic; }
+    .ct-shared { stroke: #777; stroke-width: 1.2; fill: none; stroke-dasharray: 3 3; }
+
+    .voltage, .purpose, .lead-name { fill: #1a1a1a; }
+    .target, .footer { fill: #444; }
+    .subhead { fill: #444; }
+    .header { fill: #1a1a1a; }
+
+    .bobbin-note { fill: #888; font-style: italic; font-size: 12px; }
+    .bobbin-window { stroke: #888; }
+  </style>
+
+  <defs>
+    <pattern id="lamination" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#3a3a3a"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#5a5a5a" stroke-width="0.5"/>
+      <line x1="4" y1="0" x2="4" y2="8" stroke="#4a4a4a" stroke-width="0.5"/>
+    </pattern>
+    <linearGradient id="endbell" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#7a7a7a"/>
+      <stop offset="1" stop-color="#555"/>
+    </linearGradient>
+
+    <!-- Two-tone striped patterns for color-coded multi-color leads -->
+    <pattern id="redyel" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#cc3a2a"/>
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#ffcc00" stroke-width="2"/>
+    </pattern>
+    <pattern id="grnyel" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#2a8c3a"/>
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#ffcc00" stroke-width="2"/>
+    </pattern>
+    <pattern id="brnyel" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#7a4d2a"/>
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#ffcc00" stroke-width="2"/>
+    </pattern>
+    <pattern id="redblk" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#cc3a2a"/>
+      <line x1="0" y1="4" x2="8" y2="4" stroke="#1a1a1a" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <!-- ============ BACKGROUND ============ -->
+  <rect width="1140" height="760" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header" x="570" y="36" text-anchor="middle">PA-060 — winding diagram</text>
+  <text class="subhead" x="570" y="56" text-anchor="middle">120V primary · five color-coded secondaries · hover any winding for spec</text>
+
+  <!-- ============ TRANSFORMER CAN ============ -->
+  <rect x="380" y="84" width="240" height="22" rx="3" fill="url(#endbell)" stroke="#333" stroke-width="1.5"/>
+  <rect x="380" y="652" width="240" height="22" rx="3" fill="url(#endbell)" stroke="#333" stroke-width="1.5"/>
+  <rect x="395" y="106" width="210" height="546" fill="url(#lamination)" stroke="#222" stroke-width="2"/>
+  <rect class="bobbin-window" x="420" y="140" width="160" height="478" fill="none" stroke-width="1" stroke-dasharray="3,3"/>
+  <text class="bobbin-note" x="500" y="370" text-anchor="middle">primary +</text>
+  <text class="bobbin-note" x="500" y="388" text-anchor="middle">secondaries</text>
+  <text class="bobbin-note" x="500" y="406" text-anchor="middle">on bobbin</text>
+  <text class="footer" x="500" y="700" text-anchor="middle">Dynakit · Pacific Transformer reproduction</text>
+
+  <!-- ============ PRIMARY ============ -->
+  <g class="lead-group">
+    <title>PRIMARY — 120V AC, 50–60 Hz mains input.
+Two BLK leads land at the fuse post and the on/off switch (step 10).
+The transformer steps this up to 720V CT (HV), 55V (bias), 6.3V CT (heater ×2), and 5V (rectifier heater).</title>
+
+    <text class="voltage" x="240" y="280" text-anchor="end">120V AC</text>
+    <text class="purpose" x="240" y="298" text-anchor="end">PRIMARY</text>
+
+    <line class="lead" x1="395" y1="350" x2="265" y2="350" stroke="#1a1a1a"/>
+    <line class="lead" x1="395" y1="390" x2="265" y2="390" stroke="#1a1a1a"/>
+    <line x1="265" y1="350" x2="265" y2="390" stroke="#1a1a1a" stroke-width="3"/>
+    <circle class="lead-dot" cx="265" cy="350" fill="#1a1a1a"/>
+    <circle class="lead-dot" cx="265" cy="390" fill="#1a1a1a"/>
+    <text class="lead-name" x="252" y="344" text-anchor="end">BLK</text>
+    <text class="lead-name" x="252" y="403" text-anchor="end">BLK</text>
+
+    <text class="target" x="240" y="425" text-anchor="end">→ fuse (step 10)</text>
+    <text class="target" x="240" y="441" text-anchor="end">→ switch (step 10)</text>
+  </g>
+
+  <!-- ============ SECONDARY 1: 5V rectifier heater (WHT–WHT) ============ -->
+  <g class="lead-group">
+    <title>5V @ 4A heater winding (WHT–WHT, no center tap).
+Powers the 5AR4 rectifier filament.
+Step 2 wires this pair to V1 pins 2 and 8.
+No CT is needed here — the 5AR4 is a power-supply tube, so any heater hum is harmless.</title>
+
+    <line class="lead" x1="605" y1="155" x2="755" y2="155" stroke="#e8e8e8"/>
+    <line class="lead" x1="605" y1="185" x2="755" y2="185" stroke="#e8e8e8"/>
+    <circle class="lead-dot" cx="755" cy="155" fill="#fafafa" stroke="#888" stroke-width="1"/>
+    <circle class="lead-dot" cx="755" cy="185" fill="#fafafa" stroke="#888" stroke-width="1"/>
+    <text class="lead-name" x="770" y="159" fill="#555">WHT</text>
+    <text class="lead-name" x="770" y="189" fill="#555">WHT</text>
+
+    <text class="voltage" x="880" y="158">5V @ 4A</text>
+    <text class="purpose" x="880" y="178">5AR4 heater</text>
+    <text class="target" x="880" y="196">→ V1 pins 2, 8 (step 2)</text>
+  </g>
+
+  <!-- ============ SECONDARY 2: 6.3V heater #1 (GRN pair + CT) ============ -->
+  <g class="lead-group">
+    <title>6.3V @ 5A heater winding #1 (GRN–GRN with GRN/YEL center tap).
+Powers half the signal/output tubes' filaments.
+Step 4 wires the active leads to V2 pins 2 and 7 (chain continues to V3, V4).
+Step 6 routes GRN/YEL to lug #5 of the seven-lug terminal strip — anchors the heater AC midpoint at signal ground.</title>
+
+    <line class="lead" x1="605" y1="245" x2="755" y2="245" stroke="#2a8c3a"/>
+    <line class="lead ct-line" x1="605" y1="278" x2="755" y2="278" stroke="#2a8c3a"/>
+    <line class="lead" x1="605" y1="311" x2="755" y2="311" stroke="#2a8c3a"/>
+    <circle class="lead-dot" cx="755" cy="245" fill="#2a8c3a"/>
+    <circle class="lead-dot" cx="755" cy="278" fill="url(#grnyel)" stroke="#2a8c3a" stroke-width="1"/>
+    <circle class="lead-dot" cx="755" cy="311" fill="#2a8c3a"/>
+    <text class="lead-name" x="770" y="249" fill="#2a8c3a">GRN</text>
+    <text class="lead-name" x="770" y="282" fill="#3d7d3d">GRN/YEL <tspan class="lead-sub">(CT)</tspan></text>
+    <text class="lead-name" x="770" y="315" fill="#2a8c3a">GRN</text>
+
+    <text class="voltage" x="880" y="252">6.3V @ 5A</text>
+    <text class="purpose" x="880" y="272">Heater #1</text>
+    <text class="target" x="880" y="290">→ V2 (step 4) + chain</text>
+    <text class="target" x="880" y="306">CT → lug 5 (step 6)</text>
+  </g>
+
+  <!-- ============ SECONDARY 3: 6.3V heater #2 (BRN pair + CT) ============ -->
+  <g class="lead-group">
+    <title>6.3V @ 5A heater winding #2 (BRN–BRN with BRN/YEL center tap).
+Powers the other half of the signal/output tubes — channel-separated from heater #1 for hum decorrelation.
+Step 5 wires active leads to V7 pins 2 and 7 (chain continues to V6, V5).
+Step 6 routes BRN/YEL to lug #7 of the seven-lug strip.</title>
+
+    <line class="lead" x1="605" y1="365" x2="755" y2="365" stroke="#7a4d2a"/>
+    <line class="lead ct-line" x1="605" y1="398" x2="755" y2="398" stroke="#7a4d2a"/>
+    <line class="lead" x1="605" y1="431" x2="755" y2="431" stroke="#7a4d2a"/>
+    <circle class="lead-dot" cx="755" cy="365" fill="#7a4d2a"/>
+    <circle class="lead-dot" cx="755" cy="398" fill="url(#brnyel)" stroke="#7a4d2a" stroke-width="1"/>
+    <circle class="lead-dot" cx="755" cy="431" fill="#7a4d2a"/>
+    <text class="lead-name" x="770" y="369" fill="#7a4d2a">BRN</text>
+    <text class="lead-name" x="770" y="402" fill="#6b3d1f">BRN/YEL <tspan class="lead-sub">(CT)</tspan></text>
+    <text class="lead-name" x="770" y="435" fill="#7a4d2a">BRN</text>
+
+    <text class="voltage" x="880" y="372">6.3V @ 5A</text>
+    <text class="purpose" x="880" y="392">Heater #2</text>
+    <text class="target" x="880" y="410">→ V7 (step 5) + chain</text>
+    <text class="target" x="880" y="426">CT → lug 7 (step 6)</text>
+  </g>
+
+  <!-- ============ SECONDARY 4: HV main (RED–RED + RED/YEL CT) ============ -->
+  <g class="lead-group">
+    <title>HIGH-VOLTAGE main winding — 720V AC CT @ 300 mA (RED–RED with RED/YEL center tap).
+Feeds the 5AR4 rectifier; after rectification and filtering, becomes the ~450 V B+ rail powering every tube plate.
+Each RED end swings ±360V relative to the CT; the two are always 180° out of phase, which is what enables full-wave rectification.
+Step 3 wires the two RED ends to V1 pins 4 and 6 (5AR4 anodes).
+Step 7 connects RED/YEL to the filter-cap ground area, completing the rectifier topology.
+This is the highest-voltage winding in the amp.</title>
+
+    <line class="lead" x1="605" y1="485" x2="755" y2="485" stroke="#cc3a2a"/>
+    <line class="lead ct-line" x1="605" y1="518" x2="755" y2="518" stroke="#cc3a2a"/>
+    <line class="lead" x1="605" y1="551" x2="755" y2="551" stroke="#cc3a2a"/>
+    <circle class="lead-dot" cx="755" cy="485" fill="#cc3a2a"/>
+    <circle class="lead-dot" cx="755" cy="518" fill="url(#redyel)" stroke="#cc3a2a" stroke-width="1"/>
+    <circle class="lead-dot" cx="755" cy="551" fill="#cc3a2a"/>
+    <text class="lead-name" x="770" y="489" fill="#cc3a2a">RED</text>
+    <text class="lead-name" x="770" y="522" fill="#a85a14">RED/YEL <tspan class="lead-sub">(CT)</tspan></text>
+    <text class="lead-name" x="770" y="555" fill="#cc3a2a">RED</text>
+
+    <text class="voltage" x="880" y="492">720V CT</text>
+    <text class="purpose" x="880" y="512">HV main · 300 mA</text>
+    <text class="target" x="880" y="530">→ V1 pins 4, 6 (step 3)</text>
+    <text class="target" x="880" y="546">CT → filter cap (step 7)</text>
+  </g>
+
+  <!-- ============ SECONDARY 5: Bias (RED/BLK, shares RED/YEL CT) ============ -->
+  <g class="lead-group">
+    <title>BIAS TAP — a single RED/BLK lead tapped off the HV winding, ~50V AC measured to the RED/YEL center tap (the return path — there is no separate bias winding).
+Step 1 wires RED/BLK to the cathode of the 1N4007 silicon diode.
+After half-wave rectification and filtering, this becomes −65V raw DC, divided down to ≈ −32V at the EL34 control grids.
+The bias supply must come up before the HV (the 5AR4's slow warm-up handles that), so the output tubes never see B+ without proper grid bias.</title>
+
+    <line class="lead" x1="605" y1="610" x2="755" y2="610" stroke="url(#redblk)"/>
+    <circle class="lead-dot" cx="755" cy="610" fill="url(#redblk)" stroke="#1a1a1a" stroke-width="1"/>
+    <text class="lead-name" x="770" y="614" fill="#1a1a1a">RED/BLK</text>
+
+    <text class="voltage" x="880" y="600">50V</text>
+    <text class="purpose" x="880" y="620">Bias tap (on HV winding)</text>
+    <text class="target" x="880" y="638">→ 1N4007 cathode (step 1)</text>
+    <text class="target" x="880" y="654">(returns via RED/YEL CT ↑)</text>
+
+    <!-- shared-CT indicator -->
+    <path class="ct-shared" d="M 605 610 Q 588 590 588 518"/>
+    <text class="lead-sub" x="582" y="568" text-anchor="end">shared CT ↑</text>
+  </g>
+
+  <!-- ============ LEGEND ============ -->
+  <g transform="translate(60, 730)">
+    <text class="footer" x="0" y="0">Dashed lead = center tap.  Striped color = two-color lead (e.g. RED/YEL).</text>
+  </g>
+</svg>

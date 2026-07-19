@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 900 720"
+     role="img"
+     aria-labelledby="5ar4-title 5ar4-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="5ar4-title">5AR4 rectifier tube — internal structure</title>
+  <desc id="5ar4-desc">The 5AR4 dual-anode rectifier: two plates flanking a shared cathode, with a heater filament inside. The dual-anode topology enables full-wave rectification in a single tube envelope.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .interactive { filter: brightness(1.08); stroke-width: 2.5; }
+    .lead-group:hover .interactive-text { font-weight: 700; }
+
+    .header     { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead    { font-size: 12px; fill: #444; }
+    .body-label { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .pin-num    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .pin-fn     { font-size: 11px; font-weight: 600; fill: #1a1a1a; }
+    .pin-sub    { font-size: 10px; fill: #555; }
+    .pin-nc     { font-size: 10px; fill: #888; font-style: italic; }
+    .footer     { font-size: 11px; fill: #555; font-style: italic; }
+    .legend     { font-size: 11px; fill: #444; }
+
+    .anode    { fill: #5a6b8c; stroke: #2a3a5e; stroke-width: 1.6; }
+    .cathode  { fill: #c47a3a; stroke: #6a3a14; stroke-width: 1.6; }
+    .heater   { stroke: #ff7400; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .glass    { fill: #eef3fb; stroke: #99a3b3; stroke-width: 1.8; opacity: 0.55; }
+    .pinch    { fill: #d5d8de; stroke: #888; stroke-width: 1.2; }
+    .pin      { fill: #c9c9c9; stroke: #555; stroke-width: 1.2; }
+    .pin-anode   { fill: #5a6b8c; stroke: #2a3a5e; stroke-width: 1.4; }
+    .pin-cath    { fill: #c47a3a; stroke: #6a3a14; stroke-width: 1.4; }
+    .pin-heat    { fill: #ff9c4a; stroke: #c05a00; stroke-width: 1.4; }
+    .wire        { stroke: #555; stroke-width: 1.4; fill: none; }
+    .wire-anode  { stroke: #2a3a5e; stroke-width: 1.6; fill: none; }
+    .wire-cath   { stroke: #6a3a14; stroke-width: 1.6; fill: none; }
+    .wire-heat   { stroke: #c05a00; stroke-width: 1.6; fill: none; }
+  </style>
+
+  <!-- White background -->
+  <rect width="900" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="450" y="36" text-anchor="middle">5AR4 — internal structure</text>
+  <text class="subhead" x="450" y="58" text-anchor="middle">Two anodes flanking a shared cathode, indirectly heated — full-wave rectification in one envelope</text>
+
+  <!-- ============ GLASS ENVELOPE ============ -->
+  <path class="glass"
+        d="M 290 145
+           Q 290 95 350 95
+           L 510 95
+           Q 570 95 570 145
+           L 570 470
+           L 290 470 Z"/>
+
+  <!-- Pinch seal at the bottom -->
+  <rect class="pinch" x="295" y="468" width="270" height="34" rx="3"/>
+
+  <!-- ============ INTERNAL STRUCTURE ============ -->
+
+  <!-- Anode 1 (left plate) -->
+  <g class="lead-group">
+    <title>ANODE (plate) #1 — pin 4.
+
+When the upper RED transformer lead is positive relative to the center tap, this anode is at +360 V. The diode conducts: electrons flow cathode → anode 1 → out pin 4 → through external load → back to the CT.
+
+On the opposite half-cycle, this anode is reverse-biased (blocked) while Anode #2 takes over.
+
+Wired in build step 3.</title>
+    <rect class="anode interactive" x="332" y="160" width="34" height="290"/>
+    <text class="body-label interactive-text" x="349" y="148" text-anchor="middle">Anode 1</text>
+  </g>
+
+  <!-- Anode 2 (right plate) -->
+  <g class="lead-group">
+    <title>ANODE (plate) #2 — pin 6.
+
+Conducts on the opposite half-cycle from Anode #1 — the two anodes "take turns," which is what makes this a full-wave rectifier in a single envelope.
+
+The two RED leads from the PA-060's HV winding are always 180° out of phase: when one is +360 V, the other is −360 V. Whichever is positive at the moment conducts; the other waits its turn.
+
+Wired in build step 3.</title>
+    <rect class="anode interactive" x="494" y="160" width="34" height="290"/>
+    <text class="body-label interactive-text" x="511" y="148" text-anchor="middle">Anode 2</text>
+  </g>
+
+  <!-- Cathode sleeve (taller, center) -->
+  <g class="lead-group">
+    <title>CATHODE (sleeve) — pin 8.
+
+Heated indirectly by the filament inside. At ~800°C the oxide coating emits the electrons that the anodes pull across the vacuum.
+
+Indirect heating means the cathode is electrically isolated from the AC heater current, so 60 Hz heater hum does not couple into the DC output. This is one reason the 5AR4 produces a quieter B+ than directly-heated rectifiers like the 5U4 or 5Y3.
+
+After rectification + filtering downstream, the cathode output becomes the ~435 V B+ rail.</title>
+    <rect class="cathode interactive" x="421" y="195" width="18" height="245" rx="3"/>
+    <text class="body-label interactive-text" x="430" y="183" text-anchor="middle">Cathode</text>
+  </g>
+
+  <!-- Heater filament zigzag inside cathode -->
+  <g class="lead-group">
+    <title>HEATER FILAMENT — 5 V AC @ ~1.9 A.
+
+A coiled wire inside the cathode sleeve, heating it indirectly.
+
+Slow warm-up (~30 s before conduction starts) — a deliberate feature: the rectifier comes online AFTER the signal tubes have already warmed up, so the EL34 plates never see high B+ on cold cathodes (which would cause "cathode stripping" damage).
+
+The heater has two leads. One exits at pin 2; the other shares pin 8 with the cathode — this is normal for indirectly-heated rectifiers.
+
+Wired in build step 2.</title>
+    <path class="heater interactive"
+          d="M 426 205
+             L 426 215
+             L 434 222 L 426 229 L 434 236 L 426 243 L 434 250 L 426 257
+             L 434 264 L 426 271 L 434 278 L 426 285 L 434 292 L 426 299
+             L 434 306 L 426 313 L 434 320 L 426 327 L 434 334 L 426 341
+             L 434 348 L 426 355 L 434 362 L 426 369 L 434 376 L 426 383
+             L 434 390 L 426 397 L 434 404 L 426 411 L 434 418 L 426 425
+             L 426 435"/>
+    <text class="body-label interactive-text" x="395" y="298" text-anchor="end" fill="#c05a00">Heater</text>
+    <line x1="400" y1="294" x2="420" y2="294" stroke="#c05a00" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- ============ WIRES FROM INTERNAL STRUCTURES DOWN THROUGH PINCH ============ -->
+  <!-- These end at the pinch seal and continue to the pin row below. -->
+  <line class="wire-anode" x1="349" y1="450" x2="349" y2="502"/>
+  <line class="wire-anode" x1="511" y1="450" x2="511" y2="502"/>
+  <line class="wire-cath"  x1="430" y1="440" x2="430" y2="502"/>
+  <line class="wire-heat"  x1="421" y1="435" x2="395" y2="502"/>
+  <line class="wire-heat"  x1="439" y1="435" x2="465" y2="502"/>
+
+  <!-- ============ PIN ROW ============ -->
+  <!-- "Below the socket" — 8 pins arranged in a line for clarity. Octal sockets
+       are physically circular when viewed from below; we flatten for legibility. -->
+
+  <!-- Curved wires from pinch base to each pin. The pin-row is at y=590,
+       so curves drop from y=505 down to y=582. -->
+  <path class="wire"       d="M 349 502 Q 349 545 390 582"/>  <!-- A1 → pin 4 -->
+  <path class="wire"       d="M 511 502 Q 511 545 530 582"/>  <!-- A2 → pin 6 -->
+  <path class="wire-cath"  d="M 430 502 Q 530 540 660 582"/>  <!-- Cath → pin 8 -->
+  <path class="wire-heat"  d="M 395 502 Q 320 540 240 582"/>  <!-- Heater → pin 2 -->
+  <path class="wire-heat"  d="M 465 502 Q 555 540 660 582"/>  <!-- Heater → pin 8 -->
+
+  <!-- 8 pins in a line: pin 1 at x=170, then every 70px -->
+  <!-- Pin 1: NC -->
+  <g class="lead-group">
+    <title>Pin 1 — No connection.
+
+On the 5AR4, pin 1 has no internal connection. (Some octal tubes use pin 1 as a shield or chassis tie; the 5AR4 doesn't.)</title>
+    <circle class="pin" cx="170" cy="590" r="9"/>
+    <text class="pin-num" x="170" y="570" text-anchor="middle">1</text>
+    <text class="pin-nc"  x="170" y="613" text-anchor="middle">NC</text>
+  </g>
+
+  <!-- Pin 2: Heater -->
+  <g class="lead-group">
+    <title>Pin 2 — Heater (one end).
+
+Receives one of the two WHT leads from the PA-060's 5 V winding.
+
+Wired in build step 2.</title>
+    <circle class="pin-heat" cx="240" cy="590" r="9"/>
+    <text class="pin-num" x="240" y="570" text-anchor="middle">2</text>
+    <text class="pin-fn"  x="240" y="613" text-anchor="middle">Heater</text>
+    <text class="pin-sub" x="240" y="628" text-anchor="middle">WHT</text>
+  </g>
+
+  <!-- Pin 3: NC -->
+  <g class="lead-group">
+    <title>Pin 3 — No connection.</title>
+    <circle class="pin" cx="310" cy="590" r="9"/>
+    <text class="pin-num" x="310" y="570" text-anchor="middle">3</text>
+    <text class="pin-nc"  x="310" y="613" text-anchor="middle">NC</text>
+  </g>
+
+  <!-- Pin 4: Anode 1 -->
+  <g class="lead-group">
+    <title>Pin 4 — Anode (plate) #1.
+
+Receives one of the two RED leads from the PA-060's 720 V HV winding. Swings ±360 V relative to the center tap at the AC mains frequency (60 Hz).
+
+Wired in build step 3.</title>
+    <circle class="pin-anode" cx="380" cy="590" r="9"/>
+    <text class="pin-num" x="380" y="570" text-anchor="middle">4</text>
+    <text class="pin-fn"  x="380" y="613" text-anchor="middle">Anode 1</text>
+    <text class="pin-sub" x="380" y="628" text-anchor="middle">RED</text>
+  </g>
+
+  <!-- Pin 5: NC -->
+  <g class="lead-group">
+    <title>Pin 5 — No connection.</title>
+    <circle class="pin" cx="450" cy="590" r="9"/>
+    <text class="pin-num" x="450" y="570" text-anchor="middle">5</text>
+    <text class="pin-nc"  x="450" y="613" text-anchor="middle">NC</text>
+  </g>
+
+  <!-- Pin 6: Anode 2 -->
+  <g class="lead-group">
+    <title>Pin 6 — Anode (plate) #2.
+
+Receives the other RED lead from the PA-060's 720 V HV winding. Always 180° out of phase with pin 4.
+
+Wired in build step 3.</title>
+    <circle class="pin-anode" cx="520" cy="590" r="9"/>
+    <text class="pin-num" x="520" y="570" text-anchor="middle">6</text>
+    <text class="pin-fn"  x="520" y="613" text-anchor="middle">Anode 2</text>
+    <text class="pin-sub" x="520" y="628" text-anchor="middle">RED</text>
+  </g>
+
+  <!-- Pin 7: NC -->
+  <g class="lead-group">
+    <title>Pin 7 — No connection.</title>
+    <circle class="pin" cx="590" cy="590" r="9"/>
+    <text class="pin-num" x="590" y="570" text-anchor="middle">7</text>
+    <text class="pin-nc"  x="590" y="613" text-anchor="middle">NC</text>
+  </g>
+
+  <!-- Pin 8: Cathode + heater -->
+  <g class="lead-group">
+    <title>Pin 8 — Cathode + Heater (other end).
+
+This pin is BOTH the cathode connection (where the ~435 V B+ exits the tube) AND one end of the heater filament. That's normal for indirectly-heated rectifiers — the cathode and one heater pin share an internal connection because the cathode sleeve has to be at some defined potential, and the heater itself doesn't matter for DC output.
+
+The other WHT heater lead from the PA-060 lands here in build step 2. Pin 8 then feeds the filter caps and choke downstream (step 7+).</title>
+    <circle class="pin-cath" cx="660" cy="590" r="9"/>
+    <text class="pin-num" x="660" y="570" text-anchor="middle">8</text>
+    <text class="pin-fn"  x="660" y="613" text-anchor="middle">Cathode</text>
+    <text class="pin-sub" x="660" y="628" text-anchor="middle">+ Heater</text>
+  </g>
+
+  <!-- ============ FOOTER NOTE ============ -->
+  <text class="footer" x="430" y="665" text-anchor="middle">Octal base — pin numbering as viewed from the wiring side (below the chassis)</text>
+  <text class="footer" x="430" y="685" text-anchor="middle">Indirectly heated · slow warm-up (~30 s) by design · Sovtek 5AR4 in this build (GZ34 in European naming)</text>
+</svg>

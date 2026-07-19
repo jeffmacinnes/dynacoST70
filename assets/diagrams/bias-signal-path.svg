@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 800"
+     role="img"
+     aria-labelledby="bias-title bias-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="bias-title">Bias supply network — the small negative DC rail that holds EL34 grids at idle</title>
+  <desc id="bias-desc">From the PA-060 bias winding through the 1N4007 half-wave rectifier, the two-stage RC filter on the 7-lug terminal strip, the bias pots configured as voltage dividers, the grid stoppers, and finally to each EL34 control grid.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.6; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-name    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .stage-sub     { font-size: 11px; fill: #444; }
+    .volt-label    { font-size: 14px; font-weight: 700; fill: #b8851a; }
+    .lug-label     { font-size: 11px; font-weight: 700; fill: #1a1a1a; }
+    .note          { font-size: 11px; font-style: italic; fill: #666; }
+    .tube-label    { font-size: 12px; font-weight: 700; fill: #1a1a1a; }
+
+    .stage-source { fill: #f9f4e8; stroke: #b8851a; stroke-width: 1.8; }
+    .stage-diode  { fill: #fce8e8; stroke: #cc3a2a; stroke-width: 1.8; }
+    .stage-filter { fill: #f4f4f4; stroke: #b8851a; stroke-width: 1.8; }
+    .stage-pot    { fill: #f4f4f4; stroke: #555; stroke-width: 1.8; }
+    .stage-tube   { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+    .lug          { fill: #fafafa; stroke: #555; stroke-width: 1.4; }
+    .cap-sym      { fill: none; stroke: #1a4e8a; stroke-width: 2; }
+    .r-sym        { fill: #fafafa; stroke: #444; stroke-width: 1.5; }
+
+    .bias-wire   { stroke: #b8851a; stroke-width: 2.5; fill: none; }
+    .ac-wire     { stroke: #b8851a; stroke-width: 2.5; fill: none; stroke-dasharray: 5,3; }
+    .ground-wire { stroke: #1a1a1a; stroke-width: 2; fill: none; }
+    .signal-wire { stroke: #1a4e8a; stroke-width: 2.2; fill: none; }
+  </style>
+
+  <rect width="1280" height="800" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Bias supply — the small negative rail that holds output tubes at idle</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">Bias tap → 1N4007 → two-stage RC filter → bias pots (dividers) → PC-3A (eyelets 6/21) → grid stoppers → EL34 grids (pin 5)</text>
+
+  <!-- ============ SECTION 1: GENERATION (TOP HALF) ============ -->
+  <text class="section-label" x="320" y="100" text-anchor="middle">Generation: AC → −DC</text>
+  <line x1="80" y1="110" x2="560" y2="110" stroke="#444" stroke-width="1"/>
+
+  <!-- PA-060 bias winding -->
+  <g class="lead-group" data-tooltip="PA-060 BIAS TAP — single RED/BLK lead tapped off the HV secondary at ~50 V AC.
+
+Not a separate winding: the return path is through the HV winding's center tap. The bias supply load is tiny (a few mA), so a simple tap is all it needs.">
+    <rect class="stage-box stage-source" x="80" y="140" width="170" height="70" rx="6"/>
+    <text class="stage-name" x="165" y="168" text-anchor="middle">PA-060 bias tap</text>
+    <text class="stage-sub"  x="165" y="186" text-anchor="middle">single RED/BLK lead on HV winding</text>
+    <text class="stage-sub"  x="165" y="202" text-anchor="middle">~50 V AC (return via HV CT)</text>
+  </g>
+
+  <!-- AC wire to diode -->
+  <path class="ac-wire" d="M 250 175 L 310 175"/>
+
+  <!-- 1N4007 diode -->
+  <g class="lead-group" data-tooltip="1N4007 — half-wave rectifier.
+
+Cathode (banded end) toward the transformer; anode toward the filter. This is BACKWARDS compared to a B+ rectifier — the polarity inversion is what makes the output NEGATIVE.
+
+When the transformer swings negative, current is drawn OUT of the filter node toward the transformer, charging the cap with negative on its top plate.
+
+The original ST-70 used a selenium rectifier here; modern kits ship a 1N4007 (step 1).">
+    <rect class="stage-box stage-diode" x="310" y="150" width="100" height="50" rx="6"/>
+    <text class="stage-name" x="360" y="172" text-anchor="middle">1N4007</text>
+    <text class="stage-sub"  x="360" y="190" text-anchor="middle">half-wave</text>
+    <!-- diode symbol -->
+    <polygon points="345,170 355,165 355,175" fill="#cc3a2a"/>
+    <line x1="344" y1="163" x2="344" y2="177" stroke="#cc3a2a" stroke-width="2"/>
+  </g>
+  <text class="note" x="293" y="225">cathode (banded)</text>
+  <text class="note" x="380" y="225">anode</text>
+
+  <!-- bias wire to filter -->
+  <path class="bias-wire" d="M 410 175 L 470 175"/>
+  <polygon points="470,175 463,171 463,179" fill="#b8851a"/>
+
+  <!-- Filter network arrow indicator -->
+  <text class="volt-label" x="510" y="178">−65 V</text>
+
+  <!-- ============ SECTION 2: 7-LUG FILTER NETWORK ============ -->
+  <text class="section-label" x="900" y="100" text-anchor="middle">Filter: two-stage RC on the 7-lug terminal strip</text>
+  <line x1="660" y1="110" x2="1140" y2="110" stroke="#444" stroke-width="1"/>
+
+  <g class="lead-group" data-tooltip="SEVEN-LUG TERMINAL STRIP — home of the bias filter network.
+
+The strip's 7 lugs become a small RC network:
+• Lug 4 = first filter (100 µF, −65 V raw)
+• Lug 3 = second filter (100 µF, ~−43 V)
+• Lug 2 = divider return (10 kΩ to ground)
+• Lug 1 = ground (positive reference)
+• Lug 6 = jumpered to lug 1 for ground extension
+
+The whole network sits below the chassis on a small terminal strip near the bias diode and the bias pots.">
+    <rect class="stage-box stage-filter" x="680" y="135" width="420" height="180" rx="6"/>
+    <text class="section-label" x="890" y="158" text-anchor="middle" fill="#1a1a1a">7-lug strip (bias filter)</text>
+
+    <!-- Lug 4 -->
+    <g class="lead-group" data-tooltip="LUG 4 — first filter node.
+
+100 µF cap (step 19, negative-on-top) + the 10 kΩ resistor to lug 3 form the first RC stage. Voltage here is the most negative point in the bias supply, ≈ −65 V, with some residual ripple.
+
+In step 25, the bias diode's anode lands here.">
+      <rect class="lug" x="705" y="175" width="60" height="30" rx="3"/>
+      <text class="lug-label" x="735" y="194" text-anchor="middle">lug 4</text>
+      <text class="note" x="735" y="220" text-anchor="middle">−65 V (raw)</text>
+    </g>
+
+    <!-- 100µF cap from lug 4 to ground (lug 1) -->
+    <g class="lead-group" data-tooltip="100 µF FILTER CAP — electrolytic, negative-on-top.
+
+Wired with its NEGATIVE terminal toward the bias rail (lug 4) and POSITIVE toward ground (lug 1). Opposite of B+ filter caps because this rail is negative. Polarity mistake = cap fails.
+
+Step 19.">
+      <line class="cap-sym" x1="735" y1="240" x2="735" y2="260"/>
+      <line class="cap-sym" x1="725" y1="260" x2="745" y2="260"/>
+      <line class="cap-sym" x1="729" y1="266" x2="741" y2="266"/>
+      <text class="note" x="735" y="282" text-anchor="middle">100 µF</text>
+    </g>
+    <line class="bias-wire" x1="735" y1="205" x2="735" y2="240"/>
+
+    <!-- 10kΩ R between lug 4 and lug 3 -->
+    <g class="lead-group" data-tooltip="10 kΩ — voltage drop + filter (step 20).
+
+Between lug 4 (first filter) and lug 3 (second filter). Together with the cap on lug 3, this is the second RC stage. Drops the rail from −65 V to ~−43 V and smooths ripple by another ~20 dB.">
+      <rect class="r-sym" x="780" y="183" width="55" height="15" rx="2"/>
+      <text class="note" x="807" y="195" text-anchor="middle">10 kΩ</text>
+    </g>
+    <line class="bias-wire" x1="765" y1="190" x2="780" y2="190"/>
+    <line class="bias-wire" x1="835" y1="190" x2="855" y2="190"/>
+
+    <!-- Lug 3 -->
+    <g class="lead-group" data-tooltip="LUG 3 — second filter node, the CLEAN bias rail.
+
+100 µF cap (step 21) + the previous 10 kΩ form the second RC stage. ~−43 V DC with millivolt-level ripple. This is what feeds the bias pots' top end.
+
+In step 24 it's wired to the left bias pot's lug 1.">
+      <rect class="lug" x="855" y="175" width="60" height="30" rx="3"/>
+      <text class="lug-label" x="885" y="194" text-anchor="middle">lug 3</text>
+      <text class="note" x="885" y="220" text-anchor="middle">~−43 V (clean)</text>
+    </g>
+
+    <!-- 100µF cap from lug 3 to ground -->
+    <g class="lead-group" data-tooltip="100 µF FILTER CAP — second stage. Same polarity as the first (neg to rail, pos to ground). Step 21.">
+      <line class="cap-sym" x1="885" y1="240" x2="885" y2="260"/>
+      <line class="cap-sym" x1="875" y1="260" x2="895" y2="260"/>
+      <line class="cap-sym" x1="879" y1="266" x2="891" y2="266"/>
+      <text class="note" x="885" y="282" text-anchor="middle">100 µF</text>
+    </g>
+    <line class="bias-wire" x1="885" y1="205" x2="885" y2="240"/>
+
+    <!-- Lug 2 (divider return) -->
+    <g class="lead-group" data-tooltip="LUG 2 — divider return point.
+
+Connects to the bias pots' lug 3 (the 'low' end of each pot's resistance). A 10 kΩ resistor from lug 2 to lug 1 (ground) pulls this node toward ground so current can flow through the pot when the wiper is moved.
+
+Without this return path, the pot wouldn't function as a divider.">
+      <rect class="lug" x="970" y="175" width="60" height="30" rx="3"/>
+      <text class="lug-label" x="1000" y="194" text-anchor="middle">lug 2</text>
+      <text class="note" x="1000" y="220" text-anchor="middle">divider return</text>
+    </g>
+
+    <!-- 10kΩ from lug 2 to lug 1 (ground) -->
+    <g class="lead-group" data-tooltip="10 kΩ DIVIDER RETURN RESISTOR — between lug 2 and lug 1 (ground). Step 22.
+
+Provides the path for current to flow from the bias rail, through the pot, and down to ground — which is what lets the pot act as a voltage divider with an adjustable wiper.">
+      <rect class="r-sym" x="985" y="240" width="30" height="55" rx="2"/>
+      <text class="note" x="1000" y="272" text-anchor="middle">10 kΩ</text>
+    </g>
+    <line class="bias-wire" x1="1000" y1="205" x2="1000" y2="240"/>
+
+    <!-- Lug 1 ground bus inside the strip -->
+    <line class="ground-wire" x1="725" y1="295" x2="1020" y2="295"/>
+    <line class="cap-sym" x1="735" y1="266" x2="735" y2="295"/>
+    <line class="cap-sym" x1="885" y1="266" x2="885" y2="295"/>
+    <line class="bias-wire" x1="1000" y1="295" x2="1000" y2="295"/>
+    <text class="lug-label" x="892" y="288" text-anchor="middle" fill="#1a1a1a">lug 1 / lug 6 (ground)</text>
+
+  </g>
+
+  <!-- ============ SECTION 3: DISTRIBUTION (BOTTOM HALF) ============ -->
+  <text class="section-label" x="640" y="375" text-anchor="middle">Distribution: bias pots as adjustable voltage dividers, one per output tube (with mod) or per channel (stock)</text>
+  <line x1="160" y1="385" x2="1120" y2="385" stroke="#444" stroke-width="1"/>
+
+  <!-- Wire from filter (lug 3) down to pot lug 1 -->
+  <path class="bias-wire" d="M 885 205 C 885 240, 600 350, 600 420"/>
+  <text class="note" x="700" y="345">step 24: lug 3 → pot lug 1</text>
+
+  <!-- Bias pot 1 -->
+  <g class="lead-group" data-tooltip="BIAS POT — voltage divider.
+
+• Lug 1 = bias rail (~−43 V) — top end
+• Lug 3 = divider return — bottom end (pulled toward ground via the 10 kΩ on lug 2)
+• Lug 2 = wiper — adjustable output
+
+Turning the pot moves the wiper between lug 1 (most negative) and lug 3 (less negative). The wiper voltage sets the bias on its EL34's grid. Target idle bias at the grid: ≈ −32 V.
+
+Stock ST-70: 2 pots (one per channel). Individual-bias-pots mod: 4 pots (one per tube).">
+    <rect class="stage-box stage-pot" x="530" y="420" width="140" height="110" rx="6"/>
+    <text class="stage-name" x="600" y="445" text-anchor="middle">Bias pot</text>
+    <text class="stage-sub"  x="600" y="463" text-anchor="middle">(voltage divider)</text>
+    <!-- pot representation -->
+    <line x1="600" y1="475" x2="600" y2="515" stroke="#444" stroke-width="2"/>
+    <text class="lug-label" x="580" y="478" text-anchor="end">lug 1</text>
+    <text class="lug-label" x="580" y="519" text-anchor="end">lug 3</text>
+    <!-- wiper arrow -->
+    <line x1="600" y1="495" x2="620" y2="495" stroke="#cc3a2a" stroke-width="2"/>
+    <polygon points="620,495 614,491 614,499" fill="#cc3a2a"/>
+    <text class="lug-label" x="635" y="498" fill="#cc3a2a">lug 2 (wiper)</text>
+  </g>
+
+  <!-- Wire from lug 2 of filter to pot lug 3 -->
+  <path class="bias-wire" d="M 1000 205 C 1000 560, 600 560, 600 530"/>
+
+  <!-- Wiper out: → PC-3A eyelet 6/21 → on-board 270 kΩ → eyelets 1/2/22/23 → pin 6 → 1 kΩ → pin 5 -->
+  <path class="bias-wire" d="M 670 495 L 730 495"/>
+  <polygon points="730,495 723,491 723,499" fill="#b8851a"/>
+  <text class="volt-label" x="700" y="488" text-anchor="middle">wiper</text>
+  <text class="volt-label" x="700" y="475" text-anchor="middle">≈ −32 V</text>
+  <text class="note" x="700" y="463" text-anchor="middle">→ PC-3A eyelet 6 / 21</text>
+
+  <!-- Grid stopper -->
+  <g class="lead-group" data-tooltip="WIPER → BOARD → GRID STOPPER.
+
+The wiper doesn't run straight to the tube: it enters the PC-3A board at eyelet 6 (left) or eyelet 21 (right), passes the on-board 270 kΩ grid resistors, and exits at eyelets 1/2/22/23 to the EL34 pin 6 tie point.
+
+From pin 6, the 1 kΩ GRID STOPPER (at the socket itself, pin 6 to pin 5) carries the bias to the grid. It also suppresses parasitic RF oscillation. Step 37.
+
+Bias DC + audio AC both arrive at this resistor; the resistor doesn't care which is which.">
+    <rect class="r-sym" x="730" y="487" width="40" height="16" rx="2"/>
+    <text class="note" x="750" y="500" text-anchor="middle">1 kΩ</text>
+  </g>
+
+  <!-- Wire to grid -->
+  <path class="bias-wire" d="M 770 495 L 850 495"/>
+  <polygon points="850,495 843,491 843,499" fill="#b8851a"/>
+
+  <!-- EL34 (representative — 4 of them) -->
+  <g class="lead-group" data-tooltip="EL34 CONTROL GRID — pin 5 of the EL34 socket.
+
+The bias voltage (≈ −32 V DC) sits here at idle, holding the tube at the design plate current. AC audio rides on top, swinging the grid above and below this quiescent point.
+
+Four EL34s total — V2/V3 (left channel) and V6/V7 (right channel) — each with its own bias setting.">
+    <circle class="stage-tube" cx="900" cy="495" r="38"/>
+    <text class="tube-label" x="900" y="490" text-anchor="middle">EL34</text>
+    <text class="stage-sub"  x="900" y="508" text-anchor="middle">grid (pin 5)</text>
+    <text class="stage-sub"  x="900" y="524" text-anchor="middle">V2 / V3 / V6 / V7</text>
+  </g>
+
+  <!-- The audio AC arrives at the same node -->
+  <g class="lead-group" data-tooltip="AUDIO AC arrives at the SAME grid pin via the coupling cap from the 6GH8A triode. The grid pin sums DC bias with AC signal — bias sets the operating point; AC modulates around it.
+
+This is why a misbiased tube distorts: with the wrong DC, the AC swing pushes the tube into cutoff or saturation.">
+    <path class="signal-wire" d="M 900 600 L 900 535"/>
+    <polygon points="900,535 896,542 904,542" fill="#1a4e8a"/>
+    <text class="lug-label" x="900" y="615" text-anchor="middle" fill="#1a4e8a">+ AC audio signal</text>
+    <text class="note" x="900" y="630" text-anchor="middle">(from 6GH8A triode</text>
+    <text class="note" x="900" y="646" text-anchor="middle">via coupling cap)</text>
+  </g>
+
+  <!-- Cathode sense indicator -->
+  <g class="lead-group" data-tooltip="CATHODE SENSE — 15.6 Ω resistor at EL34 pin 8 develops a voltage proportional to plate current.
+
+Measure this voltage at the front-panel Biaset socket to confirm bias is correct (target 1.56 V for 100 mA per pair). Adjust the bias pot until the cathode-sense voltage is at target.
+
+See steps 31-36 and the bias-adjustment bring-up page.">
+    <path class="ground-wire" d="M 938 495 L 1000 495 L 1000 540"/>
+    <rect class="r-sym" x="985" y="540" width="30" height="40" rx="2"/>
+    <text class="note" x="1000" y="565" text-anchor="middle">15.6 Ω</text>
+    <text class="lug-label" x="1010" y="495" fill="#cc3a2a">cathode sense</text>
+    <text class="note" x="1010" y="510" fill="#666">→ front-panel Biaset</text>
+    <line class="ground-wire" x1="990" y1="580" x2="1010" y2="580"/>
+    <line class="ground-wire" x1="993" y1="585" x2="1007" y2="585"/>
+    <line class="ground-wire" x1="996" y1="590" x2="1004" y2="590"/>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="640" y="730" text-anchor="middle">Bias is the smallest power network in the amp (~mA total) but the most consequential per milliwatt: get it wrong and the output tubes melt themselves within seconds.</text>
+  <text class="footer" x="640" y="748" text-anchor="middle">The diode is oriented BACKWARDS compared to a B+ rectifier (cathode toward transformer), which is what produces a NEGATIVE rail.</text>
+  <text class="footer" x="640" y="766" text-anchor="middle">Both cap polarities are NEGATIVE-toward-rail (opposite of B+ caps). Polarity mistake = cap failure.</text>
+</svg>

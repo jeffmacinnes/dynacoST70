@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 760"
+     role="img"
+     aria-labelledby="ht-title ht-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="ht-title">Heater (filament) AC supply network</title>
+  <desc id="ht-desc">Three separate heater windings on the PA-060: a dedicated 5V winding for the 5AR4 rectifier, and two 6.3V windings each daisied through one channel's three tubes. Center taps from the 6.3V windings ground to the chassis to keep heater AC symmetric around ground.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.6; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-name    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .stage-sub     { font-size: 11px; fill: #444; }
+    .wire-label    { font-size: 11px; font-weight: 600; }
+    .ct-label      { font-size: 11px; font-style: italic; fill: #666; }
+    .row-label     { font-size: 13px; font-weight: 700; }
+
+    .stage-source { fill: #f9f4e8; stroke: #b8851a; stroke-width: 1.8; }
+    .stage-tube   { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+    .stage-board  { fill: #eef4fc; stroke: #1a4e8a; stroke-width: 1.8; }
+    .stage-ground { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+
+    .white-wire { stroke: #888; stroke-width: 2.5; fill: none; }
+    .green-wire { stroke: #2a8c3a; stroke-width: 2.5; fill: none; }
+    .brown-wire { stroke: #8b5a2b; stroke-width: 2.5; fill: none; }
+    .ct-wire    { stroke: #c0a040; stroke-width: 2.0; fill: none; stroke-dasharray: 5,3; }
+    .ground-bus { stroke: #1a1a1a; stroke-width: 3; fill: none; }
+  </style>
+
+  <rect width="1280" height="760" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Heater network — three windings, three channels of warmth</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">Dedicated 5V for the rectifier; left and right channels each have their own 6.3V winding, daisied through three tubes and CT-grounded.</text>
+
+  <!-- ============ COLUMN HEADERS ============ -->
+  <text class="section-label" x="170" y="105" text-anchor="middle">PA-060 heater winding</text>
+  <text class="section-label" x="720" y="105" text-anchor="middle">Daisy chain through tubes</text>
+  <text class="section-label" x="1110" y="105" text-anchor="middle">Total current</text>
+
+  <!-- =================================================== -->
+  <!--   ROW 1: 5V WINDING → V1 (5AR4)                     -->
+  <!-- =================================================== -->
+  <text class="row-label" fill="#555" x="40" y="160">5 V</text>
+
+  <g class="lead-group" data-tooltip="5 V HEATER WINDING — dedicated to the 5AR4 rectifier.
+
+The 5AR4 needs a 5 V heater (not 6.3 V like every other tube), so it gets its own private secondary on the PA-060. WHITE pair, no center tap — the winding floats relative to ground.
+
+Floating is OK here because the 5AR4's cathode and one heater pin share an internal connection (pin 8); the heater rides on the cathode's potential.">
+    <rect class="stage-box stage-source" x="80" y="130" width="180" height="60" rx="6"/>
+    <text class="stage-name" x="170" y="156" text-anchor="middle">5 V winding (WHITE)</text>
+    <text class="stage-sub"  x="170" y="174" text-anchor="middle">no center tap — floats</text>
+  </g>
+
+  <!-- WHITE pair wires from winding to V1 -->
+  <path class="white-wire" d="M 260 150 L 460 150 L 460 162"/>
+  <path class="white-wire" d="M 260 175 L 480 175 L 480 162"/>
+  <text class="wire-label" fill="#666" x="320" y="143">WHITE pair</text>
+  <text class="ct-label" x="320" y="195">(twisted, to V1 pins 2 + 8 — step 2)</text>
+
+  <!-- V1 5AR4 -->
+  <g class="lead-group" data-tooltip="V1 = 5AR4 rectifier. Heater is between pins 2 and 8. Draws 1.9 A at 5 V. Note pin 8 is also the cathode — normal for indirectly heated rectifiers.">
+    <circle class="stage-tube" cx="470" cy="170" r="34"/>
+    <text class="stage-name" x="470" y="167" text-anchor="middle">V1</text>
+    <text class="stage-sub"  x="470" y="183" text-anchor="middle">5AR4</text>
+  </g>
+
+  <text class="row-label" fill="#1a1a1a" x="1110" y="174" text-anchor="middle">1.9 A @ 5 V</text>
+
+  <!-- Divider line -->
+  <line x1="40" y1="230" x2="1240" y2="230" stroke="#ddd" stroke-width="1"/>
+
+  <!-- =================================================== -->
+  <!--   ROW 2: GREEN 6.3V WINDING → V2 → V3 → left 6GH8A  -->
+  <!-- =================================================== -->
+  <text class="row-label" fill="#2a8c3a" x="40" y="290">6.3 V</text>
+  <text class="row-label" fill="#2a8c3a" x="40" y="306">LEFT ch</text>
+
+  <g class="lead-group" data-tooltip="GREEN 6.3 V WINDING — left channel.
+
+GREEN pair of leads, with GREEN/YELLOW center tap. Feeds the left-channel heater chain: V2 → V3 → left 6GH8A on the PC-3A board. Total current draw ~3.45 A.">
+    <rect class="stage-box stage-source" x="80" y="260" width="180" height="60" rx="6" stroke="#2a8c3a"/>
+    <text class="stage-name" x="170" y="286" text-anchor="middle">Green 6.3 V winding</text>
+    <text class="stage-sub"  x="170" y="304" text-anchor="middle">+ GREEN/YEL CT</text>
+  </g>
+
+  <!-- GREEN pair → V2 -->
+  <path class="green-wire" d="M 260 280 L 380 280 L 380 305"/>
+  <path class="green-wire" d="M 260 305 L 400 305"/>
+  <text class="wire-label" fill="#2a8c3a" x="305" y="273">GREEN pair</text>
+  <text class="ct-label" x="310" y="328">step 4: V2 pins 2 + 7</text>
+
+  <!-- V2 -->
+  <g class="lead-group" data-tooltip="V2 = LEFT EL34. Heater pins 2 and 7. Draws 1.5 A at 6.3 V.">
+    <circle class="stage-tube" cx="410" cy="305" r="32"/>
+    <text class="stage-name" x="410" y="302" text-anchor="middle">V2</text>
+    <text class="stage-sub"  x="410" y="318" text-anchor="middle">EL34</text>
+  </g>
+
+  <!-- V2 → V3 daisy -->
+  <path class="green-wire" d="M 442 305 L 540 305"/>
+  <path class="green-wire" d="M 442 322 C 470 340, 510 340, 540 322"/>
+  <text class="ct-label" x="490" y="357">step 17: V2↔V3 daisy</text>
+
+  <!-- V3 -->
+  <g class="lead-group" data-tooltip="V3 = LEFT EL34. Heater in parallel with V2 via the step-17 daisy. Same 1.5 A draw.">
+    <circle class="stage-tube" cx="572" cy="305" r="32"/>
+    <text class="stage-name" x="572" y="302" text-anchor="middle">V3</text>
+    <text class="stage-sub"  x="572" y="318" text-anchor="middle">EL34</text>
+  </g>
+
+  <!-- V3 → 6GH8A_L -->
+  <path class="green-wire" d="M 604 295 L 700 295 L 700 280"/>
+  <path class="green-wire" d="M 604 315 L 700 315 L 700 330"/>
+  <text class="ct-label" x="650" y="357">step 46: V3→board</text>
+
+  <!-- left 6GH8A on PC-3A board -->
+  <g class="lead-group" data-tooltip="LEFT 6GH8A — driver tube on the PC-3A board (no chassis V-number).
+
+Heater draws 0.45 A. The board has its own heater wiring to deliver this from the daisy that comes in via V3.">
+    <rect class="stage-box stage-board" x="700" y="280" width="140" height="50" rx="6"/>
+    <text class="stage-name" x="770" y="302" text-anchor="middle">Left 6GH8A</text>
+    <text class="stage-sub"  x="770" y="318" text-anchor="middle">(on PC-3A board)</text>
+  </g>
+
+  <text class="row-label" fill="#1a1a1a" x="1110" y="296" text-anchor="middle">≈ 3.45 A</text>
+  <text class="row-label" fill="#1a1a1a" x="1110" y="312" text-anchor="middle">@ 6.3 V</text>
+
+  <!-- GRN/YEL CT going down to ground -->
+  <g class="lead-group" data-tooltip="GREEN/YELLOW CT — center tap of the left heater winding.
+
+Goes to the 7-lug terminal strip (step 6), where it is referenced to ground through a 0.02 µF disc cap. Holds the heater AC symmetric around 0 V — at any instant one heater end is at +4.5 V and the other at −4.5 V relative to ground. Heater-to-cathode capacitance couples equal +/− into the cathode, which cancels in the audio output.
+
+Skip this connection and you get audible 60 Hz hum from heater coupling.">
+    <path class="ct-wire" d="M 170 320 L 170 670"/>
+    <text class="ct-label" fill="#b8851a" x="180" y="455">GRN/YEL CT</text>
+    <text class="ct-label" fill="#b8851a" x="180" y="471">to ground</text>
+    <text class="ct-label" fill="#b8851a" x="180" y="487">(step 6)</text>
+  </g>
+
+  <!-- Divider line -->
+  <line x1="40" y1="400" x2="1240" y2="400" stroke="#ddd" stroke-width="1"/>
+
+  <!-- =================================================== -->
+  <!--   ROW 3: BROWN 6.3V WINDING → V7 → V6 → right 6GH8A -->
+  <!-- =================================================== -->
+  <text class="row-label" fill="#8b5a2b" x="40" y="460">6.3 V</text>
+  <text class="row-label" fill="#8b5a2b" x="40" y="476">RIGHT ch</text>
+
+  <g class="lead-group" data-tooltip="BROWN 6.3 V WINDING — right channel.
+
+BROWN pair of leads, with BROWN/YELLOW center tap. Feeds the right-channel heater chain: V7 → V6 → right 6GH8A on the PC-3A board. Same ~3.45 A draw as the left.
+
+Two independent windings (instead of one shared) mean heater current ripple on one channel can't couple into the other.">
+    <rect class="stage-box stage-source" x="80" y="430" width="180" height="60" rx="6" stroke="#8b5a2b"/>
+    <text class="stage-name" x="170" y="456" text-anchor="middle">Brown 6.3 V winding</text>
+    <text class="stage-sub"  x="170" y="474" text-anchor="middle">+ BROWN/YEL CT</text>
+  </g>
+
+  <!-- BROWN pair → V7 -->
+  <path class="brown-wire" d="M 260 450 L 380 450 L 380 475"/>
+  <path class="brown-wire" d="M 260 475 L 400 475"/>
+  <text class="wire-label" fill="#8b5a2b" x="305" y="443">BROWN pair</text>
+  <text class="ct-label" x="310" y="498">step 5: V7 pins 2 + 7</text>
+
+  <!-- V7 -->
+  <g class="lead-group" data-tooltip="V7 = RIGHT EL34. Heater pins 2 and 7. Draws 1.5 A.">
+    <circle class="stage-tube" cx="410" cy="475" r="32"/>
+    <text class="stage-name" x="410" y="472" text-anchor="middle">V7</text>
+    <text class="stage-sub"  x="410" y="488" text-anchor="middle">EL34</text>
+  </g>
+
+  <!-- V7 → V6 daisy -->
+  <path class="brown-wire" d="M 442 475 L 540 475"/>
+  <path class="brown-wire" d="M 442 492 C 470 510, 510 510, 540 492"/>
+  <text class="ct-label" x="490" y="527">step 16: V6↔V7 daisy</text>
+
+  <!-- V6 -->
+  <g class="lead-group" data-tooltip="V6 = RIGHT EL34. In parallel with V7 via the step-16 daisy. Same 1.5 A.">
+    <circle class="stage-tube" cx="572" cy="475" r="32"/>
+    <text class="stage-name" x="572" y="472" text-anchor="middle">V6</text>
+    <text class="stage-sub"  x="572" y="488" text-anchor="middle">EL34</text>
+  </g>
+
+  <!-- V6 → 6GH8A_R -->
+  <path class="brown-wire" d="M 604 465 L 700 465 L 700 450"/>
+  <path class="brown-wire" d="M 604 485 L 700 485 L 700 500"/>
+  <text class="ct-label" x="650" y="527">step 45: V6→board</text>
+
+  <!-- right 6GH8A -->
+  <g class="lead-group" data-tooltip="RIGHT 6GH8A — driver tube on the PC-3A board.
+
+Heater draws 0.45 A. Daisied off V6.">
+    <rect class="stage-box stage-board" x="700" y="450" width="140" height="50" rx="6"/>
+    <text class="stage-name" x="770" y="472" text-anchor="middle">Right 6GH8A</text>
+    <text class="stage-sub"  x="770" y="488" text-anchor="middle">(on PC-3A board)</text>
+  </g>
+
+  <text class="row-label" fill="#1a1a1a" x="1110" y="466" text-anchor="middle">≈ 3.45 A</text>
+  <text class="row-label" fill="#1a1a1a" x="1110" y="482" text-anchor="middle">@ 6.3 V</text>
+
+  <!-- BRN/YEL CT going down to ground -->
+  <g class="lead-group" data-tooltip="BROWN/YELLOW CT — center tap of the right heater winding.
+
+Same role as the green CT: holds heater AC symmetric around ground, suppressing heater-cathode hum coupling. Both CTs land on the 7-lug strip (lugs 5 and 7) and are referenced to ground there through 0.02 µF disc caps.">
+    <path class="ct-wire" d="M 182 490 L 182 670"/>
+    <text class="ct-label" fill="#b8851a" x="192" y="555">BRN/YEL CT</text>
+    <text class="ct-label" fill="#b8851a" x="192" y="571">to ground</text>
+    <text class="ct-label" fill="#b8851a" x="192" y="587">(step 6)</text>
+  </g>
+
+  <!-- =================================================== -->
+  <!--   GROUND BUS at bottom                              -->
+  <!-- =================================================== -->
+  <g class="lead-group" data-tooltip="GROUND — the heater CTs land on the 7-lug terminal strip and tie to chassis ground via the star-ground point (step 23 / step 64).
+
+Both heater windings share the same ground reference but stay otherwise isolated — separate windings, separate daisies. They only meet at ground.
+
+Also at step 15: small 0.02 µF disc caps from each CT to ground for RF bypass.">
+    <line class="ground-bus" x1="100" y1="670" x2="250" y2="670"/>
+    <text class="row-label" fill="#1a1a1a" x="175" y="660" text-anchor="middle">chassis ground</text>
+    <text class="ct-label" x="175" y="690" text-anchor="middle">(7-lug strip → star ground)</text>
+    <!-- Ground symbol -->
+    <line x1="160" y1="678" x2="190" y2="678" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="166" y1="684" x2="184" y2="684" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="171" y1="690" x2="179" y2="690" stroke="#1a1a1a" stroke-width="2"/>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="640" y="725" text-anchor="middle">Heater wires carry no audio — but ≈ 6.9 A of AC on the 6.3 V windings (plus 1.9 A on the 5 V winding) ripples a magnetic field that induces hum into nearby signal wires. Twist the pair, dress along the chassis, CT-ground.</text>
+  <text class="footer" x="640" y="742" text-anchor="middle">5 V winding floats (no CT) because the 5AR4 only has one tube to feed. The two 6.3 V windings are separately grounded, keeping channels electrically isolated.</text>
+</svg>

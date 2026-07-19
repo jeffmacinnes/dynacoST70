@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 820"
+     role="img"
+     aria-labelledby="bplus-title bplus-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="bplus-title">B+ high-voltage DC supply path through the ST-70</title>
+  <desc id="bplus-desc">From the PA-060 HV secondary through the 5AR4 rectifier and a multi-stage filter network (choke + three RC stages), out to every tube plate and screen. Voltages cascade downward and ripple decreases with each stage.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.6; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-name    { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .stage-sub     { font-size: 11px; fill: #444; }
+    .volt-label    { font-size: 16px; font-weight: 700; fill: #cc3a2a; }
+    .volt-sub      { font-size: 11px; fill: #666; }
+    .load-label    { font-size: 12px; font-weight: 600; fill: #1a1a1a; }
+    .load-sub      { font-size: 11px; fill: #444; }
+    .branch-label  { font-size: 11px; font-weight: 600; fill: #cc3a2a; }
+
+    .stage-source { fill: #fce8e8; stroke: #cc3a2a; stroke-width: 1.8; }
+    .stage-rect   { fill: #f9f4e8; stroke: #b8851a; stroke-width: 1.8; }
+    .stage-cap    { fill: #eef4fc; stroke: #1a4e8a; stroke-width: 1.8; }
+    .stage-choke  { fill: #f0f5e8; stroke: #2a8c3a; stroke-width: 1.8; }
+    .stage-r      { fill: #f4f4f4; stroke: #555; stroke-width: 1.8; }
+    .stage-load   { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+
+    .hv-ac-wire  { stroke: #cc3a2a; stroke-width: 2.5; fill: none; stroke-dasharray: 6,3; }
+    .bplus-wire  { stroke: #cc3a2a; stroke-width: 2.5; fill: none; }
+    .branch-wire { stroke: #cc3a2a; stroke-width: 2.0; fill: none; stroke-dasharray: 0; }
+    .ground-wire { stroke: #1a1a1a; stroke-width: 2.0; fill: none; }
+  </style>
+
+  <rect width="1280" height="820" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">B+ supply — from rectifier to every plate</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">Each stage drops the voltage AND smooths it. By the time B+ reaches the input stage it's ~30 dB cleaner than what came off the rectifier cathode.</text>
+
+  <!-- ============ COLUMN HEADERS ============ -->
+  <text class="section-label" x="140" y="100" text-anchor="middle">Voltage at this node</text>
+  <text class="section-label" x="500" y="100" text-anchor="middle">B+ cascade</text>
+  <text class="section-label" x="980" y="100" text-anchor="middle">Loads fed from this rail</text>
+
+  <!-- Header underlines -->
+  <line x1="60" y1="110" x2="220" y2="110" stroke="#444" stroke-width="1"/>
+  <line x1="380" y1="110" x2="620" y2="110" stroke="#444" stroke-width="1"/>
+  <line x1="820" y1="110" x2="1230" y2="110" stroke="#444" stroke-width="1"/>
+
+  <!-- ============ STAGE 1: PA-060 HV SECONDARY ============ -->
+  <g class="lead-group" data-tooltip="PA-060 HV SECONDARY — center-tapped winding.
+
+Two red leads at the ends of the winding, red/yellow CT in the middle. Across the full winding, 720 V RMS AC (360-0-360) at 60 Hz. From either red lead to the CT, ~510 Vp (~360 Vrms), shifted 180° between the two halves.
+
+This is the only AC stage in the B+ path — everything downstream is DC after rectification.">
+    <rect class="stage-box stage-source" x="420" y="130" width="160" height="60" rx="6"/>
+    <text class="stage-name" x="500" y="156" text-anchor="middle">PA-060 HV sec</text>
+    <text class="stage-sub"  x="500" y="174" text-anchor="middle">center-tapped, 720 V RMS AC</text>
+  </g>
+  <text class="volt-label" x="140" y="160" text-anchor="middle">720 V RMS AC</text>
+  <text class="volt-sub"   x="140" y="178" text-anchor="middle">end-to-end across winding</text>
+
+  <!-- Wire down to 5AR4 -->
+  <path class="hv-ac-wire" d="M 500 190 L 500 215"/>
+  <polygon points="500,215 496,208 504,208" fill="#cc3a2a"/>
+
+  <!-- ============ STAGE 2: 5AR4 RECTIFIER ============ -->
+  <g class="lead-group" data-tooltip="5AR4 RECTIFIER — full-wave dual-anode.
+
+Each anode (pins 4 and 6) conducts on alternate half-cycles — 60 times per second each, so together they deliver 120 pulses per second. The cathode (pin 8) sees a positive pulse on every half-cycle: pulsating DC at 120 Hz.
+
+Optional MOD: a 1N4007 in series with each plate provides arc-protection for the rectifier tube. See modifications/rectifier-diode-mod.">
+    <rect class="stage-box stage-rect" x="430" y="215" width="140" height="60" rx="6"/>
+    <text class="stage-name" x="500" y="241" text-anchor="middle">5AR4 rectifier</text>
+    <text class="stage-sub"  x="500" y="259" text-anchor="middle">full-wave, dual-anode</text>
+  </g>
+  <text class="volt-label" x="140" y="245" text-anchor="middle">120 Hz pulses</text>
+  <text class="volt-sub"   x="140" y="263" text-anchor="middle">on cathode (pin 8)</text>
+
+  <!-- Wire down to lug 2 -->
+  <path class="bplus-wire" d="M 500 275 L 500 300"/>
+  <polygon points="500,300 496,293 504,293" fill="#cc3a2a"/>
+
+  <!-- ============ STAGE 3: CAP LUG 2 (FIRST FILTER) ============ -->
+  <g class="lead-group" data-tooltip="FILTER CAP — lug 2, first stage (~30 µF).
+
+This cap starts smoothing the pulsating DC: it absorbs current on the peak of each 120 Hz pulse and releases current between pulses. The result is DC with significant ripple (~20-30 Vpp of 120 Hz on top of the ~435 V average).
+
+Wired in step 29: V1 pin 8 → cap lug 2.">
+    <rect class="stage-box stage-cap" x="430" y="300" width="140" height="60" rx="6"/>
+    <text class="stage-name" x="500" y="326" text-anchor="middle">Cap lug 2</text>
+    <text class="stage-sub"  x="500" y="344" text-anchor="middle">first filter (~30 µF)</text>
+  </g>
+  <text class="volt-label" x="140" y="330" text-anchor="middle">~435 V DC</text>
+  <text class="volt-sub"   x="140" y="348" text-anchor="middle">heavy ripple (~25 Vpp)</text>
+
+  <!-- Wire from lug 2 down through choke to lug 1 -->
+  <path class="bplus-wire" d="M 500 360 L 500 385"/>
+
+  <!-- ============ STAGE 4: CHOKE ============ -->
+  <g class="lead-group" data-tooltip="CHOKE — inductor (~1.5 H, ~100 Ω DC resistance).
+
+The choke resists rapid changes in current — together with the cap on lug 1 downstream, it forms an LC low-pass filter that removes essentially all of the 120 Hz ripple.
+
+Some DC voltage drops across the choke's resistance (the steady current × 100 Ω ≈ 20 V drop at typical idle).">
+    <rect class="stage-box stage-choke" x="430" y="385" width="140" height="60" rx="6"/>
+    <text class="stage-name" x="500" y="411" text-anchor="middle">Choke</text>
+    <text class="stage-sub"  x="500" y="429" text-anchor="middle">~1.5 H inductor</text>
+  </g>
+
+  <!-- Wire choke to lug 1 -->
+  <path class="bplus-wire" d="M 500 445 L 500 470"/>
+  <polygon points="500,470 496,463 504,463" fill="#cc3a2a"/>
+
+  <!-- ============ STAGE 5: CAP LUG 1 (SECOND FILTER, EL34/OPT FEED) ============ -->
+  <g class="lead-group" data-tooltip="FILTER CAP — lug 1, second stage (~20 µF).
+
+After the choke, ripple is reduced by ~30 dB. This is the clean B+ rail that feeds the output transformer primaries — both A-470 red leads (center taps) land here in step 8.
+
+Push-pull operation in the output stage further cancels what little ripple remains.">
+    <rect class="stage-box stage-cap" x="430" y="470" width="140" height="60" rx="6"/>
+    <text class="stage-name" x="500" y="496" text-anchor="middle">Cap lug 1</text>
+    <text class="stage-sub"  x="500" y="514" text-anchor="middle">after choke (~20 µF)</text>
+  </g>
+  <text class="volt-label" x="140" y="500" text-anchor="middle">~415 V DC</text>
+  <text class="volt-sub"   x="140" y="518" text-anchor="middle">low ripple — main B+</text>
+
+  <!-- Branch right to OPT primaries -->
+  <g class="lead-group" data-tooltip="A-470 PRIMARY CENTER TAPS — both channels feed from this single B+ node.
+
+The red leads of both A-470 output transformers land on cap lug 1. Push-pull operation means the two halves of each primary draw equal-but-opposite AC currents, so the DC load on B+ is steady; this rejects whatever 120 Hz ripple remains.">
+    <path class="branch-wire" d="M 570 500 L 820 500"/>
+    <polygon points="820,500 813,496 813,504" fill="#cc3a2a"/>
+    <rect class="stage-box stage-load" x="820" y="478" width="240" height="50" rx="4"/>
+    <text class="load-label" x="940" y="500" text-anchor="middle">A-470 primary CTs</text>
+    <text class="load-sub"   x="940" y="518" text-anchor="middle">both channels — EL34 plates + UL screens</text>
+  </g>
+  <text class="branch-label" x="690" y="494" text-anchor="middle">(step 8)</text>
+
+  <!-- Wire down through 6.8 kΩ to lug 4 -->
+  <path class="bplus-wire" d="M 500 530 L 500 555"/>
+
+  <!-- ============ STAGE 6: 6.8 kΩ DROPPING ============ -->
+  <g class="lead-group" data-tooltip="6.8 kΩ DROPPING RESISTOR — between cap lug 1 and cap lug 4.
+
+Together with the cap on lug 4, forms an RC filter that drops the voltage and smooths it further. The voltage drop across the resistor depends on the current draw of everything downstream — typically ~40 V at idle.
+
+Wired in step 30.">
+    <rect class="stage-box stage-r" x="450" y="555" width="100" height="40" rx="4"/>
+    <text class="stage-name" x="500" y="581" text-anchor="middle">6.8 kΩ</text>
+  </g>
+
+  <!-- Wire 6.8k to lug 4 -->
+  <path class="bplus-wire" d="M 500 595 L 500 620"/>
+  <polygon points="500,620 496,613 504,613" fill="#cc3a2a"/>
+
+  <!-- ============ STAGE 7: CAP LUG 4 (THIRD FILTER) ============ -->
+  <g class="lead-group" data-tooltip="FILTER CAP — lug 4, third stage (~20 µF).
+
+Output of this stage feeds the PC-3A driver board via eyelet 19. The 6GH8A TRIODE-section plate loads connect here through their plate resistors.
+
+By now ripple is dramatically reduced — the driver stage barely sees any.">
+    <rect class="stage-box stage-cap" x="430" y="620" width="140" height="60" rx="6"/>
+    <text class="stage-name" x="500" y="646" text-anchor="middle">Cap lug 4</text>
+    <text class="stage-sub"  x="500" y="664" text-anchor="middle">third stage (~20 µF)</text>
+  </g>
+  <text class="volt-label" x="140" y="650" text-anchor="middle">~375 V DC</text>
+  <text class="volt-sub"   x="140" y="668" text-anchor="middle">very low ripple</text>
+
+  <!-- Branch right to PC-3A board (pentode screens + triode plates) -->
+  <g class="lead-group" data-tooltip="6GH8A PENTODE SCREENS + TRIODE PLATES — fed from cap lug 4 via PC-3A eyelet 20 (step 43).
+
+The pentode screen grids get this voltage through an on-board screen-dropping resistor. The triode (cathodyne phase splitter) plate loads also feed from here. Both want a moderately clean rail at ~375 V.">
+    <path class="branch-wire" d="M 570 650 L 820 650"/>
+    <polygon points="820,650 813,646 813,654" fill="#cc3a2a"/>
+    <rect class="stage-box stage-load" x="820" y="628" width="260" height="50" rx="4"/>
+    <text class="load-label" x="950" y="650" text-anchor="middle">PC-3A eyelet 20 →</text>
+    <text class="load-sub"   x="950" y="668" text-anchor="middle">6GH8A pentode screens + triode plates</text>
+  </g>
+  <text class="branch-label" x="690" y="644" text-anchor="middle">(step 43)</text>
+
+  <!-- Wire down to 22k -->
+  <path class="bplus-wire" d="M 500 680 L 500 700"/>
+
+  <!-- ============ STAGE 8: 22 kΩ + CAP LUG 3 ============ -->
+  <g class="lead-group" data-tooltip="22 kΩ + CAP LUG 3 — final filter stage.
+
+22 kΩ dropping resistor (step 42) between lug 4 and lug 3, plus the cap on lug 3, form the last RC filter. Both the resistor and the cap are mounted on the FILTER CAP CHASSIS — not on the PC-3A board.
+
+This is the cleanest, lowest-voltage B+ rail (~305 V). Delivered to the PC-3A pentode plate-load via eyelet 19.">
+    <rect class="stage-box stage-cap" x="350" y="700" width="300" height="65" rx="6"/>
+    <text class="stage-name" x="500" y="724" text-anchor="middle">22 kΩ → Cap lug 3</text>
+    <text class="stage-sub"  x="500" y="740" text-anchor="middle">final RC stage (on filter cap)</text>
+    <text class="stage-sub"  x="500" y="754" text-anchor="middle">step 42</text>
+  </g>
+  <text class="volt-label" x="140" y="730" text-anchor="middle">~305 V DC</text>
+  <text class="volt-sub"   x="140" y="748" text-anchor="middle">essentially ripple-free</text>
+
+  <!-- Branch right to PC-3A board (pentode plate load) -->
+  <g class="lead-group" data-tooltip="6GH8A PENTODE PLATE LOAD — input voltage amplifier feed.
+
+Fed from cap lug 3 via PC-3A eyelet 19 (step 41). The pentode plates are at the front of the gain chain; any 120 Hz ripple here gets multiplied by ~50× (pentode) × ~50× (triode) × push-pull gain and lands as audible hum. So this rail gets the most filtering and the lowest voltage in the cascade.">
+    <path class="branch-wire" d="M 650 730 L 820 730"/>
+    <polygon points="820,730 813,726 813,734" fill="#cc3a2a"/>
+    <rect class="stage-box stage-load" x="820" y="708" width="260" height="50" rx="4"/>
+    <text class="load-label" x="950" y="730" text-anchor="middle">PC-3A eyelet 19 →</text>
+    <text class="load-sub"   x="950" y="748" text-anchor="middle">6GH8A pentode plate load (both channels)</text>
+  </g>
+  <text class="branch-label" x="725" y="724" text-anchor="middle">(step 41)</text>
+
+  <!-- ============ HV CT GROUND REFERENCE (LEFT SIDE INDICATOR) ============ -->
+  <g class="lead-group" data-tooltip="HV CENTER TAP — return path for both halves of the rectified AC.
+
+The red/yellow CT lands at the filter cap ground (step 7), establishing the reference that makes B+ a 'positive' voltage relative to chassis ground. Without this, the rectifier loop wouldn't close.">
+    <path class="ground-wire" d="M 580 160 C 640 160, 660 200, 660 300"/>
+    <text class="branch-label" x="680" y="200" fill="#1a1a1a">red/yellow CT</text>
+    <text class="branch-label" x="680" y="216" fill="#1a1a1a">(returns to ground</text>
+    <text class="branch-label" x="680" y="232" fill="#1a1a1a">at filter cap area)</text>
+    <line x1="640" y1="300" x2="680" y2="300" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="648" y1="306" x2="672" y2="306" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="654" y1="312" x2="666" y2="312" stroke="#1a1a1a" stroke-width="2"/>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="640" y="790" text-anchor="middle">Each cascade stage drops voltage (via choke or resistor) AND smooths it (via the cap on the next lug). Cleaner rails for higher-gain stages.</text>
+  <text class="footer" x="640" y="808" text-anchor="middle">Approximate idle voltages; see voltage-checks for bring-up targets.</text>
+</svg>

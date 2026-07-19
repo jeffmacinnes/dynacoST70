@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 720"
+     role="img"
+     aria-labelledby="star-title star-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="star-title">Star ground vs. daisy chain — why grounding topology matters</title>
+  <desc id="star-desc">Two grounding topologies compared. Daisy-chained returns share wire impedance — the heavy currents of one stage drop voltage across the wire feeding the next stage, creating ground loops and hum. Star grounding routes every return independently to one common point.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.5; }
+
+    .header  { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 12px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .panel-title { font-size: 16px; font-weight: 700; }
+    .panel-note  { font-size: 11px; fill: #555; font-style: italic; }
+    .label       { font-size: 12px; font-weight: 600; fill: #1a1a1a; }
+    .current     { font-size: 11px; font-weight: 700; }
+    .verdict     { font-size: 13px; font-weight: 700; }
+
+    .stage-box     { fill: #f4f4f4; stroke: #1a4e8a; stroke-width: 1.8; }
+    .stage-input   { fill: #eef4fc; stroke: #555;    stroke-width: 1.8; }
+    .stage-output  { fill: #fce8e8; stroke: #cc3a2a; stroke-width: 1.8; }
+    .signal-wire   { stroke: #1a4e8a; stroke-width: 2; fill: none; }
+    .ground-wire   { stroke: #333;    stroke-width: 2.5; fill: none; }
+    .ground-wire-thick { stroke: #333; stroke-width: 4; fill: none; }
+    .leak-arrow    { stroke: #cc3a2a; stroke-width: 1.5; fill: #cc3a2a; }
+    .star-point    { fill: #1a4e8a; stroke: #0a2e5a; stroke-width: 1.5; }
+  </style>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="600" y="36" text-anchor="middle">Star ground vs. daisy chain</text>
+  <text class="subhead" x="600" y="58" text-anchor="middle">Why how you route ground returns matters as much as the components themselves.</text>
+
+  <!-- ============ LEFT PANEL: DAISY CHAIN (BAD) ============ -->
+  <text class="panel-title" x="280" y="100" text-anchor="middle" fill="#cc3a2a">A · Daisy-chain ground (creates hum)</text>
+  <text class="panel-note"  x="280" y="120" text-anchor="middle">All return currents share the same wire back to the supply.</text>
+
+  <!-- Power supply (top of panel A) -->
+  <rect class="stage-output" x="200" y="150" width="160" height="50" rx="4"/>
+  <text class="label" x="280" y="172" text-anchor="middle">Power supply</text>
+  <text class="label" x="280" y="188" text-anchor="middle">(B+ return)</text>
+
+  <!-- Output stage (largest current) -->
+  <rect class="stage-box" x="200" y="250" width="160" height="60" rx="4"/>
+  <text class="label" x="280" y="275" text-anchor="middle">Output stage</text>
+  <text class="label" x="280" y="292" text-anchor="middle" fill="#cc3a2a">~100 mA return</text>
+
+  <!-- Driver stage -->
+  <rect class="stage-box" x="200" y="360" width="160" height="60" rx="4"/>
+  <text class="label" x="280" y="385" text-anchor="middle">Driver stage</text>
+  <text class="label" x="280" y="402" text-anchor="middle" fill="#888">~5 mA return</text>
+
+  <!-- Input stage (lowest, most sensitive) -->
+  <rect class="stage-input" x="200" y="470" width="160" height="60" rx="4"/>
+  <text class="label" x="280" y="495" text-anchor="middle">Input stage</text>
+  <text class="label" x="280" y="512" text-anchor="middle" fill="#888">~0.1 mA · sensitive!</text>
+
+  <!-- The shared ground wire — daisy-chained -->
+  <line class="ground-wire" x1="380" y1="280" x2="380" y2="500"/>
+  <line class="ground-wire" x1="380" y1="280" x2="380" y2="200"/>
+  <line class="ground-wire" x1="360" y1="280" x2="380" y2="280"/>
+  <line class="ground-wire" x1="360" y1="390" x2="380" y2="390"/>
+  <line class="ground-wire" x1="360" y1="500" x2="380" y2="500"/>
+  <line class="ground-wire" x1="360" y1="175" x2="380" y2="175"/>
+
+  <!-- Ground symbol -->
+  <line class="ground-wire" x1="380" y1="200" x2="380" y2="170"/>
+  <g transform="translate(380, 145)">
+    <line class="ground-wire" x1="-15" y1="20" x2="15" y2="20"/>
+    <line class="ground-wire" x1="-10" y1="25" x2="10" y2="25"/>
+    <line class="ground-wire" x1="-5"  y1="30" x2="5"  y2="30"/>
+  </g>
+  <text class="label" x="395" y="145" fill="#1a1a1a">Chassis</text>
+
+  <!-- Annotations: voltage drops along the wire -->
+  <text class="current" x="395" y="295" fill="#cc3a2a">100 mA × R_wire</text>
+  <text class="current" x="395" y="310" fill="#cc3a2a">≈ voltage on wire</text>
+
+  <!-- Hum arrows pointing INTO sensitive input stage -->
+  <text class="label" x="395" y="490" fill="#cc3a2a">↑</text>
+  <text class="label" x="395" y="505" fill="#cc3a2a" font-weight="700">HUM</text>
+  <text class="label" x="395" y="520" fill="#cc3a2a">enters here</text>
+
+  <!-- Verdict box -->
+  <rect x="160" y="570" width="240" height="80" rx="4" fill="#fce8e8" stroke="#cc3a2a" stroke-width="1.5"/>
+  <text class="verdict" x="280" y="593" text-anchor="middle" fill="#cc3a2a">Result: hum loop</text>
+  <text class="panel-note" x="280" y="612" text-anchor="middle">Output-stage current creates a voltage drop</text>
+  <text class="panel-note" x="280" y="626" text-anchor="middle">on the shared wire. Input stage "sees" this</text>
+  <text class="panel-note" x="280" y="640" text-anchor="middle">as 120 Hz signal at its ground reference.</text>
+
+  <!-- ============ DIVIDER ============ -->
+  <line x1="600" y1="100" x2="600" y2="660" stroke="#ccc" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- ============ RIGHT PANEL: STAR GROUND (GOOD) ============ -->
+  <text class="panel-title" x="900" y="100" text-anchor="middle" fill="#2a8c3a">B · Star ground (quiet)</text>
+  <text class="panel-note"  x="900" y="120" text-anchor="middle">Every stage gets its own dedicated wire to ONE common ground point.</text>
+
+  <!-- Power supply -->
+  <rect class="stage-output" x="820" y="150" width="160" height="50" rx="4"/>
+  <text class="label" x="900" y="172" text-anchor="middle">Power supply</text>
+  <text class="label" x="900" y="188" text-anchor="middle">(B+ return)</text>
+
+  <!-- Output stage -->
+  <rect class="stage-box" x="820" y="250" width="160" height="60" rx="4"/>
+  <text class="label" x="900" y="275" text-anchor="middle">Output stage</text>
+  <text class="label" x="900" y="292" text-anchor="middle" fill="#cc3a2a">~100 mA return</text>
+
+  <!-- Driver stage -->
+  <rect class="stage-box" x="820" y="360" width="160" height="60" rx="4"/>
+  <text class="label" x="900" y="385" text-anchor="middle">Driver stage</text>
+  <text class="label" x="900" y="402" text-anchor="middle" fill="#888">~5 mA return</text>
+
+  <!-- Input stage -->
+  <rect class="stage-input" x="820" y="470" width="160" height="60" rx="4"/>
+  <text class="label" x="900" y="495" text-anchor="middle">Input stage</text>
+  <text class="label" x="900" y="512" text-anchor="middle" fill="#888">~0.1 mA · sensitive!</text>
+
+  <!-- The star point: ONE common chassis bolt -->
+  <circle class="star-point" cx="1080" cy="385" r="9"/>
+  <text class="label" x="1100" y="380">Star point</text>
+  <text class="panel-note" x="1100" y="395">(chassis bolt)</text>
+
+  <!-- Each stage has its OWN ground wire to the star point -->
+  <path class="ground-wire" d="M 980 175 Q 1040 175 1080 385" fill="none"/>
+  <path class="ground-wire-thick" d="M 980 280 Q 1040 280 1080 385" fill="none"/>
+  <path class="ground-wire" d="M 980 390 L 1080 385" fill="none"/>
+  <path class="ground-wire" d="M 980 500 Q 1040 500 1080 385" fill="none"/>
+
+  <!-- Chassis ground from star point -->
+  <line class="ground-wire" x1="1080" y1="385" x2="1130" y2="385"/>
+  <g transform="translate(1145, 380)">
+    <line class="ground-wire" x1="0" y1="0"  x2="0" y2="20"/>
+    <line class="ground-wire" x1="-12" y1="20" x2="12" y2="20"/>
+    <line class="ground-wire" x1="-8"  y1="25" x2="8"  y2="25"/>
+    <line class="ground-wire" x1="-4"  y1="30" x2="4"  y2="30"/>
+  </g>
+
+  <!-- Annotations: each return is independent -->
+  <text class="current" x="1015" y="172" fill="#cc3a2a">own wire</text>
+  <text class="current" x="1015" y="265" fill="#cc3a2a" font-weight="700">heaviest wire</text>
+  <text class="current" x="1015" y="375" fill="#888">own wire</text>
+  <text class="current" x="1015" y="500" fill="#888">own wire</text>
+
+  <!-- Verdict box -->
+  <rect x="780" y="570" width="240" height="80" rx="4" fill="#e8f6ec" stroke="#2a8c3a" stroke-width="1.5"/>
+  <text class="verdict" x="900" y="593" text-anchor="middle" fill="#2a8c3a">Result: no hum loop</text>
+  <text class="panel-note" x="900" y="612" text-anchor="middle">Output-stage current can't drop voltage on</text>
+  <text class="panel-note" x="900" y="626" text-anchor="middle">a wire the input stage shares. Each stage</text>
+  <text class="panel-note" x="900" y="640" text-anchor="middle">sees clean ground at the star point.</text>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="600" y="690" text-anchor="middle">In the ST-70 the main star point is the solder lug(s) at the quad filter cap. The seven-lug strip is a bias/heater-CT subnode — it ties into the star via lug 6.</text>
+</svg>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 700"
+     role="img"
+     aria-labelledby="rect-title rect-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="rect-title">Full-wave rectifier — topology</title>
+  <desc id="rect-desc">The complete full-wave rectifier circuit: PA-060 HV secondary winding with center tap, 5AR4 dual-anode rectifier, filter capacitor, and B+ output. Shows how the two anodes alternate to turn AC into unidirectional pulsating DC.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .interactive { stroke-width: 3.2; }
+    .lead-group:hover .interactive-fill { filter: brightness(1.08); }
+    .lead-group:hover .label-emph { font-weight: 700; }
+
+    .header        { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead       { font-size: 13px; fill: #444; }
+    .section-label { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .part-label    { font-size: 12px; font-weight: 700; fill: #1a1a1a; }
+    .wire-label    { font-size: 11px; font-weight: 700; }
+    .note          { font-size: 11px; fill: #444; }
+    .note-em       { font-size: 11px; fill: #555; font-style: italic; }
+    .footer        { font-size: 11px; font-style: italic; fill: #555; }
+    .tube-outline  { fill: none; stroke: #888; stroke-width: 1.5; stroke-dasharray: 6 4; }
+
+    .wire-red    { stroke: #cc3a2a; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .wire-redyel { stroke: #b8851a; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .wire-out    { stroke: #1a4e8a; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .wire-gnd    { stroke: #333;    stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .node        { fill: #1a1a1a; }
+    .arrow       { fill: #1a4e8a; }
+    .iron        { stroke: #777; stroke-width: 1.2; fill: none; }
+    .diode-body  { fill: #5a6b8c; stroke: #2a3a5e; stroke-width: 1.5; }
+    .diode-bar   { stroke: #2a3a5e; stroke-width: 2.5; }
+    .cap-plate   { stroke: #1a1a1a; stroke-width: 2.5; }
+    .cap-curve   { stroke: #1a1a1a; stroke-width: 2.2; fill: none; }
+  </style>
+
+  <!-- White background -->
+  <rect width="1200" height="700" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="600" y="34" text-anchor="middle">Full-wave rectifier — topology</text>
+  <text class="subhead" x="600" y="56" text-anchor="middle">PA-060 HV secondary · center tap · 5AR4 dual-anode · filter cap · B+ rail</text>
+
+  <!-- ============ SECTION LABELS (column headers) ============ -->
+  <text class="section-label" x="190" y="96" text-anchor="middle">PA-060 HV secondary</text>
+  <text class="note"          x="190" y="112" text-anchor="middle">720 V AC CT · 300 mA</text>
+
+  <text class="section-label" x="580" y="96" text-anchor="middle">5AR4 rectifier</text>
+  <text class="note"          x="580" y="112" text-anchor="middle">dual anode · one cathode</text>
+
+  <text class="section-label" x="870" y="96" text-anchor="middle">Filter cap</text>
+  <text class="note"          x="870" y="112" text-anchor="middle">smooths to DC</text>
+
+  <text class="section-label" x="1080" y="96" text-anchor="middle">B+ rail</text>
+  <text class="note"          x="1080" y="112" text-anchor="middle">~435 V DC</text>
+
+  <!-- ============ TRANSFORMER (left column) ============ -->
+  <g id="transformer">
+    <!-- Iron core: two vertical lines to the right of the coil -->
+    <line class="iron" x1="215" y1="125" x2="215" y2="475"/>
+    <line class="iron" x1="220" y1="125" x2="220" y2="475"/>
+
+    <!-- Top half winding — RED coil, 4 bumps bulging right -->
+    <g class="lead-group">
+      <title>HV secondary — TOP HALF.
+360 V AC across this half (CT to RED end).
+Always 180° out of phase with the bottom half: when this end is +360 V, the bottom end is −360 V; half a cycle later they swap.
+
+The two ends are physically the two RED leads exiting the PA-060. Step 3 wires the top RED to V1 pin 4 (anode 1).</title>
+      <path class="wire-red interactive"
+            d="M 185 130
+               A 18 18 0 0 1 185 165
+               A 18 18 0 0 1 185 200
+               A 18 18 0 0 1 185 235
+               A 18 18 0 0 1 185 270"/>
+    </g>
+
+    <!-- Bottom half winding -->
+    <g class="lead-group">
+      <title>HV secondary — BOTTOM HALF.
+360 V AC across this half (CT to RED end).
+Always 180° opposite the top half.
+
+Step 3 wires the bottom RED to V1 pin 6 (anode 2).</title>
+      <path class="wire-red interactive"
+            d="M 185 330
+               A 18 18 0 0 1 185 365
+               A 18 18 0 0 1 185 400
+               A 18 18 0 0 1 185 435
+               A 18 18 0 0 1 185 470"/>
+    </g>
+
+    <!-- Center tap node -->
+    <g class="lead-group">
+      <title>Center tap (RED/YEL).
+The midpoint of the HV secondary. With CT grounded, the two RED ends swing symmetrically: +360 V on one while −360 V on the other.
+
+This is also the return path for the rectified current — every electron that exits the cathode at the top eventually flows back through here to complete the circuit.
+
+Step 7 connects RED/YEL to the filter-cap ground area.</title>
+      <line class="wire-red" x1="185" y1="270" x2="185" y2="300"/>
+      <line class="wire-red" x1="185" y1="300" x2="185" y2="330"/>
+      <circle class="node" cx="185" cy="300" r="4"/>
+    </g>
+
+    <!-- ============ LEADS EXIT TO THE RIGHT ============ -->
+    <!-- Top RED lead: from coil top out the top, then right to anode 1 -->
+    <line class="wire-red" x1="185" y1="130" x2="185" y2="170"/>
+    <line class="wire-red" x1="185" y1="170" x2="485" y2="170"/>
+    <text class="wire-label" x="335" y="160" text-anchor="middle" fill="#cc3a2a">RED · ±360 V</text>
+
+  </g>
+
+  <!-- ============ TRANSFORMER LEAD ROUTING (separate to be clean) ============ -->
+  <!-- Top RED → anode 1: handled in transformer group above -->
+
+  <!-- Bottom RED → anode 2 (exits at coil bottom y=470, runs right at y=430) -->
+  <line class="wire-red" x1="185" y1="470" x2="185" y2="430"/>
+  <line class="wire-red" x1="185" y1="430" x2="485" y2="430"/>
+  <text class="wire-label" x="335" y="445" text-anchor="middle" fill="#cc3a2a">RED · ±360 V</text>
+
+  <!-- CT → ground bus: out to the right, then down -->
+  <line class="wire-redyel" x1="185" y1="300" x2="380" y2="300"/>
+  <line class="wire-redyel" x1="380" y1="300" x2="380" y2="560"/>
+  <circle class="node" cx="185" cy="300" r="4"/>
+  <text class="wire-label" x="270" y="290" text-anchor="middle" fill="#b8851a">RED/YEL · CT (0 V ref)</text>
+
+  <!-- ============ 5AR4 DUAL DIODE (center) ============ -->
+  <!-- Dashed outline showing "this is all one tube". The "5AR4" tag is
+       on the top edge of the dashed box (between the two anode labels). -->
+  <rect class="tube-outline" x="475" y="135" width="220" height="330" rx="10"/>
+  <text class="part-label" x="670" y="148" text-anchor="end">5AR4</text>
+
+  <!-- Top diode (anode 1) -->
+  <g class="lead-group">
+    <title>ANODE 1 — first diode of the 5AR4 (pin 4).
+
+When the top RED lead is positive relative to CT (one half of every AC cycle), this diode is forward-biased. Electrons flow:
+  RED → anode 1 plate → across vacuum → shared cathode → out to filter cap → to load → back to CT.
+
+On the opposite half-cycle, this diode is reverse-biased and blocks current.</title>
+    <!-- Diode triangle: anode left, apex right.
+         Opacity animates: bright (1) during the first half of each 4 s cycle,
+         dim (0.3) during the second half. Anode 2 is the inverse. -->
+    <polygon class="diode-body interactive-fill" points="500,156 500,184 580,170">
+      <animate attributeName="opacity"
+               values="1;0.3;1"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </polygon>
+    <!-- Cathode bar -->
+    <line class="diode-bar" x1="580" y1="156" x2="580" y2="184">
+      <animate attributeName="opacity"
+               values="1;0.3;1"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </line>
+    <!-- Diode anode → wire from transformer (already drawn at y=170) -->
+    <!-- Cathode → bus going down -->
+    <line class="wire-out" x1="580" y1="170" x2="620" y2="170"/>
+    <text class="part-label" x="540" y="148" text-anchor="middle">Anode 1</text>
+    <text class="note" x="540" y="200" text-anchor="middle" fill="#444">pin 4</text>
+  </g>
+
+  <!-- Bottom diode (anode 2) -->
+  <g class="lead-group">
+    <title>ANODE 2 — second diode of the 5AR4 (pin 6).
+
+When the bottom RED lead is positive relative to CT (the other half of every AC cycle), this diode conducts. The two anodes take turns, half-cycle by half-cycle — that's full-wave rectification in one envelope.</title>
+    <!-- Anode 2 is inverse of anode 1: dim during the first half-cycle,
+         bright during the second. -->
+    <polygon class="diode-body interactive-fill" points="500,416 500,444 580,430">
+      <animate attributeName="opacity"
+               values="0.3;1;0.3"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </polygon>
+    <line class="diode-bar" x1="580" y1="416" x2="580" y2="444">
+      <animate attributeName="opacity"
+               values="0.3;1;0.3"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </line>
+    <line class="wire-out" x1="580" y1="430" x2="620" y2="430"/>
+    <text class="part-label" x="540" y="408" text-anchor="middle">Anode 2</text>
+    <text class="note" x="540" y="460" text-anchor="middle" fill="#444">pin 6</text>
+  </g>
+
+  <!-- Cathode bus (vertical) joining both diodes' cathodes -->
+  <g class="lead-group">
+    <title>SHARED CATHODE — pin 8.
+
+Both diodes feed a single internal cathode. The cathode sees a positive pulse on EVERY half-cycle: top diode delivers one pulse, bottom diode delivers the next.
+
+The result is a 120 Hz pulsating positive voltage (twice the 60 Hz mains frequency), which the filter cap downstream smooths into ~435 V DC.</title>
+    <line class="wire-out interactive" x1="620" y1="170" x2="620" y2="430"/>
+    <text class="part-label" x="635" y="278" fill="#1a4e8a">Cathode</text>
+    <text class="note" x="635" y="292">pin 8</text>
+  </g>
+
+  <!-- Output line from cathode bus to filter cap and beyond -->
+  <line class="wire-out" x1="620" y1="300" x2="870" y2="300"/>
+
+  <!-- ============ FILTER CAP ============ -->
+  <g class="lead-group">
+    <title>FILTER CAPACITOR (first stage).
+
+The cathode delivers 120 Hz pulses; the cap charges on each pulse and discharges between pulses, filling in the valleys to produce a smooth-ish DC.
+
+The cap is polarized — positive plate at top (connected to B+), negative plate at the bottom (connected to ground via the CT).
+
+Downstream, a choke + second filter cap smooth the supply further before it reaches the output transformer center taps as ~415 V DC (from ~435 V raw).</title>
+    <!-- Drop from output wire down to cap -->
+    <line class="wire-out" x1="870" y1="300" x2="870" y2="340"/>
+    <!-- Cap top plate (straight, +) -->
+    <line class="cap-plate interactive" x1="838" y1="340" x2="902" y2="340"/>
+    <!-- Cap bottom plate (curved, -) -->
+    <path class="cap-curve" d="M 840 360 Q 870 372 900 360"/>
+    <!-- + sign -->
+    <text class="part-label" x="912" y="338" fill="#1a4e8a">+</text>
+    <!-- Below cap: drop to ground bus -->
+    <line class="wire-gnd" x1="870" y1="372" x2="870" y2="560"/>
+  </g>
+
+  <!-- Junction node where output wire meets cap drop -->
+  <circle class="node" cx="870" cy="300" r="4"/>
+
+  <!-- ============ B+ OUTPUT (right) ============ -->
+  <line class="wire-out" x1="870" y1="300" x2="1100" y2="300"/>
+  <!-- Arrow head pointing right -->
+  <polygon class="arrow" points="1100,294 1115,300 1100,306"/>
+  <text class="part-label" x="1075" y="285" text-anchor="middle" fill="#1a4e8a">B+ → tube plates</text>
+  <text class="note" x="1075" y="320" text-anchor="middle">~435 V DC</text>
+
+  <!-- ============ GROUND BUS ============ -->
+  <line class="wire-gnd" x1="380" y1="560" x2="870" y2="560"/>
+
+  <!-- Ground symbol at the right end -->
+  <g class="lead-group">
+    <title>GROUND.
+
+The center tap and the filter cap's negative plate connect here. This is the common return path for all rectified current.
+
+In the ST-70, "ground" is the chassis (via a star ground point established by the 3-prong cord modification).</title>
+    <line class="wire-gnd" x1="940" y1="560" x2="940" y2="580"/>
+    <line class="wire-gnd" x1="920" y1="580" x2="960" y2="580"/>
+    <line class="wire-gnd" x1="926" y1="588" x2="954" y2="588"/>
+    <line class="wire-gnd" x1="932" y1="596" x2="948" y2="596"/>
+    <line class="wire-gnd" x1="870" y1="560" x2="940" y2="560"/>
+    <text class="part-label" x="970" y="585">GND</text>
+  </g>
+
+  <!-- Junction nodes on ground bus -->
+  <circle class="node" cx="380" cy="560" r="4"/>
+  <circle class="node" cx="870" cy="560" r="4"/>
+
+  <!-- ============ STATUS INDICATOR ============ -->
+  <!-- Both labels are always present side-by-side. The active one pulses
+       bright while the inactive one stays dim — same opacity curve as the
+       anodes themselves, in opposite phase. -->
+  <g>
+    <text class="part-label" x="500" y="490" text-anchor="middle" fill="#2a3a5e">
+      Anode 1 conducting
+      <animate attributeName="opacity"
+               values="1;0.3;1"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </text>
+    <text class="part-label" x="670" y="490" text-anchor="middle" fill="#2a3a5e">
+      Anode 2 conducting
+      <animate attributeName="opacity"
+               values="0.3;1;0.3"
+               keyTimes="0;0.5;1"
+               dur="4s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- ============ EXPLANATORY NOTES ============ -->
+  <text class="footer" x="600" y="640" text-anchor="middle">On each half-cycle, exactly one diode conducts — the two anodes alternate, so the cathode sees a positive pulse every half-cycle (120 Hz output ripple).</text>
+  <text class="footer" x="600" y="660" text-anchor="middle">Step 3 wires the two RED leads to anodes (pins 4, 6). Step 7 grounds the CT. The cathode (pin 8) then feeds the filter network downstream.</text>
+</svg>

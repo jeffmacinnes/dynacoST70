@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1280 760"
+     role="img"
+     aria-labelledby="pp-title pp-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="pp-title">Push-pull output stage — how two tubes amplify one signal</title>
+  <desc id="pp-desc">Two EL34s with their plates wired to opposite ends of the A-470's center-tapped primary. The two tubes alternately push and pull current through the transformer, combining to produce the full audio waveform at the secondary.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .interactive { stroke-width: 2.5; }
+    .lead-group:hover .label { font-weight: 700; }
+
+    .header  { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 12px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .section-label { font-size: 14px; font-weight: 700; fill: #1a1a1a; }
+    .label         { font-size: 13px; font-weight: 600; fill: #1a1a1a; }
+    .sub           { font-size: 11px; fill: #444; }
+    .value         { font-size: 12px; font-weight: 600; }
+
+    .tube-body  { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+    .tube-glow  { fill: #f4f4f4; stroke: #cc3a2a; stroke-width: 2; }
+    .wire       { stroke: #555; stroke-width: 2; fill: none; }
+    .wire-hot   { stroke: #cc3a2a; stroke-width: 2.5; fill: none; }
+    .wire-cold  { stroke: #1a4e8a; stroke-width: 2.5; fill: none; }
+    .wire-bplus { stroke: #b8851a; stroke-width: 2.5; fill: none; }
+    .signal     { stroke-width: 2.2; fill: none; }
+    .opt-core   { fill: #4a4a4a; stroke: #1a1a1a; stroke-width: 1.5; }
+    .opt-coil   { fill: none; stroke-width: 2.5; }
+    .speaker    { fill: #f4f4f4; stroke: #1a1a1a; stroke-width: 1.6; }
+  </style>
+
+  <rect width="1280" height="760" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="640" y="36" text-anchor="middle">Push-pull output stage — two tubes amplifying one signal</text>
+  <text class="subhead" x="640" y="58" text-anchor="middle">Each EL34 handles one half of the audio waveform. The OPT recombines them.</text>
+
+  <!-- ============ COLUMN HEADERS ============ -->
+  <text class="section-label" x="160" y="105" text-anchor="middle">From phase splitter</text>
+  <text class="sub"           x="160" y="122" text-anchor="middle">(see step 4 in driver stage)</text>
+
+  <text class="section-label" x="470" y="105" text-anchor="middle">EL34 push-pull pair</text>
+  <text class="sub"           x="470" y="122" text-anchor="middle">V2 / V6 or V3 / V7 in this build</text>
+
+  <text class="section-label" x="780" y="105" text-anchor="middle">A-470 output transformer</text>
+  <text class="sub"           x="780" y="122" text-anchor="middle">center-tapped primary</text>
+
+  <text class="section-label" x="1100" y="105" text-anchor="middle">Speaker</text>
+  <text class="sub"           x="1100" y="122" text-anchor="middle">audio output</text>
+
+  <!-- ============ TOP TUBE (V2) ============ -->
+  <!-- Input waveform (small, sine going positive first) -->
+  <g class="lead-group">
+    <title>Input to TOP tube — one of the two phase-split signals coming out of the driver stage.
+
+The 6GH8A phase splitter produces two copies of the audio signal that are exactly 180° out of phase. This one drives the TOP tube's grid; the bottom tube gets the inverted copy.</title>
+    <path class="signal interactive" stroke="#cc3a2a"
+          d="M 80 220 Q 100 180 120 220 T 160 220 T 200 220 T 240 220"/>
+    <text class="label" x="160" y="252" text-anchor="middle" fill="#cc3a2a">in-phase</text>
+    <text class="sub"   x="160" y="268" text-anchor="middle">drives V2/V6 grid</text>
+  </g>
+
+  <!-- Wire from input to top tube grid -->
+  <line class="wire-hot" x1="240" y1="220" x2="340" y2="220"/>
+  <polygon points="340,216 350,220 340,224" fill="#cc3a2a"/>
+
+  <!-- Top tube (EL34 V2/V6) -->
+  <g class="lead-group">
+    <title>TOP TUBE (V2 or V6).
+
+This EL34 conducts MORE when its grid sees the positive half of the audio signal, pulling extra current down through its half of the OPT primary, which (via magnetic coupling) drives current through the secondary toward the speaker in one direction.
+
+The ST-70 runs class AB: both tubes conduct around idle (~50 mA each), and only at large signal swings does one tube approach cutoff while its partner carries the load.</title>
+    <rect class="tube-glow interactive" x="380" y="180" width="180" height="80" rx="8"/>
+    <text class="label" x="470" y="208" text-anchor="middle">EL34 (V2 / V6)</text>
+    <text class="sub"   x="470" y="226" text-anchor="middle">grid → cathode → plate</text>
+    <text class="value" x="470" y="244" text-anchor="middle" fill="#cc3a2a">~50 mA idle (100 mA/pair)</text>
+  </g>
+
+  <!-- ============ BOTTOM TUBE (V3) ============ -->
+  <!-- Input waveform (small, sine going negative first - 180° out of phase) -->
+  <g class="lead-group">
+    <title>Input to BOTTOM tube — the inverted (180° out of phase) copy from the phase splitter.
+
+When this signal goes negative, the top tube's signal goes positive, and vice versa. Net effect: the two tubes' inputs are always exact mirror images of each other.</title>
+    <path class="signal interactive" stroke="#1a4e8a"
+          d="M 80 540 Q 100 580 120 540 T 160 540 T 200 540 T 240 540"/>
+    <text class="label" x="160" y="572" text-anchor="middle" fill="#1a4e8a">anti-phase</text>
+    <text class="sub"   x="160" y="588" text-anchor="middle">drives V3/V7 grid</text>
+  </g>
+
+  <!-- Wire to bottom tube -->
+  <line class="wire-cold" x1="240" y1="540" x2="340" y2="540"/>
+  <polygon points="340,536 350,540 340,544" fill="#1a4e8a"/>
+
+  <!-- Bottom tube (EL34 V3/V7) -->
+  <g class="lead-group">
+    <title>BOTTOM TUBE (V3 or V7).
+
+The push-pull partner of the top tube. Conducts MORE when its grid sees the positive half of its (inverted) input signal — which is when the audio is in the OTHER half of its cycle.
+
+In class AB, both tubes conduct around idle; one tube only approaches cutoff at large swings. Together they amplify the entire waveform.</title>
+    <rect class="tube-glow interactive" x="380" y="500" width="180" height="80" rx="8"/>
+    <text class="label" x="470" y="528" text-anchor="middle">EL34 (V3 / V7)</text>
+    <text class="sub"   x="470" y="546" text-anchor="middle">grid → cathode → plate</text>
+    <text class="value" x="470" y="564" text-anchor="middle" fill="#1a4e8a">~50 mA idle (100 mA/pair)</text>
+  </g>
+
+  <!-- ============ WIRES FROM TUBE PLATES TO OPT ============ -->
+  <!-- Top tube plate to top of OPT primary -->
+  <line class="wire-hot" x1="560" y1="220" x2="700" y2="220"/>
+  <text class="sub" x="630" y="210" text-anchor="middle" fill="#cc3a2a">plate (BLUE OPT lead)</text>
+
+  <!-- Bottom tube plate to bottom of OPT primary -->
+  <line class="wire-cold" x1="560" y1="540" x2="700" y2="540"/>
+  <text class="sub" x="630" y="530" text-anchor="middle" fill="#1a4e8a">plate (BLU/WHT OPT lead)</text>
+
+  <!-- ============ A-470 OUTPUT TRANSFORMER ============ -->
+  <!-- OPT body (vertical) -->
+  <g class="lead-group">
+    <title>A-470 OUTPUT TRANSFORMER — the secret sauce.
+
+Primary: center-tapped, with the two halves wound around a shared iron core. The DC plate current of one tube flows one way through the core; the other tube's current flows the OPPOSITE way. These DC currents CANCEL in the core, which is why the OPT doesn't need a gap (unlike the choke).
+
+Secondary: a single output winding magnetically coupled to both halves of the primary. The AC signal from both tubes combines here into one audio waveform.
+
+The center tap of the primary is where B+ enters — the high-voltage supply feeds both tubes through the OPT.</title>
+    <!-- Iron core -->
+    <rect class="opt-core interactive" x="720" y="180" width="40" height="400"/>
+    <!-- Primary coil (left side) - upper half -->
+    <path class="opt-coil" stroke="#cc3a2a"
+          d="M 700 220 A 12 12 0 0 1 700 244 A 12 12 0 0 1 700 268 A 12 12 0 0 1 700 292 A 12 12 0 0 1 700 316 A 12 12 0 0 1 700 340 A 12 12 0 0 1 700 364 A 12 12 0 0 1 700 388"/>
+    <!-- Primary coil - lower half -->
+    <path class="opt-coil" stroke="#1a4e8a"
+          d="M 700 392 A 12 12 0 0 1 700 416 A 12 12 0 0 1 700 440 A 12 12 0 0 1 700 464 A 12 12 0 0 1 700 488 A 12 12 0 0 1 700 512 A 12 12 0 0 1 700 536 A 12 12 0 0 1 700 540"/>
+    <!-- Center tap (between two halves) -->
+    <circle cx="700" cy="380" r="4" fill="#b8851a"/>
+    <!-- Secondary coil (right side) -->
+    <path class="opt-coil" stroke="#1a1a1a"
+          d="M 780 240 A 12 12 0 0 0 780 264 A 12 12 0 0 0 780 288 A 12 12 0 0 0 780 312 A 12 12 0 0 0 780 336 A 12 12 0 0 0 780 360 A 12 12 0 0 0 780 384 A 12 12 0 0 0 780 408 A 12 12 0 0 0 780 432 A 12 12 0 0 0 780 456 A 12 12 0 0 0 780 480 A 12 12 0 0 0 780 504 A 12 12 0 0 0 780 528 A 12 12 0 0 0 780 540"/>
+  </g>
+
+  <!-- B+ feed at center tap -->
+  <line class="wire-bplus" x1="700" y1="380" x2="660" y2="380"/>
+  <line class="wire-bplus" x1="660" y1="380" x2="660" y2="350"/>
+  <text class="sub" x="630" y="375" fill="#b8851a" font-weight="700">B+ → CT</text>
+  <text class="sub" x="630" y="390" fill="#b8851a">(RED lead)</text>
+
+  <!-- Primary labels -->
+  <text class="sub" x="680" y="300" text-anchor="end" fill="#cc3a2a">primary</text>
+  <text class="sub" x="680" y="316" text-anchor="end" fill="#cc3a2a">top half</text>
+
+  <text class="sub" x="680" y="460" text-anchor="end" fill="#1a4e8a">primary</text>
+  <text class="sub" x="680" y="476" text-anchor="end" fill="#1a4e8a">bottom half</text>
+
+  <text class="sub" x="800" y="380" fill="#1a1a1a">secondary</text>
+
+  <!-- ============ SPEAKER OUTPUT ============ -->
+  <line class="wire" x1="780" y1="240" x2="900" y2="240"/>
+  <line class="wire" x1="780" y1="540" x2="900" y2="540"/>
+
+  <!-- Combined output waveform inset -->
+  <g class="lead-group">
+    <title>COMBINED OUTPUT — the full audio waveform.
+
+The two tube contributions add in the OPT secondary. Mathematically:
+
+  out = (top half conduction) - (bottom half conduction)
+
+Subtracting opposite-phase signals combines them. Anything they had IN COMMON (even harmonics, DC plate current bias, hum picked up equally) CANCELS. Anything that was in opposite phases (the audio signal) ADDS.
+
+This is why push-pull amps have such low even-harmonic distortion and natural DC cancellation in the core — it's geometry, not just amplification.</title>
+    <rect class="speaker interactive" x="970" y="350" width="160" height="60" rx="4"/>
+    <text class="label" x="1050" y="378" text-anchor="middle">8 Ω speaker</text>
+    <text class="sub"   x="1050" y="396" text-anchor="middle">audio output</text>
+
+    <!-- Waveform showing both phases combined -->
+    <path class="signal" stroke="#1a1a1a"
+          d="M 960 240 Q 990 200 1020 240 T 1080 240 T 1140 240"/>
+    <text class="sub" x="1050" y="220" text-anchor="middle">full waveform</text>
+    <text class="sub" x="1050" y="280" text-anchor="middle">(both halves combined)</text>
+
+    <line class="wire" x1="900" y1="240" x2="970" y2="380"/>
+    <line class="wire" x1="900" y1="540" x2="970" y2="380"/>
+  </g>
+
+  <!-- ============ KEY PROPERTIES SIDEBAR ============ -->
+  <g transform="translate(80, 640)">
+    <rect x="0" y="0" width="1120" height="80" rx="4" fill="#f4f4f4" stroke="#aaa" stroke-width="1"/>
+    <text class="label" x="20" y="22">Three things push-pull gives you:</text>
+    <text class="sub"   x="20" y="42">① <tspan font-weight="700">Twice the power</tspan> — both tubes contribute, so output is ~2× single-ended for the same B+ and same plate dissipation.</text>
+    <text class="sub"   x="20" y="58">② <tspan font-weight="700">Even-harmonic cancellation</tspan> — anything common to both tubes (2nd harmonic, hum, DC offset) subtracts out in the OPT secondary.</text>
+    <text class="sub"   x="20" y="74">③ <tspan font-weight="700">DC cancellation in the core</tspan> — opposite-direction plate currents through the two halves of the primary cancel magnetically. No air gap needed in the OPT.</text>
+  </g>
+</svg>

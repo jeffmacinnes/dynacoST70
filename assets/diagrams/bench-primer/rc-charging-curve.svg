@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" font-family="Inter, system-ui, sans-serif">
+  <title>RC charging curve — exponential approach to V_supply</title>
+  <desc>Plot of V(t) for a capacitor charging through a resistor, showing the 63% / 86% / 95% / 99% markers at 1τ, 2τ, 3τ, 5τ.</desc>
+  <style>
+    .axis   { stroke: #1a1a1a; stroke-width: 1.5; fill: none; }
+    .grid   { stroke: #d0d0d0; stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
+    .curve  { stroke: #2a6cad; stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+    .marker { fill: #c0392b; }
+    .label  { font-size: 13px; fill: #1a1a1a; }
+    .val    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .ann    { font-size: 12px; font-style: italic; fill: #555; }
+    .vsup   { stroke: #888; stroke-width: 1.4; fill: none; stroke-dasharray: 6 4; }
+  </style>
+  <rect width="560" height="360" fill="#ffffff"/>
+
+  <text class="val" x="280" y="26" text-anchor="middle">V(t) = V_supply × (1 − e^(−t/τ))</text>
+
+  <!-- Axes: V=0 at y=290, V=V_supply at y=80 (210 px range). τ = 80 px on x, origin at x=80. -->
+  <line class="axis" x1="80" y1="290" x2="510" y2="290"/>
+  <line class="axis" x1="80" y1="290" x2="80" y2="60"/>
+  <polygon points="510,290 502,286 502,294" fill="#1a1a1a"/>
+  <polygon points="80,60 76,68 84,68" fill="#1a1a1a"/>
+
+  <!-- V_supply asymptote (dashed) -->
+  <line class="vsup" x1="80" y1="80" x2="510" y2="80"/>
+  <text class="ann" x="506" y="72" text-anchor="end">V_supply (asymptote)</text>
+
+  <!-- τ grid lines -->
+  <line class="grid" x1="160" y1="290" x2="160" y2="80"/>
+  <line class="grid" x1="240" y1="290" x2="240" y2="80"/>
+  <line class="grid" x1="320" y1="290" x2="320" y2="80"/>
+  <line class="grid" x1="480" y1="290" x2="480" y2="80"/>
+
+  <!-- Charging curve: V(t) = V_sup × (1 − e^(−t/τ)), sampled at 16 x-points.
+       y = 290 − 210 × (1 − e^(−(x−80)/80)). -->
+  <path class="curve" d="
+    M 80  290
+    L 90  265
+    L 100 244
+    L 110 224
+    L 120 207
+    L 140 179
+    L 160 157
+    L 180 140
+    L 200 127
+    L 220 117
+    L 240 108
+    L 280  97
+    L 320  91
+    L 360  86
+    L 400  84
+    L 480  81
+    L 510  81
+  "/>
+
+  <!-- Markers at 1τ (63%), 2τ (86%), 3τ (95%), 5τ (~99%) -->
+  <circle class="marker" cx="160" cy="157" r="4.5"/>
+  <circle class="marker" cx="240" cy="108" r="4.5"/>
+  <circle class="marker" cx="320" cy="91"  r="4.5"/>
+  <circle class="marker" cx="480" cy="81"  r="4.5"/>
+
+  <!-- τ axis labels (below the x-axis) -->
+  <text class="val" x="160" y="308" text-anchor="middle">1τ</text>
+  <text class="val" x="240" y="308" text-anchor="middle">2τ</text>
+  <text class="val" x="320" y="308" text-anchor="middle">3τ</text>
+  <text class="val" x="480" y="308" text-anchor="middle">5τ</text>
+
+  <!-- Percentage labels.
+       1τ & 2τ markers sit on the rising curve — labels go ABOVE them.
+       3τ & 5τ markers are at the asymptote — labels go to the SIDE (and below the asymptote line)
+       to avoid overlapping the V_supply dashed line. -->
+  <text class="ann" x="160" y="145" text-anchor="middle" fill="#c0392b">63%</text>
+  <text class="ann" x="240" y="96"  text-anchor="middle" fill="#c0392b">86%</text>
+  <text class="ann" x="332" y="105" text-anchor="start"  fill="#c0392b">95%</text>
+  <text class="ann" x="468" y="105" text-anchor="end"    fill="#c0392b">99%</text>
+
+  <!-- y-axis ticks -->
+  <text class="label" x="72" y="294" text-anchor="end">0</text>
+  <text class="label" x="72" y="84"  text-anchor="end">V_sup</text>
+
+  <text class="ann" x="280" y="340" text-anchor="middle">time (in multiples of the time constant τ = R × C)</text>
+</svg>

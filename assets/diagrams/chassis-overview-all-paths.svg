@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1320 1060"
+     role="img"
+     aria-labelledby="chassis-title chassis-desc"
+     font-family="Inter, system-ui, sans-serif">
+  <title id="chassis-title">ST-70 chassis underside — all five signal paths plus mains</title>
+  <desc id="chassis-desc">Underside (wiring-side) view of the ST-70 chassis with components placed per the original Dynaco wiring pictorial. Front panel at top, rear panel at bottom. All five signal paths are overlaid in distinct colors using strictly horizontal/vertical wire segments. The mains-side wiring (cord, fuse, switch, PA-060 primary) is shown in a separate dark color.</desc>
+
+  <style>
+    .lead-group { cursor: help; }
+    .lead-group:hover .stage-box { stroke-width: 2.8; }
+    .lead-group:hover .tube { stroke-width: 2.8; }
+
+    .header  { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .subhead { font-size: 13px; fill: #444; }
+    .footer  { font-size: 11px; font-style: italic; fill: #555; }
+
+    .legend-label { font-size: 12px; font-weight: 700; fill: #1a1a1a; }
+    .legend-sub   { font-size: 11px; fill: #444; }
+    .comp-name    { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+    .comp-sub     { font-size: 10px; fill: #444; }
+    .panel-label  { font-size: 11px; font-weight: 700; fill: #666; letter-spacing: 0.05em; }
+    .pin-label    { font-size: 9px; fill: #666; }
+
+    .chassis-bg   { fill: #fafafa; stroke: #333; stroke-width: 2; }
+    .panel-bg     { fill: #ececec; stroke: #555; stroke-width: 1.2; }
+    .component    { fill: #ffffff; stroke: #555; stroke-width: 1.6; }
+    .tube         { fill: #fffaf0; stroke: #555; stroke-width: 1.8; }
+    .biaset       { fill: #f4f0f8; stroke: #555; stroke-width: 1.4; stroke-dasharray: 3,2; }
+    .xfmr         { fill: #efe8d4; stroke: #5a4a25; stroke-width: 1.8; }
+    .opt          { fill: #efe8d4; stroke: #5a4a25; stroke-width: 1.8; }
+    .pcb          { fill: #e8efe0; stroke: #2a8c3a; stroke-width: 2; }
+    .cap-can      { fill: #d8e6f6; stroke: #1a4e8a; stroke-width: 1.8; }
+    .strip        { fill: #f4ecdc; stroke: #b8851a; stroke-width: 1.5; }
+    .pot          { fill: #ebe6f4; stroke: #555; stroke-width: 1.4; }
+    .small-strip  { fill: #f4ecdc; stroke: #b8851a; stroke-width: 1.4; }
+
+    /* Path strokes — orthogonal, color-coded */
+    .audio-wire   { stroke: #1a4e8a; stroke-width: 2.4; fill: none; stroke-linejoin: miter; opacity: 0.92; }
+    .bplus-wire   { stroke: #cc3a2a; stroke-width: 2.4; fill: none; stroke-linejoin: miter; opacity: 0.92; }
+    .heater-wire  { stroke: #2a8c3a; stroke-width: 2.2; fill: none; stroke-linejoin: miter; opacity: 0.92; }
+    .bias-wire    { stroke: #b8851a; stroke-width: 2.2; fill: none; stroke-linejoin: miter; opacity: 0.95; }
+    .fb-wire      { stroke: #cc7a2a; stroke-width: 2.2; fill: none; stroke-linejoin: miter; stroke-dasharray: 7,3; opacity: 0.95; }
+    .mains-wire   { stroke: #222; stroke-width: 2.4; fill: none; stroke-linejoin: miter; opacity: 0.85; }
+
+    /* Wire terminator dots — placed at start/end of each wire so the connection point is obvious */
+    .term-audio  { fill: #1a4e8a; }
+    .term-bplus  { fill: #cc3a2a; }
+    .term-heater { fill: #2a8c3a; }
+    .term-bias   { fill: #b8851a; }
+    .term-fb     { fill: #cc7a2a; }
+    .term-mains  { fill: #222; }
+
+    .audio-fill   { fill: #1a4e8a; }
+    .bplus-fill   { fill: #cc3a2a; }
+    .heater-fill  { fill: #2a8c3a; }
+    .bias-fill    { fill: #b8851a; }
+    .fb-fill      { fill: #cc7a2a; }
+  </style>
+
+  <rect width="1320" height="1060" fill="#ffffff"/>
+
+  <!-- ============ TITLE ============ -->
+  <text class="header"  x="660" y="32" text-anchor="middle">ST-70 chassis underside — all five signal paths</text>
+  <text class="subhead" x="660" y="54" text-anchor="middle">Wiring-side view (front panel at top); component positions per the original Dynaco pictorial; orthogonal routing for clarity.</text>
+
+  <!-- ============ LEGEND ============ -->
+  <g transform="translate(60, 70)">
+    <rect x="0" y="0" width="1200" height="46" rx="6" fill="#fafafa" stroke="#aaa" stroke-width="1"/>
+
+    <line x1="14" y1="22" x2="50" y2="22" class="audio-wire"/>
+    <text class="legend-label" x="58" y="26" fill="#1a4e8a">Audio</text>
+    <text class="legend-sub" x="58" y="40">input → speaker</text>
+
+    <line x1="184" y1="22" x2="220" y2="22" class="bplus-wire"/>
+    <text class="legend-label" x="228" y="26" fill="#cc3a2a">B+ (HV DC)</text>
+    <text class="legend-sub" x="228" y="40">rectifier → plates/screens</text>
+
+    <line x1="414" y1="22" x2="450" y2="22" class="heater-wire"/>
+    <text class="legend-label" x="458" y="26" fill="#2a8c3a">Heater (AC)</text>
+    <text class="legend-sub" x="458" y="40">PA-060 → every filament</text>
+
+    <line x1="644" y1="22" x2="680" y2="22" class="bias-wire"/>
+    <text class="legend-label" x="688" y="26" fill="#b8851a">Bias (−DC)</text>
+    <text class="legend-sub" x="688" y="40">winding → EL34 grids</text>
+
+    <line x1="854" y1="22" x2="890" y2="22" class="fb-wire"/>
+    <text class="legend-label" x="898" y="26" fill="#cc7a2a">Feedback</text>
+    <text class="legend-sub" x="898" y="40">OPT → pentode cathode</text>
+
+    <line x1="1044" y1="22" x2="1080" y2="22" class="mains-wire"/>
+    <text class="legend-label" x="1088" y="26" fill="#222">Mains AC</text>
+    <text class="legend-sub" x="1088" y="40">BLACK→switch · WHITE→fuse → PA-060</text>
+  </g>
+
+  <!-- ============ CHASSIS OUTLINE ============ -->
+  <rect class="chassis-bg" x="60" y="140" width="1200" height="830" rx="10"/>
+
+  <!-- ============ FRONT PANEL (TOP) ============ -->
+  <rect class="panel-bg" x="60" y="140" width="1200" height="58"/>
+  <text class="panel-label" x="660" y="174" text-anchor="middle">FRONT PANEL</text>
+
+  <!-- V4 Biaset -->
+  <g class="lead-group" data-tooltip="V4 — LEFT BIASET SOCKET.
+
+Octal socket on the front panel; no tube. Meter-probe point for the left channel bias. V3 cathode-sense voltage arrives here via step 33. Target reading: 1.56 V.">
+    <circle class="stage-box biaset" cx="140" cy="170" r="22"/>
+    <text class="comp-name" x="140" y="174" text-anchor="middle">V4</text>
+  </g>
+  <text class="comp-sub" x="140" y="216" text-anchor="middle">L Biaset</text>
+
+  <!-- L RCA -->
+  <g class="lead-group" data-tooltip="LEFT RCA INPUT JACK — audio signal input for the left channel. Center pin = signal; shell = ground.">
+    <rect class="stage-box component" x="380" y="158" width="60" height="32" rx="4"/>
+    <text class="comp-name" x="410" y="178" text-anchor="middle">L RCA</text>
+  </g>
+
+  <!-- Input switch + grid leaks -->
+  <g class="lead-group" data-tooltip="INPUT AREA — multi-position level switch + 470 kΩ grid leak resistors (one per channel) on a small terminal strip.
+
+The switch selects between line and other input modes; the grid leak gives each input a high-impedance DC reference to ground.">
+    <rect class="stage-box strip" x="510" y="158" width="270" height="32" rx="4"/>
+    <text class="comp-name" x="645" y="178" text-anchor="middle">Input switch + 470 kΩ grid leaks</text>
+  </g>
+
+  <!-- R RCA -->
+  <g class="lead-group" data-tooltip="RIGHT RCA INPUT JACK — audio signal input for the right channel.">
+    <rect class="stage-box component" x="850" y="158" width="60" height="32" rx="4"/>
+    <text class="comp-name" x="880" y="178" text-anchor="middle">R RCA</text>
+  </g>
+
+  <!-- V5 Biaset -->
+  <g class="lead-group" data-tooltip="V5 — RIGHT BIASET SOCKET. Same as V4 but for the right channel. V6 cathode-sense arrives here via step 36.">
+    <circle class="stage-box biaset" cx="1150" cy="170" r="22"/>
+    <text class="comp-name" x="1150" y="174" text-anchor="middle">V5</text>
+  </g>
+  <text class="comp-sub" x="1150" y="216" text-anchor="middle">R Biaset</text>
+
+  <!-- ============ EL34 SOCKETS ============ -->
+
+  <!-- V3 (upper-left) -->
+  <g class="lead-group" data-tooltip="V3 — LEFT EL34 (upper).
+
+• Pin 3: plate → A-470 BLUE lead
+• Pin 4: screen → A-470 GREEN (UL tap, sampled for HF feedback)
+• Pin 5: grid (from PC-3A eyelet 2)
+• Pin 8: cathode → 15.6 Ω sense resistor → V4 Biaset
+• Pins 2, 7: heater (daisied with V2)
+
+Paths through V3: Audio, B+, Heater, Bias, Feedback (UL tap)">
+    <circle class="stage-box tube" cx="170" cy="285" r="44"/>
+    <text class="comp-name" x="170" y="282" text-anchor="middle">V3</text>
+    <text class="comp-sub"  x="170" y="298" text-anchor="middle">EL34 (L)</text>
+  </g>
+  <text class="comp-sub" x="170" y="350" text-anchor="middle">left channel · plate=BLUE</text>
+  <g>
+    <circle class="audio-fill"  cx="120" cy="365" r="4"/>
+    <circle class="bplus-fill"  cx="135" cy="365" r="4"/>
+    <circle class="heater-fill" cx="150" cy="365" r="4"/>
+    <circle class="bias-fill"   cx="165" cy="365" r="4"/>
+    <circle class="fb-fill"     cx="180" cy="365" r="4"/>
+  </g>
+
+  <!-- V2 (lower-left) -->
+  <g class="lead-group" data-tooltip="V2 — LEFT EL34 (lower).
+
+• Pin 3: plate → A-470 BLU/WHT lead
+• Pin 4: screen → A-470 GRN/WHT (UL tap)
+• Pin 5: grid (from PC-3A eyelet 1)
+• Pin 8: cathode (daisied with V3, then to V4 Biaset)
+• Pins 2, 7: heater (green pair from PA-060)
+
+Paths through V2: Audio, B+, Heater, Bias">
+    <circle class="stage-box tube" cx="170" cy="465" r="44"/>
+    <text class="comp-name" x="170" y="462" text-anchor="middle">V2</text>
+    <text class="comp-sub"  x="170" y="478" text-anchor="middle">EL34 (L)</text>
+  </g>
+  <text class="comp-sub" x="170" y="530" text-anchor="middle">left channel · plate=BLU/WHT</text>
+  <g>
+    <circle class="audio-fill"  cx="130" cy="544" r="4"/>
+    <circle class="bplus-fill"  cx="145" cy="544" r="4"/>
+    <circle class="heater-fill" cx="160" cy="544" r="4"/>
+    <circle class="bias-fill"   cx="175" cy="544" r="4"/>
+  </g>
+
+  <!-- V6 (upper-right) -->
+  <g class="lead-group" data-tooltip="V6 — RIGHT EL34 (upper).
+
+• Pin 3: plate → A-470 BLUE lead
+• Pin 4: screen → A-470 GREEN (UL tap, sampled for HF feedback)
+• Pin 5: grid (from PC-3A eyelet 23)
+• Pin 8: cathode → V5 Biaset (via step 36)
+• Pins 2, 7: heater (daisied with V7)
+
+Paths: Audio, B+, Heater, Bias, Feedback (UL tap)">
+    <circle class="stage-box tube" cx="1150" cy="285" r="44"/>
+    <text class="comp-name" x="1150" y="282" text-anchor="middle">V6</text>
+    <text class="comp-sub"  x="1150" y="298" text-anchor="middle">EL34 (R)</text>
+  </g>
+  <text class="comp-sub" x="1150" y="350" text-anchor="middle">right channel · plate=BLUE</text>
+  <g>
+    <circle class="audio-fill"  cx="1100" cy="365" r="4"/>
+    <circle class="bplus-fill"  cx="1115" cy="365" r="4"/>
+    <circle class="heater-fill" cx="1130" cy="365" r="4"/>
+    <circle class="bias-fill"   cx="1145" cy="365" r="4"/>
+    <circle class="fb-fill"     cx="1160" cy="365" r="4"/>
+  </g>
+
+  <!-- V7 (lower-right) -->
+  <g class="lead-group" data-tooltip="V7 — RIGHT EL34 (lower).
+
+• Pin 3: plate → A-470 BLU/WHT lead
+• Pin 4: screen → A-470 GRN/WHT (UL tap)
+• Pin 5: grid (from PC-3A eyelet 22)
+• Pins 2, 7: heater (brown pair from PA-060)
+
+Paths: Audio, B+, Heater, Bias">
+    <circle class="stage-box tube" cx="1150" cy="465" r="44"/>
+    <text class="comp-name" x="1150" y="462" text-anchor="middle">V7</text>
+    <text class="comp-sub"  x="1150" y="478" text-anchor="middle">EL34 (R)</text>
+  </g>
+  <text class="comp-sub" x="1150" y="530" text-anchor="middle">right channel · plate=BLU/WHT</text>
+  <g>
+    <circle class="audio-fill"  cx="1115" cy="544" r="4"/>
+    <circle class="bplus-fill"  cx="1130" cy="544" r="4"/>
+    <circle class="heater-fill" cx="1145" cy="544" r="4"/>
+    <circle class="bias-fill"   cx="1160" cy="544" r="4"/>
+  </g>
+
+  <!-- ============ PC-3A BOARD ============ -->
+  <g class="lead-group" data-tooltip="PC-3A DRIVER BOARD — the only printed circuit in the amp.
+
+Mounted with 4 screws to the chassis underside. Components face UP (so the 6GH8A driver tubes stand upward like the other tubes); solder pads and 23 numbered eyelets face DOWN toward the wiring side.
+
+Per channel: pentode (gain ~50×) → coupling cap → triode (cathodyne phase splitter) → 2 outputs (180° apart) to the EL34 grids.
+
+The PENTODE CATHODE on each channel is the FEEDBACK SUMMING NODE — both feedback wires (main loop from 16 Ω, HF comp from UL tap) terminate there.
+
+Paths: Audio, B+ (in), Heater (in), Bias (out to pots), Feedback (returns)">
+    <rect class="stage-box pcb" x="270" y="240" width="740" height="160" rx="6"/>
+    <text class="comp-name" x="640" y="266" text-anchor="middle">PC-3A driver board</text>
+    <text class="comp-sub"  x="640" y="282" text-anchor="middle">mounted with 4 screws · 23 numbered eyelets · 2× 6GH8A on top</text>
+
+    <!-- L 6GH8A inside board -->
+    <circle class="tube" cx="420" cy="332" r="26"/>
+    <text class="comp-sub" x="420" y="330" text-anchor="middle">6GH8A</text>
+    <text class="comp-sub" x="420" y="344" text-anchor="middle">left ch</text>
+
+    <!-- R 6GH8A inside board -->
+    <circle class="tube" cx="860" cy="332" r="26"/>
+    <text class="comp-sub" x="860" y="330" text-anchor="middle">6GH8A</text>
+    <text class="comp-sub" x="860" y="344" text-anchor="middle">right ch</text>
+
+    <!-- Path-indicator dots inside board -->
+    <circle class="audio-fill"  cx="580" cy="386" r="5"/>
+    <circle class="bplus-fill"  cx="608" cy="386" r="5"/>
+    <circle class="heater-fill" cx="636" cy="386" r="5"/>
+    <circle class="bias-fill"   cx="664" cy="386" r="5"/>
+    <circle class="fb-fill"     cx="692" cy="386" r="5"/>
+  </g>
+
+  <!-- ============ MIDDLE ROW ============ -->
+
+  <!-- 7-lug terminal strip (bias filter + heater CT ground) -->
+  <g class="lead-group" data-tooltip="SEVEN-LUG TERMINAL STRIP — bias filter network + heater CT ground.
+
+• Lug 4: raw bias node (−65 V) — 1N4007 anode lands here + 100 µF cap
+• Lug 3: filtered bias rail to pots + 100 µF cap
+• Lug 2: divider return (10 kΩ to ground)
+• Lug 1: ground (jumpered to lug 6)
+• Lugs 5, 7: heater CTs — referenced to ground through 0.02 µF caps to lug 6
+• Lug 6: ground tie
+
+Paths: Heater (CT reference), Bias.">
+    <rect class="stage-box strip" x="100" y="555" width="280" height="100" rx="4"/>
+    <text class="comp-name" x="240" y="582" text-anchor="middle">7-lug terminal strip</text>
+    <text class="comp-sub"  x="240" y="598" text-anchor="middle">bias filter network + heater CT ground</text>
+    <text class="comp-sub"  x="240" y="614" text-anchor="middle">2× 100 µF + 2× 10 kΩ · all 7 lugs in service</text>
+    <circle class="heater-fill" cx="220" cy="640" r="4"/>
+    <circle class="bias-fill"   cx="255" cy="640" r="4"/>
+  </g>
+
+  <!-- V1 5AR4 (center) -->
+  <g class="lead-group" data-tooltip="V1 — 5AR4 RECTIFIER TUBE.
+
+• Pins 4, 6: plates (red HV leads from PA-060)
+• Pin 8: cathode + heater. DC output to filter cap lug 2.
+• Pins 2, 8: heater (5 V from PA-060 white pair)
+
+Paths: B+ (source), Heater.">
+    <circle class="stage-box tube" cx="465" cy="605" r="44"/>
+    <text class="comp-name" x="465" y="602" text-anchor="middle">V1</text>
+    <text class="comp-sub"  x="465" y="618" text-anchor="middle">5AR4 rectifier</text>
+  </g>
+
+  <!-- Filter cap (RIGHT of V1) -->
+  <g class="lead-group" data-tooltip="QUAD FILTER CAP — four sections (lugs 1, 2, 3, 4) sharing a common ground.
+
+• Lug 2: ~435 V (raw rectified, input to choke)
+• Lug 1: ~415 V (after choke — main B+, to OPT primary CTs)
+• Lug 4: ~375 V (after 6.8 kΩ — pentode screens + triode plates)
+• Lug 3: ~305 V (after 22 kΩ — pentode plate load)
+
+Both dropping resistors (6.8 kΩ, 22 kΩ) live on this cap chassis.
+
+Paths: B+ (entire cascade).">
+    <rect class="stage-box cap-can" x="540" y="555" width="160" height="100" rx="50"/>
+    <text class="comp-name" x="620" y="588" text-anchor="middle">Quad filter cap</text>
+    <text class="comp-sub"  x="620" y="604" text-anchor="middle">lugs 1 · 2 · 3 · 4</text>
+    <text class="comp-sub"  x="620" y="620" text-anchor="middle">+ 6.8 kΩ + 22 kΩ on cap</text>
+    <circle class="bplus-fill" cx="620" cy="640" r="4"/>
+  </g>
+
+  <!-- 1N4007 bias diode (right of filter cap) -->
+  <g class="lead-group" data-tooltip="1N4007 BIAS DIODE — half-wave rectifier on a small 2-lug terminal strip.
+
+Cathode (banded end) faces the PA-060 bias winding; anode goes to 7-lug strip lug 4. The reverse orientation is what produces NEGATIVE DC at the bias rail.
+
+Paths: Bias.">
+    <rect class="stage-box small-strip" x="730" y="575" width="90" height="50" rx="4"/>
+    <text class="comp-name" x="775" y="595" text-anchor="middle">1N4007</text>
+    <text class="comp-sub"  x="775" y="610" text-anchor="middle">bias diode</text>
+    <circle class="bias-fill" cx="775" cy="640" r="4"/>
+  </g>
+
+  <!-- Bias pots -->
+  <g class="lead-group" data-tooltip="BIAS POTS — adjustable voltage dividers between the bias rail and the divider return.
+
+Each pot's wiper feeds the PC-3A board (left pot → eyelet 6, right pot → eyelet 21). The bias rides the board and reaches the EL34 grids via eyelets 1/2/22/23 → pin 6 tie point → 1 kΩ grid stopper → pin 5. Stock ST-70: 2 pots (one per channel). Individual-bias-pots mod: 4 pots (one per tube).
+
+Paths: Bias.">
+    <rect class="stage-box pot" x="850" y="565" width="180" height="80" rx="6"/>
+    <text class="comp-name" x="940" y="592" text-anchor="middle">Bias pots</text>
+    <text class="comp-sub"  x="940" y="608" text-anchor="middle">voltage dividers</text>
+    <text class="comp-sub"  x="940" y="624" text-anchor="middle">2 stock · 4 with mod</text>
+    <circle class="bias-fill" cx="940" cy="660" r="4"/>
+  </g>
+
+  <!-- ============ REAR CLUSTER ============ -->
+
+  <!-- L A-470 Output Transformer -->
+  <g class="lead-group" data-tooltip="A-470 LEFT OUTPUT TRANSFORMER.
+
+PRIMARY (5 leads, exits TOP toward V2/V3):
+• BLUE → V3 pin 3 (plate)
+• BLU/WHT → V2 pin 3 (plate)
+• RED → primary center tap → filter cap lug 1 (B+)
+• GREEN → V3 pin 4 (UL screen tap + HF feedback sample)
+• GRN/WHT → V2 pin 4 (UL screen tap)
+
+SECONDARY (4 leads, exits BOTTOM toward speaker strip):
+• BLACK (common), BROWN (4 Ω), ORANGE (8 Ω), YELLOW (16 Ω + feedback sample)
+
+Mounted on TOP of the chassis; body extends UP. From the wiring side you see its mounting bolts and the leads coming through grommets.
+
+Paths: Audio, B+, Feedback.">
+    <rect class="stage-box opt" x="90" y="700" width="190" height="190" rx="6"/>
+    <text class="comp-name" x="185" y="775" text-anchor="middle">L A-470</text>
+    <text class="comp-sub"  x="185" y="792" text-anchor="middle">output transformer</text>
+    <text class="comp-sub"  x="185" y="808" text-anchor="middle">primary + secondary</text>
+    <text class="comp-sub"  x="185" y="826" text-anchor="middle">(mounted on TOP)</text>
+    <!-- internal divider line suggesting primary/secondary windings -->
+    <line x1="120" y1="850" x2="250" y2="850" stroke="#5a4a25" stroke-width="1" stroke-dasharray="3,2"/>
+    <circle class="audio-fill" cx="155" cy="868" r="4"/>
+    <circle class="bplus-fill" cx="180" cy="868" r="4"/>
+    <circle class="fb-fill"    cx="205" cy="868" r="4"/>
+  </g>
+
+  <!-- PA-060 Power Transformer (rear-center) -->
+  <g class="lead-group" data-tooltip="PA-060 POWER TRANSFORMER — single source for every voltage in the amp.
+
+SECONDARIES:
+• HV (red leads + red/yellow CT): 720 V RMS end-to-end (360-0-360) → 5AR4 plates
+• 5 V (white pair): 5AR4 heater (V1 pins 2, 8)
+• 6.3 V × 2 (green + green/yellow CT for L channel; brown + brown/yellow CT for R channel)
+• Bias: single RED/BLK tap on the HV winding, ~50 V AC → 1N4007 (return via HV center tap)
+
+PRIMARY: BLACK and WHITE leads to the mains side (cord BLACK → switch; cord WHITE → fuse).
+
+Mounted on TOP of the chassis; the largest single component.
+
+Paths: B+ (source), Heater (source), Bias (source), Mains.">
+    <rect class="stage-box xfmr" x="390" y="700" width="300" height="190" rx="6"/>
+    <text class="comp-name" x="540" y="780" text-anchor="middle">PA-060</text>
+    <text class="comp-sub"  x="540" y="798" text-anchor="middle">power transformer</text>
+    <text class="comp-sub"  x="540" y="814" text-anchor="middle">HV + 5 V + 2× 6.3 V + bias</text>
+    <text class="comp-sub"  x="540" y="830" text-anchor="middle">(mounted on TOP)</text>
+    <circle class="bplus-fill"  cx="500" cy="868" r="4"/>
+    <circle class="heater-fill" cx="525" cy="868" r="4"/>
+    <circle class="bias-fill"   cx="550" cy="868" r="4"/>
+    <circle class="term-mains"  cx="575" cy="868" r="4"/>
+  </g>
+
+  <!-- Choke C-354 -->
+  <g class="lead-group" data-tooltip="CHOKE C-354 — ~1.5 H inductor.
+
+Wired between filter cap lugs 2 and 1. With the cap on lug 1, forms the LC low-pass filter that removes essentially all of the 120 Hz ripple from the rectified DC.
+
+Mounted on TOP of the chassis; smaller than the PA-060.
+
+Paths: B+.">
+    <rect class="stage-box xfmr" x="720" y="700" width="160" height="90" rx="6"/>
+    <text class="comp-name" x="800" y="736" text-anchor="middle">Choke C-354</text>
+    <text class="comp-sub"  x="800" y="752" text-anchor="middle">~1.5 H · LC partner of lug 1</text>
+    <circle class="bplus-fill" cx="800" cy="772" r="4"/>
+  </g>
+
+  <!-- Fuse -->
+  <g class="lead-group" data-tooltip="PRIMARY FUSE — in series with the neutral (WHITE) cord lead and the PA-060 primary.
+
+Mounted as a chassis-through fuse post on the rear panel. Protects against catastrophic shorts on the primary side.
+
+Paths: Mains.">
+    <rect class="stage-box component" x="720" y="810" width="70" height="40" rx="3"/>
+    <text class="comp-name" x="755" y="832" text-anchor="middle">Fuse</text>
+    <text class="comp-sub"  x="755" y="844" text-anchor="middle">post</text>
+  </g>
+
+  <!-- Power switch -->
+  <g class="lead-group" data-tooltip="POWER SWITCH — interrupts the PA-060 primary path.
+
+The anti-click cap modification goes across these contacts.
+
+Paths: Mains.">
+    <rect class="stage-box component" x="810" y="810" width="70" height="40" rx="3"/>
+    <text class="comp-name" x="845" y="832" text-anchor="middle">Power</text>
+    <text class="comp-sub"  x="845" y="844" text-anchor="middle">switch</text>
+  </g>
+
+  <!-- R A-470 Output Transformer -->
+  <g class="lead-group" data-tooltip="A-470 RIGHT OUTPUT TRANSFORMER — mirror of the left.
+
+Same color and connection scheme: BLUE → V6 plate, BLU/WHT → V7 plate, RED CT → B+, GREEN and GRN/WHT → V6/V7 screens (UL); secondary BLACK/BROWN/ORANGE/YELLOW → right speaker strip; YELLOW also sources the right channel's main feedback loop.
+
+Paths: Audio, B+, Feedback.">
+    <rect class="stage-box opt" x="1040" y="700" width="190" height="190" rx="6"/>
+    <text class="comp-name" x="1135" y="775" text-anchor="middle">R A-470</text>
+    <text class="comp-sub"  x="1135" y="792" text-anchor="middle">output transformer</text>
+    <text class="comp-sub"  x="1135" y="808" text-anchor="middle">primary + secondary</text>
+    <text class="comp-sub"  x="1135" y="826" text-anchor="middle">(mounted on TOP)</text>
+    <line x1="1070" y1="850" x2="1200" y2="850" stroke="#5a4a25" stroke-width="1" stroke-dasharray="3,2"/>
+    <circle class="audio-fill" cx="1105" cy="868" r="4"/>
+    <circle class="bplus-fill" cx="1130" cy="868" r="4"/>
+    <circle class="fb-fill"    cx="1155" cy="868" r="4"/>
+  </g>
+
+  <!-- ============ REAR PANEL (BOTTOM) ============ -->
+  <rect class="panel-bg" x="60" y="908" width="1200" height="60"/>
+  <text class="panel-label" x="660" y="941" text-anchor="middle">REAR PANEL</text>
+
+  <!-- L speaker terminal strip (4-screw) -->
+  <g class="lead-group" data-tooltip="LEFT 4-SCREW SPEAKER TERMINAL STRIP — landing point for the L A-470 secondary leads.
+
+• Lug 4: BLACK (common, speaker −)
+• Lug 3: BROWN (4 Ω)
+• Lug 2: ORANGE (8 Ω)
+• Lug 1: YELLOW (16 Ω + main feedback sample for left channel)
+
+Speaker wires attach here in final assembly.
+
+Paths: Audio (out), Feedback (sample at lug 1).">
+    <rect class="stage-box component" x="90" y="920" width="190" height="40" rx="3"/>
+    <text class="comp-name" x="185" y="939" text-anchor="middle">L speaker terms (4-screw)</text>
+    <text class="comp-sub"  x="185" y="954" text-anchor="middle">lug 1 YELLOW · 2 ORANGE · 3 BROWN · 4 BLACK</text>
+  </g>
+
+  <!-- Power cord / grommet -->
+  <g class="lead-group" data-tooltip="POWER CORD + STRAIN-RELIEF GROMMET — 3-prong mains entry.
+
+• BLACK (hot) → power switch → PA-060 primary
+• WHITE (neutral) → fuse → PA-060 primary
+• GREEN (earth) → chassis ground (stock wiring)
+
+Paths: Mains.">
+    <rect class="stage-box component" x="580" y="918" width="120" height="44" rx="6"/>
+    <text class="comp-name" x="640" y="938" text-anchor="middle">Power cord</text>
+    <text class="comp-sub"  x="640" y="952" text-anchor="middle">cord bushing + grommet</text>
+  </g>
+
+  <!-- R speaker terminal strip -->
+  <g class="lead-group" data-tooltip="RIGHT 4-SCREW SPEAKER TERMINAL STRIP — mirror of left.
+
+Paths: Audio (out), Feedback (sample at lug 1).">
+    <rect class="stage-box component" x="1040" y="920" width="190" height="40" rx="3"/>
+    <text class="comp-name" x="1135" y="939" text-anchor="middle">R speaker terms (4-screw)</text>
+    <text class="comp-sub"  x="1135" y="954" text-anchor="middle">lug 1 YELLOW · 2 ORANGE · 3 BROWN · 4 BLACK</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!--   WIRE PATHS — orthogonal routing, every endpoint snaps to a component -->
+  <!-- ====================================================================== -->
+
+  <!-- =================== AUDIO PATH (BLUE) =================== -->
+  <!-- L RCA → input switch -->
+  <path class="audio-wire" d="M 440 174 L 510 174"/>
+  <circle class="term-audio" cx="440" cy="174" r="3"/>
+  <circle class="term-audio" cx="510" cy="174" r="3"/>
+
+  <!-- R RCA → input switch -->
+  <path class="audio-wire" d="M 850 174 L 780 174"/>
+  <circle class="term-audio" cx="850" cy="174" r="3"/>
+  <circle class="term-audio" cx="780" cy="174" r="3"/>
+
+  <!-- Input switch (L output) → PC-3A top (left channel input) -->
+  <path class="audio-wire" d="M 570 190 L 570 220 L 320 220 L 320 240"/>
+  <circle class="term-audio" cx="570" cy="190" r="3"/>
+  <circle class="term-audio" cx="320" cy="240" r="3"/>
+
+  <!-- Input switch (R output) → PC-3A top (right channel input) -->
+  <path class="audio-wire" d="M 720 190 L 720 220 L 960 220 L 960 240"/>
+  <circle class="term-audio" cx="720" cy="190" r="3"/>
+  <circle class="term-audio" cx="960" cy="240" r="3"/>
+
+  <!-- L 6GH8A → V3 grid (audio coupling cap output, eyelet 2) -->
+  <path class="audio-wire" d="M 394 320 L 244 320 L 244 285 L 214 285"/>
+  <circle class="term-audio" cx="394" cy="320" r="3"/>
+  <circle class="term-audio" cx="214" cy="285" r="3"/>
+
+  <!-- L 6GH8A → V2 grid (eyelet 1) -->
+  <path class="audio-wire" d="M 394 344 L 230 344 L 230 465 L 214 465"/>
+  <circle class="term-audio" cx="394" cy="344" r="3"/>
+  <circle class="term-audio" cx="214" cy="465" r="3"/>
+
+  <!-- R 6GH8A → V6 grid (eyelet 23) -->
+  <path class="audio-wire" d="M 886 320 L 1050 320 L 1050 285 L 1106 285"/>
+  <circle class="term-audio" cx="886" cy="320" r="3"/>
+  <circle class="term-audio" cx="1106" cy="285" r="3"/>
+
+  <!-- R 6GH8A → V7 grid (eyelet 22) -->
+  <path class="audio-wire" d="M 886 344 L 1066 344 L 1066 465 L 1106 465"/>
+  <circle class="term-audio" cx="886" cy="344" r="3"/>
+  <circle class="term-audio" cx="1106" cy="465" r="3"/>
+
+  <!-- V3 plate (GREEN) → L A-470 primary (top) -->
+  <path class="audio-wire" d="M 170 329 L 80 329 L 80 700"/>
+  <circle class="term-audio" cx="170" cy="329" r="3"/>
+  <circle class="term-audio" cx="80"  cy="700" r="3"/>
+
+  <!-- V2 plate (BLUE) → L A-470 primary (top, slightly different entry point) -->
+  <path class="audio-wire" d="M 170 509 L 95 509 L 95 700"/>
+  <circle class="term-audio" cx="170" cy="509" r="3"/>
+  <circle class="term-audio" cx="95"  cy="700" r="3"/>
+
+  <!-- V6 plate (GREEN) → R A-470 primary (top) -->
+  <path class="audio-wire" d="M 1150 329 L 1240 329 L 1240 700"/>
+  <circle class="term-audio" cx="1150" cy="329" r="3"/>
+  <circle class="term-audio" cx="1240" cy="700" r="3"/>
+
+  <!-- V7 plate (BLUE) → R A-470 primary (top) -->
+  <path class="audio-wire" d="M 1150 509 L 1225 509 L 1225 700"/>
+  <circle class="term-audio" cx="1150" cy="509" r="3"/>
+  <circle class="term-audio" cx="1225" cy="700" r="3"/>
+
+  <!-- L A-470 secondary → L speaker strip -->
+  <path class="audio-wire" d="M 185 890 L 185 920"/>
+  <circle class="term-audio" cx="185" cy="890" r="3"/>
+  <circle class="term-audio" cx="185" cy="920" r="3"/>
+
+  <!-- R A-470 secondary → R speaker strip -->
+  <path class="audio-wire" d="M 1135 890 L 1135 920"/>
+  <circle class="term-audio" cx="1135" cy="890" r="3"/>
+  <circle class="term-audio" cx="1135" cy="920" r="3"/>
+
+  <!-- =================== B+ PATH (RED) =================== -->
+  <!-- PA-060 → V1 plate 1 (red HV lead 1) -->
+  <path class="bplus-wire" d="M 445 700 L 445 605 L 421 605"/>
+  <circle class="term-bplus" cx="445" cy="700" r="3"/>
+  <circle class="term-bplus" cx="421" cy="605" r="3"/>
+
+  <!-- PA-060 → V1 plate 2 (red HV lead 2) -->
+  <path class="bplus-wire" d="M 470 700 L 470 661 L 460 661"/>
+  <circle class="term-bplus" cx="470" cy="700" r="3"/>
+  <circle class="term-bplus" cx="460" cy="661" r="3"/>
+
+  <!-- V1 cathode (pin 8) → filter cap lug 2 -->
+  <path class="bplus-wire" d="M 509 605 L 540 605"/>
+  <circle class="term-bplus" cx="509" cy="605" r="3"/>
+  <circle class="term-bplus" cx="540" cy="605" r="3"/>
+
+  <!-- Filter cap → choke (one of the LC pair wires) -->
+  <path class="bplus-wire" d="M 700 580 L 720 580 L 720 700"/>
+  <circle class="term-bplus" cx="700" cy="580" r="3"/>
+  <circle class="term-bplus" cx="720" cy="700" r="3"/>
+
+  <!-- Choke return → filter cap -->
+  <path class="bplus-wire" d="M 700 620 L 710 620 L 710 690 L 880 690 L 880 700"/>
+  <circle class="term-bplus" cx="700" cy="620" r="3"/>
+  <circle class="term-bplus" cx="880" cy="700" r="3"/>
+
+  <!-- Filter cap (lug 1) → L A-470 primary CT (RED lead) -->
+  <path class="bplus-wire" d="M 555 555 L 555 540 L 110 540 L 110 700"/>
+  <circle class="term-bplus" cx="555" cy="555" r="3"/>
+  <circle class="term-bplus" cx="110" cy="700" r="3"/>
+
+  <!-- Filter cap (lug 1) → R A-470 primary CT -->
+  <path class="bplus-wire" d="M 685 555 L 685 540 L 1210 540 L 1210 700"/>
+  <circle class="term-bplus" cx="685" cy="555" r="3"/>
+  <circle class="term-bplus" cx="1210" cy="700" r="3"/>
+
+  <!-- Filter cap lug 4 → PC-3A eyelet 20 (B+ feed, screens/triode plates) -->
+  <path class="bplus-wire" d="M 605 555 L 605 470 L 720 470 L 720 400"/>
+  <circle class="term-bplus" cx="605" cy="555" r="3"/>
+  <circle class="term-bplus" cx="720" cy="400" r="3"/>
+
+  <!-- Filter cap lug 3 → PC-3A eyelet 19 (B+ feed, pentode plate load) -->
+  <path class="bplus-wire" d="M 635 555 L 635 480 L 560 480 L 560 400"/>
+  <circle class="term-bplus" cx="635" cy="555" r="3"/>
+  <circle class="term-bplus" cx="560" cy="400" r="3"/>
+
+  <!-- =================== HEATER PATH (GREEN) =================== -->
+  <!-- PA-060 → V1 (white 5V pair) -->
+  <path class="heater-wire" d="M 415 700 L 415 600 L 421 600"/>
+  <circle class="term-heater" cx="415" cy="700" r="3"/>
+  <circle class="term-heater" cx="421" cy="600" r="3"/>
+
+  <!-- PA-060 → V2 (green pair, left channel start). Routes around L OPT and 7-lug. -->
+  <path class="heater-wire" d="M 410 720 L 60 720 L 60 465 L 126 465"/>
+  <circle class="term-heater" cx="410" cy="720" r="3"/>
+  <circle class="term-heater" cx="126" cy="465" r="3"/>
+
+  <!-- V2 → V3 daisy (vertical between V2 and V3 left sides) -->
+  <path class="heater-wire" d="M 126 421 L 126 329"/>
+  <circle class="term-heater" cx="126" cy="421" r="3"/>
+  <circle class="term-heater" cx="126" cy="329" r="3"/>
+
+  <!-- V3 → PC-3A left 6GH8A heater (via eyelet near board left edge) -->
+  <path class="heater-wire" d="M 214 295 L 252 295 L 252 358 L 394 358"/>
+  <circle class="term-heater" cx="214" cy="295" r="3"/>
+  <circle class="term-heater" cx="394" cy="358" r="3"/>
+
+  <!-- PA-060 → V7 (brown pair, right channel start). Routes around R OPT. -->
+  <path class="heater-wire" d="M 690 720 L 1260 720 L 1260 465 L 1194 465"/>
+  <circle class="term-heater" cx="690" cy="720" r="3"/>
+  <circle class="term-heater" cx="1194" cy="465" r="3"/>
+
+  <!-- V7 → V6 daisy -->
+  <path class="heater-wire" d="M 1194 421 L 1194 329"/>
+  <circle class="term-heater" cx="1194" cy="421" r="3"/>
+  <circle class="term-heater" cx="1194" cy="329" r="3"/>
+
+  <!-- V6 → PC-3A right 6GH8A heater -->
+  <path class="heater-wire" d="M 1106 295 L 1062 295 L 1062 358 L 886 358"/>
+  <circle class="term-heater" cx="1106" cy="295" r="3"/>
+  <circle class="term-heater" cx="886" cy="358" r="3"/>
+
+  <!-- Heater CT (green/yellow) → 7-lug strip ground -->
+  <path class="heater-wire" d="M 395 705 L 380 705 L 380 655"/>
+  <circle class="term-heater" cx="395" cy="705" r="3"/>
+  <circle class="term-heater" cx="380" cy="655" r="3"/>
+
+  <!-- Heater CT (brown/yellow) → 7-lug strip ground -->
+  <path class="heater-wire" d="M 425 705 L 370 705 L 370 655"/>
+  <circle class="term-heater" cx="425" cy="705" r="3"/>
+  <circle class="term-heater" cx="370" cy="655" r="3"/>
+
+  <!-- =================== BIAS PATH (GOLD) =================== -->
+  <!-- PA-060 bias winding → 1N4007 cathode -->
+  <path class="bias-wire" d="M 690 700 L 705 700 L 705 600 L 730 600"/>
+  <circle class="term-bias" cx="690" cy="700" r="3"/>
+  <circle class="term-bias" cx="730" cy="600" r="3"/>
+
+  <!-- 1N4007 anode → 7-lug strip lug 4 (routes above filter cap) -->
+  <path class="bias-wire" d="M 820 600 L 820 542 L 380 542 L 380 555"/>
+  <circle class="term-bias" cx="820" cy="600" r="3"/>
+  <circle class="term-bias" cx="380" cy="555" r="3"/>
+
+  <!-- 7-lug strip lug 3 → bias pots (routes above V1) -->
+  <path class="bias-wire" d="M 380 565 L 415 565 L 415 530 L 940 530 L 940 565"/>
+  <circle class="term-bias" cx="380" cy="565" r="3"/>
+  <circle class="term-bias" cx="940" cy="565" r="3"/>
+
+  <!-- Left bias pot wiper → PC-3A eyelet 6 (board left edge); bias rides the board to eyelets 1/2 → EL34 pin 6 → 1 kΩ → pin 5 -->
+  <path class="bias-wire" d="M 850 580 L 250 580 L 250 380 L 270 380"/>
+  <circle class="term-bias" cx="850" cy="580" r="3"/>
+  <circle class="term-bias" cx="270" cy="380" r="3"/>
+  <text class="comp-sub" x="330" y="425" text-anchor="middle">wiper → eyelet 6</text>
+
+  <!-- Right bias pot wiper → PC-3A eyelet 21 (board right edge); bias rides the board to eyelets 22/23 → EL34 pin 6 → 1 kΩ → pin 5 -->
+  <path class="bias-wire" d="M 1030 580 L 1056 580 L 1056 380 L 1010 380"/>
+  <circle class="term-bias" cx="1030" cy="580" r="3"/>
+  <circle class="term-bias" cx="1010" cy="380" r="3"/>
+  <text class="comp-sub" x="950" y="425" text-anchor="middle">wiper → eyelet 21</text>
+
+  <!-- =================== FEEDBACK PATH (ORANGE DASHED) =================== -->
+  <!-- L speaker strip (16Ω = lug 1, leftmost) → PC-3A eyelet 12. Routes up the chassis far-left margin to clear L OPT. -->
+  <path class="fb-wire" d="M 100 920 L 75 920 L 75 230 L 290 230 L 290 240"/>
+  <circle class="term-fb" cx="100" cy="920" r="3"/>
+  <circle class="term-fb" cx="290" cy="240" r="3"/>
+
+  <!-- R speaker strip lug 1 → PC-3A eyelet 13. Routes up the right margin. -->
+  <path class="fb-wire" d="M 1220 920 L 1245 920 L 1245 230 L 990 230 L 990 240"/>
+  <circle class="term-fb" cx="1220" cy="920" r="3"/>
+  <circle class="term-fb" cx="990" cy="240" r="3"/>
+
+  <!-- V3 pin 4 (UL tap) → PC-3A eyelet 11 (HF feedback for left ch) -->
+  <path class="fb-wire" d="M 170 241 L 170 215 L 310 215 L 310 240"/>
+  <circle class="term-fb" cx="170" cy="241" r="3"/>
+  <circle class="term-fb" cx="310" cy="240" r="3"/>
+
+  <!-- V6 pin 4 (UL tap) → PC-3A eyelet 14 (HF feedback for right ch) -->
+  <path class="fb-wire" d="M 1150 241 L 1150 215 L 970 215 L 970 240"/>
+  <circle class="term-fb" cx="1150" cy="241" r="3"/>
+  <circle class="term-fb" cx="970" cy="240" r="3"/>
+
+  <!-- =================== MAINS PATH (DARK GRAY) =================== -->
+  <!-- Power cord BLACK (hot) → power switch -->
+  <path class="mains-wire" d="M 670 918 L 670 900 L 845 900 L 845 850"/>
+  <circle class="term-mains" cx="670" cy="918" r="3"/>
+  <circle class="term-mains" cx="845" cy="850" r="3"/>
+
+  <!-- Power switch → PA-060 primary (hot side) -->
+  <path class="mains-wire" d="M 845 810 L 845 770 L 690 770"/>
+  <circle class="term-mains" cx="845" cy="810" r="3"/>
+  <circle class="term-mains" cx="690" cy="770" r="3"/>
+
+  <!-- Power cord WHITE (neutral) → fuse -->
+  <path class="mains-wire" d="M 610 918 L 610 895 L 755 895 L 755 850"/>
+  <circle class="term-mains" cx="610" cy="918" r="3"/>
+  <circle class="term-mains" cx="755" cy="850" r="3"/>
+
+  <!-- Fuse → PA-060 primary (neutral side) -->
+  <path class="mains-wire" d="M 755 810 L 755 785 L 690 785"/>
+  <circle class="term-mains" cx="755" cy="810" r="3"/>
+  <circle class="term-mains" cx="690" cy="785" r="3"/>
+
+  <!-- Power cord GREEN (earth) → chassis ground (drawn as a small ground symbol near cord) -->
+  <g class="lead-group" data-tooltip="EARTH GROUND — green wire from the 3-prong power cord ties to chassis ground. This earth-to-chassis wire is part of the stock wiring.">
+    <path class="mains-wire" d="M 640 962 L 640 980"/>
+    <line x1="625" y1="982" x2="655" y2="982" stroke="#222" stroke-width="2"/>
+    <line x1="630" y1="987" x2="650" y2="987" stroke="#222" stroke-width="2"/>
+    <line x1="635" y1="992" x2="645" y2="992" stroke="#222" stroke-width="2"/>
+    <text class="comp-sub" x="680" y="985">earth (chassis)</text>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text class="footer" x="660" y="1018" text-anchor="middle">Every wire endpoint has a colored dot snapping to a component's edge. Wires are strictly orthogonal — actual physical leads curve and bundle differently.</text>
+  <text class="footer" x="660" y="1036" text-anchor="middle">Colored dots inside each component show which paths use it. See [signal-paths](../signal-paths/index.md) for the stage-by-stage trace of each path.</text>
+</svg>
